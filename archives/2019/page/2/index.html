@@ -5,20 +5,19 @@
   
 
   
-  <title>Python-时间 | 徐国忠的技术路线</title>
+  <title>Archives: 2019 | 徐国忠的技术路线</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="说明下面是time的应用，另外datetime中也有对时间的处理距离1970年01月01日的时间差import time;  # 引入time模块  ticks = time.time() print &amp;quot;当前时间戳为:&amp;quot;, ticks获取当地时间元组localtime = time.localtime(time.time()) print &amp;quot;本地时间为 :&amp;quot;">
-<meta name="keywords" content="Python">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Python-时间">
-<meta property="og:url" content="https://dirsky.github.io/2019/08/28/python-2018-07-23-python-时间/index.html">
+  <meta name="description" content="优秀是一种习惯">
+<meta name="keywords" content="Python Java">
+<meta property="og:type" content="website">
+<meta property="og:title" content="徐国忠的技术路线">
+<meta property="og:url" content="https://dirsky.github.io/archives/2019/page/2/index.html">
 <meta property="og:site_name" content="徐国忠的技术路线">
-<meta property="og:description" content="说明下面是time的应用，另外datetime中也有对时间的处理距离1970年01月01日的时间差import time;  # 引入time模块  ticks = time.time() print &amp;quot;当前时间戳为:&amp;quot;, ticks获取当地时间元组localtime = time.localtime(time.time()) print &amp;quot;本地时间为 :&amp;quot;">
+<meta property="og:description" content="优秀是一种习惯">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-07-18T05:27:01.025Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python-时间">
-<meta name="twitter:description" content="说明下面是time的应用，另外datetime中也有对时间的处理距离1970年01月01日的时间差import time;  # 引入time模块  ticks = time.time() print &amp;quot;当前时间戳为:&amp;quot;, ticks获取当地时间元组localtime = time.localtime(time.time()) print &amp;quot;本地时间为 :&amp;quot;">
+<meta name="twitter:title" content="徐国忠的技术路线">
+<meta name="twitter:description" content="优秀是一种习惯">
   
     <link rel="alternate" href="/atom.xml" title="徐国忠的技术路线" type="application/atom+xml">
   
@@ -69,82 +68,45 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-python-2018-07-23-python-时间" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/28/python-2018-07-23-python-时间/" class="article-date">
-  <time datetime="2019-08-28T03:44:50.447Z" itemprop="datePublished">2019-08-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Learn/">Learn</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      Python-时间
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2019/07/18/bootstrap-2018-07-16-bootstrap-0/" class="archive-article-date">
+  <time datetime="2019-07-18T05:27:01.018Z" itemprop="datePublished">Jul 18</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/07/18/bootstrap-2018-07-16-bootstrap-0/">Bootstrap-全局 CSS 样式</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><pre><code>下面是time的应用，另外datetime中也有对时间的处理</code></pre><h1 id="距离1970年01月01日的时间差"><a href="#距离1970年01月01日的时间差" class="headerlink" title="距离1970年01月01日的时间差"></a>距离1970年01月01日的时间差</h1><pre><code>import time;  # 引入time模块
-
-ticks = time.time()
-print &quot;当前时间戳为:&quot;, ticks</code></pre><h1 id="获取当地时间元组"><a href="#获取当地时间元组" class="headerlink" title="获取当地时间元组"></a>获取当地时间元组</h1><pre><code>localtime = time.localtime(time.time())
-print &quot;本地时间为 :&quot;, localtime
-#time.struct_time(tm_year=2016, tm_mon=4, tm_mday=7,tm_hour=10,
-    tm_min=3, tm_sec=27, tm_wday=3, tm_yday=98,tm_isdst=0)</code></pre><h1 id="获取格式化的时间"><a href="#获取格式化的时间" class="headerlink" title="获取格式化的时间"></a>获取格式化的时间</h1><pre><code>localtime = time.asctime( time.localtime(time.time()) )
-print &quot;本地时间为 :&quot;, localtime
-#本地时间为 : Thu Apr  7 10:05:21 2016</code></pre><h1 id="格式化日期"><a href="#格式化日期" class="headerlink" title="格式化日期"></a>格式化日期</h1><pre><code># 格式化成2016-03-20 11:45:39形式
-print time.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;, time.localtime()) 
-
-# 格式化成Sat Mar 28 22:24:24 2016形式
-print time.strftime(&quot;%a %b %d %H:%M:%S %Y&quot;, time.localtime()) 
-
-# 将格式字符串转换为时间戳
-a = &quot;Sat Mar 28 22:24:24 2016&quot;
-print time.mktime(time.strptime(a,&quot;%a %b %d %H:%M:%S %Y&quot;))</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://dirsky.github.io/2019/08/28/python-2018-07-23-python-时间/" data-id="cjzupulpm000ibgwckag2dyf7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2019/08/28/python-2018-07-20-python-逻辑控制/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Python-逻辑控制
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2019/08/28/git/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">常用 Git 命令清单</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/archives/2019/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span>
+  </nav>
 
 </section>
         

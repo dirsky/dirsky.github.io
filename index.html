@@ -658,7 +658,575 @@ $ git archive</code></pre>
 
 
   
+    <article id="post-bootstrap-2018-07-16-bootstrap-4-kj" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/18/bootstrap-2018-07-16-bootstrap-4-kj/" class="article-date">
+  <time datetime="2019-07-18T05:27:01.021Z" itemprop="datePublished">2019-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>
+  </div>
 
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/18/bootstrap-2018-07-16-bootstrap-4-kj/">Bootstrap-控件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="按钮改变大小和颜色"><a href="#按钮改变大小和颜色" class="headerlink" title="按钮改变大小和颜色"></a>按钮改变大小和颜色</h3><!-- Standard button -->
+<p><button type="button" class="btn btn-default btn-lg">（默认样式）Default btn-lg</button></p>
+<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+<p><button type="button" class="btn btn-primary">（首选项）Primary</button></p>
+<!-- Indicates a successful or positive action -->
+<p><button type="button" class="btn btn-success btn-sm">（成功）Success  btn-sm</button></p>
+<!-- Contextual button for informational alert messages -->
+<p><button type="button" class="btn btn-info btn-xs">（一般信息）Info btn-xs</button></p>
+<!-- Indicates caution should be taken with this action -->
+<p><button type="button" class="btn btn-warning">（警告）Warning</button></p>
+<!-- Indicates a dangerous or potentially negative action -->
+<p><button type="button" class="btn btn-danger">（危险）Danger</button></p>
+<!-- Deemphasize a button by making it look like a link while maintaining button behavior -->
+<p><button type="button" class="btn btn-link">（链接）Link</button></p>
+<h3 id="文本和背景改变颜色"><a href="#文本和背景改变颜色" class="headerlink" title="文本和背景改变颜色"></a>文本和背景改变颜色</h3><p class="text-muted bg-warning">.mcorper nulla non metus..</p>
+<p class="text-primary bg-danger">..mcorper nulla non metus.</p>
+<p class="text-success">.mcorper nulla non metus..</p>
+<p class="text-info bg-primary">.mcorper nulla non metus..</p>
+<p class="text-warning bg-success">.mcorper nulla non metus..</p>
+<p class="text-danger bg-info">..mcorper nulla non metus.</p>
+
+
+
+<h3 id="输入框和下拉框"><a href="#输入框和下拉框" class="headerlink" title="输入框和下拉框"></a>输入框和下拉框</h3><input type="text" class="form-control" placeholder="Text input">
+<input class="form-control input-lg" type="text" placeholder=".input-lg">
+<input class="form-control" type="text" placeholder="Default input">
+<input class="form-control input-sm" type="text" placeholder=".input-sm">
+<textarea class="form-control" rows="3"></textarea>
+
+<p><select class="form-control input-lg">…</select><br><select class="form-control input-sm">…</select><br><select class="form-control"><br>  <option>1</option><br>  <option>2</option><br>  <option>3</option><br>  <option>4</option><br>  <option>5</option><br></select></p>
+<div class="checkbox">
+  <label>
+    <input type="checkbox" value>选项
+  </label>
+</div>
+<div class="checkbox disabled">
+  <label>
+    <input type="checkbox" value disabled>选项无效
+  </label>
+</div>
+
+<div class="radio">
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>单选1 name="optionsRadios"
+  </label>
+</div>
+<div class="radio">
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+    单选2 name="optionsRadios"
+  </label>
+</div>
+<div class="radio disabled">
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>单选3-无效 name="optionsRadios"
+  </label>
+</div>
+
+<h3 id="单选和复选按钮"><a href="#单选和复选按钮" class="headerlink" title="单选和复选按钮"></a>单选和复选按钮</h3><label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+</label>
+<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+</label>
+<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+</label>
+
+<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+</label>
+<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+</label>
+
+
+<h3 id="class-”form-group-has-success”"><a href="#class-”form-group-has-success”" class="headerlink" title="class=”form-group has-success”"></a>class=”form-group has-success”</h3><div class="form-group has-success">
+  <label class="control-label" for="inputSuccess1">Input with success</label>
+  <input type="text" class="form-control" id="inputSuccess1">
+  <span id="helpBlock2" class="help-block">说明信息</span>
+</div>
+<div class="form-group has-warning">
+  <label class="control-label" for="inputWarning1">Input with warning</label>
+  <input type="text" class="form-control" id="inputWarning1">
+</div>
+<div class="form-group has-error">
+  <label class="control-label" for="inputError1">Input with error</label>
+  <input type="text" class="form-control" id="inputError1">
+</div>
+<div class="has-success">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" id="checkboxSuccess" value="option1">
+      Checkbox with success
+    </label>
+  </div>
+</div>
+<div class="has-warning">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" id="checkboxWarning" value="option1">
+      Checkbox with warning
+    </label>
+  </div>
+</div>
+<div class="has-error">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" id="checkboxError" value="option1">
+      Checkbox with error
+    </label>
+  </div>
+</div>
+
+
+<h3 id="控件"><a href="#控件" class="headerlink" title="控件"></a>控件</h3><form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">Example block-level help text here.</p>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+<form class="form-inline">
+  <div class="form-group">
+    <label for="exampleInputName2">Name</label>
+    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail2">Email</label>
+    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+  </div>
+  <button type="submit" class="btn btn-default">Send invitation</button>
+</form>
+
+
+<form class="form-inline">
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+    <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+      <div class="input-group-addon">.00</div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Transfer cash</button>
+</form>
+
+
+
+
+<p><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button><br><span class="caret"></span></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://dirsky.github.io/2019/07/18/bootstrap-2018-07-16-bootstrap-4-kj/" data-id="cjzupwr9l000wmgwc96jdvckc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-bootstrap-2018-07-16-bootstrap-3-cj" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/18/bootstrap-2018-07-16-bootstrap-3-cj/" class="article-date">
+  <time datetime="2019-07-18T05:27:01.021Z" itemprop="datePublished">2019-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/18/bootstrap-2018-07-16-bootstrap-3-cj/">bootstrap-插件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  弹出框
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">标题</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="alert alert-warning alert-dismissible fade in" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+  <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
+</div>
+
+
+<div class="alert alert-danger alert-dismissible fade in" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+  <h4>Oh snap! You got an error!</h4>
+  <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+  <p>
+    <button type="button" class="btn btn-danger">Take this action</button>
+    <button type="button" class="btn btn-default">Or do this</button>
+  </p>
+</div>
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://dirsky.github.io/2019/07/18/bootstrap-2018-07-16-bootstrap-3-cj/" data-id="cjzupwra90016mgwcx41d960d" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-bootstrap-2018-07-16-bootstrap-2-zj" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/18/bootstrap-2018-07-16-bootstrap-2-zj/" class="article-date">
+  <time datetime="2019-07-18T05:27:01.020Z" itemprop="datePublished">2019-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/18/bootstrap-2018-07-16-bootstrap-2-zj/">Bootstrap-组件</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="#">Messages</a></li>
+</ul>
+### 组件
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default">Left</button>
+  <button type="button" class="btn btn-default">Middle</button>
+  <button type="button" class="btn btn-default">Right</button>
+</div>
+
+<div class="btn-toolbar" role="toolbar" aria-label="...">
+  <div class="btn-group" role="group" aria-label="...">...</div>
+  <div class="btn-group" role="group" aria-label="...">...</div>
+  <div class="btn-group" role="group" aria-label="...">...</div>
+</div>
+
+<button type="button" class="btn btn-default" aria-label="Left Align">
+  <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+</button>
+
+<button type="button" class="btn btn-default btn-lg">
+  <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
+</button>
+
+
+<div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  Enter a valid email address
+</div>
+
+
+<div class="dropup">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropup
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+
+
+
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default">1</button>
+  <button type="button" class="btn btn-default">2</button>
+
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a href="#">Dropdown link</a></li>
+      <li><a href="#">Dropdown link</a></li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- Single button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Action <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+<!-- Split button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-danger">Action</button>
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+
+<p><span class="label label-default">Default</span><br><span class="label label-primary">Primary</span><br><span class="label label-success">Success</span><br><span class="label label-info">Info</span><br><span class="label label-warning">Warning</span><br><span class="label label-danger">Danger</span></p>
+<p><a href="#">Inbox <span class="badge">42</span></a></p>
+<button class="btn btn-primary" type="button">
+  Messages <span class="badge">4</span>
+</button>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://dirsky.github.io/2019/07/18/bootstrap-2018-07-16-bootstrap-2-zj/" data-id="cjzupwr99000pmgwch3ywhov6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-bootstrap-2018-07-16-bootstrap-1-table" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/18/bootstrap-2018-07-16-bootstrap-1-table/" class="article-date">
+  <time datetime="2019-07-18T05:27:01.019Z" itemprop="datePublished">2019-07-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Learn/">Learn</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/07/18/bootstrap-2018-07-16-bootstrap-1-table/">Bootstrap-Table</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="基本表格"><a href="#基本表格" class="headerlink" title="基本表格"></a>基本表格</h3><table class="table table-striped">
+<!-- On rows -->
+<tr class="active"><td>...</td></tr>
+<tr class="success"><td>...</td></tr>
+<tr class="warning"><td>...</td></tr>
+<tr class="danger"><td>table-striped</td></tr>
+<tr class="info"><td>...</td></tr>
+</table>
+
+<table class="table table-bordered">
+<!-- On cells (`td` or `th`) -->
+<tr>
+  <td class="active">...</td>
+  <td class="success">...</td>
+  <td class="warning">...</td>
+  <td class="danger">...</td>
+  <td class="info">...</td>
+</tr>
+<tr>
+  <td class="active">...</td>
+  <td class="success">...</td>
+  <td class="warning">table-bordered</td>
+  <td class="danger">...</td>
+  <td class="info">...</td>
+</tr>
+</table>
+
+<table class="table table-hover">
+<!-- On cells (`td` or `th`) -->
+<tr>
+  <td class="active">悬停</td>
+  <td class="success">table-hover</td>
+  <td class="warning">...</td>
+  <td class="danger">...</td>
+  <td class="info">...</td>
+</tr>
+<tr>
+  <td class="active">...</td>
+  <td class="success">...</td>
+  <td class="warning">...</td>
+  <td class="danger">...</td>
+  <td class="info">...</td>
+</tr>
+</table>
+
+<table class="table table-condensed">
+<!-- On cells (`td` or `th`) -->
+<tr>
+  <td class="active">压缩</td>
+  <td class="success">table-condensed</td>
+  <td class="warning">...</td>
+  <td class="danger">...</td>
+  <td class="info">...</td>
+</tr>
+<tr>
+  <td class="active">...</td>
+  <td class="success">...</td>
+  <td class="warning">...</td>
+  <td class="danger">...</td>
+  <td class="info">...</td>
+</tr>
+</table>
+
+
+
+<h3 id="栅格表格"><a href="#栅格表格" class="headerlink" title="栅格表格"></a>栅格表格</h3><div class="container-fluid">
+<!-- Stack the columns on mobile by making one full-width and the other half-width -->
+<div class="row">
+  <div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+</div>
+
+<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+<div class="row">
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+</div>
+
+<!-- Columns are always 50% wide, on mobile and desktop -->
+<div class="row">
+  <div class="col-xs-6">.col-xs-6</div>
+  <div class="col-xs-6">.col-xs-6</div>
+</div>
+</div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://dirsky.github.io/2019/07/18/bootstrap-2018-07-16-bootstrap-1-table/" data-id="cjzupwr9e000smgwcegbevcpc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -678,7 +1246,7 @@ $ git archive</code></pre>
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li></ul>
     </div>
   </div>
 
@@ -688,7 +1256,7 @@ $ git archive</code></pre>
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Python/" style="font-size: 20px;">Python</a>
+      <a href="/tags/Bootstrap/" style="font-size: 20px;">Bootstrap</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a>
     </div>
   </div>
 
@@ -697,7 +1265,7 @@ $ git archive</code></pre>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
     </div>
   </div>
 
