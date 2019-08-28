@@ -5,19 +5,20 @@
   
 
   
-  <title>Archives: 2019/7 | 徐国忠的技术路线</title>
+  <title>Python-运算符 | 徐国忠的技术路线</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="优秀是一种习惯">
-<meta name="keywords" content="Python Java">
-<meta property="og:type" content="website">
-<meta property="og:title" content="徐国忠的技术路线">
-<meta property="og:url" content="https://dirsky.github.io/archives/2019/07/index.html">
+  <meta name="description" content="算术运算符+ - * / %  取模 - 返回除法的余数 ** 幂 - 返回x的y次幂 // 取整除 - 返回商的整数部分（向下取整）比较运算符== !=或&amp;lt;&amp;gt; &amp;gt; &amp;lt; &amp;gt;= &amp;lt;=赋值运算符= += -= *= /= %= **= //=位运算符（二进制）略逻辑运算符and or not成员运算符in not in身份运算符is is not">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python-运算符">
+<meta property="og:url" content="https://dirsky.github.io/2019/08/28/lang-python-2018-07-21-python-运算符/index.html">
 <meta property="og:site_name" content="徐国忠的技术路线">
-<meta property="og:description" content="优秀是一种习惯">
+<meta property="og:description" content="算术运算符+ - * / %  取模 - 返回除法的余数 ** 幂 - 返回x的y次幂 // 取整除 - 返回商的整数部分（向下取整）比较运算符== !=或&amp;lt;&amp;gt; &amp;gt; &amp;lt; &amp;gt;= &amp;lt;=赋值运算符= += -= *= /= %= **= //=位运算符（二进制）略逻辑运算符and or not成员运算符in not in身份运算符is is not">
 <meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-08-28T04:17:39.635Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="徐国忠的技术路线">
-<meta name="twitter:description" content="优秀是一种习惯">
+<meta name="twitter:title" content="Python-运算符">
+<meta name="twitter:description" content="算术运算符+ - * / %  取模 - 返回除法的余数 ** 幂 - 返回x的y次幂 // 取整除 - 返回商的整数部分（向下取整）比较运算符== !=或&amp;lt;&amp;gt; &amp;gt; &amp;lt; &amp;gt;= &amp;lt;=赋值运算符= += -= *= /= %= **= //=位运算符（二进制）略逻辑运算符and or not成员运算符in not in身份运算符is is not">
   
     <link rel="alternate" href="/atom.xml" title="徐国忠的技术路线" type="application/atom+xml">
   
@@ -68,97 +69,88 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/07/18/diary-2019-01-25-new-position/" class="archive-article-date">
-  <time datetime="2019-07-18T05:27:01.026Z" itemprop="datePublished">Jul 18</time>
+        <section id="main"><article id="post-lang-python-2018-07-21-python-运算符" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/28/lang-python-2018-07-21-python-运算符/" class="article-date">
+  <time datetime="2019-08-28T03:44:50.502Z" itemprop="datePublished">2019-08-28</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/lang/">lang</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/18/diary-2019-01-25-new-position/">new-position</a>
+    <h1 class="article-title" itemprop="name">
+      Python-运算符
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/07/18/diary-2018-10-16-java/" class="archive-article-date">
-  <time datetime="2019-07-18T05:27:01.025Z" itemprop="datePublished">Jul 18</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/18/diary-2018-10-16-java/">C# 2 JAVA</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/07/18/mgr-2016-11-25-文档管理/" class="archive-article-date">
-  <time datetime="2019-07-18T05:27:01.016Z" itemprop="datePublished">Jul 18</time>
-</a>
+        <h1 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h1><pre><code>+
+-
+*
+/
+%  取模 - 返回除法的余数
+** 幂 - 返回x的y次幂
+// 取整除 - 返回商的整数部分（向下取整）</code></pre><h1 id="比较运算符"><a href="#比较运算符" class="headerlink" title="比较运算符"></a>比较运算符</h1><pre><code>==
+!=或&lt;&gt;
+&gt;
+&lt;
+&gt;=
+&lt;=</code></pre><h1 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h1><pre><code>=
++=
+-=
+*=
+/=
+%=
+**=
+//=</code></pre><h1 id="位运算符（二进制）"><a href="#位运算符（二进制）" class="headerlink" title="位运算符（二进制）"></a>位运算符（二进制）</h1><pre><code>略</code></pre><h1 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h1><pre><code>and
+or
+not</code></pre><h1 id="成员运算符"><a href="#成员运算符" class="headerlink" title="成员运算符"></a>成员运算符</h1><pre><code>in
+not in</code></pre><h1 id="身份运算符"><a href="#身份运算符" class="headerlink" title="身份运算符"></a>身份运算符</h1><pre><code>is
+is not</code></pre>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/18/mgr-2016-11-25-文档管理/">文档管理</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/07/18/diary-2016-11-24-hello-world/" class="archive-article-date">
-  <time datetime="2019-07-18T05:27:01.015Z" itemprop="datePublished">Jul 18</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://dirsky.github.io/2019/08/28/lang-python-2018-07-21-python-运算符/" data-id="cjzur70lh0000e4wcpkjtpw9x" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/18/diary-2016-11-24-hello-world/">你好，世界</a>
-    </h1>
-  
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/08/28/lang-python-2018-07-22-python-数据类型/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Python-数据类型
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2019/08/28/lang-python-2018-07-20-python-逻辑控制/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Python-逻辑控制</div>
+    </a>
   
+</nav>
 
+  
+</article>
 
 </section>
         
