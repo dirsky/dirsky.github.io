@@ -1065,14 +1065,14 @@
 
 
   
-    <article id="post-lang-bootstrap-2018-07-16-bootstrap-0" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-db-redis-如何做可靠的分布式锁，Redlock真的可行么" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/07/16/lang-bootstrap-2018-07-16-bootstrap-0/" class="article-date">
-  <time datetime="2018-07-15T16:00:00.000Z" itemprop="datePublished">2018-07-16</time>
+    <a href="/2019/06/05/db-redis-如何做可靠的分布式锁，Redlock真的可行么/" class="article-date">
+  <time datetime="2019-06-05T13:47:39.526Z" itemprop="datePublished">2019-06-05</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/lang/">lang</a>
+    <a class="article-category-link" href="/categories/db/">db</a>
   </div>
 
   </div>
@@ -1083,7 +1083,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/16/lang-bootstrap-2018-07-16-bootstrap-0/">Bootstrap-全局 CSS 样式</a>
+      <a class="article-title" href="/2019/06/05/db-redis-如何做可靠的分布式锁，Redlock真的可行么/">如何做可靠的分布式锁，Redlock真的可行么</a>
     </h1>
   
 
@@ -1091,84 +1091,62 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><blockquote>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-  <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
-</blockquote>
-
-<blockquote class="blockquote-reverse">
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-  <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
-</blockquote>
-
-<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><h1>h1. Bootstrap heading <small>Secondary text</small></h1>
-<h2><del>h2. Bootstrap heading</del> <small>Secondary text</small></h2>
-<h3><u>h3. Bootstrap heading</u> <small>Secondary text</small></h3>
-<h4>h4. Bootstrap heading <small>Secondary text</small></h4>
-<h5>h5. Bootstrap heading <small>Secondary text</small></h5>
-<h6>h6. Bootstrap heading <small>Secondary text</small></h6>
----
-
-<h2 id="小格式"><a href="#小格式" class="headerlink" title="小格式"></a>小格式</h2><h2 id="文字强调-文字加粗-attr文字缩略"><a href="#文字强调-文字加粗-attr文字缩略" class="headerlink" title="文字强调 文字加粗 attr文字缩略"></a><strong>文字强调</strong> <b>文字加粗</b> <abbr title="缩略后指向显示的文字">attr文字缩略</abbr></h2><h2 id="对齐"><a href="#对齐" class="headerlink" title="对齐"></a>对齐</h2><p class="text-left">左对齐</p>
-<p class="text-center">居中对齐</p>
-<p class="text-right">右对齐</p>
-<p class="text-justify">两端对齐</p>
-<p class="text-nowrap">No wrap text.</p>
----
-
-<h2 id="两种列表方式"><a href="#两种列表方式" class="headerlink" title="两种列表方式"></a>两种列表方式</h2><ul class="list-inline">
-  <li>横向内联1</li>
-  <li>横向内联2</li>
-  <li>横向内联3</li>
-</ul>
-<table>
-<tr>
-<td>
-1. w2
-1. w1
-1. w3
-</td>
-<td>
-<ul>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-</ul>
-</td>
-<td>
-* Red
-* Green
-* Blue
-</td>
-<td>
+        <p>本文是对 <a href="https://martin.kleppmann.com/" target="_blank" rel="noopener">Martin Kleppmann</a> 的文章 <a href="https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html" target="_blank" rel="noopener">How to do distributed locking</a> 部分内容的翻译和总结，上次写 Redlock 的原因就是看到了 Martin 的这篇文章，写得很好，特此翻译和总结。感兴趣的同学可以翻看原文，相信会收获良多。</p>
+<p>开篇作者认为现在 Redis 逐渐被使用到数据管理领域，这个领域需要更强的数据一致性和耐久性，这使得他感到担心，因为这不是 Redis 最初设计的初衷（事实上这也是很多业界程序员的误区，越来越把 Redis 当成数据库在使用），其中基于 Redis 的分布式锁就是令人担心的其一。</p>
+<p>Martin 指出首先你要明确你为什么使用分布式锁，为了性能还是正确性？为了帮你区分这二者，在这把锁 fail 了的时候你可以询问自己以下问题： </p>
 <ol>
-  <li>1</li>
-  <li>1</li>
-  <li>1</li>
+<li><strong>要性能的：</strong> 拥有这把锁使得你不会重复劳动（例如一个 job 做了两次），如果这把锁 fail 了，两个节点同时做了这个 Job，那么这个 Job 增加了你的成本。</li>
+<li><strong>要正确性的：</strong> 拥有锁可以防止并发操作污染你的系统或者数据，如果这把锁 fail 了两个节点同时操作了一份数据，结果可能是数据不一致、数据丢失、file 冲突等，会导致严重的后果。</li>
 </ol>
-</td>
-</tr>
-</table>
----
+<p>上述二者都是需求锁的正确场景，但是你必须清楚自己是因为什么原因需要分布式锁。</p>
+<p>如果你只是为了性能，那没必要用 Redlock，它成本高且复杂，你只用一个 Redis 实例也够了，最多加个从防止主挂了。当然，你使用单节点的 Redis 那么断电或者一些情况下，你会丢失锁，但是你的目的只是加速性能且断电这种事情不会经常发生，这并不是什么大问题。并且如果你使用了单节点 Redis，那么很显然你这个应用需要的锁粒度是很模糊粗糙的，也不会是什么重要的服务。</p>
+<p>那么是否 Redlock 对于要求正确性的场景就合适呢？Martin 列举了若干场景证明 Redlock 这种算法是不可靠的。</p>
+<h2 id="用锁保护资源"><a href="#用锁保护资源" class="headerlink" title="用锁保护资源"></a>用锁保护资源</h2><p>这节里 Martin 先将 Redlock 放在了一边而是仅讨论总体上一个分布式锁是怎么工作的。在分布式环境下，锁比 mutex 这类复杂，因为涉及到不同节点、网络通信并且他们随时可能无征兆的 fail 。<br>Martin 假设了一个场景，一个 client 要修改一个文件，它先申请得到锁，然后修改文件写回，放锁。另一个 client 再申请锁 … 代码流程如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// THIS CODE IS BROKEN</span></span><br><span class="line"><span class="function">function <span class="title">writeData</span><span class="params">(filename, data)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> lock = lockService.acquireLock(filename);</span><br><span class="line">    <span class="keyword">if</span> (!lock) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="string">'Failed to acquire lock'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> file = storage.readFile(filename);</span><br><span class="line">        <span class="keyword">var</span> updated = updateContents(file, data);</span><br><span class="line">        storage.writeFile(filename, updated);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        lock.release();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="描述语"><a href="#描述语" class="headerlink" title="描述语"></a>描述语</h2><dl>
-  <dt>带有描述的短语列表。</dt>  <dd>全部内容全部部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容</dd>
-</dl>
-<dl class="dl-horizontal">
-  <dt>水平排列的描述</dt>  <dd>全部内容全部部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容</dd>
-</dl>
+<p>可惜即使你的锁服务非常完美，上述代码还是可能跪，下面的流程图会告诉你为什么：</p>
+<p><img src="https://martin.kleppmann.com/2016/02/unsafe-lock.png" alt></p>
+<p>上述图中，得到锁的 client1 在持有锁的期间 pause 了一段时间，例如 GC 停顿。锁有过期时间（一般叫租约，为了防止某个 client 崩溃之后一直占有锁），但是如果 GC 停顿太长超过了锁租约时间，此时锁已经被另一个 client2 所得到，原先的 client1 还没有感知到锁过期，那么奇怪的结果就会发生，曾经 HBase 就发生过这种 Bug。即使你在 client1 写回之前检查一下锁是否过期也无助于解决这个问题，因为 GC 可能在任何时候发生，即使是你非常不便的时候（在最后的检查与写操作期间）。<br>如果你认为自己的程序不会有长时间的 GC 停顿，还有其他原因会导致你的进程 pause。例如进程可能读取尚未进入内存的数据，所以它得到一个 page fault 并且等待 page 被加载进缓存；还有可能你依赖于网络服务；或者其他进程占用 CPU；或者其他人意外发生 SIGSTOP 等。</p>
+<p>… …. 这里 Martin 又增加了一节列举各种进程 pause 的例子，为了证明上面的代码是不安全的，无论你的锁服务多完美。</p>
+<h2 id="使用-Fencing-（栅栏）使得锁变安全"><a href="#使用-Fencing-（栅栏）使得锁变安全" class="headerlink" title="使用 Fencing （栅栏）使得锁变安全"></a>使用 Fencing （栅栏）使得锁变安全</h2><p>修复问题的方法也很简单：你需要在每次写操作时加入一个 fencing token。这个场景下，fencing token 可以是一个递增的数字（lock service 可以做到），每次有 client 申请锁就递增一次：</p>
+<p><img src="https://martin.kleppmann.com/2016/02/fencing-tokens.png" alt></p>
+<p>client1 申请锁同时拿到 token33，然后它进入长时间的停顿锁也过期了。client2 得到锁和 token34 写入数据，紧接着 client1 活过来之后尝试写入数据，自身 token33 比 34 小因此写入操作被拒绝。注意这需要存储层来检查 token，但这并不难实现。如果你使用 Zookeeper 作为 lock service 的话那么你可以使用 zxid 作为递增数字。<br>但是对于 Redlock 你要知道，没什么生成 fencing token 的方式，并且怎么修改 Redlock 算法使其能产生 fencing token 呢？好像并不那么显而易见。因为产生 token 需要单调递增，除非在单节点 Redis 上完成但是这又没有高可靠性，你好像需要引进一致性协议来让 Redlock 产生可靠的 fencing token。</p>
+<h2 id="使用时间来解决一致性"><a href="#使用时间来解决一致性" class="headerlink" title="使用时间来解决一致性"></a>使用时间来解决一致性</h2><p>Redlock 无法产生 fencing token 早该成为在需求正确性的场景下弃用它的理由，但还有一些值得讨论的地方。</p>
+<p>学术界有个说法，算法对时间不做假设：因为进程可能pause一段时间、数据包可能因为网络延迟延后到达、时钟可能根本就是错的。而可靠的算法依旧要在上述假设下做正确的事情。</p>
+<p>对于 failure detector 来说，timeout 只能作为猜测某个节点 fail 的依据，因为网络延迟、本地时钟不正确等其他原因的限制。考虑到 Redis 使用 gettimeofday，而不是单调的时钟，会受到系统时间的影响，可能会突然前进或者后退一段时间，这会导致一个 key 更快或更慢地过期。</p>
+<p>可见，Redlock 依赖于许多时间假设，它假设所有 Redis 节点都能对同一个 Key 在其过期前持有差不多的时间、跟过期时间相比网络延迟很小、跟过期时间相比进程 pause 很短。</p>
+<h2 id="用不可靠的时间打破-Redlock"><a href="#用不可靠的时间打破-Redlock" class="headerlink" title="用不可靠的时间打破 Redlock"></a>用不可靠的时间打破 Redlock</h2><p>这节 Martin 举了个因为时间问题，Redlock 不可靠的例子。</p>
+<ol>
+<li>client1 从 ABC 三个节点处申请到锁，DE由于网络原因请求没有到达</li>
+<li>C节点的时钟往前推了，导致 lock 过期</li>
+<li>client2 在CDE处获得了锁，AB由于网络原因请求未到达</li>
+<li>此时 client1 和 client2 都获得了锁</li>
+</ol>
+<p><strong>在 Redlock 官方文档中也提到了这个情况，不过是C崩溃的时候，Redlock 官方本身也是知道 Redlock 算法不是完全可靠的，官方为了解决这种问题建议使用延时启动，相关内容可以看之前的<a href="https://zhuanlan.zhihu.com/p/40915772" target="_blank" rel="noopener">这篇文章</a>。但是 Martin 这里分析得更加全面，指出延时启动不也是依赖于时钟的正确性的么？</strong></p>
+<p>接下来 Martin 又列举了进程 Pause 时而不是时钟不可靠时会发生的问题：</p>
+<ol>
+<li>client1 从 ABCDE 处获得了锁</li>
+<li>当获得锁的 response 还没到达 client1 时 client1 进入 GC 停顿</li>
+<li>停顿期间锁已经过期了</li>
+<li>client2 在 ABCDE 处获得了锁</li>
+<li>client1 GC 完成收到了获得锁的 response，此时两个 client 又拿到了同一把锁</li>
+</ol>
+<p><strong>同时长时间的网络延迟也有可能导致同样的问题。</strong></p>
+<h2 id="Redlock-的同步性假设"><a href="#Redlock-的同步性假设" class="headerlink" title="Redlock 的同步性假设"></a>Redlock 的同步性假设</h2><p>这些例子说明了，仅有在你假设了一个同步性系统模型的基础上，Redlock 才能正常工作，也就是系统能满足以下属性：</p>
+<ol>
+<li>网络延时边界，即假设数据包一定能在某个最大延时之内到达</li>
+<li>进程停顿边界，即进程停顿一定在某个最大时间之内</li>
+<li>时钟错误边界，即不会从一个坏的 NTP 服务器处取得时间</li>
+</ol>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>Martin 认为 Redlock 实在不是一个好的选择，对于需求性能的分布式锁应用它太重了且成本高；对于需求正确性的应用来说它不够安全。因为它对高危的时钟或者说其他上述列举的情况进行了不可靠的假设，如果你的应用只需要高性能的分布式锁不要求多高的正确性，那么单节点 Redis 够了；如果你的应用想要保住正确性，那么不建议 Redlock，建议使用一个合适的一致性协调系统，例如 Zookeeper，且保证存在 fencing token。</p>
 
-<h2 id="代码应用"><a href="#代码应用" class="headerlink" title="代码应用"></a>代码应用</h2><p>For example, <code>&lt;section&gt;</code> should be wrapped as inline.</p>
-<p>To switch directories, type <kbd>cd</kbd> followed by the name of the directory.<br><br>To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd></p>
-<p><var>y</var> = <var>m</var><var>x</var> + <var>b</var></p>
-<pre>&lt;p&gt;Sample text here...&lt;/p&gt;</pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://dirsky.github.io/2018/07/16/lang-bootstrap-2018-07-16-bootstrap-0/" data-id="cjzus7k2i00007owcyh5vumzv" class="article-share-link">Share</a>
+      <a data-url="https://dirsky.github.io/2019/06/05/db-redis-如何做可靠的分布式锁，Redlock真的可行么/" data-id="cjzv27x0l0006fkwck5euckr2" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
 
     </footer>
   </div>
@@ -1177,14 +1155,14 @@
 
 
   
-    <article id="post-lang-bootstrap-2018-07-16-bootstrap-2-zj" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-db-redis-Redlock分布式锁" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/07/16/lang-bootstrap-2018-07-16-bootstrap-2-zj/" class="article-date">
-  <time datetime="2018-07-15T16:00:00.000Z" itemprop="datePublished">2018-07-16</time>
+    <a href="/2019/06/05/db-redis-Redlock分布式锁/" class="article-date">
+  <time datetime="2019-06-05T13:47:39.511Z" itemprop="datePublished">2019-06-05</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/lang/">lang</a>
+    <a class="article-category-link" href="/categories/db/">db</a>
   </div>
 
   </div>
@@ -1195,7 +1173,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/16/lang-bootstrap-2018-07-16-bootstrap-2-zj/">Bootstrap-组件</a>
+      <a class="article-title" href="/2019/06/05/db-redis-Redlock分布式锁/">RedLock分布式锁</a>
     </h1>
   
 
@@ -1203,118 +1181,341 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#">Home</a></li>
-  <li role="presentation"><a href="#">Profile</a></li>
-  <li role="presentation"><a href="#">Messages</a></li>
+        <p>这篇文章主要是对 Redis 官方网站刊登的 <a href="https://redis.io/topics/distlock" target="_blank" rel="noopener">Distributed locks with Redis</a> 部分内容的总结和翻译。</p>
+<h2 id="什么是-RedLock"><a href="#什么是-RedLock" class="headerlink" title="什么是 RedLock"></a>什么是 RedLock</h2><p>Redis 官方站这篇文章提出了一种权威的基于 Redis 实现分布式锁的方式名叫 <em>Redlock</em>，此种方式比原先的单节点的方法更安全。它可以保证以下特性：</p>
+<ol>
+<li>安全特性：互斥访问，即永远只有一个 client 能拿到锁</li>
+<li>避免死锁：最终 client 都可能拿到锁，不会出现死锁的情况，即使原本锁住某资源的 client crash 了或者出现了网络分区</li>
+<li>容错性：只要大部分 Redis 节点存活就可以正常提供服务</li>
+</ol>
+<h2 id="怎么在单节点上实现分布式锁"><a href="#怎么在单节点上实现分布式锁" class="headerlink" title="怎么在单节点上实现分布式锁"></a>怎么在单节点上实现分布式锁</h2><blockquote>
+<p>SET resource_name my_random_value NX PX 30000</p>
+</blockquote>
+<p>主要依靠上述命令，该命令仅当 Key 不存在时（NX保证）set 值，并且设置过期时间 3000ms （PX保证），值 my_random_value 必须是所有 client 和所有锁请求发生期间唯一的，释放锁的逻辑是：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> redis.call(<span class="string">"get"</span>,KEYS[<span class="number">1</span>]) == ARGV[<span class="number">1</span>] <span class="keyword">then</span></span><br><span class="line">    <span class="keyword">return</span> redis.call(<span class="string">"del"</span>,KEYS[<span class="number">1</span>])</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>上述实现可以避免释放另一个client创建的锁，如果只有 del 命令的话，那么如果 client1 拿到 lock1 之后因为某些操作阻塞了很长时间，此时 Redis 端 lock1 已经过期了并且已经被重新分配给了 client2，那么 client1 此时再去释放这把锁就会造成 client2 原本获取到的锁被 client1 无故释放了，但现在为每个 client 分配一个 unique 的 string 值可以避免这个问题。至于如何去生成这个 unique string，方法很多随意选择一种就行了。</p>
+<h2 id="Redlock-算法"><a href="#Redlock-算法" class="headerlink" title="Redlock 算法"></a>Redlock 算法</h2><p>算法很易懂，起 5 个 master 节点，分布在不同的机房尽量保证可用性。为了获得锁，client 会进行如下操作：</p>
+<ol>
+<li>得到当前的时间，微妙单位</li>
+<li>尝试顺序地在 5 个实例上申请锁，当然需要使用相同的 key 和 random value，这里一个 client 需要合理设置与 master 节点沟通的 timeout 大小，避免长时间和一个 fail 了的节点浪费时间</li>
+<li>当 client 在大于等于 3 个 master 上成功申请到锁的时候，且它会计算申请锁消耗了多少时间，这部分消耗的时间采用获得锁的当下时间减去第一步获得的时间戳得到，如果锁的持续时长（lock validity time）比流逝的时间多的话，那么锁就真正获取到了。</li>
+<li>如果锁申请到了，那么锁真正的 lock validity time 应该是 origin（lock validity time） - 申请锁期间流逝的时间</li>
+<li>如果 client 申请锁失败了，那么它就会在少部分申请成功锁的 master 节点上执行释放锁的操作，重置状态</li>
+</ol>
+<h2 id="失败重试"><a href="#失败重试" class="headerlink" title="失败重试"></a>失败重试</h2><p>如果一个 client 申请锁失败了，那么它需要稍等一会在重试避免多个 client 同时申请锁的情况，最好的情况是一个 client 需要几乎同时向 5 个 master 发起锁申请。另外就是如果 client 申请锁失败了它需要尽快在它曾经申请到锁的 master 上执行 unlock 操作，便于其他 client 获得这把锁，避免这些锁过期造成的时间浪费，当然如果这时候网络分区使得 client 无法联系上这些 master，那么这种浪费就是不得不付出的代价了。</p>
+<h2 id="放锁"><a href="#放锁" class="headerlink" title="放锁"></a>放锁</h2><p>放锁操作很简单，就是依次释放所有节点上的锁就行了</p>
+<h2 id="性能、崩溃恢复和-fsync"><a href="#性能、崩溃恢复和-fsync" class="headerlink" title="性能、崩溃恢复和 fsync"></a>性能、崩溃恢复和 fsync</h2><p>如果我们的节点没有持久化机制，client 从 5 个 master 中的 3 个处获得了锁，然后其中一个重启了，这是注意 <strong>整个环境中又出现了 3 个 master 可供另一个 client 申请同一把锁！</strong> 违反了互斥性。如果我们开启了 AOF 持久化那么情况会稍微好转一些，因为 Redis 的过期机制是语义层面实现的，所以在 server 挂了的时候时间依旧在流逝，重启之后锁状态不会受到污染。但是考虑断电之后呢，AOF部分命令没来得及刷回磁盘直接丢失了，除非我们配置刷回策略为 fsnyc = always，但这会损伤性能。解决这个问题的方法是，当一个节点重启之后，我们规定在 max TTL 期间它是不可用的，这样它就不会干扰原本已经申请到的锁，等到它 crash 前的那部分锁都过期了，环境不存在历史锁了，那么再把这个节点加进来正常工作。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://dirsky.github.io/2019/06/05/db-redis-Redlock分布式锁/" data-id="cjzv27wzu0000fkwcmlnsudca" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-db-mysql-MySQL高性能优化规范建议" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/05/db-mysql-MySQL高性能优化规范建议/" class="article-date">
+  <time datetime="2019-04-04T16:00:00.000Z" itemprop="datePublished">2019-04-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/db/">db</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/05/db-mysql-MySQL高性能优化规范建议/">MySQL高性能优化规范建议</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- TOC -->
+
+<ul>
+<li><a href="#数据库命令规范">数据库命令规范</a></li>
+<li><a href="#数据库基本设计规范">数据库基本设计规范</a><ul>
+<li><a href="#1-所有表必须使用-innodb-存储引擎">1. 所有表必须使用 Innodb 存储引擎</a></li>
+<li><a href="#2-数据库和表的字符集统一使用-utf8">2. 数据库和表的字符集统一使用 UTF8</a></li>
+<li><a href="#3-所有表和字段都需要添加注释">3. 所有表和字段都需要添加注释</a></li>
+<li><a href="#4-尽量控制单表数据量的大小建议控制在-500-万以内">4. 尽量控制单表数据量的大小,建议控制在 500 万以内。</a></li>
+<li><a href="#5-谨慎使用-mysql-分区表">5. 谨慎使用 MySQL 分区表</a></li>
+<li><a href="#6尽量做到冷热数据分离减小表的宽度">6.尽量做到冷热数据分离,减小表的宽度</a></li>
+<li><a href="#7-禁止在表中建立预留字段">7. 禁止在表中建立预留字段</a></li>
+<li><a href="#8-禁止在数据库中存储图片文件等大的二进制数据">8. 禁止在数据库中存储图片,文件等大的二进制数据</a></li>
+<li><a href="#9-禁止在线上做数据库压力测试">9. 禁止在线上做数据库压力测试</a></li>
+<li><a href="#10-禁止从开发环境测试环境直接连接生成环境数据库">10. 禁止从开发环境,测试环境直接连接生成环境数据库</a></li>
 </ul>
-### 组件
-<div class="btn-group" role="group" aria-label="...">
-  <button type="button" class="btn btn-default">Left</button>
-  <button type="button" class="btn btn-default">Middle</button>
-  <button type="button" class="btn btn-default">Right</button>
-</div>
+</li>
+<li><a href="#数据库字段设计规范">数据库字段设计规范</a><ul>
+<li><a href="#1-优先选择符合存储需要的最小的数据类型">1. 优先选择符合存储需要的最小的数据类型</a></li>
+<li><a href="#2-避免使用-textblob-数据类型最常见的-text-类型可以存储-64k-的数据">2. 避免使用 TEXT,BLOB 数据类型，最常见的 TEXT 类型可以存储 64k 的数据</a></li>
+<li><a href="#3-避免使用-enum-类型">3. 避免使用 ENUM 类型</a></li>
+<li><a href="#4-尽可能把所有列定义为-not-null">4. 尽可能把所有列定义为 NOT NULL</a></li>
+<li><a href="#5-使用-timestamp4-个字节-或-datetime-类型-8-个字节-存储时间">5. 使用 TIMESTAMP(4 个字节) 或 DATETIME 类型 (8 个字节) 存储时间</a></li>
+<li><a href="#6-同财务相关的金额类数据必须使用-decimal-类型">6. 同财务相关的金额类数据必须使用 decimal 类型</a></li>
+</ul>
+</li>
+<li><a href="#索引设计规范">索引设计规范</a><ul>
+<li><a href="#1-限制每张表上的索引数量建议单张表索引不超过-5-个">1. 限制每张表上的索引数量,建议单张表索引不超过 5 个</a></li>
+<li><a href="#2-禁止给表中的每一列都建立单独的索引">2. 禁止给表中的每一列都建立单独的索引</a></li>
+<li><a href="#3-每个-innodb-表必须有个主键">3. 每个 Innodb 表必须有个主键</a></li>
+<li><a href="#4-常见索引列建议">4. 常见索引列建议</a></li>
+<li><a href="#5如何选择索引列的顺序">5.如何选择索引列的顺序</a></li>
+<li><a href="#6-避免建立冗余索引和重复索引增加了查询优化器生成执行计划的时间">6. 避免建立冗余索引和重复索引（增加了查询优化器生成执行计划的时间）</a></li>
+<li><a href="#7-对于频繁的查询优先考虑使用覆盖索引">7. 对于频繁的查询优先考虑使用覆盖索引</a></li>
+<li><a href="#8索引-set-规范">8.索引 SET 规范</a></li>
+</ul>
+</li>
+<li><a href="#数据库-sql-开发规范">数据库 SQL 开发规范</a><ul>
+<li><a href="#1-建议使用预编译语句进行数据库操作">1. 建议使用预编译语句进行数据库操作</a></li>
+<li><a href="#2-避免数据类型的隐式转换">2. 避免数据类型的隐式转换</a></li>
+<li><a href="#3-充分利用表上已经存在的索引">3. 充分利用表上已经存在的索引</a></li>
+<li><a href="#4-数据库设计时应该要对以后扩展进行考虑">4. 数据库设计时，应该要对以后扩展进行考虑</a></li>
+<li><a href="#5-程序连接不同的数据库使用不同的账号进制跨库查询">5. 程序连接不同的数据库使用不同的账号，进制跨库查询</a></li>
+<li><a href="#6-禁止使用-select--必须使用-select-字段列表-查询">6. 禁止使用 SELECT * 必须使用 SELECT &lt;字段列表&gt; 查询</a></li>
+<li><a href="#7-禁止使用不含字段列表的-insert-语句">7. 禁止使用不含字段列表的 INSERT 语句</a></li>
+<li><a href="#8-避免使用子查询可以把子查询优化为-join-操作">8. 避免使用子查询，可以把子查询优化为 join 操作</a></li>
+<li><a href="#9-避免使用-join-关联太多的表">9. 避免使用 JOIN 关联太多的表</a></li>
+<li><a href="#10-减少同数据库的交互次数">10. 减少同数据库的交互次数</a></li>
+<li><a href="#11-对应同一列进行-or-判断时使用-in-代替-or">11. 对应同一列进行 or 判断时，使用 in 代替 or</a></li>
+<li><a href="#12-禁止使用-order-by-rand-进行随机排序">12. 禁止使用 order by rand() 进行随机排序</a></li>
+<li><a href="#13-where-从句中禁止对列进行函数转换和计算">13. WHERE 从句中禁止对列进行函数转换和计算</a></li>
+<li><a href="#14-在明显不会有重复值时使用-union-all-而不是-union">14. 在明显不会有重复值时使用 UNION ALL 而不是 UNION</a></li>
+<li><a href="#15-拆分复杂的大-sql-为多个小-sql">15. 拆分复杂的大 SQL 为多个小 SQL</a></li>
+</ul>
+</li>
+<li><a href="#数据库操作行为规范">数据库操作行为规范</a><ul>
+<li><a href="#1-超-100-万行的批量写-updatedeleteinsert-操作要分批多次进行操作">1. 超 100 万行的批量写 (UPDATE,DELETE,INSERT) 操作,要分批多次进行操作</a></li>
+<li><a href="#2-对于大表使用-pt-online-schema-change-修改表结构">2. 对于大表使用 pt-online-schema-change 修改表结构</a></li>
+<li><a href="#3-禁止为程序使用的账号赋予-super-权限">3. 禁止为程序使用的账号赋予 super 权限</a></li>
+<li><a href="#4-对于程序连接数据库账号遵循权限最小原则">4. 对于程序连接数据库账号,遵循权限最小原则</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
 
-<div class="btn-toolbar" role="toolbar" aria-label="...">
-  <div class="btn-group" role="group" aria-label="...">...</div>
-  <div class="btn-group" role="group" aria-label="...">...</div>
-  <div class="btn-group" role="group" aria-label="...">...</div>
-</div>
+<h2 id="数据库命令规范"><a href="#数据库命令规范" class="headerlink" title="数据库命令规范"></a>数据库命令规范</h2><ul>
+<li>所有数据库对象名称必须使用小写字母并用下划线分割</li>
+<li>所有数据库对象名称禁止使用 MySQL 保留关键字（如果表名中包含关键字查询时，需要将其用单引号括起来）</li>
+<li>数据库对象的命名要能做到见名识意，并且最后不要超过 32 个字符</li>
+<li>临时库表必须以 tmp_为前缀并以日期为后缀，备份表必须以 bak_为前缀并以日期 (时间戳) 为后缀</li>
+<li>所有存储相同数据的列名和列类型必须一致（一般作为关联列，如果查询时关联列类型不一致会自动进行数据类型隐式转换，会造成列上的索引失效，导致查询效率降低）</li>
+</ul>
+<hr>
+<h2 id="数据库基本设计规范"><a href="#数据库基本设计规范" class="headerlink" title="数据库基本设计规范"></a>数据库基本设计规范</h2><h3 id="1-所有表必须使用-Innodb-存储引擎"><a href="#1-所有表必须使用-Innodb-存储引擎" class="headerlink" title="1. 所有表必须使用 Innodb 存储引擎"></a>1. 所有表必须使用 Innodb 存储引擎</h3><p>没有特殊要求（即 Innodb 无法满足的功能如：列存储，存储空间数据等）的情况下，所有表必须使用 Innodb 存储引擎（MySQL5.5 之前默认使用 Myisam，5.6 以后默认的为 Innodb）。</p>
+<p>Innodb 支持事务，支持行级锁，更好的恢复性，高并发下性能更好。</p>
+<h3 id="2-数据库和表的字符集统一使用-UTF8"><a href="#2-数据库和表的字符集统一使用-UTF8" class="headerlink" title="2. 数据库和表的字符集统一使用 UTF8"></a>2. 数据库和表的字符集统一使用 UTF8</h3><p>兼容性更好，统一字符集可以避免由于字符集转换产生的乱码，不同的字符集进行比较前需要进行转换会造成索引失效，如果数据库中有存储 emoji 表情的需要，字符集需要采用 utf8mb4 字符集。</p>
+<h3 id="3-所有表和字段都需要添加注释"><a href="#3-所有表和字段都需要添加注释" class="headerlink" title="3. 所有表和字段都需要添加注释"></a>3. 所有表和字段都需要添加注释</h3><p>使用 comment 从句添加表和列的备注，从一开始就进行数据字典的维护</p>
+<h3 id="4-尽量控制单表数据量的大小-建议控制在-500-万以内。"><a href="#4-尽量控制单表数据量的大小-建议控制在-500-万以内。" class="headerlink" title="4. 尽量控制单表数据量的大小,建议控制在 500 万以内。"></a>4. 尽量控制单表数据量的大小,建议控制在 500 万以内。</h3><p>500 万并不是 MySQL 数据库的限制，过大会造成修改表结构，备份，恢复都会有很大的问题。</p>
+<p>可以用历史数据归档（应用于日志数据），分库分表（应用于业务数据）等手段来控制数据量大小</p>
+<h3 id="5-谨慎使用-MySQL-分区表"><a href="#5-谨慎使用-MySQL-分区表" class="headerlink" title="5. 谨慎使用 MySQL 分区表"></a>5. 谨慎使用 MySQL 分区表</h3><p>分区表在物理上表现为多个文件，在逻辑上表现为一个表；</p>
+<p>谨慎选择分区键，跨分区查询效率可能更低；</p>
+<p>建议采用物理分表的方式管理大数据。</p>
+<h3 id="6-尽量做到冷热数据分离-减小表的宽度"><a href="#6-尽量做到冷热数据分离-减小表的宽度" class="headerlink" title="6.尽量做到冷热数据分离,减小表的宽度"></a>6.尽量做到冷热数据分离,减小表的宽度</h3><blockquote>
+<p>MySQL 限制每个表最多存储 4096 列，并且每一行数据的大小不能超过 65535 字节。</p>
+</blockquote>
+<p>减少磁盘 IO,保证热数据的内存缓存命中率（表越宽，把表装载进内存缓冲池时所占用的内存也就越大,也会消耗更多的 IO）；</p>
+<p>更有效的利用缓存，避免读入无用的冷数据；</p>
+<p>经常一起使用的列放到一个表中（避免更多的关联操作）。</p>
+<h3 id="7-禁止在表中建立预留字段"><a href="#7-禁止在表中建立预留字段" class="headerlink" title="7. 禁止在表中建立预留字段"></a>7. 禁止在表中建立预留字段</h3><p>预留字段的命名很难做到见名识义。</p>
+<p>预留字段无法确认存储的数据类型，所以无法选择合适的类型。</p>
+<p>对预留字段类型的修改，会对表进行锁定。</p>
+<h3 id="8-禁止在数据库中存储图片-文件等大的二进制数据"><a href="#8-禁止在数据库中存储图片-文件等大的二进制数据" class="headerlink" title="8. 禁止在数据库中存储图片,文件等大的二进制数据"></a>8. 禁止在数据库中存储图片,文件等大的二进制数据</h3><p>通常文件很大，会短时间内造成数据量快速增长，数据库进行数据库读取时，通常会进行大量的随机 IO 操作，文件很大时，IO 操作很耗时。</p>
+<p>通常存储于文件服务器，数据库只存储文件地址信息</p>
+<h3 id="9-禁止在线上做数据库压力测试"><a href="#9-禁止在线上做数据库压力测试" class="headerlink" title="9. 禁止在线上做数据库压力测试"></a>9. 禁止在线上做数据库压力测试</h3><h3 id="10-禁止从开发环境-测试环境直接连接生产环境数据库"><a href="#10-禁止从开发环境-测试环境直接连接生产环境数据库" class="headerlink" title="10. 禁止从开发环境,测试环境直接连接生产环境数据库"></a>10. 禁止从开发环境,测试环境直接连接生产环境数据库</h3><hr>
+<h2 id="数据库字段设计规范"><a href="#数据库字段设计规范" class="headerlink" title="数据库字段设计规范"></a>数据库字段设计规范</h2><h3 id="1-优先选择符合存储需要的最小的数据类型"><a href="#1-优先选择符合存储需要的最小的数据类型" class="headerlink" title="1. 优先选择符合存储需要的最小的数据类型"></a>1. 优先选择符合存储需要的最小的数据类型</h3><p><strong>原因：</strong></p>
+<p>列的字段越大，建立索引时所需要的空间也就越大，这样一页中所能存储的索引节点的数量也就越少也越少，在遍历时所需要的 IO 次数也就越多，索引的性能也就越差。</p>
+<p><strong>方法：</strong></p>
+<p><strong>a.将字符串转换成数字类型存储,如:将 IP 地址转换成整形数据</strong></p>
+<p>MySQL 提供了两个方法来处理 ip 地址</p>
+<ul>
+<li>inet_aton 把 ip 转为无符号整型 (4-8 位)</li>
+<li>inet_ntoa 把整型的 ip 转为地址</li>
+</ul>
+<p>插入数据前，先用 inet_aton 把 ip 地址转为整型，可以节省空间，显示数据时，使用 inet_ntoa 把整型的 ip 地址转为地址显示即可。</p>
+<p><strong>b.对于非负型的数据 (如自增 ID,整型 IP) 来说,要优先使用无符号整型来存储</strong></p>
+<p><strong>原因：</strong></p>
+<p>无符号相对于有符号可以多出一倍的存储空间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SIGNED INT -2147483648~2147483647</span><br><span class="line">UNSIGNED INT 0~4294967295</span><br></pre></td></tr></table></figure>
 
-<button type="button" class="btn btn-default" aria-label="Left Align">
-  <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-</button>
+<p>VARCHAR(N) 中的 N 代表的是字符数，而不是字节数，使用 UTF8 存储 255 个汉字 Varchar(255)=765 个字节。<strong>过大的长度会消耗更多的内存。</strong></p>
+<h3 id="2-避免使用-TEXT-BLOB-数据类型，最常见的-TEXT-类型可以存储-64k-的数据"><a href="#2-避免使用-TEXT-BLOB-数据类型，最常见的-TEXT-类型可以存储-64k-的数据" class="headerlink" title="2. 避免使用 TEXT,BLOB 数据类型，最常见的 TEXT 类型可以存储 64k 的数据"></a>2. 避免使用 TEXT,BLOB 数据类型，最常见的 TEXT 类型可以存储 64k 的数据</h3><p><strong>a. 建议把 BLOB 或是 TEXT 列分离到单独的扩展表中</strong></p>
+<p>MySQL 内存临时表不支持 TEXT、BLOB 这样的大数据类型，如果查询中包含这样的数据，在排序等操作时，就不能使用内存临时表，必须使用磁盘临时表进行。而且对于这种数据，MySQL 还是要进行二次查询，会使 sql 性能变得很差，但是不是说一定不能使用这样的数据类型。</p>
+<p>如果一定要使用，建议把 BLOB 或是 TEXT 列分离到单独的扩展表中，查询时一定不要使用 select * 而只需要取出必要的列，不需要 TEXT 列的数据时不要对该列进行查询。</p>
+<p><strong>2、TEXT 或 BLOB 类型只能使用前缀索引</strong></p>
+<p>因为<a href="http://mp.weixin.qq.com/s?__biz=MzI4Njc5NjM1NQ==&mid=2247487885&idx=1&sn=65b1bf5f7d4505502620179669a9c2df&chksm=ebd62ea1dca1a7b7bf884bcd9d538d78ba064ee03c09436ca8e57873b1d98a55afd6d7884cfc&scene=21#wechat_redirect" target="_blank" rel="noopener">MySQL</a> 对索引字段长度是有限制的，所以 TEXT 类型只能使用前缀索引，并且 TEXT 列上是不能有默认值的</p>
+<h3 id="3-避免使用-ENUM-类型"><a href="#3-避免使用-ENUM-类型" class="headerlink" title="3. 避免使用 ENUM 类型"></a>3. 避免使用 ENUM 类型</h3><p>修改 ENUM 值需要使用 ALTER 语句</p>
+<p>ENUM 类型的 ORDER BY 操作效率低，需要额外操作</p>
+<p>禁止使用数值作为 ENUM 的枚举值</p>
+<h3 id="4-尽可能把所有列定义为-NOT-NULL"><a href="#4-尽可能把所有列定义为-NOT-NULL" class="headerlink" title="4. 尽可能把所有列定义为 NOT NULL"></a>4. 尽可能把所有列定义为 NOT NULL</h3><p><strong>原因：</strong></p>
+<p>索引 NULL 列需要额外的空间来保存，所以要占用更多的空间</p>
+<p>进行比较和计算时要对 NULL 值做特别的处理</p>
+<h3 id="5-使用-TIMESTAMP-4-个字节-或-DATETIME-类型-8-个字节-存储时间"><a href="#5-使用-TIMESTAMP-4-个字节-或-DATETIME-类型-8-个字节-存储时间" class="headerlink" title="5. 使用 TIMESTAMP(4 个字节) 或 DATETIME 类型 (8 个字节) 存储时间"></a>5. 使用 TIMESTAMP(4 个字节) 或 DATETIME 类型 (8 个字节) 存储时间</h3><p>TIMESTAMP 存储的时间范围 1970-01-01 00:00:01 ~ 2038-01-19-03:14:07</p>
+<p>TIMESTAMP 占用 4 字节和 INT 相同，但比 INT 可读性高</p>
+<p>超出 TIMESTAMP 取值范围的使用 DATETIME 类型存储</p>
+<p><strong>经常会有人用字符串存储日期型的数据（不正确的做法）</strong></p>
+<ul>
+<li>缺点 1：无法用日期函数进行计算和比较</li>
+<li>缺点 2：用字符串存储日期要占用更多的空间</li>
+</ul>
+<h3 id="6-同财务相关的金额类数据必须使用-decimal-类型"><a href="#6-同财务相关的金额类数据必须使用-decimal-类型" class="headerlink" title="6. 同财务相关的金额类数据必须使用 decimal 类型"></a>6. 同财务相关的金额类数据必须使用 decimal 类型</h3><ul>
+<li>非精准浮点：float,double</li>
+<li>精准浮点：decimal</li>
+</ul>
+<p>Decimal 类型为精准浮点数，在计算时不会丢失精度</p>
+<p>占用空间由定义的宽度决定，每 4 个字节可以存储 9 位数字，并且小数点要占用一个字节</p>
+<p>可用于存储比 bigint 更大的整型数据</p>
+<hr>
+<h2 id="索引设计规范"><a href="#索引设计规范" class="headerlink" title="索引设计规范"></a>索引设计规范</h2><h3 id="1-限制每张表上的索引数量-建议单张表索引不超过-5-个"><a href="#1-限制每张表上的索引数量-建议单张表索引不超过-5-个" class="headerlink" title="1. 限制每张表上的索引数量,建议单张表索引不超过 5 个"></a>1. 限制每张表上的索引数量,建议单张表索引不超过 5 个</h3><p>索引并不是越多越好！索引可以提高效率同样可以降低效率。</p>
+<p>索引可以增加查询效率，但同样也会降低插入和更新的效率，甚至有些情况下会降低查询效率。</p>
+<p>因为 MySQL 优化器在选择如何优化查询时，会根据统一信息，对每一个可以用到的索引来进行评估，以生成出一个最好的执行计划，如果同时有很多个索引都可以用于查询，就会增加 MySQL 优化器生成执行计划的时间，同样会降低查询性能。</p>
+<h3 id="2-禁止给表中的每一列都建立单独的索引"><a href="#2-禁止给表中的每一列都建立单独的索引" class="headerlink" title="2. 禁止给表中的每一列都建立单独的索引"></a>2. 禁止给表中的每一列都建立单独的索引</h3><p>5.6 版本之前，一个 sql 只能使用到一个表中的一个索引，5.6 以后，虽然有了合并索引的优化方式，但是还是远远没有使用一个联合索引的查询方式好。</p>
+<h3 id="3-每个-Innodb-表必须有个主键"><a href="#3-每个-Innodb-表必须有个主键" class="headerlink" title="3. 每个 Innodb 表必须有个主键"></a>3. 每个 Innodb 表必须有个主键</h3><p>Innodb 是一种索引组织表：数据的存储的逻辑顺序和索引的顺序是相同的。每个表都可以有多个索引，但是表的存储顺序只能有一种。</p>
+<p>Innodb 是按照主键索引的顺序来组织表的</p>
+<ul>
+<li>不要使用更新频繁的列作为主键，不适用多列主键（相当于联合索引）</li>
+<li>不要使用 UUID,MD5,HASH,字符串列作为主键（无法保证数据的顺序增长）</li>
+<li>主键建议使用自增 ID 值</li>
+</ul>
+<hr>
+<h3 id="4-常见索引列建议"><a href="#4-常见索引列建议" class="headerlink" title="4. 常见索引列建议"></a>4. 常见索引列建议</h3><ul>
+<li>出现在 SELECT、UPDATE、DELETE 语句的 WHERE 从句中的列</li>
+<li>包含在 ORDER BY、GROUP BY、DISTINCT 中的字段</li>
+<li>并不要将符合 1 和 2 中的字段的列都建立一个索引， 通常将 1、2 中的字段建立联合索引效果更好</li>
+<li>多表 join 的关联列</li>
+</ul>
+<hr>
+<h3 id="5-如何选择索引列的顺序"><a href="#5-如何选择索引列的顺序" class="headerlink" title="5.如何选择索引列的顺序"></a>5.如何选择索引列的顺序</h3><p>建立索引的目的是：希望通过索引进行数据查找，减少随机 IO，增加查询性能 ，索引能过滤出越少的数据，则从磁盘中读入的数据也就越少。</p>
+<ul>
+<li>区分度最高的放在联合索引的最左侧（区分度=列中不同值的数量/列的总行数）</li>
+<li>尽量把字段长度小的列放在联合索引的最左侧（因为字段长度越小，一页能存储的数据量越大，IO 性能也就越好）</li>
+<li>使用最频繁的列放到联合索引的左侧（这样可以比较少的建立一些索引）</li>
+</ul>
+<hr>
+<h3 id="6-避免建立冗余索引和重复索引（增加了查询优化器生成执行计划的时间）"><a href="#6-避免建立冗余索引和重复索引（增加了查询优化器生成执行计划的时间）" class="headerlink" title="6. 避免建立冗余索引和重复索引（增加了查询优化器生成执行计划的时间）"></a>6. 避免建立冗余索引和重复索引（增加了查询优化器生成执行计划的时间）</h3><ul>
+<li>重复索引示例：primary key(id)、index(id)、unique index(id)</li>
+<li>冗余索引示例：index(a,b,c)、index(a,b)、index(a)</li>
+</ul>
+<hr>
+<h3 id="7-对于频繁的查询优先考虑使用覆盖索引"><a href="#7-对于频繁的查询优先考虑使用覆盖索引" class="headerlink" title="7. 对于频繁的查询优先考虑使用覆盖索引"></a>7. 对于频繁的查询优先考虑使用覆盖索引</h3><blockquote>
+<p>覆盖索引：就是包含了所有查询字段 (where,select,ordery by,group by 包含的字段) 的索引</p>
+</blockquote>
+<p><strong>覆盖索引的好处：</strong></p>
+<ul>
+<li><strong>避免 Innodb 表进行索引的二次查询:</strong> Innodb 是以聚集索引的顺序来存储的，对于 Innodb 来说，二级索引在叶子节点中所保存的是行的主键信息，如果是用二级索引查询数据的话，在查找到相应的键值后，还要通过主键进行二次查询才能获取我们真实所需要的数据。而在覆盖索引中，二级索引的键值中可以获取所有的数据，避免了对主键的二次查询 ，减少了 IO 操作，提升了查询效率。</li>
+<li><strong>可以把随机 IO 变成顺序 IO 加快查询效率:</strong> 由于覆盖索引是按键值的顺序存储的，对于 IO 密集型的范围查找来说，对比随机从磁盘读取每一行的数据 IO 要少的多，因此利用覆盖索引在访问时也可以把磁盘的随机读取的 IO 转变成索引查找的顺序 IO。</li>
+</ul>
+<hr>
+<h3 id="8-索引-SET-规范"><a href="#8-索引-SET-规范" class="headerlink" title="8.索引 SET 规范"></a>8.索引 SET 规范</h3><p><strong>尽量避免使用外键约束</strong></p>
+<ul>
+<li>不建议使用外键约束（foreign key），但一定要在表与表之间的关联键上建立索引</li>
+<li>外键可用于保证数据的参照完整性，但建议在业务端实现</li>
+<li>外键会影响父表和子表的写操作从而降低性能</li>
+</ul>
+<hr>
+<h2 id="数据库-SQL-开发规范"><a href="#数据库-SQL-开发规范" class="headerlink" title="数据库 SQL 开发规范"></a>数据库 SQL 开发规范</h2><h3 id="1-建议使用预编译语句进行数据库操作"><a href="#1-建议使用预编译语句进行数据库操作" class="headerlink" title="1. 建议使用预编译语句进行数据库操作"></a>1. 建议使用预编译语句进行数据库操作</h3><p>预编译语句可以重复使用这些计划，减少 SQL 编译所需要的时间，还可以解决动态 SQL 所带来的 SQL 注入的问题。</p>
+<p>只传参数，比传递 SQL 语句更高效。</p>
+<p>相同语句可以一次解析，多次使用，提高处理效率。</p>
+<h3 id="2-避免数据类型的隐式转换"><a href="#2-避免数据类型的隐式转换" class="headerlink" title="2. 避免数据类型的隐式转换"></a>2. 避免数据类型的隐式转换</h3><p>隐式转换会导致索引失效如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name,phone from customer where id = &apos;111&apos;;</span><br></pre></td></tr></table></figure>
 
-<button type="button" class="btn btn-default btn-lg">
-  <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
-</button>
+<h3 id="3-充分利用表上已经存在的索引"><a href="#3-充分利用表上已经存在的索引" class="headerlink" title="3. 充分利用表上已经存在的索引"></a>3. 充分利用表上已经存在的索引</h3><p>避免使用双%号的查询条件。如：<code>a like &#39;%123%&#39;</code>，（如果无前置%,只有后置%，是可以用到列上的索引的）</p>
+<p>一个 SQL 只能利用到复合索引中的一列进行范围查询。如：有 a,b,c 列的联合索引，在查询条件中有 a 列的范围查询，则在 b,c 列上的索引将不会被用到。</p>
+<p>在定义联合索引时，如果 a 列要用到范围查找的话，就要把 a 列放到联合索引的右侧，使用 left join 或 not exists 来优化 not in 操作，因为 not in 也通常会使用索引失效。</p>
+<h3 id="4-数据库设计时，应该要对以后扩展进行考虑"><a href="#4-数据库设计时，应该要对以后扩展进行考虑" class="headerlink" title="4. 数据库设计时，应该要对以后扩展进行考虑"></a>4. 数据库设计时，应该要对以后扩展进行考虑</h3><h3 id="5-程序连接不同的数据库使用不同的账号，进制跨库查询"><a href="#5-程序连接不同的数据库使用不同的账号，进制跨库查询" class="headerlink" title="5. 程序连接不同的数据库使用不同的账号，进制跨库查询"></a>5. 程序连接不同的数据库使用不同的账号，进制跨库查询</h3><ul>
+<li>为数据库迁移和分库分表留出余地</li>
+<li>降低业务耦合度</li>
+<li>避免权限过大而产生的安全风险</li>
+</ul>
+<h3 id="6-禁止使用-SELECT-必须使用-SELECT-lt-字段列表-gt-查询"><a href="#6-禁止使用-SELECT-必须使用-SELECT-lt-字段列表-gt-查询" class="headerlink" title="6. 禁止使用 SELECT * 必须使用 SELECT &lt;字段列表&gt; 查询"></a>6. 禁止使用 SELECT * 必须使用 SELECT &lt;字段列表&gt; 查询</h3><p><strong>原因：</strong></p>
+<ul>
+<li>消耗更多的 CPU 和 IO 以网络带宽资源</li>
+<li>无法使用覆盖索引</li>
+<li>可减少表结构变更带来的影响</li>
+</ul>
+<h3 id="7-禁止使用不含字段列表的-INSERT-语句"><a href="#7-禁止使用不含字段列表的-INSERT-语句" class="headerlink" title="7. 禁止使用不含字段列表的 INSERT 语句"></a>7. 禁止使用不含字段列表的 INSERT 语句</h3><p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into values (&apos;a&apos;,&apos;b&apos;,&apos;c&apos;);</span><br></pre></td></tr></table></figure>
 
+<p>应使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into t(c1,c2,c3) values (&apos;a&apos;,&apos;b&apos;,&apos;c&apos;);</span><br></pre></td></tr></table></figure>
 
-<div class="alert alert-danger" role="alert">
-  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-  <span class="sr-only">Error:</span>
-  Enter a valid email address
-</div>
+<h3 id="8-避免使用子查询，可以把子查询优化为-join-操作"><a href="#8-避免使用子查询，可以把子查询优化为-join-操作" class="headerlink" title="8. 避免使用子查询，可以把子查询优化为 join 操作"></a>8. 避免使用子查询，可以把子查询优化为 join 操作</h3><p>通常子查询在 in 子句中，且子查询中为简单 SQL(不包含 union、group by、order by、limit 从句) 时,才可以把子查询转化为关联查询进行优化。</p>
+<p><strong>子查询性能差的原因：</strong></p>
+<p>子查询的结果集无法使用索引，通常子查询的结果集会被存储到临时表中，不论是内存临时表还是磁盘临时表都不会存在索引，所以查询性能会受到一定的影响。特别是对于返回结果集比较大的子查询，其对查询性能的影响也就越大。</p>
+<p>由于子查询会产生大量的临时表也没有索引，所以会消耗过多的 CPU 和 IO 资源，产生大量的慢查询。</p>
+<h3 id="9-避免使用-JOIN-关联太多的表"><a href="#9-避免使用-JOIN-关联太多的表" class="headerlink" title="9. 避免使用 JOIN 关联太多的表"></a>9. 避免使用 JOIN 关联太多的表</h3><p>对于 MySQL 来说，是存在关联缓存的，缓存的大小可以由 join_buffer_size 参数进行设置。</p>
+<p>在 MySQL 中，对于同一个 SQL 多关联（join）一个表，就会多分配一个关联缓存，如果在一个 SQL 中关联的表越多，所占用的内存也就越大。</p>
+<p>如果程序中大量的使用了多表关联的操作，同时 join_buffer_size 设置的也不合理的情况下，就容易造成服务器内存溢出的情况，就会影响到服务器数据库性能的稳定性。</p>
+<p>同时对于关联操作来说，会产生临时表操作，影响查询效率，MySQL 最多允许关联 61 个表，建议不超过 5 个。</p>
+<h3 id="10-减少同数据库的交互次数"><a href="#10-减少同数据库的交互次数" class="headerlink" title="10. 减少同数据库的交互次数"></a>10. 减少同数据库的交互次数</h3><p>数据库更适合处理批量操作，合并多个相同的操作到一起，可以提高处理效率。</p>
+<h3 id="11-对应同一列进行-or-判断时，使用-in-代替-or"><a href="#11-对应同一列进行-or-判断时，使用-in-代替-or" class="headerlink" title="11. 对应同一列进行 or 判断时，使用 in 代替 or"></a>11. 对应同一列进行 or 判断时，使用 in 代替 or</h3><p>in 的值不要超过 500 个，in 操作可以更有效的利用索引，or 大多数情况下很少能利用到索引。</p>
+<h3 id="12-禁止使用-order-by-rand-进行随机排序"><a href="#12-禁止使用-order-by-rand-进行随机排序" class="headerlink" title="12. 禁止使用 order by rand() 进行随机排序"></a>12. 禁止使用 order by rand() 进行随机排序</h3><p>order by rand() 会把表中所有符合条件的数据装载到内存中，然后在内存中对所有数据根据随机生成的值进行排序，并且可能会对每一行都生成一个随机值，如果满足条件的数据集非常大，就会消耗大量的 CPU 和 IO 及内存资源。</p>
+<p>推荐在程序中获取一个随机值，然后从数据库中获取数据的方式。</p>
+<h3 id="13-WHERE-从句中禁止对列进行函数转换和计算"><a href="#13-WHERE-从句中禁止对列进行函数转换和计算" class="headerlink" title="13. WHERE 从句中禁止对列进行函数转换和计算"></a>13. WHERE 从句中禁止对列进行函数转换和计算</h3><p>对列进行函数转换或计算时会导致无法使用索引</p>
+<p><strong>不推荐：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">where date(create_time)=&apos;20190101&apos;</span><br></pre></td></tr></table></figure>
 
+<p><strong>推荐：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">where create_time &gt;= &apos;20190101&apos; and create_time &lt; &apos;20190102&apos;</span><br></pre></td></tr></table></figure>
 
-<div class="dropup">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropup
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-    <li><a href="#">Something else here</a></li>
-    <li role="separator" class="divider"></li>
-    <li><a href="#">Separated link</a></li>
-  </ul>
-</div>
-
-
-
-
-<div class="btn-group" role="group" aria-label="...">
-  <button type="button" class="btn btn-default">1</button>
-  <button type="button" class="btn btn-default">2</button>
-
-  <div class="btn-group" role="group">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Dropdown
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-      <li><a href="#">Dropdown link</a></li>
-      <li><a href="#">Dropdown link</a></li>
-    </ul>
-  </div>
-</div>
-
-
-<!-- Single button -->
-<div class="btn-group">
-  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Action <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu">
-    <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-    <li><a href="#">Something else here</a></li>
-    <li role="separator" class="divider"></li>
-    <li><a href="#">Separated link</a></li>
-  </ul>
-</div>
-
-<!-- Split button -->
-<div class="btn-group">
-  <button type="button" class="btn btn-danger">Action</button>
-  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <span class="caret"></span>
-    <span class="sr-only">Toggle Dropdown</span>
-  </button>
-  <ul class="dropdown-menu">
-    <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-    <li><a href="#">Something else here</a></li>
-    <li role="separator" class="divider"></li>
-    <li><a href="#">Separated link</a></li>
-  </ul>
-</div>
-
-
-<p><span class="label label-default">Default</span><br><span class="label label-primary">Primary</span><br><span class="label label-success">Success</span><br><span class="label label-info">Info</span><br><span class="label label-warning">Warning</span><br><span class="label label-danger">Danger</span></p>
-<p><a href="#">Inbox <span class="badge">42</span></a></p>
-<button class="btn btn-primary" type="button">
-  Messages <span class="badge">4</span>
-</button>
+<h3 id="14-在明显不会有重复值时使用-UNION-ALL-而不是-UNION"><a href="#14-在明显不会有重复值时使用-UNION-ALL-而不是-UNION" class="headerlink" title="14. 在明显不会有重复值时使用 UNION ALL 而不是 UNION"></a>14. 在明显不会有重复值时使用 UNION ALL 而不是 UNION</h3><ul>
+<li>UNION 会把两个结果集的所有数据放到临时表中后再进行去重操作</li>
+<li>UNION ALL 不会再对结果集进行去重操作</li>
+</ul>
+<h3 id="15-拆分复杂的大-SQL-为多个小-SQL"><a href="#15-拆分复杂的大-SQL-为多个小-SQL" class="headerlink" title="15. 拆分复杂的大 SQL 为多个小 SQL"></a>15. 拆分复杂的大 SQL 为多个小 SQL</h3><ul>
+<li>大 SQL 逻辑上比较复杂，需要占用大量 CPU 进行计算的 SQL</li>
+<li>MySQL 中，一个 SQL 只能使用一个 CPU 进行计算</li>
+<li>SQL 拆分后可以通过并行执行来提高处理效率</li>
+</ul>
+<hr>
+<h2 id="数据库操作行为规范"><a href="#数据库操作行为规范" class="headerlink" title="数据库操作行为规范"></a>数据库操作行为规范</h2><h3 id="1-超-100-万行的批量写-UPDATE-DELETE-INSERT-操作-要分批多次进行操作"><a href="#1-超-100-万行的批量写-UPDATE-DELETE-INSERT-操作-要分批多次进行操作" class="headerlink" title="1. 超 100 万行的批量写 (UPDATE,DELETE,INSERT) 操作,要分批多次进行操作"></a>1. 超 100 万行的批量写 (UPDATE,DELETE,INSERT) 操作,要分批多次进行操作</h3><p><strong>大批量操作可能会造成严重的主从延迟</strong></p>
+<p>主从环境中,大批量操作可能会造成严重的主从延迟，大批量的写操作一般都需要执行一定长的时间，<br>而只有当主库上执行完成后，才会在其他从库上执行，所以会造成主库与从库长时间的延迟情况</p>
+<p><strong>binlog 日志为 row 格式时会产生大量的日志</strong></p>
+<p>大批量写操作会产生大量日志，特别是对于 row 格式二进制数据而言，由于在 row 格式中会记录每一行数据的修改，我们一次修改的数据越多，产生的日志量也就会越多，日志的传输和恢复所需要的时间也就越长，这也是造成主从延迟的一个原因</p>
+<p><strong>避免产生大事务操作</strong></p>
+<p>大批量修改数据，一定是在一个事务中进行的，这就会造成表中大批量数据进行锁定，从而导致大量的阻塞，阻塞会对 MySQL 的性能产生非常大的影响。</p>
+<p>特别是长时间的阻塞会占满所有数据库的可用连接，这会使生产环境中的其他应用无法连接到数据库，因此一定要注意大批量写操作要进行分批</p>
+<h3 id="2-对于大表使用-pt-online-schema-change-修改表结构"><a href="#2-对于大表使用-pt-online-schema-change-修改表结构" class="headerlink" title="2. 对于大表使用 pt-online-schema-change 修改表结构"></a>2. 对于大表使用 pt-online-schema-change 修改表结构</h3><ul>
+<li>避免大表修改产生的主从延迟</li>
+<li>避免在对表字段进行修改时进行锁表</li>
+</ul>
+<p>对大表数据结构的修改一定要谨慎，会造成严重的锁表操作，尤其是生产环境，是不能容忍的。</p>
+<p>pt-online-schema-change 它会首先建立一个与原表结构相同的新表，并且在新表上进行表结构的修改，然后再把原表中的数据复制到新表中，并在原表中增加一些触发器。把原表中新增的数据也复制到新表中，在行所有数据复制完成之后，把新表命名成原表，并把原来的表删除掉。把原来一个 DDL 操作，分解成多个小的批次进行。</p>
+<h3 id="3-禁止为程序使用的账号赋予-super-权限"><a href="#3-禁止为程序使用的账号赋予-super-权限" class="headerlink" title="3. 禁止为程序使用的账号赋予 super 权限"></a>3. 禁止为程序使用的账号赋予 super 权限</h3><ul>
+<li>当达到最大连接数限制时，还运行 1 个有 super 权限的用户连接</li>
+<li>super 权限只能留给 DBA 处理问题的账号使用</li>
+</ul>
+<h3 id="4-对于程序连接数据库账号-遵循权限最小原则"><a href="#4-对于程序连接数据库账号-遵循权限最小原则" class="headerlink" title="4. 对于程序连接数据库账号,遵循权限最小原则"></a>4. 对于程序连接数据库账号,遵循权限最小原则</h3><ul>
+<li>程序使用数据库账号只能在一个 DB 下使用，不准跨库</li>
+<li>程序使用的账号原则上不准有 drop 权限</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://dirsky.github.io/2018/07/16/lang-bootstrap-2018-07-16-bootstrap-2-zj/" data-id="cjzus7k2w00017owctend2qdr" class="article-share-link">Share</a>
+      <a data-url="https://dirsky.github.io/2019/04/05/db-mysql-MySQL高性能优化规范建议/" data-id="cjzv2px8w0015fkwctguube0q" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
 
     </footer>
   </div>
@@ -1323,14 +1524,14 @@
 
 
   
-    <article id="post-lang-bootstrap-2018-07-16-bootstrap-3-cj" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-db-redis-Redis持久化" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/07/16/lang-bootstrap-2018-07-16-bootstrap-3-cj/" class="article-date">
-  <time datetime="2018-07-15T16:00:00.000Z" itemprop="datePublished">2018-07-16</time>
+    <a href="/2019/03/02/db-redis-Redis持久化/" class="article-date">
+  <time datetime="2019-03-01T16:00:00.000Z" itemprop="datePublished">2019-03-02</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/lang/">lang</a>
+    <a class="article-category-link" href="/categories/db/">db</a>
   </div>
 
   </div>
@@ -1341,7 +1542,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/16/lang-bootstrap-2018-07-16-bootstrap-3-cj/">bootstrap-插件</a>
+      <a class="article-title" href="/2019/03/02/db-redis-Redis持久化/">Redis持久化</a>
     </h1>
   
 
@@ -1349,270 +1550,65 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  弹出框
-</button>
+        <p>非常感谢《redis实战》真本书，本文大多内容也参考了书中的内容。非常推荐大家看一下《redis实战》这本书，感觉书中的很多理论性东西还是很不错的。</p>
+<p>为什么本文的名字要加上春夏秋冬又一春，哈哈 ，这是一部韩国的电影，我感觉电影不错，所以就用在文章名字上了，没有什么特别的含义，然后下面的有些配图也是电影相关镜头。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/13/163f97071d71f6de?w=1280&h=720&f=jpeg&s=205252" alt="春夏秋冬又一春"></p>
+<p><strong>很多时候我们需要持久化数据也就是将内存中的数据写入到硬盘里面，大部分原因是为了之后重用数据（比如重启机器、机器故障之后回复数据），或者是为了防止系统故障而将数据备份到一个远程位置。</strong></p>
+<p>Redis不同于Memcached的很重一点就是，<strong>Redis支持持久化</strong>，而且支持两种不同的持久化操作。Redis的一种持久化方式叫<strong>快照（snapshotting，RDB）</strong>,另一种方式是<strong>只追加文件（append-only file,AOF）</strong>.这两种方法各有千秋，下面我会详细这两种持久化方法是什么，怎么用，如何选择适合自己的持久化方法。</p>
+<h2 id="快照（snapshotting）持久化"><a href="#快照（snapshotting）持久化" class="headerlink" title="快照（snapshotting）持久化"></a>快照（snapshotting）持久化</h2><p>Redis可以通过创建快照来获得存储在内存里面的数据在某个时间点上的副本。Redis创建快照之后，可以对快照进行备份，可以将快照复制到其他服务器从而创建具有相同数据的服务器副本（Redis主从结构，主要用来提高Redis性能），还可以将快照留在原地以便重启服务器的时候使用。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/13/163f97568281782a?w=600&h=329&f=jpeg&s=88616" alt="春夏秋冬又一春"></p>
+<p><strong>快照持久化是Redis默认采用的持久化方式</strong>，在redis.conf配置文件中默认有此下配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">save 900 1              #在900秒(15分钟)之后，如果至少有1个key发生变化，Redis就会自动触发BGSAVE命令创建快照。</span><br><span class="line"></span><br><span class="line">save 300 10            #在300秒(5分钟)之后，如果至少有10个key发生变化，Redis就会自动触发BGSAVE命令创建快照。</span><br><span class="line"></span><br><span class="line">save 60 10000        #在60秒(1分钟)之后，如果至少有10000个key发生变化，Redis就会自动触发BGSAVE命令创建快照。</span><br></pre></td></tr></table></figure>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">标题</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary">保存</button>
-      </div>
-    </div>
-  </div>
-</div>
+<p>根据配置，快照将被写入dbfilename选项指定的文件里面，并存储在dir选项指定的路径上面。如果在新的快照文件创建完毕之前，Redis、系统或者硬件这三者中的任意一个崩溃了，那么Redis将丢失最近一次创建快照写入的所有数据。</p>
+<p>举个例子：假设Redis的上一个快照是2：35开始创建的，并且已经创建成功。下午3：06时，Redis又开始创建新的快照，并且在下午3：08快照创建完毕之前，有35个键进行了更新。如果在下午3：06到3：08期间，系统发生了崩溃，导致Redis无法完成新快照的创建工作，那么Redis将丢失下午2：35之后写入的所有数据。另一方面，如果系统恰好在新的快照文件创建完毕之后崩溃，那么Redis将丢失35个键的更新数据。</p>
+<p><strong>创建快照的办法有如下几种：</strong></p>
+<ul>
+<li><strong>BGSAVE命令：</strong> 客户端向Redis发送 <strong>BGSAVE命令</strong> 来创建一个快照。对于支持BGSAVE命令的平台来说（基本上所有平台支持，除了Windows平台），Redis会调用fork来创建一个子进程，然后子进程负责将快照写入硬盘，而父进程则继续处理命令请求。</li>
+<li><strong>SAVE命令：</strong> 客户端还可以向Redis发送 <strong>SAVE命令</strong> 来创建一个快照，接到SAVE命令的Redis服务器在快照创建完毕之前不会再响应任何其他命令。SAVE命令不常用，我们通常只会在没有足够内存去执行BGSAVE命令的情况下，又或者即使等待持久化操作执行完毕也无所谓的情况下，才会使用这个命令。</li>
+<li><strong>save选项：</strong> 如果用户设置了save选项（一般会默认设置），比如 <strong>save 60 10000</strong>，那么从Redis最近一次创建快照之后开始算起，当“60秒之内有10000次写入”这个条件被满足时，Redis就会自动触发BGSAVE命令。</li>
+<li><strong>SHUTDOWN命令：</strong>  当Redis通过SHUTDOWN命令接收到关闭服务器的请求时，或者接收到标准TERM信号时，会执行一个SAVE命令，阻塞所有客户端，不再执行客户端发送的任何命令，并在SAVE命令执行完毕之后关闭服务器。</li>
+<li><strong>一个Redis服务器连接到另一个Redis服务器：</strong> 当一个Redis服务器连接到另一个Redis服务器，并向对方发送SYNC命令来开始一次复制操作的时候，如果主服务器目前没有执行BGSAVE操作，或者主服务器并非刚刚执行完BGSAVE操作，那么主服务器就会执行BGSAVE命令</li>
+</ul>
+<p>如果系统真的发生崩溃，用户将丢失最近一次生成快照之后更改的所有数据。因此，快照持久化只适用于即使丢失一部分数据也不会造成一些大问题的应用程序。不能接受这个缺点的话，可以考虑AOF持久化。</p>
+<h2 id="AOF（append-only-file）持久化"><a href="#AOF（append-only-file）持久化" class="headerlink" title="AOF（append-only file）持久化"></a><strong>AOF（append-only file）持久化</strong></h2><p>与快照持久化相比，AOF持久化 的实时性更好，因此已成为主流的持久化方案。默认情况下Redis没有开启AOF（append only file）方式的持久化，可以通过appendonly参数开启：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appendonly yes</span><br></pre></td></tr></table></figure>
 
-<div class="alert alert-warning alert-dismissible fade in" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-  <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
-</div>
+<p>开启AOF持久化后每执行一条会更改Redis中的数据的命令，Redis就会将该命令写入硬盘中的AOF文件。AOF文件的保存位置和RDB文件的位置相同，都是通过dir参数设置的，默认的文件名是appendonly.aof。</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/13/163f976818876166?w=400&h=219&f=jpeg&s=91022" alt="春夏秋冬又一春"></p>
+<p><strong>在Redis的配置文件中存在三种同步方式，它们分别是：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">appendfsync always     #每次有数据修改发生时都会写入AOF文件,这样会严重降低Redis的速度</span><br><span class="line">appendfsync everysec  #每秒钟同步一次，显示地将多个写命令同步到硬盘</span><br><span class="line">appendfsync no      #让操作系统决定何时进行同步</span><br></pre></td></tr></table></figure>
 
+<p><strong>appendfsync always</strong> 可以实现将数据丢失减到最少，不过这种方式需要对硬盘进行大量的写入而且每次只写入一个命令，十分影响Redis的速度。另外使用固态硬盘的用户谨慎使用appendfsync always选项，因为这会明显降低固态硬盘的使用寿命。</p>
+<p>为了兼顾数据和写入性能，用户可以考虑 <strong>appendfsync everysec选项</strong> ，让Redis每秒同步一次AOF文件，Redis性能几乎没受到任何影响。而且这样即使出现系统崩溃，用户最多只会丢失一秒之内产生的数据。当硬盘忙于执行写入操作的时候，Redis还会优雅的放慢自己的速度以便适应硬盘的最大写入速度。</p>
+<p><strong>appendfsync no</strong>  选项一般不推荐，这种方案会使Redis丢失不定量的数据而且如果用户的硬盘处理写入操作的速度不够的话，那么当缓冲区被等待写入的数据填满时，Redis的写入操作将被阻塞，这会导致Redis的请求速度变慢。</p>
+<p><strong>虽然AOF持久化非常灵活地提供了多种不同的选项来满足不同应用程序对数据安全的不同要求，但AOF持久化也有缺陷——AOF文件的体积太大。</strong></p>
+<h2 id="重写-压缩AOF"><a href="#重写-压缩AOF" class="headerlink" title="重写/压缩AOF"></a>重写/压缩AOF</h2><p>AOF虽然在某个角度可以将数据丢失降低到最小而且对性能影响也很小，但是极端的情况下，体积不断增大的AOF文件很可能会用完硬盘空间。另外，如果AOF体积过大，那么还原操作执行时间就可能会非常长。</p>
+<p>为了解决AOF体积过大的问题，用户可以向Redis发送 <strong>BGREWRITEAOF命令</strong> ，这个命令会通过移除AOF文件中的冗余命令来重写（rewrite）AOF文件来减小AOF文件的体积。BGREWRITEAOF命令和BGSAVE创建快照原理十分相似，所以AOF文件重写也需要用到子进程，这样会导致性能问题和内存占用问题，和快照持久化一样。更糟糕的是，如果不加以控制的话，AOF文件的体积可能会比快照文件大好几倍。</p>
+<p><strong>文件重写流程：</strong></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/6/13/163f97f9bd0eea50?w=380&h=345&f=jpeg&s=14501" alt="文件重写流程"><br>和快照持久化可以通过设置save选项来自动执行BGSAVE一样，AOF持久化也可以通过设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auto-aof-rewrite-percentage</span><br></pre></td></tr></table></figure>
 
-<div class="alert alert-danger alert-dismissible fade in" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-  <h4>Oh snap! You got an error!</h4>
-  <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
-  <p>
-    <button type="button" class="btn btn-danger">Take this action</button>
-    <button type="button" class="btn btn-default">Or do this</button>
-  </p>
-</div>
+<p>选项和</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auto-aof-rewrite-min-size</span><br></pre></td></tr></table></figure>
 
+<p>选项自动执行BGREWRITEAOF命令。举例：假设用户对Redis设置了如下配置选项并且启用了AOF持久化。那么当AOF文件体积大于64mb，并且AOF的体积比上一次重写之后的体积大了至少一倍（100%）的时候，Redis将执行BGREWRITEAOF命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">auto-aof-rewrite-percentage 100  </span><br><span class="line">auto-aof-rewrite-min-size 64mb</span><br></pre></td></tr></table></figure>
 
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://dirsky.github.io/2018/07/16/lang-bootstrap-2018-07-16-bootstrap-3-cj/" data-id="cjzus7k3600037owclyigc9qk" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-lang-bootstrap-2018-07-16-bootstrap-4-kj" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/07/16/lang-bootstrap-2018-07-16-bootstrap-4-kj/" class="article-date">
-  <time datetime="2018-07-15T16:00:00.000Z" itemprop="datePublished">2018-07-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/lang/">lang</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/16/lang-bootstrap-2018-07-16-bootstrap-4-kj/">Bootstrap-控件</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="按钮改变大小和颜色"><a href="#按钮改变大小和颜色" class="headerlink" title="按钮改变大小和颜色"></a>按钮改变大小和颜色</h3><!-- Standard button -->
-<p><button type="button" class="btn btn-default btn-lg">（默认样式）Default btn-lg</button></p>
-<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-<p><button type="button" class="btn btn-primary">（首选项）Primary</button></p>
-<!-- Indicates a successful or positive action -->
-<p><button type="button" class="btn btn-success btn-sm">（成功）Success  btn-sm</button></p>
-<!-- Contextual button for informational alert messages -->
-<p><button type="button" class="btn btn-info btn-xs">（一般信息）Info btn-xs</button></p>
-<!-- Indicates caution should be taken with this action -->
-<p><button type="button" class="btn btn-warning">（警告）Warning</button></p>
-<!-- Indicates a dangerous or potentially negative action -->
-<p><button type="button" class="btn btn-danger">（危险）Danger</button></p>
-<!-- Deemphasize a button by making it look like a link while maintaining button behavior -->
-<p><button type="button" class="btn btn-link">（链接）Link</button></p>
-<h3 id="文本和背景改变颜色"><a href="#文本和背景改变颜色" class="headerlink" title="文本和背景改变颜色"></a>文本和背景改变颜色</h3><p class="text-muted bg-warning">.mcorper nulla non metus..</p>
-<p class="text-primary bg-danger">..mcorper nulla non metus.</p>
-<p class="text-success">.mcorper nulla non metus..</p>
-<p class="text-info bg-primary">.mcorper nulla non metus..</p>
-<p class="text-warning bg-success">.mcorper nulla non metus..</p>
-<p class="text-danger bg-info">..mcorper nulla non metus.</p>
-
-<h3 id="输入框和下拉框"><a href="#输入框和下拉框" class="headerlink" title="输入框和下拉框"></a>输入框和下拉框</h3><input type="text" class="form-control" placeholder="Text input">
-<input class="form-control input-lg" type="text" placeholder=".input-lg">
-<input class="form-control" type="text" placeholder="Default input">
-<input class="form-control input-sm" type="text" placeholder=".input-sm">
-<textarea class="form-control" rows="3"></textarea>
-<select class="form-control input-lg">...</select>
-<select class="form-control input-sm">...</select>
-<select class="form-control">
-  <option>1</option>
-  <option>2</option>
-  <option>3</option>
-  <option>4</option>
-  <option>5</option>
-</select>
-
-
-<div class="checkbox">
-  <label>
-    <input type="checkbox" value>选项
-  </label>
-</div>
-<div class="checkbox disabled">
-  <label>
-    <input type="checkbox" value disabled>选项无效
-  </label>
-</div>
-
-<div class="radio">
-  <label>
-    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>单选1 name="optionsRadios"
-  </label>
-</div>
-<div class="radio">
-  <label>
-    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-    单选2 name="optionsRadios"
-  </label>
-</div>
-<div class="radio disabled">
-  <label>
-    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>单选3-无效 name="optionsRadios"
-  </label>
-</div>
-
-<h3 id="单选和复选按钮"><a href="#单选和复选按钮" class="headerlink" title="单选和复选按钮"></a>单选和复选按钮</h3><label class="checkbox-inline">
-  <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
-</label>
-<label class="checkbox-inline">
-  <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
-</label>
-<label class="checkbox-inline">
-  <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
-</label>
-
-<label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
-</label>
-<label class="radio-inline">
-  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
-</label>
-
-
-<h3 id="class-”form-group-has-success”"><a href="#class-”form-group-has-success”" class="headerlink" title="class=”form-group has-success”"></a>class=”form-group has-success”</h3><div class="form-group has-success">
-  <label class="control-label" for="inputSuccess1">Input with success</label>
-  <input type="text" class="form-control" id="inputSuccess1">
-  <span id="helpBlock2" class="help-block">说明信息</span>
-</div>
-<div class="form-group has-warning">
-  <label class="control-label" for="inputWarning1">Input with warning</label>
-  <input type="text" class="form-control" id="inputWarning1">
-</div>
-<div class="form-group has-error">
-  <label class="control-label" for="inputError1">Input with error</label>
-  <input type="text" class="form-control" id="inputError1">
-</div>
-<div class="has-success">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" id="checkboxSuccess" value="option1">
-      Checkbox with success
-    </label>
-  </div>
-</div>
-<div class="has-warning">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" id="checkboxWarning" value="option1">
-      Checkbox with warning
-    </label>
-  </div>
-</div>
-<div class="has-error">
-  <div class="checkbox">
-    <label>
-      <input type="checkbox" id="checkboxError" value="option1">
-      Checkbox with error
-    </label>
-  </div>
-</div>
-
-
-<h3 id="控件"><a href="#控件" class="headerlink" title="控件"></a>控件</h3><form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputFile">File input</label>
-    <input type="file" id="exampleInputFile">
-    <p class="help-block">Example block-level help text here.</p>
-  </div>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox"> Check me out
-    </label>
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
-
-<form class="form-inline">
-  <div class="form-group">
-    <label for="exampleInputName2">Name</label>
-    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputEmail2">Email</label>
-    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
-  </div>
-  <button type="submit" class="btn btn-default">Send invitation</button>
-</form>
-
-
-<form class="form-inline">
-  <div class="form-group">
-    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-    <div class="input-group">
-      <div class="input-group-addon">$</div>
-      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
-      <div class="input-group-addon">.00</div>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary">Transfer cash</button>
-</form>
-
-
-
-
-<p><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button><br><span class="caret"></span></p>
+<p>无论是AOF持久化还是快照持久化，将数据持久化到硬盘上都是非常有必要的，但除了进行持久化外，用户还必须对持久化得到的文件进行备份（最好是备份到不同的地方），这样才能尽量避免数据丢失事故发生。如果条件允许的话，最好能将快照文件和重新重写的AOF文件备份到不同的服务器上面。</p>
+<p>随着负载量的上升，或者数据的完整性变得 越来越重要时，用户可能需要使用到复制特性。</p>
+<h2 id="Redis-4-0-对于持久化机制的优化"><a href="#Redis-4-0-对于持久化机制的优化" class="headerlink" title="Redis 4.0 对于持久化机制的优化"></a>Redis 4.0 对于持久化机制的优化</h2><p>Redis 4.0 开始支持 RDB 和 AOF 的混合持久化（默认关闭，可以通过配置项 <code>aof-use-rdb-preamble</code> 开启）。</p>
+<p>如果把混合持久化打开，AOF 重写的时候就直接把 RDB 的内容写到 AOF 文件开头。这样做的好处是可以结合 RDB 和 AOF 的优点, 快速加载同时避免丢失过多的数据。当然缺点也是有的， AOF 里面的 RDB 部分就是压缩格式不再是 AOF 格式，可读性较差。</p>
+<p>参考：</p>
+<p>《Redis实战》</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://dirsky.github.io/2018/07/16/lang-bootstrap-2018-07-16-bootstrap-4-kj/" data-id="cjzus7k3900057owcl79myc56" class="article-share-link">Share</a>
+      <a data-url="https://dirsky.github.io/2019/03/02/db-redis-Redis持久化/" data-id="cjzv27x0j0005fkwczmq4agcc" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/">redis</a></li></ul>
 
     </footer>
   </div>
@@ -1625,7 +1621,7 @@
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -1636,7 +1632,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/lang/">lang</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/utils/">utils</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/管理/">管理</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/db/">db</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/lang/">lang</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/utils/">utils</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/管理/">管理</a></li></ul>
     </div>
   </div>
 
@@ -1646,7 +1642,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello/">Hello</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello/">hello</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率/">效率</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello/">Hello</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello/">hello</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率/">效率</a></li></ul>
     </div>
   </div>
 
@@ -1656,7 +1652,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Bootstrap/" style="font-size: 20px;">Bootstrap</a> <a href="/tags/Git/" style="font-size: 13.33px;">Git</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 16.67px;">Python</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/hello/" style="font-size: 13.33px;">hello</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/效率/" style="font-size: 10px;">效率</a>
+      <a href="/tags/Bootstrap/" style="font-size: 17.5px;">Bootstrap</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/docker/" style="font-size: 12.5px;">docker</a> <a href="/tags/hello/" style="font-size: 12.5px;">hello</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/mysql/" style="font-size: 20px;">mysql</a> <a href="/tags/redis/" style="font-size: 17.5px;">redis</a> <a href="/tags/效率/" style="font-size: 10px;">效率</a>
     </div>
   </div>
 
@@ -1665,7 +1661,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/10/">October 2008</a></li></ul>
     </div>
   </div>
 

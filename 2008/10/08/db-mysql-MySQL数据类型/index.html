@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>MySQL数据类型 | 徐国忠的技术路线</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="数字类型 整数: tinyint、smallint、mediumint、int、bigint 浮点数: float、double、real、decimal   日期和时间: date、time、datetime、timestamp、year 字符串类型 字符串: char、varchar 文本: tinytext、text、mediumtext、longtext   二进制(可用来存储图片、音乐">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL数据类型">
+<meta property="og:url" content="https://dirsky.github.io/2008/10/08/db-mysql-MySQL数据类型/index.html">
+<meta property="og:site_name" content="徐国忠的技术路线">
+<meta property="og:description" content="数字类型 整数: tinyint、smallint、mediumint、int、bigint 浮点数: float、double、real、decimal   日期和时间: date、time、datetime、timestamp、year 字符串类型 字符串: char、varchar 文本: tinytext、text、mediumtext、longtext   二进制(可用来存储图片、音乐">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-08-28T09:51:43.681Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL数据类型">
+<meta name="twitter:description" content="数字类型 整数: tinyint、smallint、mediumint、int、bigint 浮点数: float、double、real、decimal   日期和时间: date、time、datetime、timestamp、year 字符串类型 字符串: char、varchar 文本: tinytext、text、mediumtext、longtext   二进制(可用来存储图片、音乐">
+  
+    <link rel="alternate" href="/atom.xml" title="徐国忠的技术路线" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">徐国忠的技术路线</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">生来为创造价值</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://dirsky.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-db-mysql-MySQL数据类型" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/10/08/db-mysql-MySQL数据类型/" class="article-date">
+  <time datetime="2008-10-07T16:00:00.000Z" itemprop="datePublished">2008-10-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/db/">db</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MySQL数据类型
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>数字类型<ul>
+<li>整数: tinyint、smallint、mediumint、int、bigint</li>
+<li>浮点数: float、double、real、decimal</li>
+</ul>
+</li>
+<li>日期和时间: date、time、datetime、timestamp、year</li>
+<li>字符串类型<ul>
+<li>字符串: char、varchar</li>
+<li>文本: tinytext、text、mediumtext、longtext</li>
+</ul>
+</li>
+<li>二进制(可用来存储图片、音乐等): tinyblob、blob、mediumblob、longblob</li>
+</ul>
+<h2 id="数字类型"><a href="#数字类型" class="headerlink" title="数字类型"></a>数字类型</h2><h3 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h3><table>
+<thead>
+<tr>
+<th align="left">type</th>
+<th align="left">Storage</th>
+<th align="left">Minumun Value</th>
+<th align="left">Maximum Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"></td>
+<td align="left">(Bytes)</td>
+<td align="left">(Signed/Unsigned)</td>
+<td align="left">(Signed/Unsigned)</td>
+</tr>
+<tr>
+<td align="left">TINYINT</td>
+<td align="left">1</td>
+<td align="left">-128</td>
+<td align="left">127</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0</td>
+<td align="left">255</td>
+</tr>
+<tr>
+<td align="left">SMALLINT</td>
+<td align="left">2</td>
+<td align="left">-32768</td>
+<td align="left">32767</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0</td>
+<td align="left">65535</td>
+</tr>
+<tr>
+<td align="left">MEDIUMINT</td>
+<td align="left">3</td>
+<td align="left">-8388608</td>
+<td align="left">8388607</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0</td>
+<td align="left">16777215</td>
+</tr>
+<tr>
+<td align="left">INT</td>
+<td align="left">4</td>
+<td align="left">-2147483648</td>
+<td align="left">2147483647</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0</td>
+<td align="left">4294967295</td>
+</tr>
+<tr>
+<td align="left">BIGINT</td>
+<td align="left">8</td>
+<td align="left">-9223372036854775808</td>
+<td align="left">9223372036854775807</td>
+</tr>
+<tr>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0</td>
+<td align="left">18446744073709551615</td>
+</tr>
+</tbody></table>
+<h3 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h3><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>存储空间</th>
+<th>精度</th>
+<th>精确性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>FLOAT(M, D)</td>
+<td>4 bytes</td>
+<td>单精度</td>
+<td>非精确</td>
+<td>单精度浮点型，m总个数，d小数位</td>
+</tr>
+<tr>
+<td>DOUBLE(M, D)</td>
+<td>8 bytes</td>
+<td>双精度</td>
+<td>比Float精度高</td>
+<td>双精度浮点型，m总个数，d小数位</td>
+</tr>
+</tbody></table>
+<ul>
+<li>FLOAT容易造成精度丢失</li>
+</ul>
+<h3 id="定点数DECIMAL"><a href="#定点数DECIMAL" class="headerlink" title="定点数DECIMAL"></a>定点数DECIMAL</h3><ul>
+<li>高精度的数据类型，常用来存储交易相关的数据</li>
+<li>DECIMAL(M,N).M代表总精度，N代表小数点右侧的位数（标度）</li>
+<li>1 &lt; M &lt; 254, 0 &lt; N &lt; 60;</li>
+<li>存储空间变长</li>
+</ul>
+<h2 id="时间类型"><a href="#时间类型" class="headerlink" title="时间类型"></a>时间类型</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>字节</th>
+<th>例</th>
+<th>精确性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DATE</td>
+<td>三字节</td>
+<td>2015-05-01</td>
+<td>精确到年月日</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>三字节</td>
+<td>11:12:00</td>
+<td>精确到时分秒</td>
+</tr>
+<tr>
+<td>DATETIME</td>
+<td>八字节</td>
+<td>2015-05-01 11::12:00</td>
+<td>精确到年月日时分秒</td>
+</tr>
+<tr>
+<td>TIMESTAMP</td>
+<td></td>
+<td>2015-05-01 11::12:00</td>
+<td>精确到年月日时分秒</td>
+</tr>
+</tbody></table>
+<ul>
+<li>MySQL在<code>5.6.4</code>版本之后，<code>TIMESTAMP</code>和<code>DATETIME</code>支持到微秒。</li>
+<li><code>TIMESTAMP</code>会根据系统时区进行转换，<code>DATETIME</code>则不会</li>
+<li>存储范围的区别  <ul>
+<li><code>TIMESTAMP</code>存储范围：1970-01-01 00::00:01 to 2038-01-19 03:14:07</li>
+<li><code>DATETIME</code>的存储范围：1000-01-01 00:00:00 to 9999-12-31 23:59:59</li>
+</ul>
+</li>
+<li>一般使用<code>TIMESTAMP</code>国际化</li>
+<li>如存时间戳使用数字类型<code>BIGINT</code></li>
+</ul>
+<h2 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>单位</th>
+<th>最大</th>
+<th>特性</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CHAR</td>
+<td>字符</td>
+<td>最大为255字符</td>
+<td>存储定长，容易造成空间的浪费</td>
+</tr>
+<tr>
+<td>VARCHAR</td>
+<td>字符</td>
+<td>可以超过255个字符</td>
+<td>存储变长，节省存储空间</td>
+</tr>
+<tr>
+<td>TEXT</td>
+<td>字节</td>
+<td>总大小为65535字节，约为64KB</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<ul>
+<li>TEXT在MySQL内部大多存储格式为溢出页，效率不如CHAR</li>
+<li>Mysql默认为utf-8，那么在英文模式下1个字符=1个字节，在中文模式下1个字符=3个字节。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://dirsky.github.io/2008/10/08/db-mysql-MySQL数据类型/" data-id="cjzv2o6j1000pfkwcxa5ezm31" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2009/03/06/db-mysql-一千行MySQL命令/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          一千行MySQL命令
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/db/">db</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/lang/">lang</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/utils/">utils</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/管理/">管理</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello/">Hello</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello/">hello</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率/">效率</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Bootstrap/" style="font-size: 17.5px;">Bootstrap</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/docker/" style="font-size: 12.5px;">docker</a> <a href="/tags/hello/" style="font-size: 12.5px;">hello</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/mysql/" style="font-size: 20px;">mysql</a> <a href="/tags/redis/" style="font-size: 17.5px;">redis</a> <a href="/tags/效率/" style="font-size: 10px;">效率</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/10/">October 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/28/lang-java-ArrayList/">ArrayList</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/28/utils-2016-11-26-markdown/">Markdown</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/28/lang-python-2018-07-22-python-数据类型/">Python-数据类型</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/28/lang-python-2018-07-21-python-运算符/">Python-运算符</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/28/lang-python-2018-07-20-python-逻辑控制/">Python-逻辑控制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 徐国忠<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
