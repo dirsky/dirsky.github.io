@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>JDK8接口规范 | 徐国忠的技术路线</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在JDK8中引入了lambda表达式，出现了函数式接口的概念，为了在扩展接口时保持向前兼容性(比如泛型也是为了保持兼容性而失去了在一些别的语言泛型拥有的功能)，Java接口规范发生了一些改变。。 1.JDK8以前的接口规范 JDK8以前接口可以定义的变量和方法 所有变量(Field)不论是否显式 的声明为static final```，它实际上都是```public static final```">
+<meta name="keywords" content="java,java8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JDK8接口规范">
+<meta property="og:url" content="https://dirsky.github.io/2017/11/16/lang-java-What-s-New-in-JDK8-JDK8接口规范-静态、默认方法/index.html">
+<meta property="og:site_name" content="徐国忠的技术路线">
+<meta property="og:description" content="在JDK8中引入了lambda表达式，出现了函数式接口的概念，为了在扩展接口时保持向前兼容性(比如泛型也是为了保持兼容性而失去了在一些别的语言泛型拥有的功能)，Java接口规范发生了一些改变。。 1.JDK8以前的接口规范 JDK8以前接口可以定义的变量和方法 所有变量(Field)不论是否显式 的声明为static final```，它实际上都是```public static final```">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-08-28T10:23:08.240Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JDK8接口规范">
+<meta name="twitter:description" content="在JDK8中引入了lambda表达式，出现了函数式接口的概念，为了在扩展接口时保持向前兼容性(比如泛型也是为了保持兼容性而失去了在一些别的语言泛型拥有的功能)，Java接口规范发生了一些改变。。 1.JDK8以前的接口规范 JDK8以前接口可以定义的变量和方法 所有变量(Field)不论是否显式 的声明为static final```，它实际上都是```public static final```">
+  
+    <link rel="alternate" href="/atom.xml" title="徐国忠的技术路线" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">徐国忠的技术路线</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">生来为创造价值</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://dirsky.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-lang-java-What-s-New-in-JDK8-JDK8接口规范-静态、默认方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/11/16/lang-java-What-s-New-in-JDK8-JDK8接口规范-静态、默认方法/" class="article-date">
+  <time datetime="2017-11-15T16:00:00.000Z" itemprop="datePublished">2017-11-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/lang/">lang</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JDK8接口规范
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在JDK8中引入了lambda表达式，出现了函数式接口的概念，为了在扩展接口时保持向前兼容性(比如泛型也是为了保持兼容性而失去了在一些别的语言泛型拥有的功能)，Java接口规范发生了一些改变。。</p>
+<h2 id="1-JDK8以前的接口规范"><a href="#1-JDK8以前的接口规范" class="headerlink" title="1.JDK8以前的接口规范"></a>1.JDK8以前的接口规范</h2><ul>
+<li>JDK8以前接口可以定义的变量和方法<ul>
+<li>所有变量(Field)不论是否<i>显式</i> 的声明为<figure class="highlight plain"><figcaption><span>static final```，它实际上都是```public static final```的。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   - 所有方法(Method)不论是否&lt;i&gt;显示&lt;/i&gt; 的声明为```public abstract```，它实际上都是```public abstract```的。</span><br><span class="line">```java</span><br><span class="line">public interface AInterfaceBeforeJDK8 &#123;</span><br><span class="line">    int FIELD = 0;</span><br><span class="line">    void simpleMethod();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p>以上接口信息反编译以后可以看到字节码信息里Filed是public static final的，而方法是public abstract的，即是你没有显示的去声明它。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> FIELD;</span><br><span class="line">    descriptor: I</span><br><span class="line">    flags: (<span class="number">0x0019</span>) ACC_PUBLIC, ACC_STATIC, ACC_FINAL</span><br><span class="line">    ConstantValue: <span class="keyword">int</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">simpleMethod</span><span class="params">()</span></span>;</span><br><span class="line">    descriptor: ()V</span><br><span class="line">    flags: (<span class="number">0x0401</span>) ACC_PUBLIC, ACC_ABSTRACT</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-JDK8之后的接口规范"><a href="#2-JDK8之后的接口规范" class="headerlink" title="2.JDK8之后的接口规范"></a>2.JDK8之后的接口规范</h2><ul>
+<li>JDK8之后接口可以定义的变量和方法<ul>
+<li>变量(Field)仍然必须是 <figure class="highlight java"><figcaption><span>public static final```的</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  - 方法(Method)除了可以是<span class="keyword">public</span> <span class="keyword">abstract</span>之外，还可以是<span class="keyword">public</span> <span class="keyword">static</span>或者是<span class="keyword">default</span>(相当于仅<span class="keyword">public</span>修饰的实例方法)的。</span><br><span class="line">从以上改变不难看出，修改接口的规范主要是为了能在扩展接口时保持向前兼容。</span><br><span class="line">&lt;br&gt;下面是一个JDK8之后的接口例子</span><br><span class="line">```java</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AInterfaceInJDK8</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> simpleFiled = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> staticField = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">staticMethod</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">defaultMethod</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">simpleMethod</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p>进行反编译(去除了一些没用信息)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> simpleFiled;</span><br><span class="line">    flags: (<span class="number">0x0019</span>) ACC_PUBLIC, ACC_STATIC, ACC_FINAL</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> staticField;</span><br><span class="line">    flags: (<span class="number">0x0019</span>) ACC_PUBLIC, ACC_STATIC, ACC_FINAL</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(java.lang.String[])</span></span>;</span><br><span class="line">    flags: (<span class="number">0x0009</span>) ACC_PUBLIC, ACC_STATIC</span><br><span class="line">    </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">staticMethod</span><span class="params">()</span></span>;</span><br><span class="line">    flags: (<span class="number">0x0009</span>) ACC_PUBLIC, ACC_STATIC</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">defaultMethod</span><span class="params">()</span></span>;</span><br><span class="line">    flags: (<span class="number">0x0001</span>) ACC_PUBLIC</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">simpleMethod</span><span class="params">()</span> <span class="keyword">throws</span> java.io.IOException</span>;</span><br><span class="line">    flags: (<span class="number">0x0401</span>) ACC_PUBLIC, ACC_ABSTRACT</span><br><span class="line">    Exceptions:</span><br><span class="line">      <span class="keyword">throws</span> java.io.IOException</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到 default关键字修饰的方法是像实例方法一样定义的，所以我们来定义一个只有default的方法并且实现一下试一试。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4396</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultMethod</span> <span class="keyword">implements</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        DefaultMethod defaultMethod = <span class="keyword">new</span> DefaultMethod();</span><br><span class="line">        System.out.println(defaultMethod.defaultMethod());</span><br><span class="line">        <span class="comment">//compile error : Non-static method 'defaultMethod()' cannot be referenced from a static context</span></span><br><span class="line">        <span class="comment">//! DefaultMethod.defaultMethod();</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到default方法确实像实例方法一样，必须有实例对象才能调用，并且子类在实现接口时，可以不用实现default方法，也可以覆盖该方法。<br>这有点像子类继承父类实例方法。<br><br><br>接口静态方法就像是类静态方法，唯一的区别是<strong>接口静态方法只能通过接口名调用，而类静态方法既可以通过类名调用也可以通过实例调用</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Static</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">staticMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4396</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> ... main(String...args)</span><br><span class="line">    <span class="comment">//!compile error: Static method may be invoked on containing interface class only</span></span><br><span class="line">    <span class="comment">//!aInstanceOfStatic.staticMethod();</span></span><br><span class="line"> ...</span><br></pre></td></tr></table></figure>
+
+<p>另一个问题是多继承问题，大家知道Java中类是不支持多继承的，但是接口是多继承和多实现(implements后跟多个接口)的，<br>那么如果一个接口继承另一个接口，两个接口都有同名的default方法会怎么样呢？答案是会像类继承一样覆写(@Override)，以下代码在IDE中可以顺利编译</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4396</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default2</span> <span class="keyword">extends</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">9527</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultMethod</span> <span class="keyword">implements</span> <span class="title">Default</span>,<span class="title">Default2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        DefaultMethod defaultMethod = <span class="keyword">new</span> DefaultMethod();</span><br><span class="line">        System.out.println(defaultMethod.defaultMethod());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出 : <span class="number">9527</span></span><br></pre></td></tr></table></figure>
+
+<p>出现上面的情况时，会优先找继承树上近的方法，类似于“短路优先”。<br><br><br>那么如果一个类实现了两个没有继承关系的接口，且这两个接口有同名方法的话会怎么样呢？IDE会要求你重写这个冲突的方法，让你自己选择去执行哪个方法，因为IDE它<br>还没智能到你不告诉它，它就知道你想执行哪个方法。可以通过<figure class="highlight java"><figcaption><span>接口名.super```指针来访问接口中定义的实例(default)方法。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">```java</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4396</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">9527</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//如果不重写</span></span><br><span class="line"><span class="comment">//compile error : defaults.DefaultMethod inherits unrelated defaults for defaultMethod() from types defaults.Default and defaults.Default2</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultMethod</span> <span class="keyword">implements</span> <span class="title">Default</span>,<span class="title">Default2</span> </span>&#123;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(Default.<span class="keyword">super</span>.defaultMethod());</span><br><span class="line">        System.out.println(Default2.<span class="keyword">super</span>.defaultMethod());</span><br><span class="line">        <span class="keyword">return</span> <span class="number">996</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        DefaultMethod defaultMethod = <span class="keyword">new</span> DefaultMethod();</span><br><span class="line">        System.out.println(defaultMethod.defaultMethod());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">运行输出 : </span><br><span class="line"><span class="number">4396</span></span><br><span class="line"><span class="number">9527</span></span><br><span class="line"><span class="number">996</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://dirsky.github.io/2017/11/16/lang-java-What-s-New-in-JDK8-JDK8接口规范-静态、默认方法/" data-id="cjzv3w3p50000nkwco62aaxw7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java8/">java8</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/12/db-mysql-MySQL-Index/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Mysql索引篇
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/15/lang-java-What-s-New-in-JDK8-改进的类型推断/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">改进的类型推断</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Diary/">Diary</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/db/">db</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/lang/">lang</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/utils/">utils</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/管理/">管理</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap/">Bootstrap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hello/">Hello</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hello/">hello</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java8/">java8</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/效率/">效率</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Bootstrap/" style="font-size: 15px;">Bootstrap</a> <a href="/tags/Git/" style="font-size: 11.67px;">Git</a> <a href="/tags/Hello/" style="font-size: 10px;">Hello</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/Python/" style="font-size: 13.33px;">Python</a> <a href="/tags/docker/" style="font-size: 11.67px;">docker</a> <a href="/tags/hello/" style="font-size: 11.67px;">hello</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/java8/" style="font-size: 16.67px;">java8</a> <a href="/tags/mysql/" style="font-size: 18.33px;">mysql</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/效率/" style="font-size: 10px;">效率</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/04/">April 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05/">May 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">May 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">April 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/02/">February 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/03/">March 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/10/">October 2008</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/08/28/utils-2016-11-26-markdown/">Markdown</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/28/lang-python-2018-07-22-python-数据类型/">Python-数据类型</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/28/lang-python-2018-07-21-python-运算符/">Python-运算符</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/28/lang-python-2018-07-20-python-逻辑控制/">Python-逻辑控制</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/28/lang-python-2018-07-23-python-时间/">Python-时间</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 徐国忠<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
