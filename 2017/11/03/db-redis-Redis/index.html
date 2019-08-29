@@ -55,18 +55,18 @@
   };
 </script>
 
-  <meta name="description" content="目录 Redis安装 官方编译安装 通过EPEL源安装 Redis升级   服务管理 基本服务操作 查看版本 开机启动   更改配置 设置请求密码 主从架构配置 基本操作 支持的数据类型 字符串 Hashes - 哈希值 Lists - 列表 有序集合   开启通知 开启远程登录连接 修改防火墙配置 修改配置文件   提供的原生监控 当前链接的客户端数和连接数 内存最大的键值和平均的键值数据 查看">
+  <meta name="description" content="Redis安装官方编译安装12345678910111213$ wget http://download.redis.io/releases/redis-4.0.0.tar.gz$ tar xzvf redis-4.0.0.tar.gz -C /usr/local/$ cd /usr/local/redis-4.0.0$ make$ make test$ make install # 程序会自动执">
 <meta name="keywords" content="redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="10分钟快速入门Redis">
 <meta property="og:url" content="https://dirsky.github.io/2017/11/03/db-redis-Redis/index.html">
 <meta property="og:site_name" content="徐先生的技术栈">
-<meta property="og:description" content="目录 Redis安装 官方编译安装 通过EPEL源安装 Redis升级   服务管理 基本服务操作 查看版本 开机启动   更改配置 设置请求密码 主从架构配置 基本操作 支持的数据类型 字符串 Hashes - 哈希值 Lists - 列表 有序集合   开启通知 开启远程登录连接 修改防火墙配置 修改配置文件   提供的原生监控 当前链接的客户端数和连接数 内存最大的键值和平均的键值数据 查看">
+<meta property="og:description" content="Redis安装官方编译安装12345678910111213$ wget http://download.redis.io/releases/redis-4.0.0.tar.gz$ tar xzvf redis-4.0.0.tar.gz -C /usr/local/$ cd /usr/local/redis-4.0.0$ make$ make test$ make install # 程序会自动执">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-28T09:37:33.778Z">
+<meta property="og:updated_time" content="2019-08-29T06:11:58.528Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="10分钟快速入门Redis">
-<meta name="twitter:description" content="目录 Redis安装 官方编译安装 通过EPEL源安装 Redis升级   服务管理 基本服务操作 查看版本 开机启动   更改配置 设置请求密码 主从架构配置 基本操作 支持的数据类型 字符串 Hashes - 哈希值 Lists - 列表 有序集合   开启通知 开启远程登录连接 修改防火墙配置 修改配置文件   提供的原生监控 当前链接的客户端数和连接数 内存最大的键值和平均的键值数据 查看">
+<meta name="twitter:description" content="Redis安装官方编译安装12345678910111213$ wget http://download.redis.io/releases/redis-4.0.0.tar.gz$ tar xzvf redis-4.0.0.tar.gz -C /usr/local/$ cd /usr/local/redis-4.0.0$ make$ make test$ make install # 程序会自动执">
   <link rel="canonical" href="https://dirsky.github.io/2017/11/03/db-redis-Redis/">
 
 
@@ -161,6 +161,17 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-top">
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>阅读排行</a>
 
   </li>
       
@@ -300,7 +311,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-28 17:37:33" itemprop="dateModified" datetime="2019-08-28T17:37:33+08:00">2019-08-28</time>
+                <time title="修改时间：2019-08-29 14:11:58" itemprop="dateModified" datetime="2019-08-29T14:11:58+08:00">2019-08-29</time>
               </span>
             
           
@@ -351,47 +362,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
-<li><a href="#redis安装">Redis安装</a><ul>
-<li><a href="#官方编译安装">官方编译安装</a></li>
-<li><a href="#通过epel源安装">通过EPEL源安装</a></li>
-<li><a href="#redis升级">Redis升级</a></li>
-</ul>
-</li>
-<li><a href="#服务管理">服务管理</a><ul>
-<li><a href="#基本服务操作">基本服务操作</a></li>
-<li><a href="#查看版本">查看版本</a></li>
-<li><a href="#开机启动">开机启动</a></li>
-</ul>
-</li>
-<li><a href="#更改配置">更改配置</a></li>
-<li><a href="#设置请求密码">设置请求密码</a></li>
-<li><a href="#主从架构配置">主从架构配置</a></li>
-<li><a href="#基本操作">基本操作</a></li>
-<li><a href="#支持的数据类型">支持的数据类型</a><ul>
-<li><a href="#字符串">字符串</a></li>
-<li><a href="#hashes---哈希值">Hashes - 哈希值</a></li>
-<li><a href="#lists---列表">Lists - 列表</a></li>
-<li><a href="#有序集合">有序集合</a></li>
-</ul>
-</li>
-<li><a href="#开启通知">开启通知</a></li>
-<li><a href="#开启远程登录连接">开启远程登录连接</a><ul>
-<li><a href="#修改防火墙配置">修改防火墙配置</a></li>
-<li><a href="#修改配置文件">修改配置文件</a></li>
-</ul>
-</li>
-<li><a href="#提供的原生监控">提供的原生监控</a><ul>
-<li><a href="#当前链接的客户端数和连接数">当前链接的客户端数和连接数</a></li>
-<li><a href="#内存最大的键值和平均的键值数据">内存最大的键值和平均的键值数据</a></li>
-<li><a href="#查看当前的键值情况">查看当前的键值情况</a></li>
-<li><a href="#原生的monitor监控">原生的Monitor监控</a></li>
-</ul>
-</li>
-<li><a href="#配置说明">配置说明</a></li>
-<li><a href="#精品文章">精品文章</a></li>
-</ul>
-<h2 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h2><h3 id="官方编译安装"><a href="#官方编译安装" class="headerlink" title="官方编译安装"></a>官方编译安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ wget http://download.redis.io/releases/redis-4.0.0.tar.gz</span><br><span class="line">$ tar xzvf redis-4.0.0.tar.gz -C /usr/<span class="built_in">local</span>/</span><br><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis-4.0.0</span><br><span class="line">$ make</span><br><span class="line">$ make <span class="built_in">test</span></span><br><span class="line">$ make install </span><br><span class="line"><span class="comment"># 程序会自动执行:</span></span><br><span class="line"><span class="comment"># mkdir -p /usr/local/bin</span></span><br><span class="line"><span class="comment"># cp -pf redis-server /usr/local/bin</span></span><br><span class="line"><span class="comment"># cp -pf redis-benchmark /usr/local/bin</span></span><br><span class="line"><span class="comment"># cp -pf redis-cli /usr/local/bin</span></span><br><span class="line"><span class="comment"># cp -pf redis-check-dump /usr/local/bin</span></span><br><span class="line"><span class="comment"># cp -pf redis-check-aof /usr/local/bin</span></span><br></pre></td></tr></table></figure>
+        <h2 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h2><h3 id="官方编译安装"><a href="#官方编译安装" class="headerlink" title="官方编译安装"></a>官方编译安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ wget http://download.redis.io/releases/redis-4.0.0.tar.gz</span><br><span class="line">$ tar xzvf redis-4.0.0.tar.gz -C /usr/<span class="built_in">local</span>/</span><br><span class="line">$ <span class="built_in">cd</span> /usr/<span class="built_in">local</span>/redis-4.0.0</span><br><span class="line">$ make</span><br><span class="line">$ make <span class="built_in">test</span></span><br><span class="line">$ make install </span><br><span class="line"><span class="comment"># 程序会自动执行:</span></span><br><span class="line"><span class="comment"># mkdir -p /usr/local/bin</span></span><br><span class="line"><span class="comment"># cp -pf redis-server /usr/local/bin</span></span><br><span class="line"><span class="comment"># cp -pf redis-benchmark /usr/local/bin</span></span><br><span class="line"><span class="comment"># cp -pf redis-cli /usr/local/bin</span></span><br><span class="line"><span class="comment"># cp -pf redis-check-dump /usr/local/bin</span></span><br><span class="line"><span class="comment"># cp -pf redis-check-aof /usr/local/bin</span></span><br></pre></td></tr></table></figure>
 
 <p>测试<code>make test</code>报错</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ make test</span><br><span class="line">You need tcl 8.5 or newer in order to run the Redis test</span><br><span class="line">make: *** [test] Error 1</span><br></pre></td></tr></table></figure>
@@ -608,6 +579,12 @@
         
 
         
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  
+  </div>
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
@@ -622,8 +599,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2017/11/15/utils-数据通信-RESTful、RPC、消息队列/" rel="prev" title="RPC">
-                  RPC <i class="fa fa-chevron-right"></i>
+                <a href="/2017/11/15/lang-java-What-s-New-in-JDK8-Lambda表达式/" rel="prev" title="JDK8--Lambda表达式">
+                  JDK8--Lambda表达式 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -676,7 +653,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis安装"><span class="nav-number">1.1.</span> <span class="nav-text">Redis安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#官方编译安装"><span class="nav-number">1.1.1.</span> <span class="nav-text">官方编译安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过EPEL源安装"><span class="nav-number">1.1.2.</span> <span class="nav-text">通过EPEL源安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis升级"><span class="nav-number">1.1.3.</span> <span class="nav-text">Redis升级</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务管理"><span class="nav-number">1.2.</span> <span class="nav-text">服务管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本服务操作"><span class="nav-number">1.2.1.</span> <span class="nav-text">基本服务操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看版本"><span class="nav-number">1.2.2.</span> <span class="nav-text">查看版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务管理-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">服务管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开机启动"><span class="nav-number">1.2.4.</span> <span class="nav-text">开机启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改配置"><span class="nav-number">1.3.</span> <span class="nav-text">更改配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置请求密码"><span class="nav-number">1.4.</span> <span class="nav-text">设置请求密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主从架构配置"><span class="nav-number">1.5.</span> <span class="nav-text">主从架构配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本操作"><span class="nav-number">1.6.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持的数据类型"><span class="nav-number">1.7.</span> <span class="nav-text">支持的数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">1.7.1.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hashes-哈希值"><span class="nav-number">1.7.2.</span> <span class="nav-text">Hashes - 哈希值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lists-列表"><span class="nav-number">1.7.3.</span> <span class="nav-text">Lists - 列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序集合"><span class="nav-number">1.7.4.</span> <span class="nav-text">有序集合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启通知"><span class="nav-number">1.8.</span> <span class="nav-text">开启通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启远程登录连接"><span class="nav-number">1.9.</span> <span class="nav-text">开启远程登录连接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改防火墙配置"><span class="nav-number">1.9.1.</span> <span class="nav-text">修改防火墙配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改配置文件"><span class="nav-number">1.9.2.</span> <span class="nav-text">修改配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提供的原生监控"><span class="nav-number">1.10.</span> <span class="nav-text">提供的原生监控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当前链接的客户端数和连接数"><span class="nav-number">1.10.1.</span> <span class="nav-text">当前链接的客户端数和连接数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存最大的键值和平均的键值数据"><span class="nav-number">1.10.2.</span> <span class="nav-text">内存最大的键值和平均的键值数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看当前的键值情况"><span class="nav-number">1.10.3.</span> <span class="nav-text">查看当前的键值情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原生的Monitor监控"><span class="nav-number">1.10.4.</span> <span class="nav-text">原生的Monitor监控</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置说明"><span class="nav-number">1.11.</span> <span class="nav-text">配置说明</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis安装"><span class="nav-number">1.</span> <span class="nav-text">Redis安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#官方编译安装"><span class="nav-number">1.1.</span> <span class="nav-text">官方编译安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过EPEL源安装"><span class="nav-number">1.2.</span> <span class="nav-text">通过EPEL源安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis升级"><span class="nav-number">1.3.</span> <span class="nav-text">Redis升级</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务管理"><span class="nav-number">2.</span> <span class="nav-text">服务管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本服务操作"><span class="nav-number">2.1.</span> <span class="nav-text">基本服务操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看版本"><span class="nav-number">2.2.</span> <span class="nav-text">查看版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务管理-1"><span class="nav-number">2.3.</span> <span class="nav-text">服务管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开机启动"><span class="nav-number">2.4.</span> <span class="nav-text">开机启动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改配置"><span class="nav-number">3.</span> <span class="nav-text">更改配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置请求密码"><span class="nav-number">4.</span> <span class="nav-text">设置请求密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主从架构配置"><span class="nav-number">5.</span> <span class="nav-text">主从架构配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本操作"><span class="nav-number">6.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#支持的数据类型"><span class="nav-number">7.</span> <span class="nav-text">支持的数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">7.1.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hashes-哈希值"><span class="nav-number">7.2.</span> <span class="nav-text">Hashes - 哈希值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lists-列表"><span class="nav-number">7.3.</span> <span class="nav-text">Lists - 列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序集合"><span class="nav-number">7.4.</span> <span class="nav-text">有序集合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启通知"><span class="nav-number">8.</span> <span class="nav-text">开启通知</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启远程登录连接"><span class="nav-number">9.</span> <span class="nav-text">开启远程登录连接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改防火墙配置"><span class="nav-number">9.1.</span> <span class="nav-text">修改防火墙配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改配置文件"><span class="nav-number">9.2.</span> <span class="nav-text">修改配置文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提供的原生监控"><span class="nav-number">10.</span> <span class="nav-text">提供的原生监控</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当前链接的客户端数和连接数"><span class="nav-number">10.1.</span> <span class="nav-text">当前链接的客户端数和连接数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存最大的键值和平均的键值数据"><span class="nav-number">10.2.</span> <span class="nav-text">内存最大的键值和平均的键值数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看当前的键值情况"><span class="nav-number">10.3.</span> <span class="nav-text">查看当前的键值情况</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原生的Monitor监控"><span class="nav-number">10.4.</span> <span class="nav-text">原生的Monitor监控</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置说明"><span class="nav-number">11.</span> <span class="nav-text">配置说明</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
@@ -719,7 +696,9 @@
         
           
         
-        <span class="site-state-item-count">5</span>
+          
+        
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -760,7 +739,9 @@
         
           
         
-        <span class="site-state-item-count">13</span>
+          
+        
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -803,18 +784,6 @@
   </div>
 
 
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://dirsky.github.io/" title="https://dirsky.github.io/">Code</a>
-        </li>
-      
-    </ul>
-  </div>
 
       </div>
 
@@ -893,6 +862,26 @@
 
 
 
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 20638,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
 
 
 

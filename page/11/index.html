@@ -166,6 +166,17 @@
       
       
         
+        <li class="menu-item menu-item-top">
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>阅读排行</a>
+
+  </li>
+      
+      
+      
+        
         <li class="menu-item menu-item-archives">
       
     
@@ -299,7 +310,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-28 18:10:04" itemprop="dateModified" datetime="2019-08-28T18:10:04+08:00">2019-08-28</time>
+                <time title="修改时间：2019-08-29 14:17:19" itemprop="dateModified" datetime="2019-08-29T14:17:19+08:00">2019-08-29</time>
               </span>
             
           
@@ -342,27 +353,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <!-- MarkdownTOC -->
-
-<ul>
-<li><a href="#hashmap-简介">HashMap 简介</a></li>
-<li><a href="#底层数据结构分析">底层数据结构分析</a><ul>
-<li><a href="#jdk18之前">JDK1.8之前</a></li>
-<li><a href="#jdk18之后">JDK1.8之后</a></li>
-</ul>
-</li>
-<li><a href="#hashmap源码分析">HashMap源码分析</a><ul>
-<li><a href="#构造方法">构造方法</a></li>
-<li><a href="#put方法">put方法</a></li>
-<li><a href="#get方法">get方法</a></li>
-<li><a href="#resize方法">resize方法</a></li>
-</ul>
-</li>
-<li><a href="#hashmap常用方法测试">HashMap常用方法测试</a></li>
-</ul>
-<!-- /MarkdownTOC -->
-
-<h2 id="HashMap-简介"><a href="#HashMap-简介" class="headerlink" title="HashMap 简介"></a>HashMap 简介</h2><p>HashMap 主要用来存放键值对，它基于哈希表的Map接口实现，是常用的Java集合之一。 </p>
+          <h2 id="HashMap-简介"><a href="#HashMap-简介" class="headerlink" title="HashMap 简介"></a>HashMap 简介</h2><p>HashMap 主要用来存放键值对，它基于哈希表的Map接口实现，是常用的Java集合之一。 </p>
 <p>JDK1.8 之前 HashMap 由 数组+链表 组成的，数组是 HashMap 的主体，链表则是主要为了解决哈希冲突而存在的（“拉链法”解决冲突）.JDK1.8 以后在解决哈希冲突时有了较大的变化，当链表长度大于阈值（默认为 8）时，将链表转化为红黑树，以减少搜索时间。</p>
 <h2 id="底层数据结构分析"><a href="#底层数据结构分析" class="headerlink" title="底层数据结构分析"></a>底层数据结构分析</h2><h3 id="JDK1-8之前"><a href="#JDK1-8之前" class="headerlink" title="JDK1.8之前"></a>JDK1.8之前</h3><p>JDK1.8 之前 HashMap 底层是 <strong>数组和链表</strong> 结合在一起使用也就是 <strong>链表散列</strong>。<strong>HashMap 通过 key 的 hashCode 经过扰动函数处理过后得到 hash  值，然后通过 <code>(n - 1) &amp; hash</code> 判断当前元素存放的位置（这里的 n 指的是数组的长度），如果当前位置存在元素的话，就判断该元素与要存入的元素的 hash 值以及 key 是否相同，如果相同的话，直接覆盖，不相同就通过拉链法解决冲突。</strong></p>
 <p><strong>所谓扰动函数指的就是 HashMap 的 hash 方法。使用 hash 方法也就是扰动函数是为了防止一些实现比较差的 hashCode() 方法 换句话说使用扰动函数之后可以减少碰撞。</strong></p>
@@ -491,7 +482,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-28 18:09:58" itemprop="dateModified" datetime="2019-08-28T18:09:58+08:00">2019-08-28</time>
+                <time title="修改时间：2019-08-29 14:17:11" itemprop="dateModified" datetime="2019-08-29T14:17:11+08:00">2019-08-29</time>
               </span>
             
           
@@ -534,37 +525,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <!-- MarkdownTOC -->
-
-<ul>
-<li><a href="#finalstaticthissuper-关键字总结">final,static,this,super 关键字总结</a><ul>
-<li><a href="#final-关键字">final 关键字</a></li>
-<li><a href="#static-关键字">static 关键字</a></li>
-<li><a href="#this-关键字">this 关键字</a></li>
-<li><a href="#super-关键字">super 关键字</a></li>
-<li><a href="#参考">参考</a></li>
-</ul>
-</li>
-<li><a href="#static-关键字详解">static 关键字详解</a><ul>
-<li><a href="#static-关键字主要有以下四种使用场景">static 关键字主要有以下四种使用场景</a><ul>
-<li><a href="#修饰成员变量和成员方法常用">修饰成员变量和成员方法(常用)</a></li>
-<li><a href="#静态代码块">静态代码块</a></li>
-<li><a href="#静态内部类">静态内部类</a></li>
-<li><a href="#静态导包">静态导包</a></li>
-</ul>
-</li>
-<li><a href="#补充内容">补充内容</a><ul>
-<li><a href="#静态方法与非静态方法">静态方法与非静态方法</a></li>
-<li><a href="#static静态代码块与非静态代码块构造代码块">static{}静态代码块与{}非静态代码块(构造代码块)</a></li>
-<li><a href="#参考-1">参考</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<!-- /MarkdownTOC -->
-
-<h1 id="final-static-this-super-关键字总结"><a href="#final-static-this-super-关键字总结" class="headerlink" title="final,static,this,super 关键字总结"></a>final,static,this,super 关键字总结</h1><h2 id="final-关键字"><a href="#final-关键字" class="headerlink" title="final 关键字"></a>final 关键字</h2><p><strong>final关键字主要用在三个地方：变量、方法、类。</strong></p>
+          <h1 id="final-static-this-super-关键字总结"><a href="#final-static-this-super-关键字总结" class="headerlink" title="final,static,this,super 关键字总结"></a>final,static,this,super 关键字总结</h1><h2 id="final-关键字"><a href="#final-关键字" class="headerlink" title="final 关键字"></a>final 关键字</h2><p><strong>final关键字主要用在三个地方：变量、方法、类。</strong></p>
 <ol>
 <li><p><strong>对于一个final变量，如果是基本数据类型的变量，则其数值一旦在初始化之后便不能更改；如果是引用类型的变量，则在对其初始化之后便不能再让其指向另一个对象。</strong></p>
 </li>
@@ -737,7 +698,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-28 17:51:26" itemprop="dateModified" datetime="2019-08-28T17:51:26+08:00">2019-08-28</time>
+                <time title="修改时间：2019-08-29 14:09:12" itemprop="dateModified" datetime="2019-08-29T14:09:12+08:00">2019-08-29</time>
               </span>
             
           
@@ -780,36 +741,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <!-- TOC -->
-
-<ul>
-<li><a href="#基本操作">基本操作</a></li>
-<li><a href="#数据库操作">数据库操作</a></li>
-<li><a href="#表的操作">表的操作</a></li>
-<li><a href="#数据操作">数据操作</a></li>
-<li><a href="#字符集编码">字符集编码</a></li>
-<li><a href="#数据类型列类型">数据类型(列类型)</a></li>
-<li><a href="#列属性列约束">列属性(列约束)</a></li>
-<li><a href="#建表规范">建表规范</a></li>
-<li><a href="#select">SELECT</a></li>
-<li><a href="#union">UNION</a></li>
-<li><a href="#子查询">子查询</a></li>
-<li><a href="#连接查询join">连接查询(join)</a></li>
-<li><a href="#truncate">TRUNCATE</a></li>
-<li><a href="#备份与还原">备份与还原</a></li>
-<li><a href="#视图">视图</a></li>
-<li><a href="#事务transaction">事务(transaction)</a></li>
-<li><a href="#锁表">锁表</a></li>
-<li><a href="#触发器">触发器</a></li>
-<li><a href="#sql编程">SQL编程</a></li>
-<li><a href="#存储过程">存储过程</a></li>
-<li><a href="#用户和权限管理">用户和权限管理</a></li>
-<li><a href="#表维护">表维护</a></li>
-<li><a href="#杂项">杂项</a></li>
-</ul>
-<!-- /TOC -->
-
-<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/* Windows服务 */</span><br><span class="line">-- 启动MySQL</span><br><span class="line">    net start mysql</span><br><span class="line">-- 创建Windows服务</span><br><span class="line">    sc create mysql binPath= mysqld_bin_path(注意：等号与值之间有空格)</span><br><span class="line">/* 连接与断开服务器 */</span><br><span class="line">mysql -h 地址 -P 端口 -u 用户名 -p 密码</span><br><span class="line">SHOW PROCESSLIST -- 显示哪些线程正在运行</span><br><span class="line">SHOW VARIABLES -- 显示系统变量信息</span><br></pre></td></tr></table></figure>
+          <h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/* Windows服务 */</span><br><span class="line">-- 启动MySQL</span><br><span class="line">    net start mysql</span><br><span class="line">-- 创建Windows服务</span><br><span class="line">    sc create mysql binPath= mysqld_bin_path(注意：等号与值之间有空格)</span><br><span class="line">/* 连接与断开服务器 */</span><br><span class="line">mysql -h 地址 -P 端口 -u 用户名 -p 密码</span><br><span class="line">SHOW PROCESSLIST -- 显示哪些线程正在运行</span><br><span class="line">SHOW VARIABLES -- 显示系统变量信息</span><br></pre></td></tr></table></figure>
 
 <h3 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/* 数据库操作 */ ------------------</span><br><span class="line">-- 查看当前数据库</span><br><span class="line">    SELECT DATABASE();</span><br><span class="line">-- 显示当前时间、用户名、数据库版本</span><br><span class="line">    SELECT now(), user(), version();</span><br><span class="line">-- 创建库</span><br><span class="line">    CREATE DATABASE[ IF NOT EXISTS] 数据库名 数据库选项</span><br><span class="line">    数据库选项：</span><br><span class="line">        CHARACTER SET charset_name</span><br><span class="line">        COLLATE collation_name</span><br><span class="line">-- 查看已有库</span><br><span class="line">    SHOW DATABASES[ LIKE &apos;PATTERN&apos;]</span><br><span class="line">-- 查看当前库信息</span><br><span class="line">    SHOW CREATE DATABASE 数据库名</span><br><span class="line">-- 修改库的选项信息</span><br><span class="line">    ALTER DATABASE 库名 选项信息</span><br><span class="line">-- 删除库</span><br><span class="line">    DROP DATABASE[ IF EXISTS] 数据库名</span><br><span class="line">        同时删除该数据库相关的目录及其目录内容</span><br></pre></td></tr></table></figure>
 
@@ -1259,7 +1191,9 @@
         
           
         
-        <span class="site-state-item-count">5</span>
+          
+        
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1300,7 +1234,9 @@
         
           
         
-        <span class="site-state-item-count">13</span>
+          
+        
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1343,18 +1279,6 @@
   </div>
 
 
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://dirsky.github.io/" title="https://dirsky.github.io/">Code</a>
-        </li>
-      
-    </ul>
-  </div>
 
       </div>
 
@@ -1433,6 +1357,26 @@
 
 
 
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 20638,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
 
 
 

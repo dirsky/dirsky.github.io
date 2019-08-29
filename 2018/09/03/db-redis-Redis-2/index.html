@@ -55,22 +55,22 @@
   };
 </script>
 
-  <meta name="description" content="redis 简介 为什么要用 redis/为什么要用缓存 为什么要用 redis 而不用 map/guava 做缓存? redis 和 memcached 的区别 redis 常见数据结构以及使用场景分析 1.String 2.Hash 3.List 4.Set 5.Sorted Set   redis 设置过期时间 redis 内存淘汰机制(MySQL里有2000w数据，Redis中只存2">
+  <meta name="description" content="redis 简介简单来说 redis 就是一个数据库，不过与传统数据库不同的是 redis 的数据是存在内存中的，所以读写速度非常快，因此 redis 被广泛应用于缓存方向。另外，redis 也经常用来做分布式锁。redis 提供了多种数据类型来支持不同的业务场景。除此之外，redis 支持事务 、持久化、LUA脚本、LRU驱动事件、多种集群方案。  为什么要用 redis/为什么要用缓存主要从“">
 <meta name="keywords" content="redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis">
 <meta property="og:url" content="https://dirsky.github.io/2018/09/03/db-redis-Redis-2/index.html">
 <meta property="og:site_name" content="徐先生的技术栈">
-<meta property="og:description" content="redis 简介 为什么要用 redis/为什么要用缓存 为什么要用 redis 而不用 map/guava 做缓存? redis 和 memcached 的区别 redis 常见数据结构以及使用场景分析 1.String 2.Hash 3.List 4.Set 5.Sorted Set   redis 设置过期时间 redis 内存淘汰机制(MySQL里有2000w数据，Redis中只存2">
+<meta property="og:description" content="redis 简介简单来说 redis 就是一个数据库，不过与传统数据库不同的是 redis 的数据是存在内存中的，所以读写速度非常快，因此 redis 被广泛应用于缓存方向。另外，redis 也经常用来做分布式锁。redis 提供了多种数据类型来支持不同的业务场景。除此之外，redis 支持事务 、持久化、LUA脚本、LRU驱动事件、多种集群方案。  为什么要用 redis/为什么要用缓存主要从“">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-24/54316596.jpg">
 <meta property="og:image" content="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-24/85146760.jpg">
 <meta property="og:image" content="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-24/61603179.jpg">
 <meta property="og:image" content="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-25/6078367.jpg">
-<meta property="og:updated_time" content="2019-08-28T09:39:12.580Z">
+<meta property="og:updated_time" content="2019-08-29T06:12:07.120Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis">
-<meta name="twitter:description" content="redis 简介 为什么要用 redis/为什么要用缓存 为什么要用 redis 而不用 map/guava 做缓存? redis 和 memcached 的区别 redis 常见数据结构以及使用场景分析 1.String 2.Hash 3.List 4.Set 5.Sorted Set   redis 设置过期时间 redis 内存淘汰机制(MySQL里有2000w数据，Redis中只存2">
+<meta name="twitter:description" content="redis 简介简单来说 redis 就是一个数据库，不过与传统数据库不同的是 redis 的数据是存在内存中的，所以读写速度非常快，因此 redis 被广泛应用于缓存方向。另外，redis 也经常用来做分布式锁。redis 提供了多种数据类型来支持不同的业务场景。除此之外，redis 支持事务 、持久化、LUA脚本、LRU驱动事件、多种集群方案。  为什么要用 redis/为什么要用缓存主要从“">
 <meta name="twitter:image" content="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-24/54316596.jpg">
   <link rel="canonical" href="https://dirsky.github.io/2018/09/03/db-redis-Redis-2/">
 
@@ -305,7 +305,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-28 17:39:12" itemprop="dateModified" datetime="2019-08-28T17:39:12+08:00">2019-08-28</time>
+                <time title="修改时间：2019-08-29 14:12:07" itemprop="dateModified" datetime="2019-08-29T14:12:07+08:00">2019-08-29</time>
               </span>
             
           
@@ -356,33 +356,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <!-- TOC -->
-
-<ul>
-<li><a href="#redis-简介">redis 简介</a></li>
-<li><a href="#为什么要用-redis为什么要用缓存">为什么要用 redis/为什么要用缓存</a></li>
-<li><a href="#为什么要用-redis-而不用-mapguava-做缓存">为什么要用 redis 而不用 map/guava 做缓存?</a></li>
-<li><a href="#redis-和-memcached-的区别">redis 和 memcached 的区别</a></li>
-<li><a href="#redis-常见数据结构以及使用场景分析">redis 常见数据结构以及使用场景分析</a><ul>
-<li><a href="#1string">1.String</a></li>
-<li><a href="#2hash">2.Hash</a></li>
-<li><a href="#3list">3.List</a></li>
-<li><a href="#4set">4.Set</a></li>
-<li><a href="#5sorted-set">5.Sorted Set</a></li>
-</ul>
-</li>
-<li><a href="#redis-设置过期时间">redis 设置过期时间</a></li>
-<li><a href="#redis-内存淘汰机制mysql里有2000w数据redis中只存20w的数据如何保证redis中的数据都是热点数据">redis 内存淘汰机制(MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据?)</a></li>
-<li><a href="#redis-持久化机制怎么保证-redis-挂掉之后再重启数据可以进行恢复">redis 持久化机制(怎么保证 redis 挂掉之后再重启数据可以进行恢复)</a></li>
-<li><a href="#redis-事务">redis 事务</a></li>
-<li><a href="#缓存雪崩和缓存穿透问题解决方案">缓存雪崩和缓存穿透问题解决方案</a></li>
-<li><a href="#如何解决-redis-的并发竞争-key-问题">如何解决 Redis 的并发竞争 Key 问题</a></li>
-<li><a href="#如何保证缓存与数据库双写时的数据一致性">如何保证缓存与数据库双写时的数据一致性?</a></li>
-<li><a href="#参考">参考：</a></li>
-</ul>
-<!-- /TOC -->
-
-<h3 id="redis-简介"><a href="#redis-简介" class="headerlink" title="redis 简介"></a>redis 简介</h3><p>简单来说 redis 就是一个数据库，不过与传统数据库不同的是 redis 的数据是存在内存中的，所以读写速度非常快，因此 redis 被广泛应用于缓存方向。另外，redis 也经常用来做分布式锁。redis 提供了多种数据类型来支持不同的业务场景。除此之外，redis 支持事务 、持久化、LUA脚本、LRU驱动事件、多种集群方案。 </p>
+        <h3 id="redis-简介"><a href="#redis-简介" class="headerlink" title="redis 简介"></a>redis 简介</h3><p>简单来说 redis 就是一个数据库，不过与传统数据库不同的是 redis 的数据是存在内存中的，所以读写速度非常快，因此 redis 被广泛应用于缓存方向。另外，redis 也经常用来做分布式锁。redis 提供了多种数据类型来支持不同的业务场景。除此之外，redis 支持事务 、持久化、LUA脚本、LRU驱动事件、多种集群方案。 </p>
 <h3 id="为什么要用-redis-为什么要用缓存"><a href="#为什么要用-redis-为什么要用缓存" class="headerlink" title="为什么要用 redis/为什么要用缓存"></a>为什么要用 redis/为什么要用缓存</h3><p>主要从“高性能”和“高并发”这两点来看待这个问题。</p>
 <p><strong>高性能：</strong></p>
 <p>假如用户第一次访问数据库中的某些数据。这个过程会比较慢，因为是从硬盘上读取的。将该用户访问的数据存在数缓存中，这样下一次再访问这些数据的时候就可以直接从缓存中获取了。操作缓存就是直接操作内存，所以速度相当快。如果数据库中的对应数据改变的之后，同步改变缓存中相应的数据即可！</p>
@@ -648,7 +622,9 @@
         
           
         
-        <span class="site-state-item-count">5</span>
+          
+        
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -689,7 +665,9 @@
         
           
         
-        <span class="site-state-item-count">13</span>
+          
+        
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -732,18 +710,6 @@
   </div>
 
 
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://dirsky.github.io/" title="https://dirsky.github.io/">Code</a>
-        </li>
-      
-    </ul>
-  </div>
 
       </div>
 

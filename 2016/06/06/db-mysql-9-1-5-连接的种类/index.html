@@ -167,6 +167,17 @@
       
       
         
+        <li class="menu-item menu-item-top">
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>阅读排行</a>
+
+  </li>
+      
+      
+      
+        
         <li class="menu-item menu-item-archives">
       
     
@@ -415,6 +426,12 @@
         
 
         
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  
+  </div>
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
@@ -429,8 +446,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2016/11/24/diary-2016-11-24-hello-world/" rel="prev" title="你好，世界">
-                  你好，世界 <i class="fa fa-chevron-right"></i>
+                <a href="/2016/11/24/diary-2016-11-24-hello-world/" rel="prev" title="你好，博客世界">
+                  你好，博客世界 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -526,7 +543,9 @@
         
           
         
-        <span class="site-state-item-count">5</span>
+          
+        
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -567,7 +586,9 @@
         
           
         
-        <span class="site-state-item-count">13</span>
+          
+        
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -610,18 +631,6 @@
   </div>
 
 
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://dirsky.github.io/" title="https://dirsky.github.io/">Code</a>
-        </li>
-      
-    </ul>
-  </div>
 
       </div>
 
@@ -700,6 +709,26 @@
 
 
 
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 20638,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
 
 
 

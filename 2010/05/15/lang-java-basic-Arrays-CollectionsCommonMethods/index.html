@@ -55,18 +55,18 @@
   };
 </script>
 
-  <meta name="description" content="Collections 工具类和 Arrays 工具类常见方法 Collections 排序操作 查找,替换操作 同步控制   Arrays类的常见操作 排序 : sort() 查找 : binarySearch() 比较: equals() 填充 : fill() 转列表 asList() 转字符串 toString() 复制 copyOf()       Collections 工具类和">
+  <meta name="description" content="Collections 工具类和 Arrays 工具类常见方法CollectionsCollections 工具类常用方法:  排序 查找,替换操作 同步控制(不推荐，需要线程安全的集合类型时请考虑使用 JUC 包下的并发集合)  排序操作123456void reverse(List list)//反转void shuffle(List list)//随机排序void sort(List lis">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Collections 工具类和 Arrays 工具类常见方法">
 <meta property="og:url" content="https://dirsky.github.io/2010/05/15/lang-java-basic-Arrays-CollectionsCommonMethods/index.html">
 <meta property="og:site_name" content="徐先生的技术栈">
-<meta property="og:description" content="Collections 工具类和 Arrays 工具类常见方法 Collections 排序操作 查找,替换操作 同步控制   Arrays类的常见操作 排序 : sort() 查找 : binarySearch() 比较: equals() 填充 : fill() 转列表 asList() 转字符串 toString() 复制 copyOf()       Collections 工具类和">
+<meta property="og:description" content="Collections 工具类和 Arrays 工具类常见方法CollectionsCollections 工具类常用方法:  排序 查找,替换操作 同步控制(不推荐，需要线程安全的集合类型时请考虑使用 JUC 包下的并发集合)  排序操作123456void reverse(List list)//反转void shuffle(List list)//随机排序void sort(List lis">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-28T10:09:52.593Z">
+<meta property="og:updated_time" content="2019-08-29T06:17:05.291Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Collections 工具类和 Arrays 工具类常见方法">
-<meta name="twitter:description" content="Collections 工具类和 Arrays 工具类常见方法 Collections 排序操作 查找,替换操作 同步控制   Arrays类的常见操作 排序 : sort() 查找 : binarySearch() 比较: equals() 填充 : fill() 转列表 asList() 转字符串 toString() 复制 copyOf()       Collections 工具类和">
+<meta name="twitter:description" content="Collections 工具类和 Arrays 工具类常见方法CollectionsCollections 工具类常用方法:  排序 查找,替换操作 同步控制(不推荐，需要线程安全的集合类型时请考虑使用 JUC 包下的并发集合)  排序操作123456void reverse(List list)//反转void shuffle(List list)//随机排序void sort(List lis">
   <link rel="canonical" href="https://dirsky.github.io/2010/05/15/lang-java-basic-Arrays-CollectionsCommonMethods/">
 
 
@@ -161,6 +161,17 @@
     
 
     <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-top">
+      
+    
+
+    <a href="/top/" rel="section"><i class="menu-item-icon fa fa-fw fa-signal"></i> <br>阅读排行</a>
 
   </li>
       
@@ -300,7 +311,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-28 18:09:52" itemprop="dateModified" datetime="2019-08-28T18:09:52+08:00">2019-08-28</time>
+                <time title="修改时间：2019-08-29 14:17:05" itemprop="dateModified" datetime="2019-08-29T14:17:05+08:00">2019-08-29</time>
               </span>
             
           
@@ -351,31 +362,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <!-- TOC -->
-
-<ul>
-<li><a href="#collections-工具类和-arrays-工具类常见方法">Collections 工具类和 Arrays 工具类常见方法</a><ul>
-<li><a href="#collections">Collections</a><ul>
-<li><a href="#排序操作">排序操作</a></li>
-<li><a href="#查找替换操作">查找,替换操作</a></li>
-<li><a href="#同步控制">同步控制</a></li>
-</ul>
-</li>
-<li><a href="#arrays类的常见操作">Arrays类的常见操作</a><ul>
-<li><a href="#排序--sort">排序 : <code>sort()</code></a></li>
-<li><a href="#查找--binarysearch">查找 : <code>binarySearch()</code></a></li>
-<li><a href="#比较-equals">比较: <code>equals()</code></a></li>
-<li><a href="#填充--fill">填充 : <code>fill()</code></a></li>
-<li><a href="#转列表-aslist">转列表 <code>asList()</code></a></li>
-<li><a href="#转字符串-tostring">转字符串 <code>toString()</code></a></li>
-<li><a href="#复制-copyof">复制 <code>copyOf()</code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<!-- /TOC -->
-<h1 id="Collections-工具类和-Arrays-工具类常见方法"><a href="#Collections-工具类和-Arrays-工具类常见方法" class="headerlink" title="Collections 工具类和 Arrays 工具类常见方法"></a>Collections 工具类和 Arrays 工具类常见方法</h1><h2 id="Collections"><a href="#Collections" class="headerlink" title="Collections"></a>Collections</h2><p>Collections 工具类常用方法:</p>
+        <h1 id="Collections-工具类和-Arrays-工具类常见方法"><a href="#Collections-工具类和-Arrays-工具类常见方法" class="headerlink" title="Collections 工具类和 Arrays 工具类常见方法"></a>Collections 工具类和 Arrays 工具类常见方法</h1><h2 id="Collections"><a href="#Collections" class="headerlink" title="Collections"></a>Collections</h2><p>Collections 工具类常用方法:</p>
 <ol>
 <li>排序</li>
 <li>查找,替换操作</li>
@@ -456,6 +443,12 @@
         
 
         
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  
+  </div>
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
@@ -567,7 +560,9 @@
         
           
         
-        <span class="site-state-item-count">5</span>
+          
+        
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -608,7 +603,9 @@
         
           
         
-        <span class="site-state-item-count">13</span>
+          
+        
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -651,18 +648,6 @@
   </div>
 
 
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://dirsky.github.io/" title="https://dirsky.github.io/">Code</a>
-        </li>
-      
-    </ul>
-  </div>
 
       </div>
 
@@ -741,6 +726,26 @@
 
 
 
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 20638,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
 
 
 
