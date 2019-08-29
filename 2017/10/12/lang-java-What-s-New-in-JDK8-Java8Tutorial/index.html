@@ -74,7 +74,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 8 Tutoria">
 <meta property="og:url" content="https://dirsky.github.io/2017/10/12/lang-java-What-s-New-in-JDK8-Java8Tutorial/index.html">
-<meta property="og:site_name" content="徐先生的技术路线">
+<meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="随着 Java 8 的普及度越来越高，很多人都提到面试中关于Java 8 也是非常常问的知识点。应各位要求和需要，我打算对这部分知识做一个总结。本来准备自己总结的，后面看到Github 上有一个相关的仓库，地址：https://github.com/winterbe/java8-tutorial。这个仓库是英文的，我对其进行了翻译并添加和修改了部分内容，下面是正文了。    Java 8 Tuto">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-2/@FunctionalInterface.png">
@@ -97,7 +97,7 @@
   };
 </script>
 
-  <title>Java 8 Tutoria | 徐先生的技术路线</title>
+  <title>Java 8 Tutoria | 徐先生的技术栈</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -147,7 +147,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">徐先生的技术路线</span>
+        <span class="site-title">徐先生的技术栈</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -253,7 +253,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术路线">
+      <meta itemprop="name" content="徐先生的技术栈">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">Java 8 Tutoria
@@ -310,6 +310,20 @@
               <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2017/10/12/lang-java-What-s-New-in-JDK8-Java8Tutorial/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2017/10/12/lang-java-What-s-New-in-JDK8-Java8Tutorial/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -625,12 +639,6 @@
         
 
         
-  <div class="post-widgets">
-    <div class="wp_rating">
-      <div id="wpac-rating"></div>
-    </div>
-  
-  </div>
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
@@ -665,6 +673,9 @@
 
           </div>
           
+    
+    <div class="comments" id="comments"></div>
+  
 
         </div>
           
@@ -871,26 +882,6 @@
 
 
 
-  <script>
-  if (CONFIG.page.isPost) {
-    wpac_init = window.wpac_init || [];
-    wpac_init.push({
-      widget: 'Rating',
-      id: 20638,
-      el: 'wpac-rating',
-      color: 'fc6423'
-    });
-    (function() {
-      if ('WIDGETPACK_LOADED' in window) return;
-      WIDGETPACK_LOADED = true;
-      var mc = document.createElement('script');
-      mc.type = 'text/javascript';
-      mc.async = true;
-      mc.src = '//embed.widgetpack.com/widget.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-    })();
-  }
-  </script>
 
 
 
@@ -914,6 +905,31 @@
   
 
   
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'zwli8bHgrjbtCiAH23o81imX-gzGzoHsz',
+    appKey: 'v3rufApMsIhhwFOR45jn5abL',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
 
 </body>
 </html>

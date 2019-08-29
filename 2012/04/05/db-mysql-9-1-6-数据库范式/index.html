@@ -74,7 +74,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库范式">
 <meta property="og:url" content="https://dirsky.github.io/2012/04/05/db-mysql-9-1-6-数据库范式/index.html">
-<meta property="og:site_name" content="徐先生的技术路线">
+<meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="题目**：数据库范式参考答案：1 第一范式（1NF） 在任何一个关系数据库中，第一范式（1NF）是对关系模式的基本要求，不满足第一范式（1NF）的数据库就不是关系数据库。所谓第一范式（1NF）是指数据库表的每一列都是不可分割的基本数据项，同一列中不能有多个值，即实体中的某个属性不能有多个值或者不能有重复的属性。如果出现重复的属性，就可能需要定义一个新的实体，新的实体由重复的属性构成，新实体与原实体">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-08-28T09:52:26.738Z">
@@ -95,7 +95,7 @@
   };
 </script>
 
-  <title>数据库范式 | 徐先生的技术路线</title>
+  <title>数据库范式 | 徐先生的技术栈</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -145,7 +145,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">徐先生的技术路线</span>
+        <span class="site-title">徐先生的技术栈</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -251,7 +251,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术路线">
+      <meta itemprop="name" content="徐先生的技术栈">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">数据库范式
@@ -308,6 +308,20 @@
               <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2012/04/05/db-mysql-9-1-6-数据库范式/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2012/04/05/db-mysql-9-1-6-数据库范式/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -352,12 +366,6 @@
         
 
         
-  <div class="post-widgets">
-    <div class="wp_rating">
-      <div id="wpac-rating"></div>
-    </div>
-  
-  </div>
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
@@ -392,6 +400,9 @@
 
           </div>
           
+    
+    <div class="comments" id="comments"></div>
+  
 
         </div>
           
@@ -598,26 +609,6 @@
 
 
 
-  <script>
-  if (CONFIG.page.isPost) {
-    wpac_init = window.wpac_init || [];
-    wpac_init.push({
-      widget: 'Rating',
-      id: 20638,
-      el: 'wpac-rating',
-      color: 'fc6423'
-    });
-    (function() {
-      if ('WIDGETPACK_LOADED' in window) return;
-      WIDGETPACK_LOADED = true;
-      var mc = document.createElement('script');
-      mc.type = 'text/javascript';
-      mc.async = true;
-      mc.src = '//embed.widgetpack.com/widget.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-    })();
-  }
-  </script>
 
 
 
@@ -641,6 +632,31 @@
   
 
   
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'zwli8bHgrjbtCiAH23o81imX-gzGzoHsz',
+    appKey: 'v3rufApMsIhhwFOR45jn5abL',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
 
 </body>
 </html>

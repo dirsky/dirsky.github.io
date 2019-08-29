@@ -74,7 +74,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="final,static,this,super 关键字总结">
 <meta property="og:url" content="https://dirsky.github.io/2010/02/15/lang-java-basic-final、static、this、super/index.html">
-<meta property="og:site_name" content="徐先生的技术路线">
+<meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="final,static,this,super 关键字总结 final 关键字 static 关键字 this 关键字 super 关键字 参考   static 关键字详解 static 关键字主要有以下四种使用场景 修饰成员变量和成员方法(常用) 静态代码块 静态内部类 静态导包   补充内容 静态方法与非静态方法 static{}静态代码块与{}非静态代码块(构造代码块) 参考">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-14/88531075.jpg">
@@ -97,7 +97,7 @@
   };
 </script>
 
-  <title>final,static,this,super 关键字总结 | 徐先生的技术路线</title>
+  <title>final,static,this,super 关键字总结 | 徐先生的技术栈</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -147,7 +147,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">徐先生的技术路线</span>
+        <span class="site-title">徐先生的技术栈</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -253,7 +253,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术路线">
+      <meta itemprop="name" content="徐先生的技术栈">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">final,static,this,super 关键字总结
@@ -310,6 +310,20 @@
               <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2010/02/15/lang-java-basic-final、static、this、super/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2010/02/15/lang-java-basic-final、static、this、super/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -487,12 +501,6 @@
         
 
         
-  <div class="post-widgets">
-    <div class="wp_rating">
-      <div id="wpac-rating"></div>
-    </div>
-  
-  </div>
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
@@ -527,6 +535,9 @@
 
           </div>
           
+    
+    <div class="comments" id="comments"></div>
+  
 
         </div>
           
@@ -733,26 +744,6 @@
 
 
 
-  <script>
-  if (CONFIG.page.isPost) {
-    wpac_init = window.wpac_init || [];
-    wpac_init.push({
-      widget: 'Rating',
-      id: 20638,
-      el: 'wpac-rating',
-      color: 'fc6423'
-    });
-    (function() {
-      if ('WIDGETPACK_LOADED' in window) return;
-      WIDGETPACK_LOADED = true;
-      var mc = document.createElement('script');
-      mc.type = 'text/javascript';
-      mc.async = true;
-      mc.src = '//embed.widgetpack.com/widget.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-    })();
-  }
-  </script>
 
 
 
@@ -776,6 +767,31 @@
   
 
   
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'zwli8bHgrjbtCiAH23o81imX-gzGzoHsz',
+    appKey: 'v3rufApMsIhhwFOR45jn5abL',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
 
 </body>
 </html>

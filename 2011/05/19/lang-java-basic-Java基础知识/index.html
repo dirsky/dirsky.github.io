@@ -74,7 +74,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java基础知识">
 <meta property="og:url" content="https://dirsky.github.io/2011/05/19/lang-java-basic-Java基础知识/index.html">
-<meta property="og:site_name" content="徐先生的技术路线">
+<meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="1. 面向对象和面向过程的区别 面向过程 面向对象   2. Java 语言有哪些特点 3. 关于 JVM JDK 和 JRE 最详细通俗的解答 JVM JDK 和 JRE   4. Oracle JDK 和 OpenJDK 的对比 5. Java和C++的区别 6. 什么是 Java 程序的主类 应用程序和小程序的主类有何不同 7. Java 应用程序与小程序之间有那些差别 8. 字符型常">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/Java%20%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B.png">
@@ -102,7 +102,7 @@
   };
 </script>
 
-  <title>Java基础知识 | 徐先生的技术路线</title>
+  <title>Java基础知识 | 徐先生的技术栈</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -152,7 +152,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">徐先生的技术路线</span>
+        <span class="site-title">徐先生的技术栈</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -258,7 +258,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术路线">
+      <meta itemprop="name" content="徐先生的技术栈">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">Java基础知识
@@ -315,6 +315,20 @@
               <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2011/05/19/lang-java-basic-Java基础知识/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2011/05/19/lang-java-basic-Java基础知识/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -637,12 +651,6 @@
         
 
         
-  <div class="post-widgets">
-    <div class="wp_rating">
-      <div id="wpac-rating"></div>
-    </div>
-  
-  </div>
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
@@ -677,6 +685,9 @@
 
           </div>
           
+    
+    <div class="comments" id="comments"></div>
+  
 
         </div>
           
@@ -883,26 +894,6 @@
 
 
 
-  <script>
-  if (CONFIG.page.isPost) {
-    wpac_init = window.wpac_init || [];
-    wpac_init.push({
-      widget: 'Rating',
-      id: 20638,
-      el: 'wpac-rating',
-      color: 'fc6423'
-    });
-    (function() {
-      if ('WIDGETPACK_LOADED' in window) return;
-      WIDGETPACK_LOADED = true;
-      var mc = document.createElement('script');
-      mc.type = 'text/javascript';
-      mc.async = true;
-      mc.src = '//embed.widgetpack.com/widget.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-    })();
-  }
-  </script>
 
 
 
@@ -926,6 +917,31 @@
   
 
   
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'zwli8bHgrjbtCiAH23o81imX-gzGzoHsz',
+    appKey: 'v3rufApMsIhhwFOR45jn5abL',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
 
 </body>
 </html>

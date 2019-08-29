@@ -74,7 +74,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="索引的工作原理及其种类">
 <meta property="og:url" content="https://dirsky.github.io/2014/04/05/db-mysql-9-1-4-索引的工作原理及其种类/index.html">
-<meta property="og:site_name" content="徐先生的技术路线">
+<meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="题目**：索引的工作原理及其种类参考答案：数据库索引，是数据库管理系统中一个排序的数据结构，以协助快速查询、更新数据库表中数据。索引的实现通常使用B树及其变种B+树。 在数据之外，数据库系统还维护着满足特定查找算法的数据结构，这些数据结构以某种方式引用（指向）数据，这样就可以在这些数据结构上实现高级查找算法。这种数据结构，就是索引。 为表设置索引要付出代价的：一是增加了数据库的存储空间，二是在插入">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.2cto.com/uploadfile/Collfiles/20150416/2015041610033731.png">
@@ -97,7 +97,7 @@
   };
 </script>
 
-  <title>索引的工作原理及其种类 | 徐先生的技术路线</title>
+  <title>索引的工作原理及其种类 | 徐先生的技术栈</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -147,7 +147,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">徐先生的技术路线</span>
+        <span class="site-title">徐先生的技术栈</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -253,7 +253,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术路线">
+      <meta itemprop="name" content="徐先生的技术栈">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">索引的工作原理及其种类
@@ -310,6 +310,20 @@
               <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2014/04/05/db-mysql-9-1-4-索引的工作原理及其种类/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2014/04/05/db-mysql-9-1-4-索引的工作原理及其种类/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -383,12 +397,6 @@
         
 
         
-  <div class="post-widgets">
-    <div class="wp_rating">
-      <div id="wpac-rating"></div>
-    </div>
-  
-  </div>
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
@@ -423,6 +431,9 @@
 
           </div>
           
+    
+    <div class="comments" id="comments"></div>
+  
 
         </div>
           
@@ -629,26 +640,6 @@
 
 
 
-  <script>
-  if (CONFIG.page.isPost) {
-    wpac_init = window.wpac_init || [];
-    wpac_init.push({
-      widget: 'Rating',
-      id: 20638,
-      el: 'wpac-rating',
-      color: 'fc6423'
-    });
-    (function() {
-      if ('WIDGETPACK_LOADED' in window) return;
-      WIDGETPACK_LOADED = true;
-      var mc = document.createElement('script');
-      mc.type = 'text/javascript';
-      mc.async = true;
-      mc.src = '//embed.widgetpack.com/widget.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-    })();
-  }
-  </script>
 
 
 
@@ -672,6 +663,31 @@
   
 
   
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'zwli8bHgrjbtCiAH23o81imX-gzGzoHsz',
+    appKey: 'v3rufApMsIhhwFOR45jn5abL',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
 
 </body>
 </html>

@@ -72,9 +72,9 @@
   <meta name="description" content="一 从认识操作系统开始 1.1 操作系统简介 1.2 操作系统简单分类   二 初探Linux 2.1 Linux简介 2.2 Linux诞生简介 2.3 Linux的分类   三 Linux文件系统概览 3.1 Linux文件系统简介 3.2 文件类型与目录结构   四 Linux基本命令 4.1 目录切换命令 4.2 目录的操作命令（增删改查） 4.3 文件的操作命令（增删改查） 4.4">
 <meta name="keywords" content="Python Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="徐先生的技术路线">
+<meta property="og:title" content="徐先生的技术栈">
 <meta property="og:url" content="https://dirsky.github.io/2019/06/05/os-linux-后端程序员必备的Linux基础知识/index.html">
-<meta property="og:site_name" content="徐先生的技术路线">
+<meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="一 从认识操作系统开始 1.1 操作系统简介 1.2 操作系统简单分类   二 初探Linux 2.1 Linux简介 2.2 Linux诞生简介 2.3 Linux的分类   三 Linux文件系统概览 3.1 Linux文件系统简介 3.2 文件类型与目录结构   四 Linux基本命令 4.1 目录切换命令 4.2 目录的操作命令（增删改查） 4.3 文件的操作命令（增删改查） 4.4">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/3/1645ee3dc5cf626e?w=862&h=637&f=png&s=23899">
@@ -89,7 +89,7 @@
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/7/5/164697447dc6ecac?w=525&h=246&f=png&s=12362">
 <meta property="og:updated_time" content="2019-05-06T04:56:18.694Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="徐先生的技术路线">
+<meta name="twitter:title" content="徐先生的技术栈">
 <meta name="twitter:description" content="一 从认识操作系统开始 1.1 操作系统简介 1.2 操作系统简单分类   二 初探Linux 2.1 Linux简介 2.2 Linux诞生简介 2.3 Linux的分类   三 Linux文件系统概览 3.1 Linux文件系统简介 3.2 文件类型与目录结构   四 Linux基本命令 4.1 目录切换命令 4.2 目录的操作命令（增删改查） 4.3 文件的操作命令（增删改查） 4.4">
 <meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/7/3/1645ee3dc5cf626e?w=862&h=637&f=png&s=23899">
   <link rel="canonical" href="https://dirsky.github.io/2019/06/05/os-linux-后端程序员必备的Linux基础知识/">
@@ -106,7 +106,7 @@
   };
 </script>
 
-  <title> | 徐先生的技术路线</title>
+  <title> | 徐先生的技术栈</title>
   <meta name="generator" content="Hexo 3.9.0">
   
 
@@ -156,7 +156,7 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">徐先生的技术路线</span>
+        <span class="site-title">徐先生的技术栈</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -262,7 +262,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术路线">
+      <meta itemprop="name" content="徐先生的技术栈">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -306,6 +306,20 @@
               <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/06/05/os-linux-后端程序员必备的Linux基础知识/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/06/05/os-linux-后端程序员必备的Linux基础知识/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
 
         </div>
       </header>
@@ -634,12 +648,6 @@
       <footer class="post-footer">
 
         
-  <div class="post-widgets">
-    <div class="wp_rating">
-      <div id="wpac-rating"></div>
-    </div>
-  
-  </div>
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
@@ -674,6 +682,9 @@
 
           </div>
           
+    
+    <div class="comments" id="comments"></div>
+  
 
         </div>
           
@@ -880,26 +891,6 @@
 
 
 
-  <script>
-  if (CONFIG.page.isPost) {
-    wpac_init = window.wpac_init || [];
-    wpac_init.push({
-      widget: 'Rating',
-      id: 20638,
-      el: 'wpac-rating',
-      color: 'fc6423'
-    });
-    (function() {
-      if ('WIDGETPACK_LOADED' in window) return;
-      WIDGETPACK_LOADED = true;
-      var mc = document.createElement('script');
-      mc.type = 'text/javascript';
-      mc.async = true;
-      mc.src = '//embed.widgetpack.com/widget.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
-    })();
-  }
-  </script>
 
 
 
@@ -923,6 +914,31 @@
   
 
   
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'zwli8bHgrjbtCiAH23o81imX-gzGzoHsz',
+    appKey: 'v3rufApMsIhhwFOR45jn5abL',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
 
 </body>
 </html>
