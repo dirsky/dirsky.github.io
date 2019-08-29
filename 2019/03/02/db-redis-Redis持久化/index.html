@@ -55,20 +55,6 @@
   };
 </script>
 
-<script>
-    (function () {
-        if ('') {
-            if (prompt('请输入文章密码') !== '') {
-                alert('密码错误！');
-                if (history.length === 1) {
-                    location.replace("https://dirsky.github.io/"); // 这里替换成你的首页
-                } else {
-                    history.back();
-                }
-            }
-        }
-    })();
-</script>
   <meta name="description" content="非常感谢《redis实战》真本书，本文大多内容也参考了书中的内容。非常推荐大家看一下《redis实战》这本书，感觉书中的很多理论性东西还是很不错的。 为什么本文的名字要加上春夏秋冬又一春，哈哈 ，这是一部韩国的电影，我感觉电影不错，所以就用在文章名字上了，没有什么特别的含义，然后下面的有些配图也是电影相关镜头。  很多时候我们需要持久化数据也就是将内存中的数据写入到硬盘里面，大部分原因是为了之后重">
 <meta name="keywords" content="redis">
 <meta property="og:type" content="article">
@@ -191,6 +177,39 @@
     
 
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -420,8 +439,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2018/11/17/lang-java-What-s-New-in-JDK8-JDK8新特性总结/" rel="next" title="JDK8新特性总结">
-                  <i class="fa fa-chevron-left"></i> JDK8新特性总结
+                <a href="/2019/01/25/diary-2019-01-25-new-position/" rel="next" title="new-position">
+                  <i class="fa fa-chevron-left"></i> new-position
                 </a>
               
             </div>
@@ -511,6 +530,10 @@
       
       <div class="site-state-item site-state-categories">
         
+          
+            <a href="/categories/">
+          
+        
         
         
           
@@ -525,12 +548,16 @@
         
         <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span>
-        
+        </a>
       </div>
     
       
       
       <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
         
         
         
@@ -562,7 +589,7 @@
         
         <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span>
-        
+        </a>
       </div>
     
   </nav>
@@ -578,9 +605,43 @@
         <a href="https://github.com/dirsky" title="GitHub &rarr; https://github.com/dirsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
     
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:gzxu@vip.qq.com" title="E-Mail &rarr; mailto:gzxu@vip.qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/cccsky" title="Weibo &rarr; https://weibo.com/cccsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
   </div>
 
 
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://dirsky.github.io/" title="https://dirsky.github.io/">Code</a>
+        </li>
+      
+    </ul>
+  </div>
 
       </div>
 

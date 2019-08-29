@@ -55,20 +55,6 @@
   };
 </script>
 
-<script>
-    (function () {
-        if ('') {
-            if (prompt('请输入文章密码') !== '') {
-                alert('密码错误！');
-                if (history.length === 1) {
-                    location.replace("https://dirsky.github.io/"); // 这里替换成你的首页
-                } else {
-                    history.back();
-                }
-            }
-        }
-    })();
-</script>
   <meta name="description" content="JDK8之前 .class文件是不会存储方法参数信息的，因此也就无法通过反射获取该信息(想想反射获取类信息的入口是什么？当然就是Class类了)。即是是在JDK11里也不会默认生成这些信息，可以通过在javac加上-parameters参数来让javac生成这些信息(javac就是java编译器，可以把java文件编译成.class文件)。生成额外的信息(运行时非必须信息)会消耗内存并且有可能公布">
 <meta name="keywords" content="java,java8">
 <meta property="og:type" content="article">
@@ -186,6 +172,39 @@
     
 
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -383,8 +402,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2017/11/15/lang-java-What-s-New-in-JDK8-改进的类型推断/" rel="next" title="改进的类型推断">
-                  <i class="fa fa-chevron-left"></i> 改进的类型推断
+                <a href="/2017/11/15/lang-java-What-s-New-in-JDK8-Lambda表达式/" rel="next" title="JDK8--Lambda表达式">
+                  <i class="fa fa-chevron-left"></i> JDK8--Lambda表达式
                 </a>
               
             </div>
@@ -393,8 +412,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2017/11/15/utils-dubbo/" rel="prev" title="dubbo">
-                  dubbo <i class="fa fa-chevron-right"></i>
+                <a href="/2017/11/16/lang-java-What-s-New-in-JDK8-JDK8接口规范-静态、默认方法/" rel="prev" title="JDK8接口规范">
+                  JDK8接口规范 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -474,6 +493,10 @@
       
       <div class="site-state-item site-state-categories">
         
+          
+            <a href="/categories/">
+          
+        
         
         
           
@@ -488,12 +511,16 @@
         
         <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span>
-        
+        </a>
       </div>
     
       
       
       <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
         
         
         
@@ -525,7 +552,7 @@
         
         <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span>
-        
+        </a>
       </div>
     
   </nav>
@@ -541,9 +568,43 @@
         <a href="https://github.com/dirsky" title="GitHub &rarr; https://github.com/dirsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
     
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:gzxu@vip.qq.com" title="E-Mail &rarr; mailto:gzxu@vip.qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/cccsky" title="Weibo &rarr; https://weibo.com/cccsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
   </div>
 
 
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://dirsky.github.io/" title="https://dirsky.github.io/">Code</a>
+        </li>
+      
+    </ul>
+  </div>
 
       </div>
 

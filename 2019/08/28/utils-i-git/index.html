@@ -55,20 +55,6 @@
   };
 </script>
 
-<script>
-    (function () {
-        if ('') {
-            if (prompt('请输入文章密码') !== '') {
-                alert('密码错误！');
-                if (history.length === 1) {
-                    location.replace("https://dirsky.github.io/"); // 这里替换成你的首页
-                } else {
-                    history.back();
-                }
-            }
-        }
-    })();
-</script>
   <meta name="description" content="仓库# 在当前目录新建一个Git代码库 $ git init  # 新建一个目录，将其初始化为Git代码库 $ git init [project-name]  # 下载一个项目和它的整个代码历史 $ git clone [url]配置# 显示当前的Git配置 $ git config --list  # 编辑Git配置文件 $ git config -e [--global]  # 设置提交代码">
 <meta name="keywords" content="Git">
 <meta property="og:type" content="article">
@@ -186,6 +172,39 @@
     
 
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -593,10 +612,6 @@ $ git archive</code></pre>
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/08/28/lang-python-2018-07-22-python-数据类型/" rel="prev" title="Python-数据类型">
-                  Python-数据类型 <i class="fa fa-chevron-right"></i>
-                </a>
-              
             </div>
           </div>
         
@@ -674,6 +689,10 @@ $ git archive</code></pre>
       
       <div class="site-state-item site-state-categories">
         
+          
+            <a href="/categories/">
+          
+        
         
         
           
@@ -688,12 +707,16 @@ $ git archive</code></pre>
         
         <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span>
-        
+        </a>
       </div>
     
       
       
       <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
         
         
         
@@ -725,7 +748,7 @@ $ git archive</code></pre>
         
         <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span>
-        
+        </a>
       </div>
     
   </nav>
@@ -741,9 +764,43 @@ $ git archive</code></pre>
         <a href="https://github.com/dirsky" title="GitHub &rarr; https://github.com/dirsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
     
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:gzxu@vip.qq.com" title="E-Mail &rarr; mailto:gzxu@vip.qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/cccsky" title="Weibo &rarr; https://weibo.com/cccsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
   </div>
 
 
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://dirsky.github.io/" title="https://dirsky.github.io/">Code</a>
+        </li>
+      
+    </ul>
+  </div>
 
       </div>
 

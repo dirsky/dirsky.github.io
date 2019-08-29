@@ -55,20 +55,6 @@
   };
 </script>
 
-<script>
-    (function () {
-        if ('') {
-            if (prompt('请输入文章密码') !== '') {
-                alert('密码错误！');
-                if (history.length === 1) {
-                    location.replace("https://dirsky.github.io/"); // 这里替换成你的首页
-                } else {
-                    history.back();
-                }
-            }
-        }
-    })();
-</script>
   <meta name="description" content="按钮改变大小和颜色 （默认样式）Default btn-lg  （首选项）Primary  （成功）Success  btn-sm  （一般信息）Info btn-xs  （警告）Warning  （危险）Danger  （链接）Link 文本和背景改变颜色.mcorper nulla non metus.. ..mcorper nulla non metus. .mcorper nulla no">
 <meta name="keywords" content="Bootstrap">
 <meta property="og:type" content="article">
@@ -186,6 +172,39 @@
     
 
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -547,8 +566,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2018/09/03/db-redis-Redis-2/" rel="prev" title="Redis">
-                  Redis <i class="fa fa-chevron-right"></i>
+                <a href="/2018/07/16/lang-bootstrap-2018-07-16-bootstrap-3-cj/" rel="prev" title="bootstrap-插件">
+                  bootstrap-插件 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -628,6 +647,10 @@
       
       <div class="site-state-item site-state-categories">
         
+          
+            <a href="/categories/">
+          
+        
         
         
           
@@ -642,12 +665,16 @@
         
         <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span>
-        
+        </a>
       </div>
     
       
       
       <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
         
         
         
@@ -679,7 +706,7 @@
         
         <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span>
-        
+        </a>
       </div>
     
   </nav>
@@ -695,9 +722,43 @@
         <a href="https://github.com/dirsky" title="GitHub &rarr; https://github.com/dirsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
       </span>
     
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:gzxu@vip.qq.com" title="E-Mail &rarr; mailto:gzxu@vip.qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/cccsky" title="Weibo &rarr; https://weibo.com/cccsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
   </div>
 
 
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://dirsky.github.io/" title="https://dirsky.github.io/">Code</a>
+        </li>
+      
+    </ul>
+  </div>
 
       </div>
 
