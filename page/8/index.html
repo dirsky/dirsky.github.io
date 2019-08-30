@@ -802,205 +802,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/08/26/os-linux-CentOS7安装配置vsftp搭建FTP/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2015/08/26/os-linux-CentOS7安装配置vsftp搭建FTP/" class="post-title-link" itemprop="url">CentOS7安装配置vsftp搭建FTP</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00+08:00">2015-08-26</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-29 15:14:46" itemprop="dateModified" datetime="2019-08-29T15:14:46+08:00">2019-08-29</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2015/08/26/os-linux-CentOS7安装配置vsftp搭建FTP/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-CentOS7安装配置vsftp搭建FTP/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>7.5k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>7 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>安装配置vsftpd做FTP服务，我们的项目应用使用git管理进行迭代，公共文件软件存储使用开源网盘Seafile来管理，基本够用。想不到FTP的使用的场景，感觉它好像老去了，虽然现在基本没有用到这个工具，刚好公司公司刷一个硬件需要使用FTP来配置下载文件，于是研究使用了一下，记录了一下使用过程。😀</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在安装前查看是否已安装vsftpd</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看是否已安装 方法一</span></span><br><span class="line">[root@localhost ~]# rpm -q vsftpd</span><br><span class="line">vsftpd-3.0.2-21.el7.x86_64</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看是否已安装 方法二</span></span><br><span class="line">[root@localhost ~]# vsftpd -v</span><br><span class="line">vsftpd: version 3.0.2</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 安装 vsftpd</span></span><br><span class="line">[root@localhost ~]# yum -y install vsftpd</span><br></pre></td></tr></table></figure>
-
-<h2 id="查看位置"><a href="#查看位置" class="headerlink" title="查看位置"></a>查看位置</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# whereis vsftpd</span><br><span class="line">vsftpd: /usr/sbin/vsftpd /etc/vsftpd /usr/share/man/man8/vsftpd.8.gz</span><br></pre></td></tr></table></figure>
-
-<h2 id="启动vsftpd服务"><a href="#启动vsftpd服务" class="headerlink" title="启动vsftpd服务"></a>启动vsftpd服务</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start vsftpd.service</span><br></pre></td></tr></table></figure>
-
-<h2 id="关闭firewall和SELinux"><a href="#关闭firewall和SELinux" class="headerlink" title="关闭firewall和SELinux"></a>关闭firewall和SELinux</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">setenforce 0   # 设置SELinux 成为permissive模式  （关闭SELinux）</span><br><span class="line">setenforce 1   # 设置SELinux 成为enforcing模式   （开启SELinux）</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 或者修改配置</span></span><br><span class="line">vi /etc/selinux/config</span><br><span class="line"><span class="meta">#</span><span class="bash"> SELINUX=enforcing</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 注释掉</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> SELINUXTYPE=targeted</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 注释掉</span></span><br><span class="line">SELINUX=disabled</span><br><span class="line"><span class="meta">#</span><span class="bash"> 增加</span></span><br><span class="line">:wq! #保存退出</span><br><span class="line">setenforce 0</span><br></pre></td></tr></table></figure>
-
-<p>或者设置SELinux</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">getsebool -a | grep ftp</span><br><span class="line">setsebool -P ftpd_full_access on</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br><span class="line"><span class="meta">#</span><span class="bash">停止firewall</span></span><br><span class="line">systemctl disable firewalld.service</span><br><span class="line"><span class="meta">#</span><span class="bash">禁止firewall开机启动</span></span><br></pre></td></tr></table></figure>
-
-<p>如果你不愿意关闭防火墙，需要防火墙添加FTP服务。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --add-service=ftp</span><br><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-
-<h2 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h2><p>配置文件<code>/etc/vsftpd/vsftpd.conf</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">anonymous_enable=NO        # 不允许匿名访问，禁用匿名登录</span><br><span class="line">chroot_local_user=YES      # 启用限定用户在其主目录下</span><br><span class="line">use_localtime=YES          # 使用本地时(自行添加)</span><br><span class="line">chroot_list_enable=YES</span><br><span class="line">local_enable=YES           # 允许使用本地帐户进行FTP用户登录验证</span><br><span class="line">allow_writeable_chroot=YES # 如果启用了限定用户在其主目录下需要添加这个配置，解决报错 500 OOPS: vsftpd: refusing to run with writable root inside chroot()</span><br><span class="line">xferlog_enable=YES         # 启用上传和下载的日志功能，默认开启。</span><br><span class="line">local_umask=022            # 设置本地用户默认文件掩码022</span><br><span class="line"><span class="meta">#</span><span class="bash"> FTP上本地的文件权限，默认是077，不过vsftpd安装后的配置文件里默认是022</span></span><br></pre></td></tr></table></figure>
-
-<p>虚拟用户高级参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">当virtual_use_local_privs=YES 时，虚拟用户和本地用户有相同的权限；</span><br><span class="line">当virtual_use_local_privs=NO  时，虚拟用户和匿名用户有相同的权限，默认是NO。</span><br><span class="line">当virtual_use_local_privs=YES，write_enable=YES时，虚拟用户具有写权限（上传、下载、删除、重命名）。</span><br><span class="line">当virtual_use_local_privs=NO，write_enable=YES，anon_world_readable_only=YES，</span><br><span class="line">anon_upload_enable=YES时，虚拟用户不能浏览目录，只能上传文件，无其他权限。</span><br><span class="line">当virtual_use_local_privs=NO，write_enable=YES，anon_world_readable_only=NO，</span><br><span class="line">anon_upload_enable=NO时，虚拟用户只能下载文件，无其他权限。</span><br><span class="line">当virtual_use_local_privs=NO，write_enable=YES，anon_world_readable_only=NO，</span><br><span class="line">anon_upload_enable=YES时，虚拟用户只能上传和下载文件，无其他权限。</span><br><span class="line">当virtual_use_local_privs=NO，write_enable=YES，anon_world_readable_only=NO，</span><br><span class="line">anon_mkdir_write_enable=YES时，虚拟用户只能下载文件和创建文件夹，无其他权限。</span><br><span class="line">当virtual_use_local_privs=NO，write_enable=YES，anon_world_readable_only=NO，</span><br><span class="line">anon_other_write_enable=YES时，虚拟用户只能下载、删除和重命名文件，无其他权限。</span><br></pre></td></tr></table></figure>
-
-<h2 id="匿名登录"><a href="#匿名登录" class="headerlink" title="匿名登录"></a>匿名登录</h2><p>安装完默认情况下是开启匿名登录的，对应的是 <code>/var/ftp</code> 目录，这时只要服务启动了，就可以直接连上FTP了。默认用户名是<code>ftp</code>，密码是空的。如果你在配置里面配置了<code>anonymous_enable=NO</code>，匿名就无法登录。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ftp 192.168.188.114</span></span><br><span class="line"></span><br><span class="line">Connected to 192.168.188.114.</span><br><span class="line">220 (vsFTPd 3.0.2)</span><br><span class="line">Name (192.168.188.114:kennywang): ftp</span><br><span class="line">331 Please specify the password.</span><br><span class="line">Password:</span><br><span class="line">230 Login successful.</span><br><span class="line">Remote system type is UNIX.</span><br><span class="line">Using binary mode to transfer files.</span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> ls</span></span><br><span class="line">229 Entering Extended Passive Mode (|||47867|).</span><br><span class="line">150 Here comes the directory listing.</span><br><span class="line">-rw-r--r--    1 0        0              12 Jan 18 06:31 README.md</span><br><span class="line">drwxr-xr-x    2 0        0               6 Nov 05 19:43 pub</span><br><span class="line">226 Directory send OK.</span><br></pre></td></tr></table></figure>
-
-<h2 id="多用户配置"><a href="#多用户配置" class="headerlink" title="多用户配置"></a>多用户配置</h2><p>多用户配置需要自己手工添加配置，下面内容到vsftpd.conf末尾</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> </span></span><br><span class="line"><span class="meta">#</span><span class="bash"> </span></span><br><span class="line"></span><br><span class="line">use_localtime=YES          # 使用本地时(自行添加)</span><br><span class="line">listen_port=21</span><br><span class="line">chroot_local_user=YES      # 启用限定用户在其主目录下</span><br><span class="line">idle_session_timeout=300</span><br><span class="line"></span><br><span class="line">data_connection_timeout=120  # 数据连接超时时间</span><br><span class="line">guest_enable=YES             # 设定启用虚拟用户功能</span><br><span class="line">guest_username=ftpuser       # 指定虚拟用户的宿主用户 ftpuser（就是我们后面会新建这个用户）</span><br><span class="line"><span class="meta">#</span><span class="bash"> guest_username=www</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果ftp目录是指向网站根目录，用来上传网站程序，</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 可以指定虚拟用户的宿主用户为nginx运行账户www，可以避免很多权限设置问题 </span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">user_config_dir=/etc/vsftpd/vuser_conf   # 虚拟用户配置文件目录</span><br><span class="line">virtual_use_local_privs=YES # NO时，虚拟用户和匿名用户有相同的权限，默认是NO</span><br><span class="line"></span><br><span class="line">pasv_min_port=10060         # 被动模式最小端口号10060</span><br><span class="line">pasv_max_port=10090         # 被动模式最大端口号10090</span><br><span class="line"></span><br><span class="line">accept_timeout=5</span><br><span class="line">connect_timeout=1</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建宿主用户"><a href="#创建宿主用户" class="headerlink" title="创建宿主用户"></a>创建宿主用户</h3><p>新建系统用户ftpuser，用户目录为<code>/home/vsftpd</code>, 用户登录终端设为/bin/false(即使之不能登录系统)</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 方法一</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 创建用户 ftpuser 指定 `/home/vsftpd` 目录</span></span><br><span class="line">useradd -g root -M -d /home/vsftpd -s /sbin/nologin ftpuser</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 设置用户 ftpuser 的密码</span></span><br><span class="line">passwd ftpuser</span><br><span class="line"><span class="meta">#</span><span class="bash"> 把 /home/vsftpd 的所有权给ftpuser.root</span></span><br><span class="line">chown -R ftpuser.root /home/vsftpd</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 方法二</span></span><br><span class="line">useradd ftpuser -d /home/vsftpd -s /bin/false</span><br><span class="line">chown ftpuser:ftpuser /home/vsftpd -R </span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果虚拟用户的宿主用户为www，需要这样设置</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> www目录是你应用的目录</span></span><br><span class="line">chown www:www /home/www -R</span><br></pre></td></tr></table></figure>
-
-<p>删除用户 <code>userdel ftpuser</code></p>
-<h3 id="建立虚拟用户文件"><a href="#建立虚拟用户文件" class="headerlink" title="建立虚拟用户文件"></a>建立虚拟用户文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">touch /etc/vsftpd/vuser_passwd</span><br><span class="line"><span class="meta">#</span><span class="bash"> 编辑虚拟用户名单文件：（</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 第一行账号，第二行密码，注意：不能使用root做用户名，系统保留）</span></span><br><span class="line">vi /etc/vsftpd/vuser_passwd </span><br><span class="line"><span class="meta">#</span><span class="bash"> 编辑内容，下面是 vuser_passwd 内容</span></span><br><span class="line">wcj</span><br><span class="line">123456</span><br><span class="line">hss</span><br><span class="line">123456</span><br><span class="line"><span class="meta">#</span><span class="bash">保存退出</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="生成虚拟用户数据文件"><a href="#生成虚拟用户数据文件" class="headerlink" title="生成虚拟用户数据文件"></a>生成虚拟用户数据文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db_load -T -t hash -f /etc/vsftpd/vuser_passwd /etc/vsftpd/vuser_passwd.db</span><br><span class="line">chmod 600 /etc/vsftpd/vuser_passwd.db</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建用户配置"><a href="#创建用户配置" class="headerlink" title="创建用户配置"></a>创建用户配置</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir /etc/vsftpd/vuser_conf  # 建立虚拟用户个人vsftp的配置文件</span><br><span class="line">cd /etc/vsftpd/vuser_conf     # 进入目录</span><br><span class="line">touch hss wcj                 # 这里创建两个虚拟用户配置文件</span><br></pre></td></tr></table></figure>
-
-<p>每一个文件配置文件都差不多，只是参数<code>local_root</code>不一样。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">local_root=/home/vsftpd/hss   # 用户 hss 配置目录，这个地方不一样</span><br><span class="line">write_enable=YES              # 允许本地用户对FTP服务器文件具有写权限</span><br><span class="line">anon_world_readable_only=NO</span><br><span class="line">anon_upload_enable=YES        # 允许匿名用户上传文件(须将全局的write_enable=YES,默认YES)</span><br><span class="line">anon_mkdir_write_enable=YES   # 允许匿名用户创建目录</span><br><span class="line">anon_other_write_enable=YES   # 允许匿名用户删除和重命名权限(自行添加)</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建用户目录"><a href="#创建用户目录" class="headerlink" title="创建用户目录"></a>创建用户目录</h3><p>每个用户目录文件夹是有root用户创建的，也就是上面<code>local_root</code>配置目录，其权限应设置为755。因为权限的问题在该文件夹内无法直接上传文件。而如果设置为777则无法访问，这是由于vsftpd的安全性设置。解决上传问题的方法是在local_root文件夹内新建一个upload的文件夹，权限设置为777，可将文件上传到该文件夹。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /home/vsftpd/hss     # 每个用户对于一个目录，创建两个目录“hss”、“wcj”</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 下面是目录结构</span></span><br><span class="line">/home/vsftpd</span><br><span class="line">      ├── hss</span><br><span class="line">      │   ├── filename.md</span><br><span class="line">      │   └── upload</span><br><span class="line">      └── wcj</span><br><span class="line">          └── filename.md</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 赋予其权限</span></span><br><span class="line">chmod -R 777 /var/vsftpd/hss/upload/</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 在/var/ftp下新建一个目录来实现匿名用户上传</span></span><br><span class="line">mkdir /var/ftp/upload</span><br></pre></td></tr></table></figure>
-
-<p>vsftpd中几种用户的区分：</p>
-<p><strong>本地用户</strong>：用户在FTP服务器拥有账号，且该账号为本地用户的账号，可以通过自己的账号和口令进行授权登录，登录目录为自己的home目录<code>$HOME</code><br><strong>虚拟用户</strong>：用户在FTP服务器上拥有账号，但该账号只能用于文件传输服务。登录目录为某一特定的目录，通常可以上传和下载<br><strong>匿名用户</strong>：用户在FTP服务器上没有账号，登录目录为/var/ftp  </p>
-<h3 id="最后重启vsftpd服务器"><a href="#最后重启vsftpd服务器" class="headerlink" title="最后重启vsftpd服务器"></a>最后重启vsftpd服务器</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart vsftpd.service</span><br></pre></td></tr></table></figure>
-
-<h2 id="服务运维"><a href="#服务运维" class="headerlink" title="服务运维"></a>服务运维</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart vsftpd.service  # 重启服务</span><br><span class="line">systemctl start vsftpd.service    # 启动服务</span><br><span class="line">systemctl status vsftpd.service   # 服务状态查看</span><br></pre></td></tr></table></figure>
-
-<h2 id="FTP命令"><a href="#FTP命令" class="headerlink" title="FTP命令"></a>FTP命令</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> ascii  <span class="comment"># 设定以ASCII方式传送文件(缺省值) </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> bell   <span class="comment"># 每完成一次文件传送,报警提示. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> binary <span class="comment"># 设定以二进制方式传送文件. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> <span class="built_in">bye</span>    <span class="comment"># 终止主机FTP进程,并退出FTP管理方式. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> <span class="keyword">case</span> <span class="comment"># 当为ON时,用MGET命令拷贝的文件名到本地机器中,全部转换为小写字母. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> <span class="built_in">cd</span>     <span class="comment"># 同UNIX的CD命令. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> cdup   <span class="comment"># 返回上一级目录. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> chmod  <span class="comment"># 改变远端主机的文件权限. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> close  <span class="comment"># 终止远端的FTP进程,返回到FTP命令状态, 所有的宏定义都被删除. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> delete <span class="comment"># 删除远端主机中的文件. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> dir [remote-directory] [<span class="built_in">local</span>-file] <span class="comment"># 列出当前远端主机目录中的文件.如果有本地文件,就将结果写至本地文件. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> get [remote-file] [<span class="built_in">local</span>-file] <span class="comment"># 从远端主机中传送至本地主机中. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> <span class="built_in">help</span> [<span class="built_in">command</span>] <span class="comment"># 输出命令的解释. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> lcd <span class="comment"># 改变当前本地主机的工作目录,如果缺省,就转到当前用户的HOME目录. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> ls [remote-directory] [<span class="built_in">local</span>-file] <span class="comment"># 同DIR. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> macdef                 <span class="comment"># 定义宏命令. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> mdelete [remote-files] <span class="comment"># 删除一批文件. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> mget [remote-files]    <span class="comment"># 从远端主机接收一批文件至本地主机. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> mkdir directory-name   <span class="comment"># 在远端主机中建立目录. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> mput <span class="built_in">local</span>-files <span class="comment"># 将本地主机中一批文件传送至远端主机. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> open host [port] <span class="comment"># 重新建立一个新的连接. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> prompt           <span class="comment"># 交互提示模式. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> put <span class="built_in">local</span>-file [remote-file] <span class="comment"># 将本地一个文件传送至远端主机中. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> <span class="built_in">pwd</span>  <span class="comment"># 列出当前远端主机目录. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> quit <span class="comment"># 同BYE. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> recv remote-file [<span class="built_in">local</span>-file] <span class="comment"># 同GET. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> rename [from] [to]     <span class="comment"># 改变远端主机中的文件名. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> rmdir directory-name   <span class="comment"># 删除远端主机中的目录. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> send <span class="built_in">local</span>-file [remote-file] <span class="comment"># 同PUT. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> status   <span class="comment"># 显示当前FTP的状态. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> system   <span class="comment"># 显示远端主机系统类型. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> user user-name [password] [account] <span class="comment"># 重新以别的用户名登录远端主机. </span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> ? [<span class="built_in">command</span>] <span class="comment"># 同HELP. [command]指定需要帮助的命令名称。如果没有指定 command，ftp 将显示全部命令的列表。</span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> ! <span class="comment"># 从 ftp 子系统退出到外壳。</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="关闭FTP连接"><a href="#关闭FTP连接" class="headerlink" title="关闭FTP连接"></a>关闭FTP连接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bye</span><br><span class="line">exit</span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
-
-<h3 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> get readme.txt <span class="comment"># 下载 readme.txt 文件</span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> mget *.txt     <span class="comment"># 下载</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> put /path/readme.txt <span class="comment"># 上传 readme.txt 文件</span></span></span><br><span class="line"><span class="meta">ftp&gt;</span><span class="bash"> mput *.txt           <span class="comment"># 可以上传多个文件</span></span></span><br></pre></td></tr></table></figure>
-
-<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><ul>
-<li>230 - 登录成功</li>
-<li>200 - 命令执行成功</li>
-<li>150 - 文件状态正常，开启数据连接端口</li>
-<li>250 - 目录切换操作完成</li>
-<li>226 - 关闭数据连接端口，请求的文件操作成功</li>
-</ul>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="http://hx100.blog.51cto.com/44326/383143/" target="_blank" rel="noopener">Vsftpd虚拟用户的配置</a></li>
-<li><a href="http://www.cnblogs.com/flandre/p/6051532.html" target="_blank" rel="noopener">CentOS7安装和配置FTP</a></li>
-</ul>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/08/26/os-linux-CentOS7更换yum软件镜像源/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1149,6 +950,178 @@
 <li>浙江大学：<a href="http://mirrors.zju.edu.cn/" target="_blank" rel="noopener">http://mirrors.zju.edu.cn/</a></li>
 <li>东软信息学院：<a href="http://mirrors.neusoft.edu.cn/" target="_blank" rel="noopener">http://mirrors.neusoft.edu.cn/</a></li>
 </ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/08/26/os-linux-CentOS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2015/08/26/os-linux-CentOS/" class="post-title-link" itemprop="url">Centos常用命令</a>
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00+08:00">2015-08-26</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-29 15:18:31" itemprop="dateModified" datetime="2019-08-29T15:18:31+08:00">2019-08-29</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/08/26/os-linux-CentOS/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-CentOS/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>6.4k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>6 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h1><p>username:root<br>password:安装时设置的密码  </p>
+<p>其它终端登录 <code>$ ssh root@192.168.0.23</code>  </p>
+<h1 id="系统配置情况命令"><a href="#系统配置情况命令" class="headerlink" title="系统配置情况命令"></a>系统配置情况命令</h1><h2 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/redhat-release # CentOS 查看系统信息</span><br><span class="line">uname -a                # 查看内核/操作系统/CPU信息</span><br><span class="line">head -n 1 /etc/issue    # 查看操作系统版本</span><br><span class="line">cat /proc/cpuinfo       # 查看CPU信息</span><br><span class="line">hostname                # 查看计算机名</span><br><span class="line">lspci -tv               # 列出所有PCI设备</span><br><span class="line">lsusb -tv               # 列出所有USB设备</span><br><span class="line">lsmod                   # 列出加载的内核模块</span><br><span class="line">env                     # 查看环境变量</span><br><span class="line">dmidecode | grep "Product Nmae"   #查看服务器型号</span><br></pre></td></tr></table></figure>
+
+<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">free -m                # 查看内存使用量和交换区使用量</span><br><span class="line">df -h                  # 查看各分区使用情况</span><br><span class="line">du -sh &lt;目录名&gt;        # 查看指定目录的大小</span><br><span class="line">grep MemTotal /proc/meminfo   # 查看内存总量</span><br><span class="line">grep MemFree /proc/meminfo    # 查看空闲内存量</span><br><span class="line">uptime                 # 查看系统运行时间、用户数、负载</span><br><span class="line">cat /proc/loadavg      # 查看系统负载</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看内存的插槽数，已经使用多少插槽。每条内存多大，已使用内存多大</span></span><br><span class="line">dmidecode|grep -P -A5 "Memory\s+Device"|grep Size|grep -v Range </span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看内存支持的最大内存容量</span></span><br><span class="line">dmidecode|grep -P 'Maximum\s+Capacity'</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看内存的频率</span></span><br><span class="line">dmidecode|grep -A16 "Memory Device"</span><br><span class="line">dmidecode|grep -A16 "Memory Device"|grep 'Speed'</span><br></pre></td></tr></table></figure>
+
+<h2 id="磁盘和分区"><a href="#磁盘和分区" class="headerlink" title="磁盘和分区"></a>磁盘和分区</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mount | column -t      # 查看挂接的分区状态</span><br><span class="line">fdisk -l               # 查看所有分区</span><br><span class="line">swapon -s              # 查看所有交换分区</span><br><span class="line">hdparm -i /dev/hda     # 查看磁盘参数(仅适用于IDE设备)</span><br><span class="line">dmesg | grep IDE       # 查看启动时IDE设备检测状况</span><br></pre></td></tr></table></figure>
+
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ifconfig               # 查看所有网络接口的属性</span><br><span class="line">iptables -L            # 查看防火墙设置</span><br><span class="line">route -n               # 查看路由表</span><br><span class="line">netstat -lntp          # 查看所有监听端口</span><br><span class="line">netstat -antp          # 查看所有已经建立的连接</span><br><span class="line">netstat -s             # 查看网络统计信息</span><br></pre></td></tr></table></figure>
+
+<h2 id="进程查看"><a href="#进程查看" class="headerlink" title="进程查看"></a>进程查看</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -ef                 # 查看所有进程</span><br><span class="line">top                    # 实时显示进程状态</span><br></pre></td></tr></table></figure>
+
+<h2 id="系统时间"><a href="#系统时间" class="headerlink" title="系统时间"></a>系统时间</h2><p><strong>UTC</strong>: 整个地球分为二十四时区，每个时区都有自己的本地时间。在国际无线电通信场合，为了统一起见，使用一个统一的时间，称为通用协调时(UTC, Universal Time Coordinated)。<br><strong>GMT</strong>: 格林威治标准时间 (Greenwich Mean Time)指位于英国伦敦郊区的皇家格林尼治天文台的标准时间，因为本初子午线被定义在通过那里的经线。(UTC与GMT时间基本相同)<br><strong>CST</strong>: 中国标准时间 (China Standard Time)。<code>GMT + 8 = UTC + 8 = CST</code><br><strong>DST</strong>: 夏令时(Daylight Saving Time) 指在夏天太阳升起的比较早时，将时钟拨快一小时，以提早日光的使用。(中国不使用)<br><strong>硬件时钟</strong>: RTC(Real-Time Clock)或CMOS时钟，一般在主板上靠电池供电，服务器断电后也会继续运行。仅保存日期时间数值，无法保存时区和夏令时设置。<br><strong>系统时钟</strong>: 一般在服务器启动时复制RTC时间，之后独立运行，保存了时间、时区和夏令时设置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">timedatectl  <span class="comment"># 等同于 timedatectl status</span></span><br><span class="line">timedatectl <span class="built_in">set</span>-time <span class="string">"YYYY-MM-DD HH:MM:SS"</span>  <span class="comment"># 设置时间</span></span><br><span class="line">timedatectl list-timezones                  <span class="comment"># 列出所有时区</span></span><br><span class="line">timedatectl <span class="built_in">set</span>-timezone Asia/Shanghai      <span class="comment"># 设置时区</span></span><br><span class="line">timedatectl <span class="built_in">set</span>-ntp yes                     <span class="comment"># 是否NTP服务器同步, yes或者no</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将硬件时钟调整为与本地时钟一致</span></span><br><span class="line">timedatectl <span class="built_in">set</span>-local-rtc 1</span><br><span class="line">hwclock --systohc --localtime <span class="comment"># 与上面命令效果一致   </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 硬件时间设置成 UTC</span></span><br><span class="line">timedatectl <span class="built_in">set</span>-local-rtc 1</span><br><span class="line">hwclock --systohc --utc //与上面命令效果一致</span><br></pre></td></tr></table></figure>
+
+<h2 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">w                         # 查看活动用户</span><br><span class="line">id &lt;用户名&gt;                # 查看指定用户信息</span><br><span class="line">last                      # 查看用户登录日志</span><br><span class="line">cut -d: -f1 /etc/passwd   # 查看系统所有用户</span><br><span class="line">cut -d: -f1 /etc/group    # 查看系统所有组</span><br><span class="line">crontab -l                # 查看当前用户的计划任务</span><br></pre></td></tr></table></figure>
+
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看网络接口统计数据的，两种发放  </span></span><br><span class="line">ip link # 或者下面方法</span><br><span class="line">ip -s link </span><br><span class="line"></span><br><span class="line">yum install net-tools # net-tools包提供了ifconfig命令  </span><br><span class="line">ifconfig -a # 查看IP地址  </span><br><span class="line">ip addr # 查看IP地址   </span><br><span class="line">route -n # 使用最快的速度查找主机的路由  </span><br><span class="line"></span><br><span class="line">cat /proc/version # 查看系统信息  </span><br><span class="line">  uname -a # 方法二  </span><br><span class="line">  uname -r #方法三  </span><br><span class="line">getconf LONG_BIT # 查看系统是64位还是32位  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">uname -a  # 查看内核/操作系统/CPU信息  </span><br><span class="line">head -n 1 /etc/issue  #查看操作系统版本  </span><br><span class="line">cat /proc/cpuinfo  #查看CPU信息  </span><br><span class="line">hostname   #查看计算机名  </span><br><span class="line">lspci -tv  #列出所有PCI设备  </span><br><span class="line">lsusb -tv  #列出所有USB设备  </span><br><span class="line">lsmod  #列出加载的内核模块  </span><br><span class="line">env    #查看环境变量  </span><br><span class="line">arch   # 显示机器的处理器架构(1)  </span><br><span class="line">uname -m  # 显示机器的处理器架构(2)  </span><br><span class="line">uname -r  # 显示正在使用的内核版本  </span><br><span class="line">dmidecode -q  # 显示硬件系统部件  </span><br><span class="line">hdparm -i /dev/hda   # 罗列一个磁盘的架构特性  </span><br><span class="line">hdparm -tT /dev/sda  # 在磁盘上执行测试性读取操作  </span><br><span class="line">cat /proc/interrupts # 显示中断  </span><br><span class="line">cat /proc/meminfo  # 校验内存使用  </span><br><span class="line">cat /proc/swaps    # 显示哪些swap被使用  </span><br><span class="line">cat /proc/version  # 显示内核的版本  </span><br><span class="line">cat /proc/net/dev  # 显示网络适配器及统计  </span><br><span class="line">cat /proc/mounts   # 显示已加载的文件系统  </span><br><span class="line">lspci -tv  # 罗列 PCI 设备  </span><br><span class="line">lsusb -tv  # 显示 USB 设备  </span><br><span class="line">date  # 显示系统日期  </span><br><span class="line">date 041217002007.00  # 设置日期和时间 – 月日时分年.秒  </span><br><span class="line">cal 2007  # 显示2007年的日历表  </span><br><span class="line">clock -w  # 将时间修改保存到 BIOS</span><br></pre></td></tr></table></figure>
+
+<h2 id="系统的关机、重启以及登出"><a href="#系统的关机、重启以及登出" class="headerlink" title="系统的关机、重启以及登出"></a>系统的关机、重启以及登出</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">shutdown -h now <span class="comment"># 关闭系统(1)   </span></span><br><span class="line">init 0 <span class="comment"># 关闭系统(2)   </span></span><br><span class="line">telinit 0 <span class="comment"># 关闭系统(3)   </span></span><br><span class="line">shutdown -h hours:minutes &amp;  <span class="comment">#按预定时间关闭系统   </span></span><br><span class="line">shutdown -c  <span class="comment">#取消按预定时间关闭系统   </span></span><br><span class="line">shutdown -r now <span class="comment"># 重启  (1)   </span></span><br><span class="line">reboot  <span class="comment">#重启  (2)   </span></span><br><span class="line"><span class="built_in">logout</span> <span class="comment"># 注销</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看网络配置的命令"><a href="#查看网络配置的命令" class="headerlink" title="查看网络配置的命令"></a>查看网络配置的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ifconfig <span class="comment"># 查看所有网络接口的属性   </span></span><br><span class="line">iptables -L <span class="comment"># 查看防火墙设置   </span></span><br><span class="line">route -n <span class="comment"># 查看路由表   </span></span><br><span class="line">netstat -lntp <span class="comment"># 查看所有监听端口   </span></span><br><span class="line">netstat -antp <span class="comment"># 查看所有已经建立的连接   </span></span><br><span class="line">netstat -s <span class="comment"># 查看网络统计信息</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看linux进程"><a href="#查看linux进程" class="headerlink" title="查看linux进程"></a>查看linux进程</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps -aux | grep node <span class="comment"># 查看`node`进程  </span></span><br><span class="line">ps -ef <span class="comment"># 查看所有进程   </span></span><br><span class="line">top <span class="comment"># 实时显示进程状态</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="杀进程"><a href="#杀进程" class="headerlink" title="杀进程"></a>杀进程</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">killall -9 websocket <span class="comment"># 干掉`websocket`服务进程  </span></span><br><span class="line">ps aux | grep mysql <span class="comment"># 查看mysql进程  </span></span><br><span class="line"><span class="built_in">kill</span> -9 35562 <span class="comment"># 根据进程号杀</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看用户的命令"><a href="#查看用户的命令" class="headerlink" title="查看用户的命令"></a>查看用户的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">w <span class="comment"># 查看活动用户   </span></span><br><span class="line">id &lt;用户名&gt; <span class="comment"># 查看指定用户信息   </span></span><br><span class="line">last <span class="comment"># 查看用户登录日志   </span></span><br><span class="line">cut -d: -f1 /etc/passwd <span class="comment"># 查看系统所有用户   </span></span><br><span class="line">cut -d: -f1 /etc/group <span class="comment"># 查看系统所有组   </span></span><br><span class="line">crontab -l <span class="comment"># 查看当前用户的计划任务</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="log日志查看"><a href="#log日志查看" class="headerlink" title="log日志查看"></a>log日志查看</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /var/<span class="built_in">log</span>/messages <span class="comment"># 查询日志的全部内容</span></span><br><span class="line">head -5 /var/<span class="built_in">log</span>/messages <span class="comment"># 查询日志的前5行</span></span><br><span class="line">tail -5 /var/<span class="built_in">log</span>/messages <span class="comment"># 查询日志的最新5行</span></span><br><span class="line">sed -n <span class="string">'5,10p'</span> /var/<span class="built_in">log</span>/messages <span class="comment"># 查询日志的5到10行</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看系统服务的命令"><a href="#查看系统服务的命令" class="headerlink" title="查看系统服务的命令"></a>查看系统服务的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig –list <span class="comment"># 列出所有系统服务   </span></span><br><span class="line">chkconfig –list | grep on <span class="comment"># 列出所有启动的系统服务</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装程序的命令"><a href="#安装程序的命令" class="headerlink" title="安装程序的命令"></a>安装程序的命令</h2><p><code>rpm -qa</code> 查看所有安装的软件包  </p>
+<h2 id="获取帮助的命令"><a href="#获取帮助的命令" class="headerlink" title="获取帮助的命令"></a>获取帮助的命令</h2><p><code>man &lt;命令&gt;</code> 获得命令帮助  </p>
+<h1 id="安装软件方法"><a href="#安装软件方法" class="headerlink" title="安装软件方法"></a>安装软件方法</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装下载工具wget</span></span><br><span class="line">$ yum install wget</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">$ wget https://nodejs.org/dist/v4.4.4/node-v4.4.4-linux-x64.tar.xz</span><br><span class="line">       https://nodejs.org/dist/v4.4.5/node-v4.4.5-linux-x64.tar.xz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试安装</span></span><br><span class="line"><span class="comment"># 没有用到`gzip`压缩去掉`z`参数</span></span><br><span class="line">$ sudo tar --strip-components 1 -xzvf node-v* -C /usr/<span class="built_in">local</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="yum错误"><a href="#yum错误" class="headerlink" title="yum错误"></a>yum错误</h1><p>yum错误：Cannot retrieve repository metadata (repomd.xml) for repository解决方法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/yum.repos.d/</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<p>找到<code>yum.repos.d</code>这个目录，里面有个文件，以<code>.repo</code> 结尾的，例如<code>zl.repo</code>删除<br>然后<code>#yum clean all</code>  </p>
+<h1 id="安装源"><a href="#安装源" class="headerlink" title="安装源"></a>安装源</h1><p><a href="http://dl.fedoraproject.org/pub/" target="_blank" rel="noopener">http://dl.fedoraproject.org/pub/</a><br><a href="http://rpms.remirepo.net/enterprise/" target="_blank" rel="noopener">http://rpms.remirepo.net/enterprise/</a></p>
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p><a href="https://www.centos.org/" target="_blank" rel="noopener">www.centos.org</a></p>
+<p><a href="http://mirror.neu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirror.neu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://centos.ustc.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://centos.ustc.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.163.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.163.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.hust.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.hust.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.zju.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.zju.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.cqu.edu.cn/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.cqu.edu.cn/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.cug.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.cug.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.neusoft.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.neusoft.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.skyshe.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.skyshe.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.aliyun.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.aliyun.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.nwsuaf.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.nwsuaf.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirror.bit.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirror.bit.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirror.lzu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirror.lzu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://ftp.sjtu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://ftp.sjtu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.yun-idc.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.yun-idc.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.pubyun.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.pubyun.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a> </p>
 
         
       
