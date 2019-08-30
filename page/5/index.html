@@ -269,7 +269,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2017/11/16/lang-java-What-s-New-in-JDK8-JDK8接口规范-静态、默认方法/">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2019/07/28/lang-python-Python-100-Days-02-语言元素/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -283,7 +283,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2017/11/16/lang-java-What-s-New-in-JDK8-JDK8接口规范-静态、默认方法/" class="post-title-link" itemprop="url">JDK8接口规范</a>
+            <a href="/2019/07/28/lang-python-Python-100-Days-02-语言元素/" class="post-title-link" itemprop="url">02.语言元素</a>
           
         </h1>
 
@@ -300,7 +300,7 @@
                 
               
 
-              <time title="创建时间：2017-11-16 00:00:00" itemprop="dateCreated datePublished" datetime="2017-11-16T00:00:00+08:00">2017-11-16</time>
+              <time title="创建时间：2019-07-28 00:08:02" itemprop="dateCreated datePublished" datetime="2019-07-28T00:08:02+08:00">2019-07-28</time>
             </span>
           
             
@@ -311,7 +311,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-28 18:23:08" itemprop="dateModified" datetime="2019-08-28T18:23:08+08:00">2019-08-28</time>
+                <time title="修改时间：2019-08-30 23:13:53" itemprop="dateModified" datetime="2019-08-30T23:13:53+08:00">2019-08-30</time>
               </span>
             
           
@@ -340,7 +340,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2017/11/16/lang-java-What-s-New-in-JDK8-JDK8接口规范-静态、默认方法/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2017/11/16/lang-java-What-s-New-in-JDK8-JDK8接口规范-静态、默认方法/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/07/28/lang-python-Python-100-Days-02-语言元素/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/07/28/lang-python-Python-100-Days-02-语言元素/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -352,7 +352,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>4.5k</span>
+              <span>4.4k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -375,500 +375,126 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>在JDK8中引入了lambda表达式，出现了函数式接口的概念，为了在扩展接口时保持向前兼容性(比如泛型也是为了保持兼容性而失去了在一些别的语言泛型拥有的功能)，Java接口规范发生了一些改变。。</p>
-<h2 id="1-JDK8以前的接口规范"><a href="#1-JDK8以前的接口规范" class="headerlink" title="1.JDK8以前的接口规范"></a>1.JDK8以前的接口规范</h2><ul>
-<li>JDK8以前接口可以定义的变量和方法<ul>
-<li>所有变量(Field)不论是否<i>显式</i> 的声明为<figure class="highlight plain"><figcaption><span>static final```，它实际上都是```public static final```的。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   - 所有方法(Method)不论是否&lt;i&gt;显示&lt;/i&gt; 的声明为```public abstract```，它实际上都是```public abstract```的。</span><br><span class="line">```java</span><br><span class="line">public interface AInterfaceBeforeJDK8 &#123;</span><br><span class="line">    int FIELD = 0;</span><br><span class="line">    void simpleMethod();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<p>以上接口信息反编译以后可以看到字节码信息里Filed是public static final的，而方法是public abstract的，即是你没有显示的去声明它。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> FIELD;</span><br><span class="line">    descriptor: I</span><br><span class="line">    flags: (<span class="number">0x0019</span>) ACC_PUBLIC, ACC_STATIC, ACC_FINAL</span><br><span class="line">    ConstantValue: <span class="keyword">int</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">simpleMethod</span><span class="params">()</span></span>;</span><br><span class="line">    descriptor: ()V</span><br><span class="line">    flags: (<span class="number">0x0401</span>) ACC_PUBLIC, ACC_ABSTRACT</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-JDK8之后的接口规范"><a href="#2-JDK8之后的接口规范" class="headerlink" title="2.JDK8之后的接口规范"></a>2.JDK8之后的接口规范</h2><ul>
-<li>JDK8之后接口可以定义的变量和方法<ul>
-<li>变量(Field)仍然必须是 <figure class="highlight java"><figcaption><span>public static final```的</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  - 方法(Method)除了可以是<span class="keyword">public</span> <span class="keyword">abstract</span>之外，还可以是<span class="keyword">public</span> <span class="keyword">static</span>或者是<span class="keyword">default</span>(相当于仅<span class="keyword">public</span>修饰的实例方法)的。</span><br><span class="line">从以上改变不难看出，修改接口的规范主要是为了能在扩展接口时保持向前兼容。</span><br><span class="line">&lt;br&gt;下面是一个JDK8之后的接口例子</span><br><span class="line">```java</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AInterfaceInJDK8</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> simpleFiled = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> staticField = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">staticMethod</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">defaultMethod</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">simpleMethod</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<p>进行反编译(去除了一些没用信息)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> simpleFiled;</span><br><span class="line">    flags: (<span class="number">0x0019</span>) ACC_PUBLIC, ACC_STATIC, ACC_FINAL</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> staticField;</span><br><span class="line">    flags: (<span class="number">0x0019</span>) ACC_PUBLIC, ACC_STATIC, ACC_FINAL</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(java.lang.String[])</span></span>;</span><br><span class="line">    flags: (<span class="number">0x0009</span>) ACC_PUBLIC, ACC_STATIC</span><br><span class="line">    </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">staticMethod</span><span class="params">()</span></span>;</span><br><span class="line">    flags: (<span class="number">0x0009</span>) ACC_PUBLIC, ACC_STATIC</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">defaultMethod</span><span class="params">()</span></span>;</span><br><span class="line">    flags: (<span class="number">0x0001</span>) ACC_PUBLIC</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">simpleMethod</span><span class="params">()</span> <span class="keyword">throws</span> java.io.IOException</span>;</span><br><span class="line">    flags: (<span class="number">0x0401</span>) ACC_PUBLIC, ACC_ABSTRACT</span><br><span class="line">    Exceptions:</span><br><span class="line">      <span class="keyword">throws</span> java.io.IOException</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到 default关键字修饰的方法是像实例方法一样定义的，所以我们来定义一个只有default的方法并且实现一下试一试。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4396</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultMethod</span> <span class="keyword">implements</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        DefaultMethod defaultMethod = <span class="keyword">new</span> DefaultMethod();</span><br><span class="line">        System.out.println(defaultMethod.defaultMethod());</span><br><span class="line">        <span class="comment">//compile error : Non-static method 'defaultMethod()' cannot be referenced from a static context</span></span><br><span class="line">        <span class="comment">//! DefaultMethod.defaultMethod();</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到default方法确实像实例方法一样，必须有实例对象才能调用，并且子类在实现接口时，可以不用实现default方法，也可以覆盖该方法。<br>这有点像子类继承父类实例方法。<br><br><br>接口静态方法就像是类静态方法，唯一的区别是<strong>接口静态方法只能通过接口名调用，而类静态方法既可以通过类名调用也可以通过实例调用</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Static</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">staticMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4396</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> ... main(String...args)</span><br><span class="line">    <span class="comment">//!compile error: Static method may be invoked on containing interface class only</span></span><br><span class="line">    <span class="comment">//!aInstanceOfStatic.staticMethod();</span></span><br><span class="line"> ...</span><br></pre></td></tr></table></figure>
-
-<p>另一个问题是多继承问题，大家知道Java中类是不支持多继承的，但是接口是多继承和多实现(implements后跟多个接口)的，<br>那么如果一个接口继承另一个接口，两个接口都有同名的default方法会怎么样呢？答案是会像类继承一样覆写(@Override)，以下代码在IDE中可以顺利编译</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4396</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default2</span> <span class="keyword">extends</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">9527</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultMethod</span> <span class="keyword">implements</span> <span class="title">Default</span>,<span class="title">Default2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        DefaultMethod defaultMethod = <span class="keyword">new</span> DefaultMethod();</span><br><span class="line">        System.out.println(defaultMethod.defaultMethod());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出 : <span class="number">9527</span></span><br></pre></td></tr></table></figure>
-
-<p>出现上面的情况时，会优先找继承树上近的方法，类似于“短路优先”。<br><br><br>那么如果一个类实现了两个没有继承关系的接口，且这两个接口有同名方法的话会怎么样呢？IDE会要求你重写这个冲突的方法，让你自己选择去执行哪个方法，因为IDE它<br>还没智能到你不告诉它，它就知道你想执行哪个方法。可以通过<figure class="highlight java"><figcaption><span>接口名.super```指针来访问接口中定义的实例(default)方法。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">```java</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4396</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">9527</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//如果不重写</span></span><br><span class="line"><span class="comment">//compile error : defaults.DefaultMethod inherits unrelated defaults for defaultMethod() from types defaults.Default and defaults.Default2</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultMethod</span> <span class="keyword">implements</span> <span class="title">Default</span>,<span class="title">Default2</span> </span>&#123;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(Default.<span class="keyword">super</span>.defaultMethod());</span><br><span class="line">        System.out.println(Default2.<span class="keyword">super</span>.defaultMethod());</span><br><span class="line">        <span class="keyword">return</span> <span class="number">996</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        DefaultMethod defaultMethod = <span class="keyword">new</span> DefaultMethod();</span><br><span class="line">        System.out.println(defaultMethod.defaultMethod());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">运行输出 : </span><br><span class="line"><span class="number">4396</span></span><br><span class="line"><span class="number">9527</span></span><br><span class="line"><span class="number">996</span></span><br></pre></td></tr></table></figure></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2017/11/15/lang-java-What-s-New-in-JDK8-改进的类型推断/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2017/11/15/lang-java-What-s-New-in-JDK8-改进的类型推断/" class="post-title-link" itemprop="url">改进的类型推断</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2017-11-15 00:00:00" itemprop="dateCreated datePublished" datetime="2017-11-15T00:00:00+08:00">2017-11-15</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-28 18:23:01" itemprop="dateModified" datetime="2019-08-28T18:23:01+08:00">2019-08-28</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/lang/" itemprop="url" rel="index"><span itemprop="name">lang</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2017/11/15/lang-java-What-s-New-in-JDK8-改进的类型推断/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2017/11/15/lang-java-What-s-New-in-JDK8-改进的类型推断/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>1k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>1 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1-什么是类型推断"><a href="#1-什么是类型推断" class="headerlink" title="1.什么是类型推断"></a>1.什么是类型推断</h3><p>类型推断就像它的字面意思一样，编译器根据<b><i>你显示声明的已知的信息</i></b> 推断出你没有显示声明的类型，这就是类型推断。<br>看过《Java编程思想 第四版》的朋友可能还记得里面讲解泛型一章的时候，里面很多例子是下面这样的:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Object&gt; map = <span class="keyword">new</span> Map&lt;String, Object&gt;();</span><br></pre></td></tr></table></figure>
-
-<p>而我们平常写的都是这样的:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Object&gt; map = <span class="keyword">new</span> Map&lt;&gt;();</span><br></pre></td></tr></table></figure>
-
-<p>这就是类型推断，《Java编程思想 第四版》这本书出书的时候最新的JDK只有1.6(JDK7推出的类型推断)，在Java编程思想里Bruce Eckel大叔还提到过这个问题<br>(可能JDK的官方人员看了Bruce Eckel大叔的Thinking in Java才加的类型推断，☺)，在JDK7中推出了上面这样的类型推断，可以减少一些无用的代码。<br>(Java编程思想到现在还只有第四版，是不是因为Bruce Eckel大叔觉得Java新推出的语言特性“然并卵”呢？/滑稽)<br><br><br>在JDK7中，类型推断只有上面例子的那样的能力，即只有在使用<strong>赋值语句</strong>时才能自动推断出泛型参数信息(即&lt;&gt;里的信息)，下面的官方文档里的例子在JDK7里会编译<br>错误</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; stringList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">stringList.add(<span class="string">"A"</span>);</span><br><span class="line"><span class="comment">//error : addAll(java.util.Collection&lt;? extends java.lang.String&gt;)in List cannot be applied to (java.util.List&lt;java.lang.Object&gt;)</span></span><br><span class="line">stringList.addAll(Arrays.asList());</span><br></pre></td></tr></table></figure>
-
-<p>但是上面的代码在JDK8里可以通过，也就说，JDK8里，类型推断不仅可以用于赋值语句，而且可以根据代码中上下文里的信息推断出更多的信息，因此我们需要些的代码<br>会更少。加强的类型推断还有一个就是用于Lambda表达式了。<br><br><br>大家其实不必细究类型推断，在日常使用中IDE会自动判断，当IDE自己无法推断出足够的信息时，就需要我们额外做一下工作，比如在&lt;&gt;里添加更多的类型信息，<br>相信随着Java的进化，这些便利的功能会越来越强大。</p>
-<!-- --------------------------------------------------- 改进的类型推断结束------------------------------------------------- -->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2017/11/15/lang-java-What-s-New-in-JDK8-Stream/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2017/11/15/lang-java-What-s-New-in-JDK8-Stream/" class="post-title-link" itemprop="url">Stream API</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2017-11-15 00:00:00" itemprop="dateCreated datePublished" datetime="2017-11-15T00:00:00+08:00">2017-11-15</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-28 18:23:16" itemprop="dateModified" datetime="2019-08-28T18:23:16+08:00">2019-08-28</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/lang/" itemprop="url" rel="index"><span itemprop="name">lang</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2017/11/15/lang-java-What-s-New-in-JDK8-Stream/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2017/11/15/lang-java-What-s-New-in-JDK8-Stream/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>1.4k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>1 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Stream API 旨在让编码更高效率、干净、简洁。</p>
-<h3 id="从迭代器到Stream操作"><a href="#从迭代器到Stream操作" class="headerlink" title="从迭代器到Stream操作"></a>从迭代器到Stream操作</h3><p>当使用 <code>Stream</code> 时，我们一般会通过三个阶段建立一个流水线：</p>
-<ol>
-<li>创建一个 <code>Stream</code>；</li>
-<li>进行一个或多个中间操作;</li>
-<li>使用终止操作产生一个结果,<code>Stream</code> 就不会再被使用了。</li>
-</ol>
-<p><strong>案例1：统计 List 中的单词长度大于6的个数</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 案例1：统计 List 中的单词长度大于6的个数</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">ArrayList&lt;String&gt; wordsList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">wordsList.add(<span class="string">"Charles"</span>);</span><br><span class="line">wordsList.add(<span class="string">"Vincent"</span>);</span><br><span class="line">wordsList.add(<span class="string">"William"</span>);</span><br><span class="line">wordsList.add(<span class="string">"Joseph"</span>);</span><br><span class="line">wordsList.add(<span class="string">"Henry"</span>);</span><br><span class="line">wordsList.add(<span class="string">"Bill"</span>);</span><br><span class="line">wordsList.add(<span class="string">"Joan"</span>);</span><br><span class="line">wordsList.add(<span class="string">"Linda"</span>);</span><br><span class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-
-<p>Java8之前我们通常用迭代方法来完成上面的需求：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//迭代（Java8之前的常用方法）</span></span><br><span class="line"><span class="comment">//迭代不好的地方：1. 代码多；2 很难被并行运算。</span></span><br><span class="line"><span class="keyword">for</span> (String word : wordsList) &#123;</span><br><span class="line">    <span class="keyword">if</span> (word.length() &gt; <span class="number">6</span>) &#123;</span><br><span class="line">        count++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(count);<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
-
-<p>Java8之前我们使用 <code>Stream</code> 一行代码就能解决了，而且可以瞬间转换为并行执行的效果：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Stream</span></span><br><span class="line"><span class="comment">//将stream()改为parallelStream()就可以瞬间将代码编程并行执行的效果</span></span><br><span class="line"><span class="keyword">long</span> count2=wordsList.stream()</span><br><span class="line">    .filter(w-&gt;w.length()&gt;<span class="number">6</span>)</span><br><span class="line">    .count();</span><br><span class="line"><span class="keyword">long</span> count3=wordsList.parallelStream()</span><br><span class="line">    .filter(w-&gt;w.length()&gt;<span class="number">6</span>)</span><br><span class="line">    .count();</span><br><span class="line">System.out.println(count2);</span><br><span class="line">System.out.println(count3);</span><br></pre></td></tr></table></figure>
-
-<h3 id="distinct"><a href="#distinct" class="headerlink" title="distinct()"></a><code>distinct()</code></h3><p>去除 List 中重复的 String</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = list.stream()</span><br><span class="line">    .distinct()</span><br><span class="line">    .collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
-
-<h3 id="map"><a href="#map" class="headerlink" title="map"></a><code>map</code></h3><p>map 方法用于映射每个元素到对应的结果，以下代码片段使用 map 输出了元素对应的平方数：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; numbers = Arrays.asList(<span class="number">3</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">5</span>);</span><br><span class="line"><span class="comment">// 获取 List 中每个元素对应的平方数并去重</span></span><br><span class="line">List&lt;Integer&gt; squaresList = numbers.stream().map( i -&gt; i*i).distinct().collect(Collectors.toList());</span><br><span class="line">System.out.println(squaresList.toString());<span class="comment">//[9, 4, 49, 25]</span></span><br></pre></td></tr></table></figure>
-
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2017/11/15/utils-数据通信-RESTful、RPC、消息队列/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2017/11/15/utils-数据通信-RESTful、RPC、消息队列/" class="post-title-link" itemprop="url">RPC</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2017-11-15 00:00:00" itemprop="dateCreated datePublished" datetime="2017-11-15T00:00:00+08:00">2017-11-15</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-28 18:32:38" itemprop="dateModified" datetime="2019-08-28T18:32:38+08:00">2019-08-28</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/utils/" itemprop="url" rel="index"><span itemprop="name">utils</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2017/11/15/utils-数据通信-RESTful、RPC、消息队列/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2017/11/15/utils-数据通信-RESTful、RPC、消息队列/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>1.6k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>1 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<h2 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h2></blockquote>
-<p><strong>RPC（Remote Procedure Call）—远程过程调用</strong> ，它是一种通过网络从远程计算机程序上请求服务，而不需要了解底层网络技术的协议。RPC协议假定某些传输协议的存在，如TCP或UDP，为通信程序之间携带信息数据。在OSI网络通信模型中，RPC跨越了传输层和应用层。RPC使得开发分布式程序就像开发本地程序一样简单。</p>
-<p><strong>RPC采用客户端（服务调用方）/服务器端（服务提供方）模式，</strong> 都运行在自己的JVM中。客户端只需要引入要使用的接口，接口的实现和运行都在服务器端。RPC主要依赖的技术包括序列化、反序列化和数据传输协议，这是一种定义与实现相分离的设计。</p>
-<p><strong>目前Java使用比较多的RPC方案主要有RMI（JDK自带）、Hessian、Dubbo以及Thrift等。</strong></p>
-<p><strong>注意： RPC主要指内部服务之间的调用，RESTful也可以用于内部服务之间的调用，但其主要用途还在于外部系统提供服务，因此没有将其包含在本知识点内。</strong></p>
-<h3 id="常见RPC框架："><a href="#常见RPC框架：" class="headerlink" title="常见RPC框架："></a>常见RPC框架：</h3><ul>
-<li><p><strong>RMI（JDK自带）：</strong> JDK自带的RPC</p>
-<p> 详细内容可以参考：<a href="https://blog.csdn.net/lmy86263/article/details/72594760" target="_blank" rel="noopener">从懵逼到恍然大悟之Java中RMI的使用</a></p>
-</li>
-<li><p><strong>Dubbo:</strong> Dubbo是 阿里巴巴公司开源的一个高性能优秀的服务框架，使得应用可通过高性能的 RPC 实现服务的输出和输入功能，可以和 Spring框架无缝集成。</p>
-<p>详细内容可以参考：</p>
-<ul>
-<li><p><a href="https://blog.csdn.net/qq_34337272/article/details/79862899" target="_blank" rel="noopener"> 高性能优秀的服务框架-dubbo介绍</a></p>
-</li>
-<li><p><a href="https://blog.csdn.net/houshaolin/article/details/76408399" target="_blank" rel="noopener">Dubbo是什么？能做什么？</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p><strong>Hessian：</strong> Hessian是一个轻量级的remotingonhttp工具，使用简单的方法提供了RMI的功能。 相比WebService，Hessian更简单、快捷。采用的是二进制RPC协议，因为采用的是二进制协议，所以它很适合于发送二进制数据。</p>
-<p>详细内容可以参考： <a href="https://blog.csdn.net/sunwei_pyw/article/details/74002351" target="_blank" rel="noopener">Hessian的使用以及理解</a></p>
-</li>
-<li><p><strong>Thrift：</strong>  Apache Thrift是Facebook开源的跨语言的RPC通信框架，目前已经捐献给Apache基金会管理，由于其跨语言特性和出色的性能，在很多互联网公司得到应用，有能力的公司甚至会基于thrift研发一套分布式服务框架，增加诸如服务注册、服务发现等功能。</p>
-</li>
-</ul>
-<pre><code>详细内容可以参考： [【Java】分布式RPC通信框架Apache Thrift 使用总结](https://www.cnblogs.com/zeze/p/8628585.html)</code></pre><h3 id="如何进行选择："><a href="#如何进行选择：" class="headerlink" title="如何进行选择："></a>如何进行选择：</h3><ul>
-<li><strong>是否允许代码侵入：</strong>  即需要依赖相应的代码生成器生成代码，比如Thrift。</li>
-<li><strong>是否需要长连接获取高性能：</strong>  如果对于性能需求较高的haul，那么可以果断选择基于TCP的Thrift、Dubbo。</li>
-<li><strong>是否需要跨越网段、跨越防火墙：</strong> 这种情况一般选择基于HTTP协议的Hessian和Thrift的HTTP Transport。</li>
-</ul>
-<p>此外，Google推出的基于HTTP2.0的gRPC框架也开始得到应用，其序列化协议基于Protobuf，网络框架使用的是Netty4,但是其需要生成代码，可扩展性也比较差。  </p>
+          <h2 id="语言元素"><a href="#语言元素" class="headerlink" title="语言元素"></a>语言元素</h2><h4 id="指令和程序"><a href="#指令和程序" class="headerlink" title="指令和程序"></a>指令和程序</h4><p>计算机的硬件系统通常由五大部件构成，包括：运算器、控制器、存储器、输入设备和输出设备。其中，运算器和控制器放在一起就是我们通常所说的中央处理器，它的功能是执行各种运算和控制指令以及处理计算机软件中的数据。我们通常所说的程序实际上就是指令的集合，我们程序就是将一系列的指令按照某种方式组织到一起，然后通过这些指令去控制计算机做我们想让它做的事情。今天我们大多数时候使用的计算机，虽然它们的元器件做工越来越精密，处理能力越来越强大，但究其本质来说仍然属于<a href="https://zh.wikipedia.org/wiki/%E5%86%AF%C2%B7%E8%AF%BA%E4%BC%8A%E6%9B%BC%E7%BB%93%E6%9E%84" target="_blank" rel="noopener">“冯·诺依曼结构”</a>的计算机。“冯·诺依曼结构”有两个关键点，一是指出要将存储设备与中央处理器分开，二是提出了将数据以二进制方式编码。二进制是一种“逢二进一”的计数法，跟我们人类使用的“逢十进一”的计数法没有实质性的区别，人类因为有十根手指所以使用了十进制（因为在数数时十根手指用完之后就只能进位了，当然凡事都有例外，玛雅人可能是因为长年光着脚的原因把脚趾头也算上了，于是他们使用了二十进制的计数法，在这种计数法的指导下玛雅人的历法就与我们平常使用的历法不一样，而按照玛雅人的历法，2012年是上一个所谓的“太阳纪”的最后一年，而2013年则是新的“太阳纪”的开始，后来这件事情被以讹传讹的方式误传为”2012年是玛雅人预言的世界末日“这种荒诞的说法，今天我们可以大胆的猜测，玛雅文明之所以发展缓慢估计也与使用了二十进制有关）。对于计算机来说，二进制在物理器件上来说是最容易实现的（高电压表示1，低电压表示0），于是在“冯·诺依曼结构”的计算机都使用了二进制。虽然我们并不需要每个程序员都能够使用二进制的思维方式来工作，但是了解二进制以及它与我们生活中的十进制之间的转换关系，以及二进制与八进制和十六进制的转换关系还是有必要的。如果你对这一点不熟悉，可以自行使用<a href="https://zh.wikipedia.org/wiki/%E4%BA%8C%E8%BF%9B%E5%88%B6" target="_blank" rel="noopener">维基百科</a>或者<a href="https://baike.baidu.com" target="_blank" rel="noopener">百度百科</a>科普一下。</p>
 <blockquote>
-<h2 id="消息中间件"><a href="#消息中间件" class="headerlink" title="消息中间件"></a>消息中间件</h2></blockquote>
-<p><strong>消息中间件，也可以叫做中央消息队列或者是消息队列（区别于本地消息队列，本地消息队列指的是JVM内的队列实现）</strong>，是一种独立的队列系统，消息中间件经常用来解决内部服务之间的 <strong>异步调用问题</strong> 。请求服务方把请求队列放到队列中即可返回，然后等待服务提供方去队列中获取请求进行处理，之后通过回调等机制把结果返回给请求服务方。</p>
-<p>异步调用只是消息中间件一个非常常见的应用场景。此外，常用的消息队列应用场景还偷如下几个：</p>
+<p>提示：近期关于<strong>量子计算机</strong>的研究已经被推倒了风口浪尖，量子计算机基于量子力学进行运算，使用量子瞬移的方式来传递信息。2018年6月，Intel宣布开发出新款量子芯片并通过了在接近绝对零度环境下的测试；2019年1月，IBM向全世界发布了首款商业化量子计算机。</p>
+</blockquote>
+<h3 id="变量和类型"><a href="#变量和类型" class="headerlink" title="变量和类型"></a>变量和类型</h3><p>在程序设计中，变量是一种存储数据的载体。计算机中的变量是实际存在的数据或者说是存储器中存储数据的一块内存空间，变量的值可以被读取和修改，这是所有计算和控制的基础。计算机能处理的数据有很多种类型，除了数值之外还可以处理文本、图形、音频、视频等各种各样的数据，那么不同的数据就需要定义不同的存储类型。Python中的数据类型很多，而且也允许我们自定义新的数据类型（这一点在后面会讲到），我们先介绍几种常用的数据类型。</p>
 <ul>
-<li><strong>解耦 ：</strong> 一个业务的非核心流程需要依赖其他系统，但结果并不重要，有通知即可。</li>
-<li><strong>最终一致性 ：</strong> 指的是两个系统的状态保持一致，可以有一定的延迟，只要最终达到一致性即可。经常用在解决分布式事务上。</li>
-<li><strong>广播 ：</strong> 消息队列最基本的功能。生产者只负责生产消息，订阅者接收消息。</li>
-<li><strong>错峰和流控</strong></li>
+<li>整型：Python中可以处理任意大小的整数（Python 2.x中有int和long两种类型的整数，但这种区分对Python来说意义不大，因此在Python 3.x中整数只有int这一种了），而且支持二进制（如<code>0b100</code>，换算成十进制是4）、八进制（如<code>0o100</code>，换算成十进制是64）、十进制（<code>100</code>）和十六进制（<code>0x100</code>，换算成十进制是256）的表示法。</li>
+<li>浮点型：浮点数也就是小数，之所以称为浮点数，是因为按照科学记数法表示时，一个浮点数的小数点位置是可变的，浮点数除了数学写法（如<code>123.456</code>）之外还支持科学计数法（如<code>1.23456e2</code>）。</li>
+<li>字符串型：字符串是以单引号或双引号括起来的任意文本，比如<code>&#39;hello&#39;</code>和<code>&quot;hello&quot;</code>,字符串还有原始字符串表示法、字节字符串表示法、Unicode字符串表示法，而且可以书写成多行的形式（用三个单引号或三个双引号开头，三个单引号或三个双引号结尾）。</li>
+<li>布尔型：布尔值只有<code>True</code>、<code>False</code>两种值，要么是<code>True</code>，要么是<code>False</code>，在Python中，可以直接用<code>True</code>、<code>False</code>表示布尔值（请注意大小写），也可以通过布尔运算计算出来（例如<code>3 &lt; 5</code>会产生布尔值<code>True</code>，而<code>2 == 1</code>会产生布尔值<code>False</code>）。</li>
+<li>复数型：形如<code>3+5j</code>，跟数学上的复数表示一样，唯一不同的是虚部的<code>i</code>换成了<code>j</code>。</li>
 </ul>
+<h4 id="变量命名"><a href="#变量命名" class="headerlink" title="变量命名"></a>变量命名</h4><p>对于每个变量我们需要给它取一个名字，就如同我们每个人都有属于自己的响亮的名字一样。在Python中，变量命名需要遵循以下这些必须遵守硬性规则和强烈建议遵守的非硬性规则。</p>
+<ul>
+<li>硬性规则：<ul>
+<li>变量名由字母（广义的Unicode字符，不包括特殊字符）、数字和下划线构成，数字不能开头。</li>
+<li>大小写敏感（大写的<code>a</code>和小写的<code>A</code>是两个不同的变量）。</li>
+<li>不要跟关键字（有特殊含义的单词，后面会讲到）和系统保留字（如函数、模块等的名字）冲突。</li>
+</ul>
+</li>
+<li>PEP 8要求：<ul>
+<li>用小写字母拼写，多个单词用下划线连接。</li>
+<li>受保护的实例属性用单个下划线开头（后面会讲到）。</li>
+<li>私有的实例属性用两个下划线开头（后面会讲到）。</li>
+</ul>
+</li>
+</ul>
+<p>当然，作为一个专业的程序员，给变量（事实上应该是所有的标识符）命名时做到见名知意也是非常重要的。</p>
+<h4 id="变量的使用"><a href="#变量的使用" class="headerlink" title="变量的使用"></a>变量的使用</h4><p>下面通过几个例子来说明变量的类型和变量使用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">使用变量保存数据并进行算术运算</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 0.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">a = <span class="number">321</span></span><br><span class="line">b = <span class="number">123</span></span><br><span class="line">print(a + b)</span><br><span class="line">print(a - b)</span><br><span class="line">print(a * b)</span><br><span class="line">print(a / b)</span><br><span class="line">print(a // b)</span><br><span class="line">print(a % b)</span><br><span class="line">print(a ** b)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">使用input()函数获取键盘输入</span></span><br><span class="line"><span class="string">使用int()进行类型转换</span></span><br><span class="line"><span class="string">用占位符格式化输出的字符串</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 0.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">a = int(input(<span class="string">'a = '</span>))</span><br><span class="line">b = int(input(<span class="string">'b = '</span>))</span><br><span class="line">print(<span class="string">'%d + %d = %d'</span> % (a, b, a + b))</span><br><span class="line">print(<span class="string">'%d - %d = %d'</span> % (a, b, a - b))</span><br><span class="line">print(<span class="string">'%d * %d = %d'</span> % (a, b, a * b))</span><br><span class="line">print(<span class="string">'%d / %d = %f'</span> % (a, b, a / b))</span><br><span class="line">print(<span class="string">'%d // %d = %d'</span> % (a, b, a // b))</span><br><span class="line">print(<span class="string">'%d %% %d = %d'</span> % (a, b, a % b))</span><br><span class="line">print(<span class="string">'%d ** %d = %d'</span> % (a, b, a ** b))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">使用type()检查变量的类型</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 0.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">Date: 2018-02-27</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">a = <span class="number">100</span></span><br><span class="line">b = <span class="number">12.345</span></span><br><span class="line">c = <span class="number">1</span> + <span class="number">5j</span></span><br><span class="line">d = <span class="string">'hello, world'</span></span><br><span class="line">e = <span class="literal">True</span></span><br><span class="line">print(type(a))</span><br><span class="line">print(type(b))</span><br><span class="line">print(type(c))</span><br><span class="line">print(type(d))</span><br><span class="line">print(type(e))</span><br></pre></td></tr></table></figure>
+
+<p>在对变量类型进行转换时可以使用Python的内置函数（准确的说下面列出的并不是真正意义上的函数，而是后面我们要讲到的创建对象的构造方法）。</p>
+<ul>
+<li><code>int()</code>：将一个数值或字符串转换成整数，可以指定进制。</li>
+<li><code>float()</code>：将一个字符串转换成浮点数。</li>
+<li><code>str()</code>：将指定的对象转换成字符串形式，可以指定编码。</li>
+<li><code>chr()</code>：将整数转换成该编码对应的字符串（一个字符）。</li>
+<li><code>ord()</code>：将字符串（一个字符）转换成对应的编码（整数）。</li>
+</ul>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><p>Python支持多种运算符，下表大致按照优先级从高到低的顺序列出了所有的运算符，我们会陆续使用到它们。</p>
+<table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>[]</code> <code>[:]</code></td>
+<td>下标，切片</td>
+</tr>
+<tr>
+<td><code>**</code></td>
+<td>指数</td>
+</tr>
+<tr>
+<td><code>~</code> <code>+</code> <code>-</code></td>
+<td>按位取反, 正负号</td>
+</tr>
+<tr>
+<td><code>*</code> <code>/</code> <code>%</code> <code>//</code></td>
+<td>乘，除，模，整除</td>
+</tr>
+<tr>
+<td><code>+</code> <code>-</code></td>
+<td>加，减</td>
+</tr>
+<tr>
+<td><code>&gt;&gt;</code> <code>&lt;&lt;</code></td>
+<td>右移，左移</td>
+</tr>
+<tr>
+<td><code>&amp;</code></td>
+<td>按位与</td>
+</tr>
+<tr>
+<td><code>^</code> <code>|</code></td>
+<td>按位异或，按位或</td>
+</tr>
+<tr>
+<td><code>&lt;=</code> <code>&lt;</code> <code>&gt;</code> <code>&gt;=</code></td>
+<td>小于等于，小于，大于，大于等于</td>
+</tr>
+<tr>
+<td><code>==</code> <code>!=</code></td>
+<td>等于，不等于</td>
+</tr>
+<tr>
+<td><code>is</code>  <code>is not</code></td>
+<td>身份运算符</td>
+</tr>
+<tr>
+<td><code>in</code> <code>not in</code></td>
+<td>成员运算符</td>
+</tr>
+<tr>
+<td><code>not</code> <code>or</code> <code>and</code></td>
+<td>逻辑运算符</td>
+</tr>
+<tr>
+<td><code>=</code> <code>+=</code> <code>-=</code> <code>*=</code> <code>/=</code> <code>%=</code> <code>//=</code> <code>**=</code> <code>&amp;=</code> `</td>
+<td>=<code></code>^=<code></code>&gt;&gt;=<code></code>&lt;&lt;=`</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>说明：</strong> 在实际开发中，如果搞不清楚运算符的优先级，可以使用括号来确保运算的执行顺序。</p>
+</blockquote>
+<p>下面的例子演示了运算符的使用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">运算符的使用</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 0.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">a = <span class="number">5</span></span><br><span class="line">b = <span class="number">10</span></span><br><span class="line">c = <span class="number">3</span></span><br><span class="line">d = <span class="number">4</span></span><br><span class="line">e = <span class="number">5</span></span><br><span class="line">a += b</span><br><span class="line">a -= c</span><br><span class="line">a *= d</span><br><span class="line">a /= e</span><br><span class="line">print(<span class="string">"a = "</span>, a)</span><br><span class="line"></span><br><span class="line">flag1 = <span class="number">3</span> &gt; <span class="number">2</span></span><br><span class="line">flag2 = <span class="number">2</span> &lt; <span class="number">1</span></span><br><span class="line">flag3 = flag1 <span class="keyword">and</span> flag2</span><br><span class="line">flag4 = flag1 <span class="keyword">or</span> flag2</span><br><span class="line">flag5 = <span class="keyword">not</span> flag1</span><br><span class="line">print(<span class="string">"flag1 = "</span>, flag1)</span><br><span class="line">print(<span class="string">"flag2 = "</span>, flag2)</span><br><span class="line">print(<span class="string">"flag3 = "</span>, flag3)</span><br><span class="line">print(<span class="string">"flag4 = "</span>, flag4)</span><br><span class="line">print(<span class="string">"flag5 = "</span>, flag5)</span><br><span class="line">print(flag1 <span class="keyword">is</span> <span class="literal">True</span>)</span><br><span class="line">print(flag2 <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><h4 id="练习1：华氏温度转摄氏温度。"><a href="#练习1：华氏温度转摄氏温度。" class="headerlink" title="练习1：华氏温度转摄氏温度。"></a>练习1：华氏温度转摄氏温度。</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">将华氏温度转换为摄氏温度</span></span><br><span class="line"><span class="string">F = 1.8C + 32</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 0.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">f = float(input(<span class="string">'请输入华氏温度: '</span>))</span><br><span class="line">c = (f - <span class="number">32</span>) / <span class="number">1.8</span></span><br><span class="line">print(<span class="string">'%.1f华氏度 = %.1f摄氏度'</span> % (f, c))</span><br></pre></td></tr></table></figure>
+
+<h4 id="练习2：输入圆的半径计算计算周长和面积。"><a href="#练习2：输入圆的半径计算计算周长和面积。" class="headerlink" title="练习2：输入圆的半径计算计算周长和面积。"></a>练习2：输入圆的半径计算计算周长和面积。</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输入半径计算圆的周长和面积</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 0.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">radius = float(input(<span class="string">'请输入圆的半径: '</span>))</span><br><span class="line">perimeter = <span class="number">2</span> * math.pi * radius</span><br><span class="line">area = math.pi * radius * radius</span><br><span class="line">print(<span class="string">'周长: %.2f'</span> % perimeter)</span><br><span class="line">print(<span class="string">'面积: %.2f'</span> % area)</span><br></pre></td></tr></table></figure>
+
+<h4 id="练习3：输入年份判断是不是闰年。"><a href="#练习3：输入年份判断是不是闰年。" class="headerlink" title="练习3：输入年份判断是不是闰年。"></a>练习3：输入年份判断是不是闰年。</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输入年份 如果是闰年输出True 否则输出False</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 0.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">year = int(input(<span class="string">'请输入年份: '</span>))</span><br><span class="line"><span class="comment"># 如果代码太长写成一行不便于阅读 可以使用\或()折行</span></span><br><span class="line">is_leap = (year % <span class="number">4</span> == <span class="number">0</span> <span class="keyword">and</span> year % <span class="number">100</span> != <span class="number">0</span> <span class="keyword">or</span></span><br><span class="line">           year % <span class="number">400</span> == <span class="number">0</span>)</span><br><span class="line">print(is_leap)</span><br></pre></td></tr></table></figure>
+
 
         
       
@@ -893,7 +519,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2017/11/15/lang-java-What-s-New-in-JDK8-通过反射获得方法的参数信息/">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2019/07/28/lang-python-Python-100-Days-01-初识Python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -907,7 +533,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2017/11/15/lang-java-What-s-New-in-JDK8-通过反射获得方法的参数信息/" class="post-title-link" itemprop="url">通过反射获得方法的参数信息</a>
+            <a href="/2019/07/28/lang-python-Python-100-Days-01-初识Python/" class="post-title-link" itemprop="url">01.初识Python</a>
           
         </h1>
 
@@ -924,7 +550,7 @@
                 
               
 
-              <time title="创建时间：2017-11-15 00:00:00" itemprop="dateCreated datePublished" datetime="2017-11-15T00:00:00+08:00">2017-11-15</time>
+              <time title="创建时间：2019-07-28 00:08:01" itemprop="dateCreated datePublished" datetime="2019-07-28T00:08:01+08:00">2019-07-28</time>
             </span>
           
             
@@ -935,7 +561,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-28 18:23:03" itemprop="dateModified" datetime="2019-08-28T18:23:03+08:00">2019-08-28</time>
+                <time title="修改时间：2019-08-30 23:13:45" itemprop="dateModified" datetime="2019-08-30T23:13:45+08:00">2019-08-30</time>
               </span>
             
           
@@ -964,7 +590,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2017/11/15/lang-java-What-s-New-in-JDK8-通过反射获得方法的参数信息/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2017/11/15/lang-java-What-s-New-in-JDK8-通过反射获得方法的参数信息/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/07/28/lang-python-Python-100-Days-01-初识Python/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/07/28/lang-python-Python-100-Days-01-初识Python/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -976,7 +602,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>2.8k</span>
+              <span>6k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -986,7 +612,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>3 分钟</span>
+              <span>5 分钟</span>
             </span>
           
 
@@ -999,23 +625,580 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>JDK8之前 .class文件是不会存储方法参数信息的，因此也就无法通过反射获取该信息(想想反射获取类信息的入口是什么？当然就是Class类了)。即是是在JDK11里<br>也不会默认生成这些信息，可以通过在javac加上-parameters参数来让javac生成这些信息(javac就是java编译器，可以把java文件编译成.class文件)。生成额外<br>的信息(运行时非必须信息)会消耗内存并且有可能公布敏感信息(某些方法参数比如password，JDK文档里这么说的)，并且确实很多信息javac并不会为我们生成，比如<br>LocalVariableTable，javac就不会默认生成，需要你加上 -g:vars来强制让编译器生成，同样的，方法参数信息也需要加上<br>-parameters来让javac为你在.class文件中生成这些信息，否则运行时反射是无法获取到这些信息的。在讲解Java语言层面的方法之前，先看一下javac加上该<br>参数和不加生成的信息有什么区别(不感兴趣想直接看运行代码的可以跳过这段)。下面是随便写的一个类。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ByteCodeParameters</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">simpleMethod</span><span class="params">(String canUGetMyName, Object yesICan)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"9527"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="初识Python"><a href="#初识Python" class="headerlink" title="初识Python"></a>初识Python</h2><h3 id="Python简介"><a href="#Python简介" class="headerlink" title="Python简介"></a>Python简介</h3><h4 id="Python的历史"><a href="#Python的历史" class="headerlink" title="Python的历史"></a>Python的历史</h4><ol>
+<li>1989年圣诞节：Guido von Rossum开始写Python语言的编译器。</li>
+<li>1991年2月：第一个Python编译器（同时也是解释器）诞生，它是用C语言实现的（后面又出现了Java和C#实现的版本Jython和IronPython，以及PyPy、Brython、Pyston等其他实现），可以调用C语言的库函数。在最早的版本中，Python已经提供了对“类”，“函数”，“异常处理”等构造块的支持，同时提供了“列表”和“字典”等核心数据类型，同时支持以模块为基础来构造应用程序。</li>
+<li>1994年1月：Python 1.0正式发布。</li>
+<li>2000年10月16日：Python 2.0发布，增加了实现完整的<a href="https://zh.wikipedia.org/wiki/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6_(%E8%A8%88%E7%AE%97%E6%A9%9F%E7%A7%91%E5%AD%B8)" target="_blank" rel="noopener">垃圾回收</a>，提供了对<a href="https://zh.wikipedia.org/wiki/Unicode" target="_blank" rel="noopener">Unicode</a>的支持。与此同时，Python的整个开发过程更加透明，社区对开发进度的影响逐渐扩大，生态圈开始慢慢形成。</li>
+<li>2008年12月3日：Python 3.0发布，它并不完全兼容之前的Python代码，不过因为目前还有不少公司在项目和运维中使用Python 2.x版本，所以Python 3.x的很多新特性后来也被移植到Python 2.6/2.7版本中。</li>
+</ol>
+<p>目前我们使用的Python 3.7.x的版本是在2018年发布的，Python的版本号分为三段，形如A.B.C。其中A表示大版本号，一般当整体重写，或出现不向后兼容的改变时，增加A；B表示功能更新，出现新功能时增加B；C表示小的改动（例如：修复了某个Bug），只要有修改就增加C。如果对Python的历史感兴趣，可以阅读名为<a href="http://www.cnblogs.com/vamei/archive/2013/02/06/2892628.html" target="_blank" rel="noopener">《Python简史》</a>的博文。</p>
+<h4 id="Python的优缺点"><a href="#Python的优缺点" class="headerlink" title="Python的优缺点"></a>Python的优缺点</h4><p>Python的优点很多，简单的可以总结为以下几点。</p>
+<ol>
+<li>简单和明确，做一件事只有一种方法。</li>
+<li>学习曲线低，跟其他很多语言相比，Python更容易上手。</li>
+<li>开放源代码，拥有强大的社区和生态圈。</li>
+<li>解释型语言，天生具有平台可移植性。</li>
+<li>支持两种主流的编程范式（面向对象编程和函数式编程）都提供了支持。</li>
+<li>可扩展性和可嵌入性，可以调用C/C++代码，也可以在C/C++中调用Python。</li>
+<li>代码规范程度高，可读性强，适合有代码洁癖和强迫症的人群。</li>
+</ol>
+<p>Python的缺点主要集中在以下几点。</p>
+<ol>
+<li>执行效率稍低，因此计算密集型任务可以由C/C++编写。</li>
+<li>代码无法加密，但是现在很多公司都不销售卖软件而是销售服务，这个问题会被淡化。</li>
+<li>在开发时可以选择的框架太多（如Web框架就有100多个），有选择的地方就有错误。</li>
+</ol>
+<h4 id="Python的应用领域"><a href="#Python的应用领域" class="headerlink" title="Python的应用领域"></a>Python的应用领域</h4><p>目前Python在Web应用开发、云基础设施、DevOps、网络爬虫开发、数据分析挖掘、机器学习等领域都有着广泛的应用，因此也产生了Web后端开发、数据接口开发、自动化运维、自动化测试、科学计算和可视化、数据分析、量化交易、机器人开发、图像识别和处理等一系列的职位。</p>
+<h3 id="搭建编程环境"><a href="#搭建编程环境" class="headerlink" title="搭建编程环境"></a>搭建编程环境</h3><h4 id="Windows环境"><a href="#Windows环境" class="headerlink" title="Windows环境"></a>Windows环境</h4><p>可以在<a href="https://www.python.org" target="_blank" rel="noopener">Python官方网站</a>下载到Python的Windows安装程序（exe文件），需要注意的是如果在Windows 7环境下安装Python 3.x，需要先安装Service Pack 1补丁包（可以通过一些工具软件自动安装系统补丁的功能来安装），安装过程建议勾选“Add Python 3.x to PATH”（将Python 3.x添加到PATH环境变量）并选择自定义安装，在设置“Optional Features”界面最好将“pip”、“tcl/tk”、“Python test suite”等项全部勾选上。强烈建议选择自定义的安装路径并保证路径中没有中文。安装完成会看到“Setup was successful”的提示。如果稍后运行Python程序时，出现因为缺失一些动态链接库文件而导致Python解释器无法工作的问题，可以按照下面的方法加以解决。</p>
+<p>如果系统显示api-ms-win-crt*.dll文件缺失，可以参照<a href="https://zhuanlan.zhihu.com/p/32087135" target="_blank" rel="noopener">《api-ms-win-crt*.dll缺失原因分析和解决方法》</a>一文讲解的方法进行处理或者直接在<a href="https://www.microsoft.com/zh-cn/download/details.aspx?id=48145" target="_blank" rel="noopener">微软官网</a>下载Visual C++ Redistributable for Visual Studio 2015文件进行修复；如果是因为更新Windows的DirectX之后导致某些动态链接库文件缺失问题，可以下载一个<a href="https://dl.pconline.com.cn/download/360074-1.html" target="_blank" rel="noopener">DirectX修复工具</a>进行修复。</p>
+<h4 id="Linux环境"><a href="#Linux环境" class="headerlink" title="Linux环境"></a>Linux环境</h4><p>Linux环境自带了Python 2.x版本，但是如果要更新到3.x的版本，可以在<a href="https://www.python.org" target="_blank" rel="noopener">Python的官方网站</a>下载Python的源代码并通过源代码构建安装的方式进行安装，具体的步骤如下所示。</p>
+<p>安装依赖库（因为没有这些依赖库可能在源代码构件安装时因为缺失底层依赖库而失败）。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget gcc zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel libffi-devel</span><br></pre></td></tr></table></figure>
 
-<p>先来不加参数编译和反编译一下这个类javac ByteCodeParameters.java , javap -v ByteCodeParameters:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//只截取了部分信息</span></span><br><span class="line"><span class="keyword">public</span> java.lang.<span class="function">String <span class="title">simpleMethod</span><span class="params">(java.lang.String, java.lang.Object)</span></span>;</span><br><span class="line">  descriptor: (Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/String;</span><br><span class="line">  flags: (<span class="number">0x0001</span>) ACC_PUBLIC</span><br><span class="line">  Code:</span><br><span class="line">    stack=<span class="number">1</span>, locals=<span class="number">3</span>, args_size=<span class="number">3</span></span><br><span class="line">       0: ldc           #2                  // String 9527</span><br><span class="line">       <span class="number">2</span>: areturn</span><br><span class="line">    LineNumberTable:</span><br><span class="line">      line <span class="number">5</span>: <span class="number">0</span></span><br><span class="line"><span class="comment">//这个方法的描述到这里就结束了</span></span><br></pre></td></tr></table></figure>
+<p>下载Python源代码并解压缩到指定目录。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz</span><br><span class="line">xz -d Python-3.7.3.tar.xz</span><br><span class="line">tar -xvf Python-3.7.3.tar</span><br></pre></td></tr></table></figure>
 
-<p>接下来我们加上参数javac -parameters ByteCodeParameters.java 再来看反编译的信息:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> java.lang.<span class="function">String <span class="title">simpleMethod</span><span class="params">(java.lang.String, java.lang.Object)</span></span>;</span><br><span class="line">   descriptor: (Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/String;</span><br><span class="line">   flags: (<span class="number">0x0001</span>) ACC_PUBLIC</span><br><span class="line">   Code:</span><br><span class="line">     stack=<span class="number">1</span>, locals=<span class="number">3</span>, args_size=<span class="number">3</span></span><br><span class="line">        0: ldc           #2                  // String 9527</span><br><span class="line">        <span class="number">2</span>: areturn</span><br><span class="line">     LineNumberTable:</span><br><span class="line">       line <span class="number">8</span>: <span class="number">0</span></span><br><span class="line">   MethodParameters:</span><br><span class="line">     Name                           Flags</span><br><span class="line">     canUGetMyName</span><br><span class="line">     yesICan</span><br></pre></td></tr></table></figure>
+<p>切换至Python源代码目录并执行下面的命令进行配置和安装。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd Python-3.7.3</span><br><span class="line">./configure --prefix=/usr/local/python37 --enable-optimizations</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
 
-<p>可以看到.class文件里多了一个MethodParameters信息，这就是参数的名字，可以看到默认是不保存的。<br><br>下面看一下在Intelj Idea里运行的这个例子，我们试一下通过反射获取方法名 :</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ByteCodeParameters</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">simpleMethod</span><span class="params">(String canUGetMyName, Object yesICan)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"9527"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException </span>&#123;</span><br><span class="line">        Class&lt;?&gt; clazz = ByteCodeParameters.class;</span><br><span class="line">        Method simple = clazz.getDeclaredMethod(<span class="string">"simpleMethod"</span>, String.class, Object.class);</span><br><span class="line">        Parameter[] parameters = simple.getParameters();</span><br><span class="line">        <span class="keyword">for</span> (Parameter p : parameters) &#123;</span><br><span class="line">            System.out.println(p.getName());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出 :</span><br><span class="line">arg0</span><br><span class="line">arg1</span><br></pre></td></tr></table></figure>
+<p>修改用户主目录下名为.bash_profile的文件，配置PATH环境变量并使其生效。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~</span><br><span class="line">vim .bash_profile</span><br></pre></td></tr></table></figure>
 
-<p>？？？说好的方法名呢？？？？别急，哈哈。前面说了，默认是不生成参数名信息的，因此我们需要做一些配置，我们找到IDEA的settings里的Java Compiler选项，在<br>Additional command line parameters:一行加上-parameters(Eclipse 也是找到Java Compiler选中Stoer information about method parameters)，或者自<br>己编译一个.class文件放在IDEA的out下，然后再来运行 :</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输出 :</span><br><span class="line">canUGetMyName</span><br><span class="line">yesICan</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> ... 此处省略上面的代码 ...</span></span><br><span class="line"></span><br><span class="line">export PATH=$PATH:/usr/local/python37/bin</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> ... 此处省略下面的代码 ...</span></span><br></pre></td></tr></table></figure>
 
-<p>这样我们就通过反射获取到参数信息了。想要了解更多的同学可以自己研究一下 [官方文档]<br>(<a href="https://docs.oracle.com/javase/tutorial/reflect/member/methodparameterreflection.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/tutorial/reflect/member/methodparameterreflection.html</a>)<br><br></p>
-<h2 id="总结与补充"><a href="#总结与补充" class="headerlink" title="总结与补充"></a>总结与补充</h2><p>在JDK8之后，可以通过-parameters参数来让编译器生成参数信息然后在运行时通过反射获取方法参数信息，其实在SpringFramework<br>里面也有一个LocalVariableTableParameterNameDiscoverer对象可以获取方法参数名信息，有兴趣的同学可以自行百度(这个类在打印日志时可能会比较有用吧，个人感觉)。</p>
+<p>激活环境变量。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source .bash_profile</span><br></pre></td></tr></table></figure>
+
+<h4 id="macOS环境"><a href="#macOS环境" class="headerlink" title="macOS环境"></a>macOS环境</h4><p>macOS也自带了Python 2.x版本，可以通过<a href="https://www.python.org" target="_blank" rel="noopener">Python的官方网站</a>提供的安装文件（pkg文件）安装Python 3.x的版本。默认安装完成后，可以通过在终端执行python命令来启动2.x版本的Python解释器，可以通过执行python3命令来启动3.x版本的Python解释器。</p>
+<h3 id="从终端运行Python程序"><a href="#从终端运行Python程序" class="headerlink" title="从终端运行Python程序"></a>从终端运行Python程序</h3><h4 id="确认Python的版本"><a href="#确认Python的版本" class="headerlink" title="确认Python的版本"></a>确认Python的版本</h4><p>可以Windows的命令行提示符中键入下面的命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python --version</span><br></pre></td></tr></table></figure>
+
+<p>或者是在Linux或macOS系统的终端中键入下面的命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 --version</span><br></pre></td></tr></table></figure>
+
+<p>当然也可以先输入python或python3进入交互式环境，再执行以下的代码检查Python的版本。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">print(sys.version_info)</span><br><span class="line">print(sys.version)</span><br></pre></td></tr></table></figure>
+
+<h4 id="编写Python源代码"><a href="#编写Python源代码" class="headerlink" title="编写Python源代码"></a>编写Python源代码</h4><p>可以用文本编辑工具（推荐使用<a href="https://www.sublimetext.com/" target="_blank" rel="noopener">Sublime</a>、<a href="https://atom.io/" target="_blank" rel="noopener">Atom</a>、<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a>等高级文本编辑工具）编写Python源代码并用py作为后缀名保存该文件，代码内容如下所示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'hello, world!'</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h4><p>切换到源代码所在的目录并执行下面的命令，看看屏幕上是否输出了”hello, world!”。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python hello.py</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 hello.py</span><br></pre></td></tr></table></figure>
+
+<h3 id="代码中的注释"><a href="#代码中的注释" class="headerlink" title="代码中的注释"></a>代码中的注释</h3><p>注释是编程语言的一个重要组成部分，用于在源代码中解释代码的作用从而增强程序的可读性和可维护性，当然也可以将源代码中不需要参与运行的代码段通过注释来去掉，这一点在调试程序的时候经常用到。注释在随源代码进入预处理器或编译时会被移除，不会在目标代码中保留也不会影响程序的执行结果。</p>
+<ol>
+<li>单行注释 - 以#和空格开头的部分</li>
+<li>多行注释 - 三个引号开头，三个引号结尾</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">第一个Python程序 - hello, world!</span></span><br><span class="line"><span class="string">向伟大的Dennis M. Ritchie先生致敬</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 0.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">print(<span class="string">'hello, world!'</span>)</span><br><span class="line"><span class="comment"># print("你好,世界！")</span></span><br><span class="line">print(<span class="string">'你好'</span>, <span class="string">'世界'</span>)</span><br><span class="line">print(<span class="string">'hello'</span>, <span class="string">'world'</span>, sep=<span class="string">', '</span>, end=<span class="string">'!'</span>)</span><br><span class="line">print(<span class="string">'goodbye, world'</span>, end=<span class="string">'!\n'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="其他工具介绍"><a href="#其他工具介绍" class="headerlink" title="其他工具介绍"></a>其他工具介绍</h3><h4 id="IDLE-自带的集成开发工具"><a href="#IDLE-自带的集成开发工具" class="headerlink" title="IDLE - 自带的集成开发工具"></a>IDLE - 自带的集成开发工具</h4><p>IDLE是安装Python环境时自带的集成开发工具，如下图所示。但是由于IDLE的用户体验并不是那么好所以很少在实际开发中被采用。</p>
+<p><img src="/images/Python100/python-idle.png" alt></p>
+<h4 id="IPython-更好的交互式编程工具"><a href="#IPython-更好的交互式编程工具" class="headerlink" title="IPython - 更好的交互式编程工具"></a>IPython - 更好的交互式编程工具</h4><p>IPython是一种基于Python的交互式解释器。相较于原生的Python交互式环境，IPython提供了更为强大的编辑和交互功能。可以通过Python的包管理工具pip安装IPython和Jupyter，具体的操作如下所示。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install ipython</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install ipython</span><br></pre></td></tr></table></figure>
+
+<p>安装成功后，可以通过下面的ipython命令启动IPython，如下图所示。</p>
+<p><img src="/images/Python100/python-ipython.png" alt></p>
+<p>当然，我们也可以通过安装Jupyter工具并运行名为notebook的程序在浏览器窗口中进行交互式代码编写操作。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install jupyter</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 intall jupyter</span><br></pre></td></tr></table></figure>
+
+<p>然后执行下面的命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/Python100/python-jupyter-2.png" alt></p>
+<h4 id="Sublime-Visual-Studio-Code-高级文本编辑器"><a href="#Sublime-Visual-Studio-Code-高级文本编辑器" class="headerlink" title="Sublime / Visual Studio Code - 高级文本编辑器"></a>Sublime / Visual Studio Code - 高级文本编辑器</h4><p><img src="/images/Python100/python-sublime.png" alt></p>
+<ul>
+<li><p>首先可以通过<a href="https://www.sublimetext.com/" target="_blank" rel="noopener">官方网站</a>下载安装程序安装Sublime 3或Sublime 2。</p>
+</li>
+<li><p>安装包管理工具。</p>
+<ol>
+<li>通过快捷键Ctrl+`或者在View菜单中选择Show Console打开控制台，输入下面的代码。</li>
+</ol>
+<ul>
+<li>Sublime 3</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  urllib.request,os;pf=<span class="string">'Package Control.sublime-package'</span>;ipp=sublime.installed_packages_path();urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler()));open(os.path.join(ipp,pf),<span class="string">'wb'</span>).write(urllib.request.urlopen(<span class="string">'http://sublime.wbond.net/'</span>+pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).read())</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Sublime 2</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span>  urllib2,os;pf=<span class="string">'Package Control.sublime-package'</span>;ipp=sublime.installed_packages_path();os.makedirs(ipp)ifnotos.path.exists(ipp)elseNone;urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler()));open(os.path.join(ipp,pf),<span class="string">'wb'</span>).write(urllib2.urlopen(<span class="string">'http://sublime.wbond.net/'</span>+pf.replace(<span class="string">' '</span>,<span class="string">'%20'</span>)).read());print(<span class="string">'Please restart Sublime Text to finish installation'</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>手动安装浏览器输入  <a href="https://sublime.wbond.net/Package%20Control.sublime-package" target="_blank" rel="noopener">https://sublime.wbond.net/Package%20Control.sublime-package</a> 下载这个文件<br>下载好以后，打开sublime text，选择菜单Preferences-&gt;Browse Packages… 打开安装目录<br>此时会进入到一个叫做Packages的目录下，点击进入上一层目录Sublime Text3，在此目录下有一个文件夹叫做Installed Packages，把刚才下载的文件放到这里就可以了。然后重启sublime text3，观察Preferences菜单最下边是否有Package Settings 和Package Control两个选项，如果有，则代表安装成功了。</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>安装插件。通过Preference菜单的Package Control或快捷键Ctrl+Shift+P打开命令面板，在面板中输入Install Package就可以找到安装插件的工具，然后再查找需要的插件。我们推荐大家安装以下几个插件：</p>
+<ul>
+<li>SublimeCodeIntel - 代码自动补全工具插件。</li>
+<li>Emmet - 前端开发代码模板插件。</li>
+<li>Git - 版本控制工具插件。</li>
+<li>Python PEP8 Autoformat - PEP8规范自动格式化插件。</li>
+<li>ConvertToUTF8 - 将本地编码转换为UTF-8。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>说明：事实上Visual Studio Code可能是更好的选择，它不用花钱并提供了更为完整和强大的功能，有兴趣的读者可以自行研究。</p>
+</blockquote>
+<h4 id="PyCharm-Python开发神器"><a href="#PyCharm-Python开发神器" class="headerlink" title="PyCharm - Python开发神器"></a>PyCharm - Python开发神器</h4><p>PyCharm的安装、配置和使用在<a href="../玩转PyCharm.md">《玩转PyCharm》</a>进行了介绍，有兴趣的读者可以选择阅读。</p>
+<p><img src="/images/Python100/python-pycharm.png" alt></p>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><ol>
+<li><p>在Python交互环境中查看下面的代码结果，并试着将这些内容翻译成中文。</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> this</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>说明：当前键入上面的命令后会在交互式环境中看到如下所示的输出，这段内容被称为“Python之禅”，里面讲述的道理不仅仅适用于Python，也适用于其他编程语言。</p>
+</blockquote>
+</li>
+<li><p>学习使用turtle在屏幕上绘制图形。</p>
+<blockquote>
+<p>说明：turtle是Python内置的一个非常有趣的模块，特别适用于让小朋友体会什么是编程，它最早是Logo语言的一部分，Logo语言是Wally Feurzig和Seymour Papert在1966发明的编程语言.</p>
+</blockquote>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> turtle</span><br><span class="line"></span><br><span class="line">turtle.pensize(<span class="number">4</span>)</span><br><span class="line">turtle.pencolor(<span class="string">'red'</span>)</span><br><span class="line">turtle.forward(<span class="number">100</span>)</span><br><span class="line">turtle.right(<span class="number">90</span>)</span><br><span class="line">turtle.forward(<span class="number">100</span>)</span><br><span class="line">turtle.right(<span class="number">90</span>)</span><br><span class="line">turtle.forward(<span class="number">100</span>)</span><br><span class="line">turtle.right(<span class="number">90</span>)</span><br><span class="line">turtle.forward(<span class="number">100</span>)</span><br><span class="line">turtle.mainloop()</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2019/04/05/db-mysql-MySQL高性能优化规范建议/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/04/05/db-mysql-MySQL高性能优化规范建议/" class="post-title-link" itemprop="url">MySQL高性能优化规范建议</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-05 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-05T00:00:00+08:00">2019-04-05</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-29 14:34:31" itemprop="dateModified" datetime="2019-08-29T14:34:31+08:00">2019-08-29</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/db/" itemprop="url" rel="index"><span itemprop="name">db</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/04/05/db-mysql-MySQL高性能优化规范建议/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/04/05/db-mysql-MySQL高性能优化规范建议/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>7.1k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>6 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="数据库命令规范"><a href="#数据库命令规范" class="headerlink" title="数据库命令规范"></a>数据库命令规范</h2><ul>
+<li>所有数据库对象名称必须使用小写字母并用下划线分割</li>
+<li>所有数据库对象名称禁止使用 MySQL 保留关键字（如果表名中包含关键字查询时，需要将其用单引号括起来）</li>
+<li>数据库对象的命名要能做到见名识意，并且最后不要超过 32 个字符</li>
+<li>临时库表必须以 tmp_为前缀并以日期为后缀，备份表必须以 bak_为前缀并以日期 (时间戳) 为后缀</li>
+<li>所有存储相同数据的列名和列类型必须一致（一般作为关联列，如果查询时关联列类型不一致会自动进行数据类型隐式转换，会造成列上的索引失效，导致查询效率降低）</li></ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/05/db-mysql-MySQL高性能优化规范建议/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2019/01/25/diary-2019-01-25-new-position/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/01/25/diary-2019-01-25-new-position/" class="post-title-link" itemprop="url">new-position</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-01-25 13:27:00" itemprop="dateCreated datePublished" datetime="2019-01-25T13:27:00+08:00">2019-01-25</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-29 14:16:11" itemprop="dateModified" datetime="2019-08-29T14:16:11+08:00">2019-08-29</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/01/25/diary-2019-01-25-new-position/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/01/25/diary-2019-01-25-new-position/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>38</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="new-position"><a href="#new-position" class="headerlink" title="new-position"></a>new-position</h1><h2 id="2018年01月25日"><a href="#2018年01月25日" class="headerlink" title="2018年01月25日"></a>2018年01月25日</h2><p>公司安排了新的title给我。</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/11/26/lang-java-spring-annotation-in-spring/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/26/lang-java-spring-annotation-in-spring/" class="post-title-link" itemprop="url">annotation-in-spring</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-26 00:00:00" itemprop="dateCreated datePublished" datetime="2018-11-26T00:00:00+08:00">2018-11-26</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-29 15:34:07" itemprop="dateModified" datetime="2019-08-29T15:34:07+08:00">2019-08-29</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/lang/" itemprop="url" rel="index"><span itemprop="name">lang</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/11/26/lang-java-spring-annotation-in-spring/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/26/lang-java-spring-annotation-in-spring/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>773</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>@Configuration把一个类作为一个IoC容器，它的某个方法头上如果注册了@Bean，就会作为这个Spring容器中的Bean。</p>
+<p>@Scope注解 作用域</p>
+<p>@Lazy(true) 表示延迟初始化</p>
+<p>@Service用于标注业务层组件、 </p>
+<p>@Controller用于标注控制层组件@Repository用于标注数据访问组件，即DAO组件。</p>
+<p>@Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。</p>
+<p>@Scope用于指定scope作用域的（用在类上）</p>
+<p>@PostConstruct用于指定初始化方法（用在方法上）</p>
+<p>@PreDestory用于指定销毁方法（用在方法上）</p>
+<p>@DependsOn：定义Bean初始化及销毁时的顺序</p>
+<p>@Primary：自动装配时当出现多个Bean候选者时，被注解为@Primary的Bean将作为首选者，否则将抛出异常</p>
+<p>@Autowired 默认按类型装配，如果我们想使用按名称装配，可以结合@Qualifier注解一起使用。如下：</p>
+<p>@Autowired @Qualifier(“personDaoBean”) 存在多个实例配合使用</p>
+<p>@Resource默认按名称装配，当找不到与名称匹配的bean才会按类型装配。</p>
+<p>@PostConstruct 初始化注解</p>
+<p>@PreDestroy 摧毁注解 默认 单例  启动就加载</p>
+<h3 id="Spring中的这几个注解有什么区别：-Component-、-Repository、-Service、-Controller"><a href="#Spring中的这几个注解有什么区别：-Component-、-Repository、-Service、-Controller" class="headerlink" title="Spring中的这几个注解有什么区别：@Component 、@Repository、@Service、@Controller"></a>Spring中的这几个注解有什么区别：@Component 、@Repository、@Service、@Controller</h3><ol>
+<li>@Component指的是组件，</li>
+</ol>
+<p>@Controller，@Repository和@Service 注解都被@Component修饰，用于代码中区分表现层，持久层和业务层的组件，代码中组件不好归类时可以使用@Component来标注</p>
+<ol start="2">
+<li>当前版本只有区分的作用，未来版本可能会添加更丰富的功能</li>
+</ol>
 
         
       
@@ -1039,7 +1222,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1087,7 +1270,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-count">81</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
