@@ -70,7 +70,7 @@
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/4/21/162e6665fa394b3b?w=790&h=290&f=jpeg&s=14946">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/24/163912e973ecb93c?w=624&h=471&f=png&s=32984">
 <meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/24/163914806d9e15c6?w=612&h=461&f=png&s=39129">
-<meta property="og:updated_time" content="2019-08-31T02:05:26.553Z">
+<meta property="og:updated_time" content="2019-09-05T03:54:03.527Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于大型网站系统架构你不得不懂的10个问题">
 <meta name="twitter:description" content="1. 你使用过哪些组件或者方法来提升网站性能,可用性以及并发量 提高硬件能力、增加系统服务器。（当服务器增加到某个程度的时候系统所能提供的并发访问量几乎不变，所以不能根本解决问题） 使用缓存（本地缓存：本地可以使用JDK自带的 Map、Guava Cache.分布式缓存：Redis、Memcache.本地缓存不适用于提高系统并发量，一般是用处用在程序中。比如Spring是如何实现单例的呢？大家如果">
@@ -320,7 +320,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-31 10:05:26" itemprop="dateModified" datetime="2019-08-31T10:05:26+08:00">2019-08-31</time>
+                <time title="修改时间：2019-09-05 11:54:03" itemprop="dateModified" datetime="2019-09-05T11:54:03+08:00">2019-09-05</time>
               </span>
             
           
@@ -404,6 +404,8 @@
 <li><strong>使用合适的连接池</strong>（数据库连接池、线程池等等）</li>
 <li><strong>适当使用多线程进行开发。</strong></li>
 </ol>
+<a id="more"></a>
+
 <h3 id="2-设计高可用系统的常用手段"><a href="#2-设计高可用系统的常用手段" class="headerlink" title="2. 设计高可用系统的常用手段"></a>2. 设计高可用系统的常用手段</h3><ol>
 <li><strong>降级：</strong> 服务降级是当服务器压力剧增的情况下，根据当前业务情况及流量对一些服务和页面有策略的降级，以此释放服务器资源以保证核心任务的正常运行。降级往往会指定不同的级别，面临不同的异常等级执行不同的处理。根据服务方式：可以拒接服务，可以延迟服务，也有时候可以随机服务。根据服务范围：可以砍掉某个功能，也可以砍掉某些模块。总之服务降级需要根据不同的业务需求采用不同的降级策略。主要的目的就是服务虽然有损但是总比没有好；</li>
 <li><strong>限流：</strong> 防止恶意请求流量、恶意攻击，或者防止流量超出系统峰值；</li>
@@ -538,8 +540,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/04/05/db-mysql-MySQL高性能优化规范建议/" rel="next" title="MySQL高性能优化规范建议">
-                  <i class="fa fa-chevron-left"></i> MySQL高性能优化规范建议
+                <a href="/2019/04/23/subject-architecture-8-张图读懂大型网站技术架构/" rel="next" title="8 张图读懂大型网站技术架构">
+                  <i class="fa fa-chevron-left"></i> 8 张图读懂大型网站技术架构
                 </a>
               
             </div>
@@ -548,8 +550,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/04/23/subject-architecture-8-张图读懂大型网站技术架构/" rel="prev" title="8 张图读懂大型网站技术架构">
-                  8 张图读懂大型网站技术架构 <i class="fa fa-chevron-right"></i>
+                <a href="/2019/08/28/hello-hexo/" rel="prev" title="Hello hexo">
+                  Hello hexo <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
