@@ -59,7 +59,7 @@
 <meta name="keywords" content="mq">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何解决消息队列的延时以及过期失效问题？">
-<meta property="og:url" content="https://dirsky.github.io/2018/12/03/subject-high-concurrency-mq-time-delay-and-expired-failure/index.html">
+<meta property="og:url" content="https://gzxu.top/2018/12/03/subject-high-concurrency-mq-time-delay-and-expired-failure/index.html">
 <meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="剖析关于这个事儿，我们一个一个来梳理吧，先假设一个场景，我们现在消费端出故障了，然后大量消息在 mq 里积压，现在出事故了，慌了。 大量消息在 mq 里积压了几个小时了还没解决几千万条数据在 MQ 里积压了七八个小时，从下午 4 点多，积压到了晚上 11 点多。这个是我们真实遇到过的一个场景，确实是线上故障了，这个时候要不然就是修复 consumer 的问题，让它恢复消费速度，然后傻傻的等待几个小">
 <meta property="og:locale" content="zh-CN">
@@ -67,7 +67,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何解决消息队列的延时以及过期失效问题？">
 <meta name="twitter:description" content="剖析关于这个事儿，我们一个一个来梳理吧，先假设一个场景，我们现在消费端出故障了，然后大量消息在 mq 里积压，现在出事故了，慌了。 大量消息在 mq 里积压了几个小时了还没解决几千万条数据在 MQ 里积压了七八个小时，从下午 4 点多，积压到了晚上 11 点多。这个是我们真实遇到过的一个场景，确实是线上故障了，这个时候要不然就是修复 consumer 的问题，让它恢复消费速度，然后傻傻的等待几个小">
-  <link rel="canonical" href="https://dirsky.github.io/2018/12/03/subject-high-concurrency-mq-time-delay-and-expired-failure/">
+  <link rel="canonical" href="https://gzxu.top/2018/12/03/subject-high-concurrency-mq-time-delay-and-expired-failure/">
 
 
 <script id="page-configurations">
@@ -271,7 +271,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/12/03/subject-high-concurrency-mq-time-delay-and-expired-failure/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2018/12/03/subject-high-concurrency-mq-time-delay-and-expired-failure/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -627,8 +627,6 @@
         
           
         
-          
-        
         <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span>
         </a>
@@ -736,6 +734,15 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 

@@ -59,14 +59,14 @@
 <meta name="keywords" content="Python Java">
 <meta property="og:type" content="website">
 <meta property="og:title" content="徐先生的技术栈">
-<meta property="og:url" content="https://dirsky.github.io/page/22/index.html">
+<meta property="og:url" content="https://gzxu.top/page/22/index.html">
 <meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="优秀是一种习惯">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="徐先生的技术栈">
 <meta name="twitter:description" content="优秀是一种习惯">
-  <link rel="canonical" href="https://dirsky.github.io/page/22/">
+  <link rel="canonical" href="https://gzxu.top/page/22/">
 
 
 <script id="page-configurations">
@@ -269,7 +269,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2014/07/28/lang-python-Python-100-Days-04-循环结构/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2014/07/28/lang-python-Python-100-Days-04-循环结构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -431,7 +431,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2014/07/28/lang-python-Python-100-Days-03-分支结构/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2014/07/28/lang-python-Python-100-Days-03-分支结构/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -543,7 +543,7 @@
 
 <p>唯一需要说明的是和C/C++、Java等语言不同，Python中没有用花括号来构造代码块而是使用了缩进的方式来设置代码的层次结构，如果<code>if</code>条件成立的情况下需要执行多条语句，只要保持多条语句具有相同的缩进就可以了，换句话说连续的代码如果又保持了相同的缩进那么它们属于同一个代码块，相当于是一个执行的整体。</p>
 <p>当然如果要构造出更多的分支，可以使用<code>if…elif…else…</code>结构，例如下面的分段函数求值。</p>
-<p><img src="/.io//formula_1.png" alt="$$f(x)=\begin{cases} 3x-5&amp;\text{(x&gt;1)}\\x+2&amp;\text{(-1}\leq\text{x}\leq\text{1)}\\5x+3&amp;\text {(x&lt;-1)}\end{cases}$$"></p>
+<p><img src="/.top//formula_1.png" alt="$$f(x)=\begin{cases} 3x-5&amp;\text{(x&gt;1)}\\x+2&amp;\text{(-1}\leq\text{x}\leq\text{1)}\\5x+3&amp;\text {(x&lt;-1)}\end{cases}$$"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">分段函数求值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        3x - 5  (x &gt; 1)</span></span><br><span class="line"><span class="string">f(x) =  x + 2   (-1 &lt;= x &lt;= 1)</span></span><br><span class="line"><span class="string">        5x + 3  (x &lt; -1)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 0.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">x = float(input(<span class="string">'x = '</span>))</span><br><span class="line"><span class="keyword">if</span> x &gt; <span class="number">1</span>:</span><br><span class="line">    y = <span class="number">3</span> * x - <span class="number">5</span></span><br><span class="line"><span class="keyword">elif</span> x &gt;= <span class="number">-1</span>:</span><br><span class="line">    y = x + <span class="number">2</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    y = <span class="number">5</span> * x + <span class="number">3</span></span><br><span class="line">print(<span class="string">'f(%.2f) = %.2f'</span> % (x, y))</span><br></pre></td></tr></table></figure>
 
 <p>当然根据实际开发的需要，分支结构是可以嵌套的，例如判断是否通关以后还要根据你获得的宝物或者道具的数量对你的表现给出等级（比如点亮两颗或三颗星星），那么我们就需要在<code>if</code>的内部构造出一个新的分支结构，同理<code>elif</code>和<code>else</code>中也可以再构造新的分支，我们称之为嵌套的分支结构，也就是说上面的代码也可以写成下面的样子。</p>
@@ -595,7 +595,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2014/07/28/lang-python-Python-100-Days-02-语言元素/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2014/07/28/lang-python-Python-100-Days-02-语言元素/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -845,7 +845,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2014/07/28/lang-python-Python-100-Days-01-初识Python/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2014/07/28/lang-python-Python-100-Days-01-初识Python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -1121,7 +1121,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2014/07/23/lang-python-2015-07-23-python-时间/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2014/07/23/lang-python-2015-07-23-python-时间/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -1422,8 +1422,6 @@ print time.mktime(time.strptime(a,&quot;%a %b %d %H:%M:%S %Y&quot;))</code></pre
         
           
         
-          
-        
         <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span>
         </a>
@@ -1531,6 +1529,15 @@ print time.mktime(time.strptime(a,&quot;%a %b %d %H:%M:%S %Y&quot;))</code></pre
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 

@@ -59,18 +59,18 @@
 <meta name="keywords" content="mq">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何保证消息不被重复消费？">
-<meta property="og:url" content="https://dirsky.github.io/2018/11/03/subject-high-concurrency-how-to-ensure-that-messages-are-not-repeatedly-consumed/index.html">
+<meta property="og:url" content="https://gzxu.top/2018/11/03/subject-high-concurrency-how-to-ensure-that-messages-are-not-repeatedly-consumed/index.html">
 <meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="剖析回答这个问题，首先你别听到重复消息这个事儿，就一无所知吧，你先大概说一说可能会有哪些重复消费的问题。 首先，比如 RabbitMQ、RocketMQ、Kafka，都有可能会出现消息重复消费的问题，正常。因为这问题通常不是 MQ 自己保证的，是由我们开发来保证的。挑一个 Kafka 来举个例子，说说怎么重复消费吧。 Kafka 实际上有个 offset 的概念，就是每个消息写进去，都有一个 of">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://dirsky.github.io/images/high-concurrency/mq-10.png">
-<meta property="og:image" content="https://dirsky.github.io/images/high-concurrency/mq-11.png">
+<meta property="og:image" content="https://gzxu.top/images/high-concurrency/mq-10.png">
+<meta property="og:image" content="https://gzxu.top/images/high-concurrency/mq-11.png">
 <meta property="og:updated_time" content="2019-08-31T02:31:48.261Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何保证消息不被重复消费？">
 <meta name="twitter:description" content="剖析回答这个问题，首先你别听到重复消息这个事儿，就一无所知吧，你先大概说一说可能会有哪些重复消费的问题。 首先，比如 RabbitMQ、RocketMQ、Kafka，都有可能会出现消息重复消费的问题，正常。因为这问题通常不是 MQ 自己保证的，是由我们开发来保证的。挑一个 Kafka 来举个例子，说说怎么重复消费吧。 Kafka 实际上有个 offset 的概念，就是每个消息写进去，都有一个 of">
-<meta name="twitter:image" content="https://dirsky.github.io/images/high-concurrency/mq-10.png">
-  <link rel="canonical" href="https://dirsky.github.io/2018/11/03/subject-high-concurrency-how-to-ensure-that-messages-are-not-repeatedly-consumed/">
+<meta name="twitter:image" content="https://gzxu.top/images/high-concurrency/mq-10.png">
+  <link rel="canonical" href="https://gzxu.top/2018/11/03/subject-high-concurrency-how-to-ensure-that-messages-are-not-repeatedly-consumed/">
 
 
 <script id="page-configurations">
@@ -274,7 +274,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/11/03/subject-high-concurrency-how-to-ensure-that-messages-are-not-repeatedly-consumed/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2018/11/03/subject-high-concurrency-how-to-ensure-that-messages-are-not-repeatedly-consumed/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -637,8 +637,6 @@
         
           
         
-          
-        
         <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span>
         </a>
@@ -746,6 +744,15 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 

@@ -59,18 +59,18 @@
 <meta name="keywords" content="database">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何设计才可以让系统从未分库分表**动态切换**到分库分表上？">
-<meta property="og:url" content="https://dirsky.github.io/2018/07/03/subject-high-concurrency-database-shard-method/index.html">
+<meta property="og:url" content="https://gzxu.top/2018/07/03/subject-high-concurrency-database-shard-method/index.html">
 <meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="这个其实从 low 到高大上有好几种方案，我们都玩儿过，我都给你说一下。 停机迁移方案我先给你说一个最 low 的方案，就是很简单，大家伙儿凌晨 12 点开始运维，网站或者 app 挂个公告，说 0 点到早上 6 点进行运维，无法访问。 接着到 0 点停机，系统停掉，没有流量写入了，此时老的单库单表数据库静止了。然后你之前得写好一个导数的一次性工具，此时直接跑起来，然后将单库单表的数据哗哗哗读出来">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://dirsky.github.io/images/high-concurrency/database-shard-method-1.png">
-<meta property="og:image" content="https://dirsky.github.io/images/high-concurrency/database-shard-method-2.png">
+<meta property="og:image" content="https://gzxu.top/images/high-concurrency/database-shard-method-1.png">
+<meta property="og:image" content="https://gzxu.top/images/high-concurrency/database-shard-method-2.png">
 <meta property="og:updated_time" content="2019-08-31T02:30:49.394Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何设计才可以让系统从未分库分表**动态切换**到分库分表上？">
 <meta name="twitter:description" content="这个其实从 low 到高大上有好几种方案，我们都玩儿过，我都给你说一下。 停机迁移方案我先给你说一个最 low 的方案，就是很简单，大家伙儿凌晨 12 点开始运维，网站或者 app 挂个公告，说 0 点到早上 6 点进行运维，无法访问。 接着到 0 点停机，系统停掉，没有流量写入了，此时老的单库单表数据库静止了。然后你之前得写好一个导数的一次性工具，此时直接跑起来，然后将单库单表的数据哗哗哗读出来">
-<meta name="twitter:image" content="https://dirsky.github.io/images/high-concurrency/database-shard-method-1.png">
-  <link rel="canonical" href="https://dirsky.github.io/2018/07/03/subject-high-concurrency-database-shard-method/">
+<meta name="twitter:image" content="https://gzxu.top/images/high-concurrency/database-shard-method-1.png">
+  <link rel="canonical" href="https://gzxu.top/2018/07/03/subject-high-concurrency-database-shard-method/">
 
 
 <script id="page-configurations">
@@ -274,7 +274,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/07/03/subject-high-concurrency-database-shard-method/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2018/07/03/subject-high-concurrency-database-shard-method/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -628,8 +628,6 @@
         
           
         
-          
-        
         <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span>
         </a>
@@ -737,6 +735,15 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 

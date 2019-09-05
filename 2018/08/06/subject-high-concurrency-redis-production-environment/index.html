@@ -59,7 +59,7 @@
 <meta name="keywords" content="redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="生产环境中的 redis 是怎么部署的？">
-<meta property="og:url" content="https://dirsky.github.io/2018/08/06/subject-high-concurrency-redis-production-environment/index.html">
+<meta property="og:url" content="https://gzxu.top/2018/08/06/subject-high-concurrency-redis-production-environment/index.html">
 <meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="剖析redis cluster，10 台机器，5 台机器部署了 redis 主实例，另外 5 台机器部署了 redis 的从实例，每个主实例挂了一个从实例，5 个节点对外提供读写服务，每个节点的读写高峰qps可能可以达到每秒 5 万，5 台机器最多是 25 万读写请求/s。 机器是什么配置？32G 内存+ 8 核 CPU + 1T 磁盘，但是分配给 redis 进程的是10g内存，一般线上生产环境">
 <meta property="og:locale" content="zh-CN">
@@ -67,7 +67,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="生产环境中的 redis 是怎么部署的？">
 <meta name="twitter:description" content="剖析redis cluster，10 台机器，5 台机器部署了 redis 主实例，另外 5 台机器部署了 redis 的从实例，每个主实例挂了一个从实例，5 个节点对外提供读写服务，每个节点的读写高峰qps可能可以达到每秒 5 万，5 台机器最多是 25 万读写请求/s。 机器是什么配置？32G 内存+ 8 核 CPU + 1T 磁盘，但是分配给 redis 进程的是10g内存，一般线上生产环境">
-  <link rel="canonical" href="https://dirsky.github.io/2018/08/06/subject-high-concurrency-redis-production-environment/">
+  <link rel="canonical" href="https://gzxu.top/2018/08/06/subject-high-concurrency-redis-production-environment/">
 
 
 <script id="page-configurations">
@@ -271,7 +271,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/08/06/subject-high-concurrency-redis-production-environment/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2018/08/06/subject-high-concurrency-redis-production-environment/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -438,8 +438,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2018/09/27/db-mysql-再议数据库军规/" rel="prev" title="再议数据库军规">
-                  再议数据库军规 <i class="fa fa-chevron-right"></i>
+                <a href="/2018/09/27/db-mysql-58到家MySQL军规升级版/" rel="prev" title="58到家数据库30条军规解读">
+                  58到家数据库30条军规解读 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -618,8 +618,6 @@
         
           
         
-          
-        
         <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span>
         </a>
@@ -727,6 +725,15 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 

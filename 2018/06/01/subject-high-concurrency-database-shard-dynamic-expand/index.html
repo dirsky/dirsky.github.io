@@ -59,7 +59,7 @@
 <meta name="keywords" content="database">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何设计可以动态扩容缩容的分库分表方案？">
-<meta property="og:url" content="https://dirsky.github.io/2018/06/01/subject-high-concurrency-database-shard-dynamic-expand/index.html">
+<meta property="og:url" content="https://gzxu.top/2018/06/01/subject-high-concurrency-database-shard-dynamic-expand/index.html">
 <meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="停机扩容（不推荐）这个方案就跟停机迁移一样，步骤几乎一致，唯一的一点就是那个导数的工具，是把现有库表的数据抽出来慢慢倒入到新的库和表里去。但是最好别这么玩儿，有点不太靠谱，因为既然分库分表就说明数据量实在是太大了，可能多达几亿条，甚至几十亿，你这么玩儿，可能会出问题。 从单库单表迁移到分库分表的时候，数据量并不是很大，单表最大也就两三千万。那么你写个工具，多弄几台机器并行跑，1小时数据就导完了。这">
 <meta property="og:locale" content="zh-CN">
@@ -67,7 +67,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何设计可以动态扩容缩容的分库分表方案？">
 <meta name="twitter:description" content="停机扩容（不推荐）这个方案就跟停机迁移一样，步骤几乎一致，唯一的一点就是那个导数的工具，是把现有库表的数据抽出来慢慢倒入到新的库和表里去。但是最好别这么玩儿，有点不太靠谱，因为既然分库分表就说明数据量实在是太大了，可能多达几亿条，甚至几十亿，你这么玩儿，可能会出问题。 从单库单表迁移到分库分表的时候，数据量并不是很大，单表最大也就两三千万。那么你写个工具，多弄几台机器并行跑，1小时数据就导完了。这">
-  <link rel="canonical" href="https://dirsky.github.io/2018/06/01/subject-high-concurrency-database-shard-dynamic-expand/">
+  <link rel="canonical" href="https://gzxu.top/2018/06/01/subject-high-concurrency-database-shard-dynamic-expand/">
 
 
 <script id="page-configurations">
@@ -271,7 +271,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/06/01/subject-high-concurrency-database-shard-dynamic-expand/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2018/06/01/subject-high-concurrency-database-shard-dynamic-expand/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -475,8 +475,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2018/05/22/utils-docker-Docker-Image/" rel="next" title="Docker镜像">
-                  <i class="fa fa-chevron-left"></i> Docker镜像
+                <a href="/2018/05/22/utils-docker-Docker/" rel="next" title="Docker">
+                  <i class="fa fa-chevron-left"></i> Docker
                 </a>
               
             </div>
@@ -665,8 +665,6 @@
         
           
         
-          
-        
         <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span>
         </a>
@@ -774,6 +772,15 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 

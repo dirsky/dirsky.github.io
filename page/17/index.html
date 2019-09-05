@@ -59,14 +59,14 @@
 <meta name="keywords" content="Python Java">
 <meta property="og:type" content="website">
 <meta property="og:title" content="徐先生的技术栈">
-<meta property="og:url" content="https://dirsky.github.io/page/17/index.html">
+<meta property="og:url" content="https://gzxu.top/page/17/index.html">
 <meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="优秀是一种习惯">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="徐先生的技术栈">
 <meta name="twitter:description" content="优秀是一种习惯">
-  <link rel="canonical" href="https://dirsky.github.io/page/17/">
+  <link rel="canonical" href="https://gzxu.top/page/17/">
 
 
 <script id="page-configurations">
@@ -269,7 +269,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/08/26/os-linux-CentOS7安装配置vsftp搭建FTP/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2015/08/26/os-linux-CentOS7安装配置vsftp搭建FTP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -470,206 +470,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/08/26/os-linux-部署Seafile搭建自己的网盘/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2015/08/26/os-linux-部署Seafile搭建自己的网盘/" class="post-title-link" itemprop="url">部署Seafile搭建自己的网盘</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00+08:00">2015-08-26</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-29 15:17:34" itemprop="dateModified" datetime="2019-08-29T15:17:34+08:00">2019-08-29</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2015/08/26/os-linux-部署Seafile搭建自己的网盘/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-部署Seafile搭建自己的网盘/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>8k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>7 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Seafile 是一个开源的文件云存储平台，解决文件集中存储、同步、多平台访问的问，允许用户创建“群组”，在群组内共享和同步文件，方便了团队协同工作。</p>
-<!-- TOC -->
-
-<ul>
-<li><a href="#安装依赖">安装依赖</a></li>
-<li><a href="#下载">下载</a></li>
-<li><a href="#安装">安装</a><ul>
-<li><a href="#启动-seafile">启动 Seafile</a></li>
-<li><a href="#启动-seahub">启动 Seahub</a></li>
-</ul>
-</li>
-<li><a href="#备份">备份</a></li>
-<li><a href="#恢复">恢复</a></li>
-<li><a href="#服务管理">服务管理</a></li>
-<li><a href="#开机启动">开机启动</a></li>
-<li><a href="#参考资料">参考资料</a></li>
-</ul>
-<!-- /TOC -->
-
-<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 CentOS 7 下</span></span><br><span class="line"><span class="comment"># (MariaDB 是 MySQL 的分支)</span></span><br><span class="line">yum install mariadb-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果以来有问题 </span></span><br><span class="line"><span class="comment"># 尝试在后面加上参数  --skip-broken</span></span><br><span class="line">yum install python-setuptools python-imaging python-ldap MySQL-python python-memcached python-urllib3</span><br></pre></td></tr></table></figure>
-
-<p>yum 安装 mysqldb-python 后面seafile安装报错，需要通过 python 的工具pip来安装MySQL-python <code>pip install MySQL-python</code></p>
-<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>在这里下载<a href="https://www.seafile.com/download/" target="_blank" rel="noopener">seafile-server_6.0.7_x86-64.tar.gz</a>，你可以选择你需要的版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看系统版本</span></span><br><span class="line">cat /proc/version</span><br><span class="line">wget http://download-cn.seafile.com/seafile-server_6.0.7_x86-64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -zxvf seafile-server_6.0.7_x86-64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压放到一个目录</span></span><br><span class="line"><span class="built_in">cd</span> seafile-server-*</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>我的数据库使用MySQL，你需要先在数据库中建立一个 MySQL 用户 <code>seafile</code>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 登录MySQL创建一个用户</span></span><br><span class="line">mysql -uroot -p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建用户设置密码</span></span><br><span class="line">mysql&gt; Create USER <span class="string">'seafile'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'123456'</span>;</span><br><span class="line"><span class="comment"># 执行下面语句立即生效</span></span><br><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure>
-
-<p>运行<code>./setup-seafile-mysql.sh</code>安装脚本并回答预设问题</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line">./setup-seafile-mysql.sh</span><br><span class="line">  Checking python on this machine ...</span><br><span class="line">  Checking python module: setuptools ... Done.</span><br><span class="line">  Checking python module: python-imaging ... Done.</span><br><span class="line">  Checking python module: python-mysqldb ... Done.</span><br><span class="line"></span><br><span class="line">-----------------------------------------------------------------</span><br><span class="line">This script will guide you to setup your seafile server using MySQL.</span><br><span class="line">Make sure you have <span class="built_in">read</span> seafile server manual at</span><br><span class="line"></span><br><span class="line">        https://github.com/haiwen/seafile/wiki</span><br><span class="line"></span><br><span class="line">Press ENTER to <span class="built_in">continue</span></span><br><span class="line">-----------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">What is the name of the server? It will be displayed on the client.</span><br><span class="line">3 - 15 letters or digits</span><br><span class="line">[ server name ] &lt;填写 seafile 服务器的名字&gt;</span><br><span class="line"></span><br><span class="line">What is the ip or domain of the server?</span><br><span class="line">For example: www.mycompany.com, 192.168.1.101</span><br><span class="line">[ This server<span class="string">'s ip or domain ] &lt;seafile 服务器的 IP 地址或者域名&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Where do you want to put your seafile data?</span></span><br><span class="line"><span class="string">Please use a volume with enough free space</span></span><br><span class="line"><span class="string">[ default "/home/www/jinpans/seafile-data" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Which port do you want to use for the seafile fileserver?</span></span><br><span class="line"><span class="string">[ default "8082" ]  [ seafile fileserver 使用的 TCP 端口 ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-------------------------------------------------------</span></span><br><span class="line"><span class="string">Please choose a way to initialize seafile databases:</span></span><br><span class="line"><span class="string">-------------------------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[1] Create new ccnet/seafile/seahub databases</span></span><br><span class="line"><span class="string">    你需要提供根密码. 脚本程序会创建数据库和用户。</span></span><br><span class="line"><span class="string">[2] Use existing ccnet/seafile/seahub databases</span></span><br><span class="line"><span class="string">    ccnet/seafile/seahub 数据库应该已经被你（或者其他人）提前创建。</span></span><br><span class="line"><span class="string">[ 1 or 2 ] &lt;选择一种创建 Seafile 数据库的方式&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">What is the host of mysql server?</span></span><br><span class="line"><span class="string">[ default "localhost" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">What is the port of mysql server?</span></span><br><span class="line"><span class="string">[ default "3306" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">What is the password of the mysql root user?</span></span><br><span class="line"><span class="string">[ root password ] &lt;输入root密码&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">verifying password of user root ...  done</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the name for mysql user of seafile. It would be created if not exists.</span></span><br><span class="line"><span class="string">[ default "seafile" ] &lt;默认seafile的MySQL用户名，可以使用默认&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the password for mysql user "seafile":</span></span><br><span class="line"><span class="string">[ password for seafile ] &lt;输入seafile密码&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">verifying password of user seafile ...  done</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the database name for ccnet-server:</span></span><br><span class="line"><span class="string">[ default "ccnet-db" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the database name for seafile-server:</span></span><br><span class="line"><span class="string">[ default "seafile-db" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the database name for seahub:</span></span><br><span class="line"><span class="string">[ default "seahub-db" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string">This is your configuration</span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    server name:            seafile 服务器的名字</span></span><br><span class="line"><span class="string">    server ip/domain:       192.168.1.101</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    seafile data dir:       /home/www/jinpans/seafile-data</span></span><br><span class="line"><span class="string">    fileserver port:        8082</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    database:               create new</span></span><br><span class="line"><span class="string">    ccnet database:         ccnet-db</span></span><br><span class="line"><span class="string">    seafile database:       seafile-db</span></span><br><span class="line"><span class="string">    seahub database:        seahub-db</span></span><br><span class="line"><span class="string">    database user:          seafile</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string">Press ENTER to continue, or Ctrl-C to abort</span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Generating ccnet configuration ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">done</span></span><br><span class="line"><span class="string">Successly create configuration dir /home/www/jinpans/ccnet.</span></span><br><span class="line"><span class="string">Generating seafile configuration ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Done.</span></span><br><span class="line"><span class="string">done</span></span><br><span class="line"><span class="string">Generating seahub configuration ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">----------------------------------------</span></span><br><span class="line"><span class="string">Now creating seahub database tables ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">----------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">creating seafile-server-latest symbolic link ...  done</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string">Your seafile server configuration has been finished successfully.</span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">run seafile server:     ./seafile.sh &#123; start | stop | restart &#125;</span></span><br><span class="line"><span class="string">run seahub  server:     ./seahub.sh  &#123; start &lt;port&gt; | stop | restart &lt;port&gt; &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string">If you are behind a firewall, remember to allow input/output of these tcp ports:</span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">port of seafile fileserver:   8082</span></span><br><span class="line"><span class="string">port of seahub:               8000</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">When problems occur, Refer to</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        https://github.com/haiwen/seafile/wiki</span></span><br></pre></td></tr></table></figure>
-
-<p>上面算是结束了，然后在 seafile-server_6.0.7 目录下面，运行如下命令</p>
-<h3 id="启动-Seafile"><a href="#启动-Seafile" class="headerlink" title="启动 Seafile"></a>启动 Seafile</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./seafile.sh start <span class="comment"># 启动 Seafile 服务</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="启动-Seahub"><a href="#启动-Seahub" class="headerlink" title="启动 Seahub"></a>启动 Seahub</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">./seahub.sh start &lt;port&gt;  <span class="comment"># 启动 Seahub 网站 （默认运行在8000端口上）</span></span><br><span class="line"><span class="comment"># 你第一次启动 seahub 时，seahub.sh 脚本会提示你创建一个 seafile 管理员帐号。</span></span><br><span class="line"></span><br><span class="line">LC_ALL is not <span class="built_in">set</span> <span class="keyword">in</span> ENV, <span class="built_in">set</span> to en_US.UTF-8</span><br><span class="line">Starting seahub at port 8000 ...</span><br><span class="line"></span><br><span class="line">----------------------------------------</span><br><span class="line">It<span class="string">'s the first time you start the seafile server. Now let'</span>s create the admin account</span><br><span class="line">----------------------------------------</span><br><span class="line"></span><br><span class="line">What is the email <span class="keyword">for</span> the admin account?</span><br><span class="line">[ admin email ] &lt;这里输入邮箱地址&gt;</span><br><span class="line"></span><br><span class="line">What is the password <span class="keyword">for</span> the admin account?</span><br><span class="line">[ admin password ] &lt;这里输入密码&gt;</span><br><span class="line"></span><br><span class="line">Enter the password again:</span><br><span class="line">[ admin password again ] &lt;这里确认输入密码&gt;</span><br><span class="line">----------------------------------------</span><br><span class="line">Successfully created seafile admin</span><br><span class="line">----------------------------------------</span><br><span class="line">Seahub is started</span><br><span class="line">Done.</span><br></pre></td></tr></table></figure>
-
-<p>然后你可以打开它了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.111:8000/</span><br></pre></td></tr></table></figure>
-
-<h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><p>备份数据库，假设你的数据库名分别为 <code>ccnet-db</code> , <code>seafile-db</code> 和 <code>seahubdb</code>，下面命令分别备份这三个数据库，同时要注意备份需要先建立好文件夹。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -h localhost -uroot -p --opt ccnet-db &gt; ./backup/databases/ccnet-db.sql.`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>`</span><br><span class="line">mysqldump -h localhost -uroot -p --opt seafile-db &gt; ./backup/databases/seafile-db.sql.`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>`</span><br><span class="line">mysqldump -h localhost -uroot -p --opt seahub-db &gt; ./backup/databases/seahub-db.sql.`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>`</span><br></pre></td></tr></table></figure>
-
-<p>备份文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nohup cp -R ./seafile-data ./backup/data/seafile-data-`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>` 2&gt;&amp;1 &amp;</span><br><span class="line">nohup cp -R ./seahub-data ./backup/data/seahub-data-`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>` 2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line">[1] 17294</span><br></pre></td></tr></table></figure>
-
-<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p ccnet-db &lt; ccnet-db.sql.2017-11-29-11-36-06 </span><br><span class="line">mysql -uroot -p seafile-db &lt; seafile-db.sql.2017-11-29-11-36-06 </span><br><span class="line">mysql -uroot -p seahub-db &lt; seahub-db.sql.2017-11-29-11-36-06</span><br></pre></td></tr></table></figure>
-
-<h2 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">./seahub.sh stop       <span class="comment"># 停止 Seafile 进程</span></span><br><span class="line">./seafile.sh stop      <span class="comment"># 停止 Seahub</span></span><br><span class="line"></span><br><span class="line">./seafile.sh start     <span class="comment"># 启动 Seafile 服务</span></span><br><span class="line">./seahub.sh start 8001 <span class="comment"># 启动 Seahub 网站 （运行在8001端口上）</span></span><br><span class="line"></span><br><span class="line">./seafile.sh restart   <span class="comment"># 停止当前的 Seafile 进程，然后重启 Seafile</span></span><br><span class="line">./seahub.sh restart    <span class="comment"># 停止当前的 Seahub 进程，并在 8000 端口重新启动 Seahub</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="开机启动"><a href="#开机启动" class="headerlink" title="开机启动"></a>开机启动</h2><p>创建 systemd 服务文件<code>seafile.service</code>，记得将服务文件中的<code>${seafile_dir}</code>替换成你的安装目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/systemd/system/seafile.service</span><br></pre></td></tr></table></figure>
-
-<p>文件内容如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Seafile</span><br><span class="line"><span class="comment"># add mysql.service or postgresql.service depending on your database to the line below</span></span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">ExecStart=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seafile.sh start</span><br><span class="line">ExecStop=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seafile.sh stop</span><br><span class="line">RemainAfterExit=yes</span><br><span class="line">User=seafile</span><br><span class="line">Group=seafile</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
-
-<p>创建 systemd 服务文件 <code>seahub.service</code>，记得将服务文件中的<code>${seafile_dir}</code>替换成你的安装目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/systemd/system/seahub.service</span><br></pre></td></tr></table></figure>
-
-<p>文件内容如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Seafile hub</span><br><span class="line">After=network.target seafile.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line"><span class="comment"># change start to start-fastcgi if you want to run fastcgi</span></span><br><span class="line">ExecStart=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seahub.sh start</span><br><span class="line">ExecStop=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seahub.sh stop</span><br><span class="line">User=seafile</span><br><span class="line">Group=seafile</span><br><span class="line">Type=oneshot</span><br><span class="line">RemainAfterExit=yes</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
-
-<p>[Install]<br>WantedBy=multi-user.target</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> seafile.service</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> seahub.service</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://www.gitbook.com/book/freeplant/seafile-manual-cn/details" target="_blank" rel="noopener">Seafile服务器手册中文版</a></li>
-<li><a href="https://github.com/haiwen/seafile" target="_blank" rel="noopener">Seafile for Github</a></li>
-<li><a href="http://seafile.com/" target="_blank" rel="noopener">Seafile官网</a></li>
-</ul>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/08/26/os-linux-CentOS7更换yum软件镜像源/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2015/08/26/os-linux-CentOS7更换yum软件镜像源/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -843,7 +644,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/08/26/os-linux-CentOS7安装维护Gitlab/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2015/08/26/os-linux-CentOS7安装维护Gitlab/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -1184,7 +985,206 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/07/23/os-linux-后端程序员必备的Linux基础知识/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2015/08/26/os-linux-部署Seafile搭建自己的网盘/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2015/08/26/os-linux-部署Seafile搭建自己的网盘/" class="post-title-link" itemprop="url">部署Seafile搭建自己的网盘</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00+08:00">2015-08-26</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-29 15:17:34" itemprop="dateModified" datetime="2019-08-29T15:17:34+08:00">2019-08-29</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/08/26/os-linux-部署Seafile搭建自己的网盘/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-部署Seafile搭建自己的网盘/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>8k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>7 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Seafile 是一个开源的文件云存储平台，解决文件集中存储、同步、多平台访问的问，允许用户创建“群组”，在群组内共享和同步文件，方便了团队协同工作。</p>
+<!-- TOC -->
+
+<ul>
+<li><a href="#安装依赖">安装依赖</a></li>
+<li><a href="#下载">下载</a></li>
+<li><a href="#安装">安装</a><ul>
+<li><a href="#启动-seafile">启动 Seafile</a></li>
+<li><a href="#启动-seahub">启动 Seahub</a></li>
+</ul>
+</li>
+<li><a href="#备份">备份</a></li>
+<li><a href="#恢复">恢复</a></li>
+<li><a href="#服务管理">服务管理</a></li>
+<li><a href="#开机启动">开机启动</a></li>
+<li><a href="#参考资料">参考资料</a></li>
+</ul>
+<!-- /TOC -->
+
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 CentOS 7 下</span></span><br><span class="line"><span class="comment"># (MariaDB 是 MySQL 的分支)</span></span><br><span class="line">yum install mariadb-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果以来有问题 </span></span><br><span class="line"><span class="comment"># 尝试在后面加上参数  --skip-broken</span></span><br><span class="line">yum install python-setuptools python-imaging python-ldap MySQL-python python-memcached python-urllib3</span><br></pre></td></tr></table></figure>
+
+<p>yum 安装 mysqldb-python 后面seafile安装报错，需要通过 python 的工具pip来安装MySQL-python <code>pip install MySQL-python</code></p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>在这里下载<a href="https://www.seafile.com/download/" target="_blank" rel="noopener">seafile-server_6.0.7_x86-64.tar.gz</a>，你可以选择你需要的版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看系统版本</span></span><br><span class="line">cat /proc/version</span><br><span class="line">wget http://download-cn.seafile.com/seafile-server_6.0.7_x86-64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -zxvf seafile-server_6.0.7_x86-64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压放到一个目录</span></span><br><span class="line"><span class="built_in">cd</span> seafile-server-*</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>我的数据库使用MySQL，你需要先在数据库中建立一个 MySQL 用户 <code>seafile</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 登录MySQL创建一个用户</span></span><br><span class="line">mysql -uroot -p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建用户设置密码</span></span><br><span class="line">mysql&gt; Create USER <span class="string">'seafile'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'123456'</span>;</span><br><span class="line"><span class="comment"># 执行下面语句立即生效</span></span><br><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure>
+
+<p>运行<code>./setup-seafile-mysql.sh</code>安装脚本并回答预设问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line">./setup-seafile-mysql.sh</span><br><span class="line">  Checking python on this machine ...</span><br><span class="line">  Checking python module: setuptools ... Done.</span><br><span class="line">  Checking python module: python-imaging ... Done.</span><br><span class="line">  Checking python module: python-mysqldb ... Done.</span><br><span class="line"></span><br><span class="line">-----------------------------------------------------------------</span><br><span class="line">This script will guide you to setup your seafile server using MySQL.</span><br><span class="line">Make sure you have <span class="built_in">read</span> seafile server manual at</span><br><span class="line"></span><br><span class="line">        https://github.com/haiwen/seafile/wiki</span><br><span class="line"></span><br><span class="line">Press ENTER to <span class="built_in">continue</span></span><br><span class="line">-----------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">What is the name of the server? It will be displayed on the client.</span><br><span class="line">3 - 15 letters or digits</span><br><span class="line">[ server name ] &lt;填写 seafile 服务器的名字&gt;</span><br><span class="line"></span><br><span class="line">What is the ip or domain of the server?</span><br><span class="line">For example: www.mycompany.com, 192.168.1.101</span><br><span class="line">[ This server<span class="string">'s ip or domain ] &lt;seafile 服务器的 IP 地址或者域名&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Where do you want to put your seafile data?</span></span><br><span class="line"><span class="string">Please use a volume with enough free space</span></span><br><span class="line"><span class="string">[ default "/home/www/jinpans/seafile-data" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Which port do you want to use for the seafile fileserver?</span></span><br><span class="line"><span class="string">[ default "8082" ]  [ seafile fileserver 使用的 TCP 端口 ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-------------------------------------------------------</span></span><br><span class="line"><span class="string">Please choose a way to initialize seafile databases:</span></span><br><span class="line"><span class="string">-------------------------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[1] Create new ccnet/seafile/seahub databases</span></span><br><span class="line"><span class="string">    你需要提供根密码. 脚本程序会创建数据库和用户。</span></span><br><span class="line"><span class="string">[2] Use existing ccnet/seafile/seahub databases</span></span><br><span class="line"><span class="string">    ccnet/seafile/seahub 数据库应该已经被你（或者其他人）提前创建。</span></span><br><span class="line"><span class="string">[ 1 or 2 ] &lt;选择一种创建 Seafile 数据库的方式&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">What is the host of mysql server?</span></span><br><span class="line"><span class="string">[ default "localhost" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">What is the port of mysql server?</span></span><br><span class="line"><span class="string">[ default "3306" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">What is the password of the mysql root user?</span></span><br><span class="line"><span class="string">[ root password ] &lt;输入root密码&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">verifying password of user root ...  done</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the name for mysql user of seafile. It would be created if not exists.</span></span><br><span class="line"><span class="string">[ default "seafile" ] &lt;默认seafile的MySQL用户名，可以使用默认&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the password for mysql user "seafile":</span></span><br><span class="line"><span class="string">[ password for seafile ] &lt;输入seafile密码&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">verifying password of user seafile ...  done</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the database name for ccnet-server:</span></span><br><span class="line"><span class="string">[ default "ccnet-db" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the database name for seafile-server:</span></span><br><span class="line"><span class="string">[ default "seafile-db" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the database name for seahub:</span></span><br><span class="line"><span class="string">[ default "seahub-db" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string">This is your configuration</span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    server name:            seafile 服务器的名字</span></span><br><span class="line"><span class="string">    server ip/domain:       192.168.1.101</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    seafile data dir:       /home/www/jinpans/seafile-data</span></span><br><span class="line"><span class="string">    fileserver port:        8082</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    database:               create new</span></span><br><span class="line"><span class="string">    ccnet database:         ccnet-db</span></span><br><span class="line"><span class="string">    seafile database:       seafile-db</span></span><br><span class="line"><span class="string">    seahub database:        seahub-db</span></span><br><span class="line"><span class="string">    database user:          seafile</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string">Press ENTER to continue, or Ctrl-C to abort</span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Generating ccnet configuration ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">done</span></span><br><span class="line"><span class="string">Successly create configuration dir /home/www/jinpans/ccnet.</span></span><br><span class="line"><span class="string">Generating seafile configuration ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Done.</span></span><br><span class="line"><span class="string">done</span></span><br><span class="line"><span class="string">Generating seahub configuration ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">----------------------------------------</span></span><br><span class="line"><span class="string">Now creating seahub database tables ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">----------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">creating seafile-server-latest symbolic link ...  done</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string">Your seafile server configuration has been finished successfully.</span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">run seafile server:     ./seafile.sh &#123; start | stop | restart &#125;</span></span><br><span class="line"><span class="string">run seahub  server:     ./seahub.sh  &#123; start &lt;port&gt; | stop | restart &lt;port&gt; &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string">If you are behind a firewall, remember to allow input/output of these tcp ports:</span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">port of seafile fileserver:   8082</span></span><br><span class="line"><span class="string">port of seahub:               8000</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">When problems occur, Refer to</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        https://github.com/haiwen/seafile/wiki</span></span><br></pre></td></tr></table></figure>
+
+<p>上面算是结束了，然后在 seafile-server_6.0.7 目录下面，运行如下命令</p>
+<h3 id="启动-Seafile"><a href="#启动-Seafile" class="headerlink" title="启动 Seafile"></a>启动 Seafile</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./seafile.sh start <span class="comment"># 启动 Seafile 服务</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="启动-Seahub"><a href="#启动-Seahub" class="headerlink" title="启动 Seahub"></a>启动 Seahub</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">./seahub.sh start &lt;port&gt;  <span class="comment"># 启动 Seahub 网站 （默认运行在8000端口上）</span></span><br><span class="line"><span class="comment"># 你第一次启动 seahub 时，seahub.sh 脚本会提示你创建一个 seafile 管理员帐号。</span></span><br><span class="line"></span><br><span class="line">LC_ALL is not <span class="built_in">set</span> <span class="keyword">in</span> ENV, <span class="built_in">set</span> to en_US.UTF-8</span><br><span class="line">Starting seahub at port 8000 ...</span><br><span class="line"></span><br><span class="line">----------------------------------------</span><br><span class="line">It<span class="string">'s the first time you start the seafile server. Now let'</span>s create the admin account</span><br><span class="line">----------------------------------------</span><br><span class="line"></span><br><span class="line">What is the email <span class="keyword">for</span> the admin account?</span><br><span class="line">[ admin email ] &lt;这里输入邮箱地址&gt;</span><br><span class="line"></span><br><span class="line">What is the password <span class="keyword">for</span> the admin account?</span><br><span class="line">[ admin password ] &lt;这里输入密码&gt;</span><br><span class="line"></span><br><span class="line">Enter the password again:</span><br><span class="line">[ admin password again ] &lt;这里确认输入密码&gt;</span><br><span class="line">----------------------------------------</span><br><span class="line">Successfully created seafile admin</span><br><span class="line">----------------------------------------</span><br><span class="line">Seahub is started</span><br><span class="line">Done.</span><br></pre></td></tr></table></figure>
+
+<p>然后你可以打开它了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.111:8000/</span><br></pre></td></tr></table></figure>
+
+<h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><p>备份数据库，假设你的数据库名分别为 <code>ccnet-db</code> , <code>seafile-db</code> 和 <code>seahubdb</code>，下面命令分别备份这三个数据库，同时要注意备份需要先建立好文件夹。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -h localhost -uroot -p --opt ccnet-db &gt; ./backup/databases/ccnet-db.sql.`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>`</span><br><span class="line">mysqldump -h localhost -uroot -p --opt seafile-db &gt; ./backup/databases/seafile-db.sql.`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>`</span><br><span class="line">mysqldump -h localhost -uroot -p --opt seahub-db &gt; ./backup/databases/seahub-db.sql.`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>`</span><br></pre></td></tr></table></figure>
+
+<p>备份文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nohup cp -R ./seafile-data ./backup/data/seafile-data-`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>` 2&gt;&amp;1 &amp;</span><br><span class="line">nohup cp -R ./seahub-data ./backup/data/seahub-data-`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>` 2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line">[1] 17294</span><br></pre></td></tr></table></figure>
+
+<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p ccnet-db &lt; ccnet-db.sql.2017-11-29-11-36-06 </span><br><span class="line">mysql -uroot -p seafile-db &lt; seafile-db.sql.2017-11-29-11-36-06 </span><br><span class="line">mysql -uroot -p seahub-db &lt; seahub-db.sql.2017-11-29-11-36-06</span><br></pre></td></tr></table></figure>
+
+<h2 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">./seahub.sh stop       <span class="comment"># 停止 Seafile 进程</span></span><br><span class="line">./seafile.sh stop      <span class="comment"># 停止 Seahub</span></span><br><span class="line"></span><br><span class="line">./seafile.sh start     <span class="comment"># 启动 Seafile 服务</span></span><br><span class="line">./seahub.sh start 8001 <span class="comment"># 启动 Seahub 网站 （运行在8001端口上）</span></span><br><span class="line"></span><br><span class="line">./seafile.sh restart   <span class="comment"># 停止当前的 Seafile 进程，然后重启 Seafile</span></span><br><span class="line">./seahub.sh restart    <span class="comment"># 停止当前的 Seahub 进程，并在 8000 端口重新启动 Seahub</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="开机启动"><a href="#开机启动" class="headerlink" title="开机启动"></a>开机启动</h2><p>创建 systemd 服务文件<code>seafile.service</code>，记得将服务文件中的<code>${seafile_dir}</code>替换成你的安装目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/systemd/system/seafile.service</span><br></pre></td></tr></table></figure>
+
+<p>文件内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Seafile</span><br><span class="line"><span class="comment"># add mysql.service or postgresql.service depending on your database to the line below</span></span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">ExecStart=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seafile.sh start</span><br><span class="line">ExecStop=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seafile.sh stop</span><br><span class="line">RemainAfterExit=yes</span><br><span class="line">User=seafile</span><br><span class="line">Group=seafile</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>创建 systemd 服务文件 <code>seahub.service</code>，记得将服务文件中的<code>${seafile_dir}</code>替换成你的安装目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/systemd/system/seahub.service</span><br></pre></td></tr></table></figure>
+
+<p>文件内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Seafile hub</span><br><span class="line">After=network.target seafile.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line"><span class="comment"># change start to start-fastcgi if you want to run fastcgi</span></span><br><span class="line">ExecStart=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seahub.sh start</span><br><span class="line">ExecStop=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seahub.sh stop</span><br><span class="line">User=seafile</span><br><span class="line">Group=seafile</span><br><span class="line">Type=oneshot</span><br><span class="line">RemainAfterExit=yes</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>[Install]<br>WantedBy=multi-user.target</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> seafile.service</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> seahub.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://www.gitbook.com/book/freeplant/seafile-manual-cn/details" target="_blank" rel="noopener">Seafile服务器手册中文版</a></li>
+<li><a href="https://github.com/haiwen/seafile" target="_blank" rel="noopener">Seafile for Github</a></li>
+<li><a href="http://seafile.com/" target="_blank" rel="noopener">Seafile官网</a></li>
+</ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2015/07/23/os-linux-后端程序员必备的Linux基础知识/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -1735,8 +1735,6 @@
         
           
         
-          
-        
         <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span>
         </a>
@@ -1844,6 +1842,15 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 

@@ -59,18 +59,18 @@
 <meta name="keywords" content="redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis 哨兵集群实现高可用">
-<meta property="og:url" content="https://dirsky.github.io/2018/08/04/subject-high-concurrency-redis-sentinel/index.html">
+<meta property="og:url" content="https://gzxu.top/2018/08/04/subject-high-concurrency-redis-sentinel/index.html">
 <meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="Redis 哨兵集群实现高可用哨兵的介绍sentinel，中文名是哨兵。哨兵是 redis 集群机构中非常重要的一个组件，主要有以下功能：  集群监控：负责监控 redis master 和 slave 进程是否正常工作。 消息通知：如果某个 redis 实例有故障，那么哨兵负责发送消息作为报警通知给管理员。 故障转移：如果 master node 挂掉了，会自动转移到 slave node 上。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://dirsky.github.io/images/high-concurrency/async-replication-data-lose-case.png">
-<meta property="og:image" content="https://dirsky.github.io/images/high-concurrency/redis-cluster-split-brain.png">
+<meta property="og:image" content="https://gzxu.top/images/high-concurrency/async-replication-data-lose-case.png">
+<meta property="og:image" content="https://gzxu.top/images/high-concurrency/redis-cluster-split-brain.png">
 <meta property="og:updated_time" content="2019-08-31T02:33:11.658Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis 哨兵集群实现高可用">
 <meta name="twitter:description" content="Redis 哨兵集群实现高可用哨兵的介绍sentinel，中文名是哨兵。哨兵是 redis 集群机构中非常重要的一个组件，主要有以下功能：  集群监控：负责监控 redis master 和 slave 进程是否正常工作。 消息通知：如果某个 redis 实例有故障，那么哨兵负责发送消息作为报警通知给管理员。 故障转移：如果 master node 挂掉了，会自动转移到 slave node 上。">
-<meta name="twitter:image" content="https://dirsky.github.io/images/high-concurrency/async-replication-data-lose-case.png">
-  <link rel="canonical" href="https://dirsky.github.io/2018/08/04/subject-high-concurrency-redis-sentinel/">
+<meta name="twitter:image" content="https://gzxu.top/images/high-concurrency/async-replication-data-lose-case.png">
+  <link rel="canonical" href="https://gzxu.top/2018/08/04/subject-high-concurrency-redis-sentinel/">
 
 
 <script id="page-configurations">
@@ -274,7 +274,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/08/04/subject-high-concurrency-redis-sentinel/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2018/08/04/subject-high-concurrency-redis-sentinel/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -702,8 +702,6 @@
         
           
         
-          
-        
         <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span>
         </a>
@@ -811,6 +809,15 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 

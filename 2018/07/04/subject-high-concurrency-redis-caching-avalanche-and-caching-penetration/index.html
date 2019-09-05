@@ -59,19 +59,19 @@
 <meta name="keywords" content="redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redis 的雪崩、穿透和击穿？">
-<meta property="og:url" content="https://dirsky.github.io/2018/07/04/subject-high-concurrency-redis-caching-avalanche-and-caching-penetration/index.html">
+<meta property="og:url" content="https://gzxu.top/2018/07/04/subject-high-concurrency-redis-caching-avalanche-and-caching-penetration/index.html">
 <meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="缓存雪崩对于系统 A，假设每天高峰期每秒 5000 个请求，本来缓存在高峰期可以扛住每秒 4000 个请求，但是缓存机器意外发生了全盘宕机。缓存挂了，此时 1 秒 5000 个请求全部落数据库，数据库必然扛不住，它会报一下警，然后就挂了。此时，如果没有采用什么特别的方案来处理这个故障，DBA 很着急，重启数据库，但是数据库立马又被新的流量给打死了。 这就是缓存雪崩。  大约在 3 年前，国内比较知">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://dirsky.github.io/images/high-concurrency/redis-caching-avalanche.png">
-<meta property="og:image" content="https://dirsky.github.io/images/high-concurrency/redis-caching-avalanche-solution.png">
-<meta property="og:image" content="https://dirsky.github.io/images/high-concurrency/redis-caching-penetration.png">
+<meta property="og:image" content="https://gzxu.top/images/high-concurrency/redis-caching-avalanche.png">
+<meta property="og:image" content="https://gzxu.top/images/high-concurrency/redis-caching-avalanche-solution.png">
+<meta property="og:image" content="https://gzxu.top/images/high-concurrency/redis-caching-penetration.png">
 <meta property="og:updated_time" content="2019-08-31T02:32:29.444Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis 的雪崩、穿透和击穿？">
 <meta name="twitter:description" content="缓存雪崩对于系统 A，假设每天高峰期每秒 5000 个请求，本来缓存在高峰期可以扛住每秒 4000 个请求，但是缓存机器意外发生了全盘宕机。缓存挂了，此时 1 秒 5000 个请求全部落数据库，数据库必然扛不住，它会报一下警，然后就挂了。此时，如果没有采用什么特别的方案来处理这个故障，DBA 很着急，重启数据库，但是数据库立马又被新的流量给打死了。 这就是缓存雪崩。  大约在 3 年前，国内比较知">
-<meta name="twitter:image" content="https://dirsky.github.io/images/high-concurrency/redis-caching-avalanche.png">
-  <link rel="canonical" href="https://dirsky.github.io/2018/07/04/subject-high-concurrency-redis-caching-avalanche-and-caching-penetration/">
+<meta name="twitter:image" content="https://gzxu.top/images/high-concurrency/redis-caching-avalanche.png">
+  <link rel="canonical" href="https://gzxu.top/2018/07/04/subject-high-concurrency-redis-caching-avalanche-and-caching-penetration/">
 
 
 <script id="page-configurations">
@@ -275,7 +275,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/07/04/subject-high-concurrency-redis-caching-avalanche-and-caching-penetration/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2018/07/04/subject-high-concurrency-redis-caching-avalanche-and-caching-penetration/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -462,8 +462,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2018/07/04/subject-high-concurrency-redis-master-slave/" rel="prev" title="Redis 主从架构">
-                  Redis 主从架构 <i class="fa fa-chevron-right"></i>
+                <a href="/2018/07/04/subject-high-concurrency-redis-single-thread-model/" rel="prev" title="redis 和 memcached 有什么区别？">
+                  redis 和 memcached 有什么区别？ <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -642,8 +642,6 @@
         
           
         
-          
-        
         <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span>
         </a>
@@ -751,6 +749,15 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 

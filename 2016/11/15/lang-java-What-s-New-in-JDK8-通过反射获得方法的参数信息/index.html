@@ -59,7 +59,7 @@
 <meta name="keywords" content="java,java8">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过反射获得方法的参数信息">
-<meta property="og:url" content="https://dirsky.github.io/2016/11/15/lang-java-What-s-New-in-JDK8-通过反射获得方法的参数信息/index.html">
+<meta property="og:url" content="https://gzxu.top/2016/11/15/lang-java-What-s-New-in-JDK8-通过反射获得方法的参数信息/index.html">
 <meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="JDK8之前 .class文件是不会存储方法参数信息的，因此也就无法通过反射获取该信息(想想反射获取类信息的入口是什么？当然就是Class类了)。即是是在JDK11里也不会默认生成这些信息，可以通过在javac加上-parameters参数来让javac生成这些信息(javac就是java编译器，可以把java文件编译成.class文件)。生成额外的信息(运行时非必须信息)会消耗内存并且有可能公布">
 <meta property="og:locale" content="zh-CN">
@@ -67,7 +67,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过反射获得方法的参数信息">
 <meta name="twitter:description" content="JDK8之前 .class文件是不会存储方法参数信息的，因此也就无法通过反射获取该信息(想想反射获取类信息的入口是什么？当然就是Class类了)。即是是在JDK11里也不会默认生成这些信息，可以通过在javac加上-parameters参数来让javac生成这些信息(javac就是java编译器，可以把java文件编译成.class文件)。生成额外的信息(运行时非必须信息)会消耗内存并且有可能公布">
-  <link rel="canonical" href="https://dirsky.github.io/2016/11/15/lang-java-What-s-New-in-JDK8-通过反射获得方法的参数信息/">
+  <link rel="canonical" href="https://gzxu.top/2016/11/15/lang-java-What-s-New-in-JDK8-通过反射获得方法的参数信息/">
 
 
 <script id="page-configurations">
@@ -271,7 +271,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2016/11/15/lang-java-What-s-New-in-JDK8-通过反射获得方法的参数信息/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2016/11/15/lang-java-What-s-New-in-JDK8-通过反射获得方法的参数信息/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -441,8 +441,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2016/11/15/lang-java-What-s-New-in-JDK8-Stream/" rel="next" title="Stream API">
-                  <i class="fa fa-chevron-left"></i> Stream API
+                <a href="/2016/11/15/lang-java-What-s-New-in-JDK8-改进的类型推断/" rel="next" title="改进的类型推断">
+                  <i class="fa fa-chevron-left"></i> 改进的类型推断
                 </a>
               
             </div>
@@ -631,8 +631,6 @@
         
           
         
-          
-        
         <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span>
         </a>
@@ -740,6 +738,15 @@
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 
