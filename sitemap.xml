@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://gzxu.top/2019/08/28/hello-hexo/</loc>
+    
+    <lastmod>2019-09-16T06:27:14.323Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://gzxu.top/2019/09/14/utils-docker-Docker%E5%AE%B9%E5%99%A8-MySQL%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</loc>
     
     <lastmod>2019-09-16T06:23:01.647Z</lastmod>
@@ -110,13 +117,6 @@
     <loc>https://gzxu.top/2014/07/28/lang-python-Python-100-Days-31-35-%E7%8E%A9%E8%BD%ACLinux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
     
     <lastmod>2019-09-05T06:17:51.335Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://gzxu.top/2019/08/28/hello-hexo/</loc>
-    
-    <lastmod>2019-09-05T04:47:29.950Z</lastmod>
     
   </url>
   
