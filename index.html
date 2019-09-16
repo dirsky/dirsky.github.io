@@ -539,7 +539,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2019/08/06/mgr-软件版本英文缩写/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2019/09/14/utils-docker-Docker容器-MySQL中文乱码解决方案/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -553,7 +553,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/08/06/mgr-软件版本英文缩写/" class="post-title-link" itemprop="url">软件版本英文缩写</a>
+            <a href="/2019/09/14/utils-docker-Docker容器-MySQL中文乱码解决方案/" class="post-title-link" itemprop="url">Docker容器 MySQL中文乱码解决方案</a>
           
         </h1>
 
@@ -570,7 +570,7 @@
                 
               
 
-              <time title="创建时间：2019-08-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-08-06T00:00:00+08:00">2019-08-06</time>
+              <time title="创建时间：2019-09-14 00:00:00" itemprop="dateCreated datePublished" datetime="2019-09-14T00:00:00+08:00">2019-09-14</time>
             </span>
           
             
@@ -581,7 +581,149 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-05 17:04:11" itemprop="dateModified" datetime="2019-09-05T17:04:11+08:00">2019-09-05</time>
+                <time title="修改时间：2019-09-16 14:23:01" itemprop="dateModified" datetime="2019-09-16T14:23:01+08:00">2019-09-16</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/utils/" itemprop="url" rel="index"><span itemprop="name">utils</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/09/14/utils-docker-Docker容器-MySQL中文乱码解决方案/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/14/utils-docker-Docker容器-MySQL中文乱码解决方案/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>329</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="docker-exec进入容器"><a href="#docker-exec进入容器" class="headerlink" title="docker exec进入容器"></a>docker exec进入容器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker exec -it mysql bash</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：mysql是容器的别名</p>
+</blockquote>
+<h3 id="将-character-set-server-utf8-写入mysql配置文件"><a href="#将-character-set-server-utf8-写入mysql配置文件" class="headerlink" title="将 character-set-server=utf8 写入mysql配置文件"></a>将 character-set-server=utf8 写入mysql配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;character-set-server=utf8&quot; &gt;&gt; /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure>
+
+<h3 id="重启mysql-容器使以上修改生效"><a href="#重启mysql-容器使以上修改生效" class="headerlink" title="重启mysql 容器使以上修改生效"></a>重启mysql 容器使以上修改生效</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker restart mysql</span><br></pre></td></tr></table></figure>
+
+<h2 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h2><p>永久性处理方案是在创建容器的时候直接增加下列参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci</span><br></pre></td></tr></table></figure>
+
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2019/09/13/mgr-了解、熟悉、掌握、精通界定/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2019/09/13/mgr-了解、熟悉、掌握、精通界定/" class="post-title-link" itemprop="url">了解、熟悉、掌握、精通界定</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-13 00:00:00" itemprop="dateCreated datePublished" datetime="2019-09-13T00:00:00+08:00">2019-09-13</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-16 14:16:00" itemprop="dateModified" datetime="2019-09-16T14:16:00+08:00">2019-09-16</time>
               </span>
             
           
@@ -610,7 +752,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/08/06/mgr-软件版本英文缩写/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/08/06/mgr-软件版本英文缩写/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/09/13/mgr-了解、熟悉、掌握、精通界定/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/13/mgr-了解、熟悉、掌握、精通界定/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -622,146 +764,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>4.1k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>4 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="分类一"><a href="#分类一" class="headerlink" title="分类一"></a>分类一</h2><h3 id="1-Alpha版-内部测试版-："><a href="#1-Alpha版-内部测试版-：" class="headerlink" title="1.Alpha版(内部测试版)："></a>1.Alpha版(内部测试版)：</h3><p>一般只在软件开发公司内部运行，不对外公开。主要是开发者自己对产品进行测试，检查产品是否存在缺陷、错误，验证产品功能与说明书、用户手册是否一致。Alpha版本的产品仍然需要完整的功能测试，而其功能亦未完善，但是可以满足一般需求。因为它是整个软件释出周期中的第一个主要阶段，所以它的名称是“Alpha”，希腊字母中的第一个字母。<br>Alpha版本通常会送交到开发软件的组织或社群中的各个软件测试者，用作内部测试。在市场上，越来越多公司会邀请外部的客户或合作伙伴参与其软件的Alpha测试阶段。这令软件在此阶段有更大的可用性测试。<br>在测试的第一个阶段中，开发者通常会进行白盒测试。其他测试会在稍后时间由其他测试团体以黑盒或灰盒技术进行，不过有时会同时进行。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/08/06/mgr-软件版本英文缩写/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2019/04/23/subject-architecture-8-张图读懂大型网站技术架构/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/04/23/subject-architecture-8-张图读懂大型网站技术架构/" class="post-title-link" itemprop="url">8 张图读懂大型网站技术架构</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-23 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-23T00:00:00+08:00">2019-04-23</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-05 11:54:49" itemprop="dateModified" datetime="2019-09-05T11:54:49+08:00">2019-09-05</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/architecture/" itemprop="url" rel="index"><span itemprop="name">architecture</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/04/23/subject-architecture-8-张图读懂大型网站技术架构/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/04/23/subject-architecture-8-张图读懂大型网站技术架构/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>113</span>
+              <span>251</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -784,16 +787,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-大型网站架构演化"><a href="#1-大型网站架构演化" class="headerlink" title="1. 大型网站架构演化"></a>1. 大型网站架构演化</h3><p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/1%20%E5%A4%A7%E5%9E%8B%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84%E6%BC%94%E5%8C%96.png" alt="1. 大型网站架构演化"></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/23/subject-architecture-8-张图读懂大型网站技术架构/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+          <h2 id="“了解”，"><a href="#“了解”，" class="headerlink" title="“了解”，"></a>“了解”，</h2><p>即能够对所需要的知识有所认识，但这种认识可能是局部或点状地，当谈及这些知识时，能意识到自己知道； </p>
+<h2 id="“熟悉”，"><a href="#“熟悉”，" class="headerlink" title="“熟悉”，"></a>“熟悉”，</h2><p>即对所需要的知识有系统性地认识，能够找到知识之间的联系,把点状地认识连成线，且可以运用相关知识解决部分实际问题；</p>
+<h2 id="“掌握”，"><a href="#“掌握”，" class="headerlink" title=" “掌握”，"></a> “掌握”，</h2><p>即对所需要的知识有全局性的认识，能在将各个知识点串成线的基础之上，认清整个知识网络，且可以在实际工作中自由运用；</p>
+<h2 id="“精通”，"><a href="#“精通”，" class="headerlink" title=" “精通”，"></a> “精通”，</h2><p>即对所需要的知识能够做到融会贯通，不仅对知识网络有清晰的认识，而且能够将其与其他相关领域的知识相融合，能够在灵活运用知识的同时不断创新。</p>
+
         
       
     </div>
@@ -817,7 +815,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2019/04/23/subject-architecture-关于大型网站系统架构你不得不懂的10个问题/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2019/09/06/mgr-npm和yarn的区别及增加国内镜像（淘宝镜像）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -831,7 +829,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/04/23/subject-architecture-关于大型网站系统架构你不得不懂的10个问题/" class="post-title-link" itemprop="url">关于大型网站系统架构你不得不懂的10个问题</a>
+            <a href="/2019/09/06/mgr-npm和yarn的区别及增加国内镜像（淘宝镜像）/" class="post-title-link" itemprop="url">npm和yarn的区别及增加国内镜像（淘宝镜像）</a>
           
         </h1>
 
@@ -848,19 +846,11 @@
                 
               
 
-              <time title="创建时间：2019-04-23 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-23T00:00:00+08:00">2019-04-23</time>
+              <time title="创建时间：2019-09-06 00:00:00 / 修改时间：11:07:20" itemprop="dateCreated datePublished" datetime="2019-09-06T00:00:00+08:00">2019-09-06</time>
             </span>
           
             
 
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-05 11:54:03" itemprop="dateModified" datetime="2019-09-05T11:54:03+08:00">2019-09-05</time>
-              </span>
             
           
             <span class="post-meta-item">
@@ -869,7 +859,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/architecture/" itemprop="url" rel="index"><span itemprop="name">architecture</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mgr/" itemprop="url" rel="index"><span itemprop="name">mgr</span></a></span>
 
                 
                 
@@ -888,7 +878,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/04/23/subject-architecture-关于大型网站系统架构你不得不懂的10个问题/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/04/23/subject-architecture-关于大型网站系统架构你不得不懂的10个问题/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2019/09/06/mgr-npm和yarn的区别及增加国内镜像（淘宝镜像）/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/06/mgr-npm和yarn的区别及增加国内镜像（淘宝镜像）/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -900,7 +890,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>7.5k</span>
+              <span>930</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -910,7 +900,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>7 分钟</span>
+              <span>1 分钟</span>
             </span>
           
 
@@ -923,27 +913,46 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="1-你使用过哪些组件或者方法来提升网站性能-可用性以及并发量"><a href="#1-你使用过哪些组件或者方法来提升网站性能-可用性以及并发量" class="headerlink" title="1. 你使用过哪些组件或者方法来提升网站性能,可用性以及并发量"></a>1. 你使用过哪些组件或者方法来提升网站性能,可用性以及并发量</h3><ol>
-<li><strong>提高硬件能力、增加系统服务器</strong>。（当服务器增加到某个程度的时候系统所能提供的并发访问量几乎不变，所以不能根本解决问题）</li>
-<li><strong>使用缓存</strong>（本地缓存：本地可以使用JDK自带的 Map、Guava Cache.分布式缓存：Redis、Memcache.本地缓存不适用于提高系统并发量，一般是用处用在程序中。比如Spring是如何实现单例的呢？大家如果看过源码的话，应该知道，S把已经初始过的变量放在一个Map中，下次再要使用这个变量的时候，先判断Map中有没有，这也就是系统中常见的单例模式的实现。）</li>
-<li><strong>消息队列</strong> （解耦+削峰+异步）</li>
-<li><strong>采用分布式开发</strong> （不同的服务部署在不同的机器节点上，并且一个服务也可以部署在多台机器上，然后利用 Nginx 负载均衡访问。这样就解决了单点部署(All In)的缺点，大大提高的系统并发量）</li>
-<li><strong>数据库分库（读写分离）、分表（水平分表、垂直分表）</strong></li>
-<li><strong>采用集群</strong> （多台机器提供相同的服务）</li>
-<li><strong>CDN 加速</strong> (将一些静态资源比如图片、视频等等缓存到离用户最近的网络节点)</li>
-<li><strong>浏览器缓存</strong></li>
-<li><strong>使用合适的连接池</strong>（数据库连接池、线程池等等）</li>
-<li><strong>适当使用多线程进行开发。</strong></li>
-</ol>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/23/subject-architecture-关于大型网站系统架构你不得不懂的10个问题/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+          <h2 id="Yarn和npm命令对比"><a href="#Yarn和npm命令对比" class="headerlink" title="Yarn和npm命令对比"></a>Yarn和npm命令对比</h2><table>
+<thead>
+<tr>
+<th align="left">npm</th>
+<th align="left">yarn</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">npm install</td>
+<td align="left">yarn</td>
+<td>安装所有依赖包</td>
+</tr>
+<tr>
+<td align="left">npm install react –save</td>
+<td align="left">yarn add react</td>
+<td>添加依赖包</td>
+</tr>
+<tr>
+<td align="left">npm uninstall react –save</td>
+<td align="left">yarn remove react</td>
+<td>移除依赖包</td>
+</tr>
+<tr>
+<td align="left">npm install react –save-dev</td>
+<td align="left">yarn add react –dev</td>
+<td>将依赖项添加到不同依赖项类别中</td>
+</tr>
+<tr>
+<td align="left">npm update –save</td>
+<td align="left">yarn upgrade</td>
+<td>升级依赖包</td>
+</tr>
+</tbody></table>
+<h2 id="yarn和npm淘宝镜像"><a href="#yarn和npm淘宝镜像" class="headerlink" title="yarn和npm淘宝镜像"></a>yarn和npm淘宝镜像</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org</span><br><span class="line">npm config set disturl https://npm.taobao.org/dist</span><br><span class="line">npm config set electron_mirror https://npm.taobao.org/mirrors/electron/</span><br><span class="line">npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/</span><br><span class="line">npm config set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs/</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org</span><br><span class="line">npm config set disturl https://npm.taobao.org/dist</span><br><span class="line">npm config set electron_mirror https://npm.taobao.org/mirrors/electron/</span><br><span class="line">npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/</span><br><span class="line">npm config set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs/</span><br></pre></td></tr></table></figure>
+
+<p>持久化文件路径在 C:\Users\用户名 .npmrc和.yarnrc文件</p>
+
         
       
     </div>
@@ -966,7 +975,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/27/">27</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1014,7 +1023,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">133</span>
+          <span class="site-state-item-count">136</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1124,7 +1133,9 @@
         
           
         
-        <span class="site-state-item-count">28</span>
+          
+        
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
