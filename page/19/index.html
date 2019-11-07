@@ -269,205 +269,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2015/08/26/os-linux-部署Seafile搭建自己的网盘/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2015/08/26/os-linux-部署Seafile搭建自己的网盘/" class="post-title-link" itemprop="url">部署Seafile搭建自己的网盘</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00+08:00">2015-08-26</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-29 15:17:34" itemprop="dateModified" datetime="2019-08-29T15:17:34+08:00">2019-08-29</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2015/08/26/os-linux-部署Seafile搭建自己的网盘/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-部署Seafile搭建自己的网盘/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>8k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>7 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Seafile 是一个开源的文件云存储平台，解决文件集中存储、同步、多平台访问的问，允许用户创建“群组”，在群组内共享和同步文件，方便了团队协同工作。</p>
-<!-- TOC -->
-
-<ul>
-<li><a href="#安装依赖">安装依赖</a></li>
-<li><a href="#下载">下载</a></li>
-<li><a href="#安装">安装</a><ul>
-<li><a href="#启动-seafile">启动 Seafile</a></li>
-<li><a href="#启动-seahub">启动 Seahub</a></li>
-</ul>
-</li>
-<li><a href="#备份">备份</a></li>
-<li><a href="#恢复">恢复</a></li>
-<li><a href="#服务管理">服务管理</a></li>
-<li><a href="#开机启动">开机启动</a></li>
-<li><a href="#参考资料">参考资料</a></li>
-</ul>
-<!-- /TOC -->
-
-<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 CentOS 7 下</span></span><br><span class="line"><span class="comment"># (MariaDB 是 MySQL 的分支)</span></span><br><span class="line">yum install mariadb-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果以来有问题 </span></span><br><span class="line"><span class="comment"># 尝试在后面加上参数  --skip-broken</span></span><br><span class="line">yum install python-setuptools python-imaging python-ldap MySQL-python python-memcached python-urllib3</span><br></pre></td></tr></table></figure>
-
-<p>yum 安装 mysqldb-python 后面seafile安装报错，需要通过 python 的工具pip来安装MySQL-python <code>pip install MySQL-python</code></p>
-<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>在这里下载<a href="https://www.seafile.com/download/" target="_blank" rel="noopener">seafile-server_6.0.7_x86-64.tar.gz</a>，你可以选择你需要的版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看系统版本</span></span><br><span class="line">cat /proc/version</span><br><span class="line">wget http://download-cn.seafile.com/seafile-server_6.0.7_x86-64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -zxvf seafile-server_6.0.7_x86-64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压放到一个目录</span></span><br><span class="line"><span class="built_in">cd</span> seafile-server-*</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>我的数据库使用MySQL，你需要先在数据库中建立一个 MySQL 用户 <code>seafile</code>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 登录MySQL创建一个用户</span></span><br><span class="line">mysql -uroot -p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建用户设置密码</span></span><br><span class="line">mysql&gt; Create USER <span class="string">'seafile'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'123456'</span>;</span><br><span class="line"><span class="comment"># 执行下面语句立即生效</span></span><br><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure>
-
-<p>运行<code>./setup-seafile-mysql.sh</code>安装脚本并回答预设问题</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line">./setup-seafile-mysql.sh</span><br><span class="line">  Checking python on this machine ...</span><br><span class="line">  Checking python module: setuptools ... Done.</span><br><span class="line">  Checking python module: python-imaging ... Done.</span><br><span class="line">  Checking python module: python-mysqldb ... Done.</span><br><span class="line"></span><br><span class="line">-----------------------------------------------------------------</span><br><span class="line">This script will guide you to setup your seafile server using MySQL.</span><br><span class="line">Make sure you have <span class="built_in">read</span> seafile server manual at</span><br><span class="line"></span><br><span class="line">        https://github.com/haiwen/seafile/wiki</span><br><span class="line"></span><br><span class="line">Press ENTER to <span class="built_in">continue</span></span><br><span class="line">-----------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">What is the name of the server? It will be displayed on the client.</span><br><span class="line">3 - 15 letters or digits</span><br><span class="line">[ server name ] &lt;填写 seafile 服务器的名字&gt;</span><br><span class="line"></span><br><span class="line">What is the ip or domain of the server?</span><br><span class="line">For example: www.mycompany.com, 192.168.1.101</span><br><span class="line">[ This server<span class="string">'s ip or domain ] &lt;seafile 服务器的 IP 地址或者域名&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Where do you want to put your seafile data?</span></span><br><span class="line"><span class="string">Please use a volume with enough free space</span></span><br><span class="line"><span class="string">[ default "/home/www/jinpans/seafile-data" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Which port do you want to use for the seafile fileserver?</span></span><br><span class="line"><span class="string">[ default "8082" ]  [ seafile fileserver 使用的 TCP 端口 ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-------------------------------------------------------</span></span><br><span class="line"><span class="string">Please choose a way to initialize seafile databases:</span></span><br><span class="line"><span class="string">-------------------------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[1] Create new ccnet/seafile/seahub databases</span></span><br><span class="line"><span class="string">    你需要提供根密码. 脚本程序会创建数据库和用户。</span></span><br><span class="line"><span class="string">[2] Use existing ccnet/seafile/seahub databases</span></span><br><span class="line"><span class="string">    ccnet/seafile/seahub 数据库应该已经被你（或者其他人）提前创建。</span></span><br><span class="line"><span class="string">[ 1 or 2 ] &lt;选择一种创建 Seafile 数据库的方式&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">What is the host of mysql server?</span></span><br><span class="line"><span class="string">[ default "localhost" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">What is the port of mysql server?</span></span><br><span class="line"><span class="string">[ default "3306" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">What is the password of the mysql root user?</span></span><br><span class="line"><span class="string">[ root password ] &lt;输入root密码&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">verifying password of user root ...  done</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the name for mysql user of seafile. It would be created if not exists.</span></span><br><span class="line"><span class="string">[ default "seafile" ] &lt;默认seafile的MySQL用户名，可以使用默认&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the password for mysql user "seafile":</span></span><br><span class="line"><span class="string">[ password for seafile ] &lt;输入seafile密码&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">verifying password of user seafile ...  done</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the database name for ccnet-server:</span></span><br><span class="line"><span class="string">[ default "ccnet-db" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the database name for seafile-server:</span></span><br><span class="line"><span class="string">[ default "seafile-db" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the database name for seahub:</span></span><br><span class="line"><span class="string">[ default "seahub-db" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string">This is your configuration</span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    server name:            seafile 服务器的名字</span></span><br><span class="line"><span class="string">    server ip/domain:       192.168.1.101</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    seafile data dir:       /home/www/jinpans/seafile-data</span></span><br><span class="line"><span class="string">    fileserver port:        8082</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    database:               create new</span></span><br><span class="line"><span class="string">    ccnet database:         ccnet-db</span></span><br><span class="line"><span class="string">    seafile database:       seafile-db</span></span><br><span class="line"><span class="string">    seahub database:        seahub-db</span></span><br><span class="line"><span class="string">    database user:          seafile</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string">Press ENTER to continue, or Ctrl-C to abort</span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Generating ccnet configuration ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">done</span></span><br><span class="line"><span class="string">Successly create configuration dir /home/www/jinpans/ccnet.</span></span><br><span class="line"><span class="string">Generating seafile configuration ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Done.</span></span><br><span class="line"><span class="string">done</span></span><br><span class="line"><span class="string">Generating seahub configuration ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">----------------------------------------</span></span><br><span class="line"><span class="string">Now creating seahub database tables ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">----------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">creating seafile-server-latest symbolic link ...  done</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string">Your seafile server configuration has been finished successfully.</span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">run seafile server:     ./seafile.sh &#123; start | stop | restart &#125;</span></span><br><span class="line"><span class="string">run seahub  server:     ./seahub.sh  &#123; start &lt;port&gt; | stop | restart &lt;port&gt; &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string">If you are behind a firewall, remember to allow input/output of these tcp ports:</span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">port of seafile fileserver:   8082</span></span><br><span class="line"><span class="string">port of seahub:               8000</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">When problems occur, Refer to</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        https://github.com/haiwen/seafile/wiki</span></span><br></pre></td></tr></table></figure>
-
-<p>上面算是结束了，然后在 seafile-server_6.0.7 目录下面，运行如下命令</p>
-<h3 id="启动-Seafile"><a href="#启动-Seafile" class="headerlink" title="启动 Seafile"></a>启动 Seafile</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./seafile.sh start <span class="comment"># 启动 Seafile 服务</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="启动-Seahub"><a href="#启动-Seahub" class="headerlink" title="启动 Seahub"></a>启动 Seahub</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">./seahub.sh start &lt;port&gt;  <span class="comment"># 启动 Seahub 网站 （默认运行在8000端口上）</span></span><br><span class="line"><span class="comment"># 你第一次启动 seahub 时，seahub.sh 脚本会提示你创建一个 seafile 管理员帐号。</span></span><br><span class="line"></span><br><span class="line">LC_ALL is not <span class="built_in">set</span> <span class="keyword">in</span> ENV, <span class="built_in">set</span> to en_US.UTF-8</span><br><span class="line">Starting seahub at port 8000 ...</span><br><span class="line"></span><br><span class="line">----------------------------------------</span><br><span class="line">It<span class="string">'s the first time you start the seafile server. Now let'</span>s create the admin account</span><br><span class="line">----------------------------------------</span><br><span class="line"></span><br><span class="line">What is the email <span class="keyword">for</span> the admin account?</span><br><span class="line">[ admin email ] &lt;这里输入邮箱地址&gt;</span><br><span class="line"></span><br><span class="line">What is the password <span class="keyword">for</span> the admin account?</span><br><span class="line">[ admin password ] &lt;这里输入密码&gt;</span><br><span class="line"></span><br><span class="line">Enter the password again:</span><br><span class="line">[ admin password again ] &lt;这里确认输入密码&gt;</span><br><span class="line">----------------------------------------</span><br><span class="line">Successfully created seafile admin</span><br><span class="line">----------------------------------------</span><br><span class="line">Seahub is started</span><br><span class="line">Done.</span><br></pre></td></tr></table></figure>
-
-<p>然后你可以打开它了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.111:8000/</span><br></pre></td></tr></table></figure>
-
-<h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><p>备份数据库，假设你的数据库名分别为 <code>ccnet-db</code> , <code>seafile-db</code> 和 <code>seahubdb</code>，下面命令分别备份这三个数据库，同时要注意备份需要先建立好文件夹。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -h localhost -uroot -p --opt ccnet-db &gt; ./backup/databases/ccnet-db.sql.`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>`</span><br><span class="line">mysqldump -h localhost -uroot -p --opt seafile-db &gt; ./backup/databases/seafile-db.sql.`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>`</span><br><span class="line">mysqldump -h localhost -uroot -p --opt seahub-db &gt; ./backup/databases/seahub-db.sql.`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>`</span><br></pre></td></tr></table></figure>
-
-<p>备份文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nohup cp -R ./seafile-data ./backup/data/seafile-data-`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>` 2&gt;&amp;1 &amp;</span><br><span class="line">nohup cp -R ./seahub-data ./backup/data/seahub-data-`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>` 2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line">[1] 17294</span><br></pre></td></tr></table></figure>
-
-<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p ccnet-db &lt; ccnet-db.sql.2017-11-29-11-36-06 </span><br><span class="line">mysql -uroot -p seafile-db &lt; seafile-db.sql.2017-11-29-11-36-06 </span><br><span class="line">mysql -uroot -p seahub-db &lt; seahub-db.sql.2017-11-29-11-36-06</span><br></pre></td></tr></table></figure>
-
-<h2 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">./seahub.sh stop       <span class="comment"># 停止 Seafile 进程</span></span><br><span class="line">./seafile.sh stop      <span class="comment"># 停止 Seahub</span></span><br><span class="line"></span><br><span class="line">./seafile.sh start     <span class="comment"># 启动 Seafile 服务</span></span><br><span class="line">./seahub.sh start 8001 <span class="comment"># 启动 Seahub 网站 （运行在8001端口上）</span></span><br><span class="line"></span><br><span class="line">./seafile.sh restart   <span class="comment"># 停止当前的 Seafile 进程，然后重启 Seafile</span></span><br><span class="line">./seahub.sh restart    <span class="comment"># 停止当前的 Seahub 进程，并在 8000 端口重新启动 Seahub</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="开机启动"><a href="#开机启动" class="headerlink" title="开机启动"></a>开机启动</h2><p>创建 systemd 服务文件<code>seafile.service</code>，记得将服务文件中的<code>${seafile_dir}</code>替换成你的安装目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/systemd/system/seafile.service</span><br></pre></td></tr></table></figure>
-
-<p>文件内容如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Seafile</span><br><span class="line"><span class="comment"># add mysql.service or postgresql.service depending on your database to the line below</span></span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">ExecStart=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seafile.sh start</span><br><span class="line">ExecStop=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seafile.sh stop</span><br><span class="line">RemainAfterExit=yes</span><br><span class="line">User=seafile</span><br><span class="line">Group=seafile</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
-
-<p>创建 systemd 服务文件 <code>seahub.service</code>，记得将服务文件中的<code>${seafile_dir}</code>替换成你的安装目录</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/systemd/system/seahub.service</span><br></pre></td></tr></table></figure>
-
-<p>文件内容如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Seafile hub</span><br><span class="line">After=network.target seafile.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line"><span class="comment"># change start to start-fastcgi if you want to run fastcgi</span></span><br><span class="line">ExecStart=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seahub.sh start</span><br><span class="line">ExecStop=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seahub.sh stop</span><br><span class="line">User=seafile</span><br><span class="line">Group=seafile</span><br><span class="line">Type=oneshot</span><br><span class="line">RemainAfterExit=yes</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
-
-<p>[Install]<br>WantedBy=multi-user.target</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> seafile.service</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> seahub.service</span><br></pre></td></tr></table></figure>
-
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://www.gitbook.com/book/freeplant/seafile-manual-cn/details" target="_blank" rel="noopener">Seafile服务器手册中文版</a></li>
-<li><a href="https://github.com/haiwen/seafile" target="_blank" rel="noopener">Seafile for Github</a></li>
-<li><a href="http://seafile.com/" target="_blank" rel="noopener">Seafile官网</a></li>
-</ul>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://gzxu.top/2015/08/26/os-linux-CentOS7安装维护Gitlab/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1205,262 +1006,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2015/04/09/utils-Git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2015/04/09/utils-Git/" class="post-title-link" itemprop="url">关于Git的理解</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2015-04-09 00:00:00" itemprop="dateCreated datePublished" datetime="2015-04-09T00:00:00+08:00">2015-04-09</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-29 14:25:04" itemprop="dateModified" datetime="2019-08-29T14:25:04+08:00">2019-08-29</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/utils/" itemprop="url" rel="index"><span itemprop="name">utils</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2015/04/09/utils-Git/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/04/09/utils-Git/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>4.2k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>4 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h2><h3 id="什么是版本控制"><a href="#什么是版本控制" class="headerlink" title="什么是版本控制"></a>什么是版本控制</h3><p>版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。 除了项目源代码，你可以对任何类型的文件进行版本控制。</p>
-<h3 id="为什么要版本控制"><a href="#为什么要版本控制" class="headerlink" title="为什么要版本控制"></a>为什么要版本控制</h3><p>有了它你就可以将某个文件回溯到之前的状态，甚至将整个项目都回退到过去某个时间点的状态，你可以比较文件的变化细节，查出最后是谁修改了哪个地方，从而找出导致怪异问题出现的原因，又是谁在何时报告了某个功能缺陷等等。</p>
-<h3 id="本地版本控制系统"><a href="#本地版本控制系统" class="headerlink" title="本地版本控制系统"></a>本地版本控制系统</h3><p>许多人习惯用复制整个项目目录的方式来保存不同的版本，或许还会改名加上备份时间以示区别。 这么做唯一的好处就是简单，但是特别容易犯错。 有时候会混淆所在的工作目录，一不小心会写错文件或者覆盖意想外的文件。</p>
-<p>为了解决这个问题，人们很久以前就开发了许多种本地版本控制系统，大多都是采用某种简单的数据库来记录文件的历次更新差异。</p>
-<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/%E6%9C%AC%E5%9C%B0%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F.png" alt="本地版本控制系统"></p>
-<h3 id="集中化的版本控制系统"><a href="#集中化的版本控制系统" class="headerlink" title="集中化的版本控制系统"></a>集中化的版本控制系统</h3><p>接下来人们又遇到一个问题，如何让在不同系统上的开发者协同工作？ 于是，集中化的版本控制系统（Centralized Version Control Systems，简称 CVCS）应运而生。 </p>
-<p>集中化的版本控制系统都有一个单一的集中管理的服务器，保存所有文件的修订版本，而协同工作的人们都通过客户端连到这台服务器，取出最新的文件或者提交更新。</p>
-<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/%E9%9B%86%E4%B8%AD%E5%8C%96%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F.png" alt="集中化的版本控制系统"></p>
-<p>这么做虽然解决了本地版本控制系统无法让在不同系统上的开发者协同工作的诟病，但也还是存在下面的问题：</p>
-<ul>
-<li><strong>单点故障：</strong> 中央服务器宕机，则其他人无法使用；如果中心数据库磁盘损坏有没有进行备份，你将丢失所有数据。本地版本控制系统也存在类似问题，只要整个项目的历史记录被保存在单一位置，就有丢失所有历史更新记录的风险。</li>
-<li><strong>必须联网才能工作：</strong> 受网络状况、带宽影响。</li>
-</ul>
-<h3 id="分布式版本控制系统"><a href="#分布式版本控制系统" class="headerlink" title="分布式版本控制系统"></a>分布式版本控制系统</h3><p>于是分布式版本控制系统（Distributed Version Control System，简称 DVCS）面世了。 Git 就是一个典型的分布式版本控制系统。</p>
-<p>这类系统，客户端并不只提取最新版本的文件快照，而是把代码仓库完整地镜像下来。 这么一来，任何一处协同工作用的服务器发生故障，事后都可以用任何一个镜像出来的本地仓库恢复。 因为每一次的克隆操作，实际上都是一次对代码仓库的完整备份。</p>
-<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F.png" alt="分布式版本控制系统"></p>
-<p>分布式版本控制系统可以不用联网就可以工作，因为每个人的电脑上都是完整的版本库，当你修改了某个文件后，你只需要将自己的修改推送给别人就可以了。但是，在实际使用分布式版本控制系统的时候，很少会直接进行推送修改，而是使用一台充当“中央服务器”的东西。这个服务器的作用仅仅是用来方便“交换”大家的修改，没有它大家也一样干活，只是交换修改不方便而已。</p>
-<p>分布式版本控制系统的优势不单是不必联网这么简单，后面我们还会看到 Git 极其强大的分支管理等功能。</p>
-<h2 id="认识-Git"><a href="#认识-Git" class="headerlink" title="认识 Git"></a>认识 Git</h2><h3 id="Git-简史"><a href="#Git-简史" class="headerlink" title="Git 简史"></a>Git 简史</h3><p>Linux 内核项目组当时使用分布式版本控制系统 BitKeeper 来管理和维护代码。但是，后来开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了 Linux 内核社区免费使用 BitKeeper 的权力。 Linux 开源社区（特别是 Linux 的缔造者 Linus Torvalds）基于使用 BitKeeper 时的经验教训，开发出自己的版本系统，而且对新的版本控制系统做了很多改进。 </p>
-<h3 id="Git-与其他版本管理系统的主要区别"><a href="#Git-与其他版本管理系统的主要区别" class="headerlink" title="Git 与其他版本管理系统的主要区别"></a>Git 与其他版本管理系统的主要区别</h3><p> Git 在保存和对待各种信息的时候与其它版本控制系统有很大差异，尽管操作起来的命令形式非常相近，理解这些差异将有助于防止你使用中的困惑。</p>
-<p>下面我们主要说一个关于 Git 其他版本管理系统的主要差别：<strong>对待数据的方式</strong>。</p>
-<p><strong>Git采用的是直接记录快照的方式，而非差异比较。我后面会详细介绍这两种方式的差别。</strong></p>
-<p>大部分版本控制系统（CVS、Subversion、Perforce、Bazaar 等等）都是以文件变更列表的方式存储信息，这类系统<strong>将它们保存的信息看作是一组基本文件和每个文件随时间逐步累积的差异。</strong></p>
-<p>具体原理如下图所示，理解起来其实很简单，每个我们对提交更新一个文件之后，系统记录都会记录这个文件做了哪些更新，以增量符号Δ(Delta)表示。</p>
-<div align="center">  
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3deltas.png" width="500px">
-<br>
-</div>
-
-<p><strong>我们怎样才能得到一个文件的最终版本呢？</strong></p>
-<p>很简单，高中数学的基本知识，我们只需要将这些原文件和这些增加进行相加就行了。</p>
-<p><strong>这种方式有什么问题呢？</strong></p>
-<p>比如我们的增量特别特别多的话，如果我们要得到最终的文件是不是会耗费时间和性能。</p>
-<p>Git 不按照以上方式对待或保存数据。 反之，Git 更像是把数据看作是对小型文件系统的一组快照。 每次你提交更新，或在 Git 中保存项目状态时，它主要对当时的全部文件制作一个快照并保存这个快照的索引。 为了高效，如果文件没有修改，Git 不再重新存储该文件，而是只保留一个链接指向之前存储的文件。 Git 对待数据更像是一个 <strong>快照流</strong>。</p>
-<div align="center">  
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3snapshots.png" width="500px">
-<br>
-</div>
-
-
-<h3 id="Git-的三种状态"><a href="#Git-的三种状态" class="headerlink" title="Git 的三种状态"></a>Git 的三种状态</h3><p>Git 有三种状态，你的文件可能处于其中之一：</p>
-<ol>
-<li><strong>已提交（committed）</strong>：数据已经安全的保存在本地数据库中。</li>
-<li><strong>已修改（modified）</strong>：已修改表示修改了文件，但还没保存到数据库中。</li>
-<li><strong>已暂存（staged）</strong>：表示对一个已修改文件的当前版本做了标记，使之包含在下次提交的快照中。</li>
-</ol>
-<p>由此引入 Git 项目的三个工作区域的概念：<strong>Git 仓库(.git directoty) **、</strong>工作目录(Working Directory)** 以及 <strong>暂存区域(Staging Area)</strong> 。</p>
-<div align="center">  
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3areas.png" width="500px">
-</div>
-
-<p><strong>基本的 Git 工作流程如下：</strong></p>
-<ol>
-<li>在工作目录中修改文件。</li>
-<li>暂存文件，将文件的快照放入暂存区域。</li>
-<li>提交更新，找到暂存区域的文件，将快照永久性存储到 Git 仓库目录。</li>
-</ol>
-<h2 id="Git-使用快速入门"><a href="#Git-使用快速入门" class="headerlink" title="Git 使用快速入门"></a>Git 使用快速入门</h2><h3 id="获取-Git-仓库"><a href="#获取-Git-仓库" class="headerlink" title="获取 Git 仓库"></a>获取 Git 仓库</h3><p>有两种取得 Git 项目仓库的方法。</p>
-<ol>
-<li>在现有目录中初始化仓库: 进入项目目录运行  <code>git init</code>  命令,该命令将创建一个名为 <code>.git</code> 的子目录。</li>
-<li>从一个服务器克隆一个现有的 Git 仓库: <code>git clone [url]</code> 自定义本地仓库的名字: <code>git clone [url]</code> directoryname </li>
-</ol>
-<h3 id="记录每次更新到仓库"><a href="#记录每次更新到仓库" class="headerlink" title="记录每次更新到仓库"></a>记录每次更新到仓库</h3><ol>
-<li><strong>检测当前文件状态</strong> : <code>git status</code></li>
-<li><strong>提出更改（把它们添加到暂存区</strong>）：<code>git add filename</code> (针对特定文件)、<code>git add *</code>(所有文件)、<code>git add *.txt</code>（支持通配符，所有 .txt 文件）</li>
-<li><strong>忽略文件</strong>：<code>.gitignore</code> 文件</li>
-<li><strong>提交更新:</strong> <code>git commit -m &quot;代码提交信息&quot;</code> （每次准备提交前，先用 <code>git status</code> 看下，是不是都已暂存起来了， 然后再运行提交命令 <code>git commit</code>）</li>
-<li><strong>跳过使用暂存区域更新的方式</strong> : <code>git commit -a -m &quot;代码提交信息&quot;</code>。 <code>git commit</code> 加上 <code>-a</code> 选项，Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 <code>git add</code> 步骤。</li>
-<li><strong>移除文件</strong> ：<code>git rm filename</code>  （从暂存区域移除，然后提交。）</li>
-<li><strong>对文件重命名</strong> ：<code>git mv README.md README</code>(这个命令相当于<code>mv README.md README</code>、<code>git rm README.md</code>、<code>git add README</code> 这三条命令的集合)</li>
-</ol>
-<h3 id="推送改动到远程仓库"><a href="#推送改动到远程仓库" class="headerlink" title="推送改动到远程仓库"></a>推送改动到远程仓库</h3><ul>
-<li><p>如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：·<code>git remote add origin &lt;server&gt;</code> ,比如我们要让本地的一个仓库和 Github 上创建的一个仓库关联可以这样<code>git remote add origin https://github.com/Snailclimb/test.git</code> </p>
-</li>
-<li><p>将这些改动提交到远端仓库：<code>git push origin master</code> (可以把 <em>master</em> 换成你想要推送的任何分支)</p>
-<p>如此你就能够将你的改动推送到所添加的服务器上去了。</p>
-</li>
-</ul>
-<h3 id="远程仓库的移除与重命名"><a href="#远程仓库的移除与重命名" class="headerlink" title="远程仓库的移除与重命名"></a>远程仓库的移除与重命名</h3><ul>
-<li>将 test 重命名位 test1：<code>git remote rename test test1</code></li>
-<li>移除远程仓库 test1:<code>git remote rm test1</code></li>
-</ul>
-<h3 id="查看提交历史"><a href="#查看提交历史" class="headerlink" title="查看提交历史"></a>查看提交历史</h3><p>在提交了若干更新，又或者克隆了某个项目之后，你也许想回顾下提交历史。 完成这个任务最简单而又有效的工具是 <code>git log</code> 命令。<code>git log</code> 会按提交时间列出所有的更新，最近的更新排在最上面。</p>
-<p><strong>可以添加一些参数来查看自己希望看到的内容：</strong></p>
-<p>只看某个人的提交记录：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --author=bob</span><br></pre></td></tr></table></figure>
-
-<h3 id="撤销操作"><a href="#撤销操作" class="headerlink" title="撤销操作"></a>撤销操作</h3><p>有时候我们提交完了才发现漏掉了几个文件没有添加，或者提交信息写错了。 此时，可以运行带有 <code>--amend</code> 选项的提交命令尝试重新提交：</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
-
-<p>取消暂存的文件</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset filename</span><br></pre></td></tr></table></figure>
-
-<p>撤消对文件的修改:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- filename</span><br></pre></td></tr></table></figure>
-
-<p>假如你想丢弃你在本地的所有改动与提交，可以到服务器上获取最新的版本历史，并将你本地主分支指向它：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin</span><br><span class="line">git reset --hard origin/master</span><br></pre></td></tr></table></figure>
-
-<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><p>分支是用来将特性开发绝缘开来的。在你创建仓库的时候，<em>master</em> 是“默认的”分支。在其他分支上进行开发，完成后再将它们合并到主分支上。</p>
-<p>我们通常在开发新功能、修复一个紧急 bug 等等时候会选择创建分支。单分支开发好还是多分支开发好，还是要看具体场景来说。</p>
-<p>创建一个名字叫做 test 的分支</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch test</span><br></pre></td></tr></table></figure>
-
-<p>切换当前分支到 test（当你切换分支的时候，Git 会重置你的工作目录，使其看起来像回到了你在那个分支上最后一次提交的样子。 Git 会自动添加、删除、修改文件以确保此时你的工作目录和这个分支最后一次提交时的样子一模一样）</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout test</span><br></pre></td></tr></table></figure>
-
-<div align="center">  
-<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3切换分支.png" width="500px">
-</div>
-
-<p>你也可以直接这样创建分支并切换过去(上面两条命令的合写)</p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b feature_x</span><br></pre></td></tr></table></figure>
-
-<p>切换到主分支</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
-
-<p>合并分支(可能会有冲突)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge test</span><br></pre></td></tr></table></figure>
-
-<p>把新建的分支删掉</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d feature_x</span><br></pre></td></tr></table></figure>
-
-<p>将分支推送到远端仓库（推送成功后其他人可见）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin</span><br></pre></td></tr></table></figure>
-
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://gzxu.top/2015/04/09/utils-i-git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1813,6 +1358,583 @@ $ git archive</code></pre>
   </article>
 
     
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2015/04/09/utils-Git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2015/04/09/utils-Git/" class="post-title-link" itemprop="url">关于Git的理解</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2015-04-09 00:00:00" itemprop="dateCreated datePublished" datetime="2015-04-09T00:00:00+08:00">2015-04-09</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-29 14:25:04" itemprop="dateModified" datetime="2019-08-29T14:25:04+08:00">2019-08-29</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/utils/" itemprop="url" rel="index"><span itemprop="name">utils</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/04/09/utils-Git/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/04/09/utils-Git/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>4.2k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>4 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h2><h3 id="什么是版本控制"><a href="#什么是版本控制" class="headerlink" title="什么是版本控制"></a>什么是版本控制</h3><p>版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。 除了项目源代码，你可以对任何类型的文件进行版本控制。</p>
+<h3 id="为什么要版本控制"><a href="#为什么要版本控制" class="headerlink" title="为什么要版本控制"></a>为什么要版本控制</h3><p>有了它你就可以将某个文件回溯到之前的状态，甚至将整个项目都回退到过去某个时间点的状态，你可以比较文件的变化细节，查出最后是谁修改了哪个地方，从而找出导致怪异问题出现的原因，又是谁在何时报告了某个功能缺陷等等。</p>
+<h3 id="本地版本控制系统"><a href="#本地版本控制系统" class="headerlink" title="本地版本控制系统"></a>本地版本控制系统</h3><p>许多人习惯用复制整个项目目录的方式来保存不同的版本，或许还会改名加上备份时间以示区别。 这么做唯一的好处就是简单，但是特别容易犯错。 有时候会混淆所在的工作目录，一不小心会写错文件或者覆盖意想外的文件。</p>
+<p>为了解决这个问题，人们很久以前就开发了许多种本地版本控制系统，大多都是采用某种简单的数据库来记录文件的历次更新差异。</p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/%E6%9C%AC%E5%9C%B0%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F.png" alt="本地版本控制系统"></p>
+<h3 id="集中化的版本控制系统"><a href="#集中化的版本控制系统" class="headerlink" title="集中化的版本控制系统"></a>集中化的版本控制系统</h3><p>接下来人们又遇到一个问题，如何让在不同系统上的开发者协同工作？ 于是，集中化的版本控制系统（Centralized Version Control Systems，简称 CVCS）应运而生。 </p>
+<p>集中化的版本控制系统都有一个单一的集中管理的服务器，保存所有文件的修订版本，而协同工作的人们都通过客户端连到这台服务器，取出最新的文件或者提交更新。</p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/%E9%9B%86%E4%B8%AD%E5%8C%96%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F.png" alt="集中化的版本控制系统"></p>
+<p>这么做虽然解决了本地版本控制系统无法让在不同系统上的开发者协同工作的诟病，但也还是存在下面的问题：</p>
+<ul>
+<li><strong>单点故障：</strong> 中央服务器宕机，则其他人无法使用；如果中心数据库磁盘损坏有没有进行备份，你将丢失所有数据。本地版本控制系统也存在类似问题，只要整个项目的历史记录被保存在单一位置，就有丢失所有历史更新记录的风险。</li>
+<li><strong>必须联网才能工作：</strong> 受网络状况、带宽影响。</li>
+</ul>
+<h3 id="分布式版本控制系统"><a href="#分布式版本控制系统" class="headerlink" title="分布式版本控制系统"></a>分布式版本控制系统</h3><p>于是分布式版本控制系统（Distributed Version Control System，简称 DVCS）面世了。 Git 就是一个典型的分布式版本控制系统。</p>
+<p>这类系统，客户端并不只提取最新版本的文件快照，而是把代码仓库完整地镜像下来。 这么一来，任何一处协同工作用的服务器发生故障，事后都可以用任何一个镜像出来的本地仓库恢复。 因为每一次的克隆操作，实际上都是一次对代码仓库的完整备份。</p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F.png" alt="分布式版本控制系统"></p>
+<p>分布式版本控制系统可以不用联网就可以工作，因为每个人的电脑上都是完整的版本库，当你修改了某个文件后，你只需要将自己的修改推送给别人就可以了。但是，在实际使用分布式版本控制系统的时候，很少会直接进行推送修改，而是使用一台充当“中央服务器”的东西。这个服务器的作用仅仅是用来方便“交换”大家的修改，没有它大家也一样干活，只是交换修改不方便而已。</p>
+<p>分布式版本控制系统的优势不单是不必联网这么简单，后面我们还会看到 Git 极其强大的分支管理等功能。</p>
+<h2 id="认识-Git"><a href="#认识-Git" class="headerlink" title="认识 Git"></a>认识 Git</h2><h3 id="Git-简史"><a href="#Git-简史" class="headerlink" title="Git 简史"></a>Git 简史</h3><p>Linux 内核项目组当时使用分布式版本控制系统 BitKeeper 来管理和维护代码。但是，后来开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了 Linux 内核社区免费使用 BitKeeper 的权力。 Linux 开源社区（特别是 Linux 的缔造者 Linus Torvalds）基于使用 BitKeeper 时的经验教训，开发出自己的版本系统，而且对新的版本控制系统做了很多改进。 </p>
+<h3 id="Git-与其他版本管理系统的主要区别"><a href="#Git-与其他版本管理系统的主要区别" class="headerlink" title="Git 与其他版本管理系统的主要区别"></a>Git 与其他版本管理系统的主要区别</h3><p> Git 在保存和对待各种信息的时候与其它版本控制系统有很大差异，尽管操作起来的命令形式非常相近，理解这些差异将有助于防止你使用中的困惑。</p>
+<p>下面我们主要说一个关于 Git 其他版本管理系统的主要差别：<strong>对待数据的方式</strong>。</p>
+<p><strong>Git采用的是直接记录快照的方式，而非差异比较。我后面会详细介绍这两种方式的差别。</strong></p>
+<p>大部分版本控制系统（CVS、Subversion、Perforce、Bazaar 等等）都是以文件变更列表的方式存储信息，这类系统<strong>将它们保存的信息看作是一组基本文件和每个文件随时间逐步累积的差异。</strong></p>
+<p>具体原理如下图所示，理解起来其实很简单，每个我们对提交更新一个文件之后，系统记录都会记录这个文件做了哪些更新，以增量符号Δ(Delta)表示。</p>
+<div align="center">  
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3deltas.png" width="500px">
+<br>
+</div>
+
+<p><strong>我们怎样才能得到一个文件的最终版本呢？</strong></p>
+<p>很简单，高中数学的基本知识，我们只需要将这些原文件和这些增加进行相加就行了。</p>
+<p><strong>这种方式有什么问题呢？</strong></p>
+<p>比如我们的增量特别特别多的话，如果我们要得到最终的文件是不是会耗费时间和性能。</p>
+<p>Git 不按照以上方式对待或保存数据。 反之，Git 更像是把数据看作是对小型文件系统的一组快照。 每次你提交更新，或在 Git 中保存项目状态时，它主要对当时的全部文件制作一个快照并保存这个快照的索引。 为了高效，如果文件没有修改，Git 不再重新存储该文件，而是只保留一个链接指向之前存储的文件。 Git 对待数据更像是一个 <strong>快照流</strong>。</p>
+<div align="center">  
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3snapshots.png" width="500px">
+<br>
+</div>
+
+
+<h3 id="Git-的三种状态"><a href="#Git-的三种状态" class="headerlink" title="Git 的三种状态"></a>Git 的三种状态</h3><p>Git 有三种状态，你的文件可能处于其中之一：</p>
+<ol>
+<li><strong>已提交（committed）</strong>：数据已经安全的保存在本地数据库中。</li>
+<li><strong>已修改（modified）</strong>：已修改表示修改了文件，但还没保存到数据库中。</li>
+<li><strong>已暂存（staged）</strong>：表示对一个已修改文件的当前版本做了标记，使之包含在下次提交的快照中。</li>
+</ol>
+<p>由此引入 Git 项目的三个工作区域的概念：<strong>Git 仓库(.git directoty) **、</strong>工作目录(Working Directory)** 以及 <strong>暂存区域(Staging Area)</strong> 。</p>
+<div align="center">  
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3areas.png" width="500px">
+</div>
+
+<p><strong>基本的 Git 工作流程如下：</strong></p>
+<ol>
+<li>在工作目录中修改文件。</li>
+<li>暂存文件，将文件的快照放入暂存区域。</li>
+<li>提交更新，找到暂存区域的文件，将快照永久性存储到 Git 仓库目录。</li>
+</ol>
+<h2 id="Git-使用快速入门"><a href="#Git-使用快速入门" class="headerlink" title="Git 使用快速入门"></a>Git 使用快速入门</h2><h3 id="获取-Git-仓库"><a href="#获取-Git-仓库" class="headerlink" title="获取 Git 仓库"></a>获取 Git 仓库</h3><p>有两种取得 Git 项目仓库的方法。</p>
+<ol>
+<li>在现有目录中初始化仓库: 进入项目目录运行  <code>git init</code>  命令,该命令将创建一个名为 <code>.git</code> 的子目录。</li>
+<li>从一个服务器克隆一个现有的 Git 仓库: <code>git clone [url]</code> 自定义本地仓库的名字: <code>git clone [url]</code> directoryname </li>
+</ol>
+<h3 id="记录每次更新到仓库"><a href="#记录每次更新到仓库" class="headerlink" title="记录每次更新到仓库"></a>记录每次更新到仓库</h3><ol>
+<li><strong>检测当前文件状态</strong> : <code>git status</code></li>
+<li><strong>提出更改（把它们添加到暂存区</strong>）：<code>git add filename</code> (针对特定文件)、<code>git add *</code>(所有文件)、<code>git add *.txt</code>（支持通配符，所有 .txt 文件）</li>
+<li><strong>忽略文件</strong>：<code>.gitignore</code> 文件</li>
+<li><strong>提交更新:</strong> <code>git commit -m &quot;代码提交信息&quot;</code> （每次准备提交前，先用 <code>git status</code> 看下，是不是都已暂存起来了， 然后再运行提交命令 <code>git commit</code>）</li>
+<li><strong>跳过使用暂存区域更新的方式</strong> : <code>git commit -a -m &quot;代码提交信息&quot;</code>。 <code>git commit</code> 加上 <code>-a</code> 选项，Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 <code>git add</code> 步骤。</li>
+<li><strong>移除文件</strong> ：<code>git rm filename</code>  （从暂存区域移除，然后提交。）</li>
+<li><strong>对文件重命名</strong> ：<code>git mv README.md README</code>(这个命令相当于<code>mv README.md README</code>、<code>git rm README.md</code>、<code>git add README</code> 这三条命令的集合)</li>
+</ol>
+<h3 id="推送改动到远程仓库"><a href="#推送改动到远程仓库" class="headerlink" title="推送改动到远程仓库"></a>推送改动到远程仓库</h3><ul>
+<li><p>如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：·<code>git remote add origin &lt;server&gt;</code> ,比如我们要让本地的一个仓库和 Github 上创建的一个仓库关联可以这样<code>git remote add origin https://github.com/Snailclimb/test.git</code> </p>
+</li>
+<li><p>将这些改动提交到远端仓库：<code>git push origin master</code> (可以把 <em>master</em> 换成你想要推送的任何分支)</p>
+<p>如此你就能够将你的改动推送到所添加的服务器上去了。</p>
+</li>
+</ul>
+<h3 id="远程仓库的移除与重命名"><a href="#远程仓库的移除与重命名" class="headerlink" title="远程仓库的移除与重命名"></a>远程仓库的移除与重命名</h3><ul>
+<li>将 test 重命名位 test1：<code>git remote rename test test1</code></li>
+<li>移除远程仓库 test1:<code>git remote rm test1</code></li>
+</ul>
+<h3 id="查看提交历史"><a href="#查看提交历史" class="headerlink" title="查看提交历史"></a>查看提交历史</h3><p>在提交了若干更新，又或者克隆了某个项目之后，你也许想回顾下提交历史。 完成这个任务最简单而又有效的工具是 <code>git log</code> 命令。<code>git log</code> 会按提交时间列出所有的更新，最近的更新排在最上面。</p>
+<p><strong>可以添加一些参数来查看自己希望看到的内容：</strong></p>
+<p>只看某个人的提交记录：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --author=bob</span><br></pre></td></tr></table></figure>
+
+<h3 id="撤销操作"><a href="#撤销操作" class="headerlink" title="撤销操作"></a>撤销操作</h3><p>有时候我们提交完了才发现漏掉了几个文件没有添加，或者提交信息写错了。 此时，可以运行带有 <code>--amend</code> 选项的提交命令尝试重新提交：</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
+
+<p>取消暂存的文件</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset filename</span><br></pre></td></tr></table></figure>
+
+<p>撤消对文件的修改:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- filename</span><br></pre></td></tr></table></figure>
+
+<p>假如你想丢弃你在本地的所有改动与提交，可以到服务器上获取最新的版本历史，并将你本地主分支指向它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin</span><br><span class="line">git reset --hard origin/master</span><br></pre></td></tr></table></figure>
+
+<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><p>分支是用来将特性开发绝缘开来的。在你创建仓库的时候，<em>master</em> 是“默认的”分支。在其他分支上进行开发，完成后再将它们合并到主分支上。</p>
+<p>我们通常在开发新功能、修复一个紧急 bug 等等时候会选择创建分支。单分支开发好还是多分支开发好，还是要看具体场景来说。</p>
+<p>创建一个名字叫做 test 的分支</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch test</span><br></pre></td></tr></table></figure>
+
+<p>切换当前分支到 test（当你切换分支的时候，Git 会重置你的工作目录，使其看起来像回到了你在那个分支上最后一次提交的样子。 Git 会自动添加、删除、修改文件以确保此时你的工作目录和这个分支最后一次提交时的样子一模一样）</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout test</span><br></pre></td></tr></table></figure>
+
+<div align="center">  
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3切换分支.png" width="500px">
+</div>
+
+<p>你也可以直接这样创建分支并切换过去(上面两条命令的合写)</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b feature_x</span><br></pre></td></tr></table></figure>
+
+<p>切换到主分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
+
+<p>合并分支(可能会有冲突)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge test</span><br></pre></td></tr></table></figure>
+
+<p>把新建的分支删掉</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d feature_x</span><br></pre></td></tr></table></figure>
+
+<p>将分支推送到远端仓库（推送成功后其他人可见）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin</span><br></pre></td></tr></table></figure>
+
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2014/07/29/lang-python-Python-100-Days-39-40-NoSQL入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2014/07/29/lang-python-Python-100-Days-39-40-NoSQL入门/" class="post-title-link" itemprop="url">39-40.NoSQL入门</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2014-07-29 09:10:00" itemprop="dateCreated datePublished" datetime="2014-07-29T09:10:00+08:00">2014-07-29</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-05 14:19:15" itemprop="dateModified" datetime="2019-09-05T14:19:15+08:00">2019-09-05</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/lang/" itemprop="url" rel="index"><span itemprop="name">lang</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2014/07/29/lang-python-Python-100-Days-39-40-NoSQL入门/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2014/07/29/lang-python-Python-100-Days-39-40-NoSQL入门/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>15k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>13 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="NoSQL入门"><a href="#NoSQL入门" class="headerlink" title="NoSQL入门"></a>NoSQL入门</h2><h3 id="NoSQL概述"><a href="#NoSQL概述" class="headerlink" title="NoSQL概述"></a>NoSQL概述</h3><p>如今，大多数的计算机系统（包括服务器、PC、移动设备等）都会产生庞大的数据量。其实，早在2012年的时候，全世界每天产生的数据量就达到了2.5EB（艾字节，$$1EB\approx10^{18}B$$）。这些数据有很大一部分是由关系型数据库来存储和管理的。 早在1970年，E.F.Codd发表了论述关系型数据库的著名论文“<em>A relational model of data for large shared data banks</em>”，这篇文章奠定了关系型数据库的基础并在接下来的数十年时间内产生了深远的影响。实践证明，关系型数据库是实现数据持久化最为重要的方式，它也是大多数应用在选择持久化方案时的首选技术。</p>
+<p>NoSQL是一项全新的数据库革命性运动，虽然它的历史可以追溯到1998年，但是NoSQL真正深入人心并得到广泛的应用是在进入大数据时候以后，业界普遍认为NoSQL是更适合大数据存储的技术方案，这才使得NoSQL的发展达到了前所未有的高度。2012年《纽约时报》的一篇专栏中写到，大数据时代已经降临，在商业、经济及其他领域中，决策将不再基于经验和直觉而是基于数据和分析而作出。事实上，在天文学、气象学、基因组学、生物学、社会学、互联网搜索引擎、金融、医疗、社交网络、电子商务等诸多领域，由于数据过于密集和庞大，在数据的分析和处理上也遇到了前所未有的限制和阻碍，这一切都使得对大数据处理技术的研究被提升到了新的高度，也使得各种NoSQL的技术方案进入到了公众的视野。</p>
+<p>NoSQL数据库按照其存储类型可以大致分为以下几类：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>部分代表</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>列族数据库</td>
+<td>HBase<br>Cassandra<br>Hypertable</td>
+<td>顾名思义是按列存储数据的。最大的特点是方便存储结构化和半结构化数据，方便做数据压缩，对针对某一列或者某几列的查询有非常大的I/O优势，适合于批量数据处理和即时查询。</td>
+</tr>
+<tr>
+<td>文档数据库</td>
+<td>MongoDB<br>CouchDB<br>ElasticSearch</td>
+<td>文档数据库一般用类JSON格式存储数据，存储的内容是文档型的。这样也就有机会对某些字段建立索引，实现关系数据库的某些功能，但不提供对参照完整性和分布事务的支持。</td>
+</tr>
+<tr>
+<td>KV数据库</td>
+<td>DynamoDB<br>Redis<br>LevelDB</td>
+<td>可以通过key快速查询到其value，有基于内存和基于磁盘两种实现方案。</td>
+</tr>
+<tr>
+<td>图数据库</td>
+<td>Neo4J<br>FlockDB<br>JanusGraph</td>
+<td>使用图结构进行语义查询的数据库，它使用节点、边和属性来表示和存储数据。图数据库从设计上，就可以简单快速的检索难以在关系系统中建模的复杂层次结构。</td>
+</tr>
+<tr>
+<td>对象数据库</td>
+<td>db4o<br>Versant</td>
+<td>通过类似面向对象语言的语法操作数据库，通过对象的方式存取数据。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>说明：想了解更多的NoSQL数据库，可以访问<a href="http://nosql-database.org/" target="_blank" rel="noopener">http://nosql-database.org/</a>。</p>
+</blockquote>
+<h3 id="Redis概述"><a href="#Redis概述" class="headerlink" title="Redis概述"></a>Redis概述</h3><p>Redis是一种基于键值对的NoSQL数据库，它提供了对多种数据类型（字符串、哈希、列表、集合、有序集合、位图等）的支持，能够满足很多应用场景的需求。Redis将数据放在内存中，因此读写性能是非常惊人的。与此同时，Redis也提供了持久化机制，能够将内存中的数据保存到硬盘上，在发生意外状况时数据也不会丢掉。此外，Redis还支持键过期、地理信息运算、发布订阅、事务、管道、Lua脚本扩展等功能，总而言之，Redis的功能和性能都非常强大，如果项目中要实现高速缓存和消息队列这样的服务，直接交给Redis就可以了。目前，国内外很多著名的企业和商业项目都使用了Redis，包括：Twitter、Github、StackOverflow、新浪微博、百度、优酷土豆、美团、小米、唯品会等。</p>
+<h4 id="Redis简介"><a href="#Redis简介" class="headerlink" title="Redis简介"></a>Redis简介</h4><p>2008年，一个名为Salvatore Sanfilippo的程序员为他开发的LLOOGG项目定制了专属的数据库（因为之前他无论怎样优化MySQL，系统性能已经无法再提升了），这项工作的成果就是Redis的初始版本。后来他将Redis的代码放到了全球最大的代码托管平台<a href="https://github.com/antirez/redis" target="_blank" rel="noopener">Github</a>，从那以后，Redis引发了大量开发者的好评和关注，继而有数百人参与了Redis的开发和维护，这使得Redis的功能越来越强大和性能越来越好。</p>
+<p>Redis是REmote DIctionary Server的缩写，它是一个用ANSI C编写的高性能的key-value存储系统，与其他的key-value存储系统相比，Redis有以下一些特点（也是优点）：</p>
+<ul>
+<li>Redis的读写性能极高，并且有丰富的特性（发布/订阅、事务、通知等）。</li>
+<li>Redis支持数据的持久化（RDB和AOF两种方式），可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。</li>
+<li>Redis支持多种数据类型，包括：string、hash、list、set，zset、bitmap、hyperloglog等。</li>
+<li>Redis支持主从复制（实现读写分析）以及哨兵模式（监控master是否宕机并自动调整配置）。</li>
+<li>Redis支持分布式集群，可以很容易的通过水平扩展来提升系统的整体性能。</li>
+<li>Redis基于TCP提供的可靠传输服务进行通信，很多编程语言都提供了Redis客户端支持。</li>
+</ul>
+<h4 id="Redis的应用场景"><a href="#Redis的应用场景" class="headerlink" title="Redis的应用场景"></a>Redis的应用场景</h4><ol>
+<li>高速缓存  - 将不常变化但又经常被访问的热点数据放到Redis数据库中，可以大大降低关系型数据库的压力，从而提升系统的响应性能。</li>
+<li>排行榜 - 很多网站都有排行榜功能，利用Redis中的列表和有序集合可以非常方便的构造各种排行榜系统。</li>
+<li>商品秒杀/投票点赞 - Redis提供了对计数操作的支持，网站上常见的秒杀、点赞等功能都可以利用Redis的计数器通过+1或-1的操作来实现，从而避免了使用关系型数据的<code>update</code>操作。</li>
+<li>分布式锁 - 利用Redis可以跨多台服务器实现分布式锁（类似于线程锁，但是能够被多台机器上的多个线程或进程共享）的功能，用于实现一个阻塞式操作。</li>
+<li>消息队列 - 消息队列和高速缓存一样，是一个大型网站不可缺少的基础服务，可以实现业务解耦和非实时业务削峰等特性，这些我们都会在后面的项目中为大家展示。</li>
+</ol>
+<h4 id="Redis的安装和配置"><a href="#Redis的安装和配置" class="headerlink" title="Redis的安装和配置"></a>Redis的安装和配置</h4><p>可以使用Linux系统的包管理工具（如yum）来安装Redis，也可以通过在Redis的<a href="https://redis.io/" target="_blank" rel="noopener">官方网站</a>下载Redis的源代码，解压缩解归档之后通过make工具对源代码进行构建并安装，在更新这篇文档时，Redis官方提供的最新稳定版本是<a href="http://download.redis.io/releases/redis-5.0.4.tar.gz" target="_blank" rel="noopener">Redis 5.0.4</a>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-5.0.4.tar.gz</span><br><span class="line">gunzip redis-5.0.4.tar.gz</span><br><span class="line">tar -xvf redis-5.0.4.tar</span><br><span class="line">cd redis-5.0.4</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>在redis源代码目录下有一个名为redis.conf的配置文件，我们可以先查看一下该文件。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim redis.conf</span><br></pre></td></tr></table></figure>
+
+<p>配置将Redis服务绑定到指定的IP地址和端口。</p>
+<p><img src="/images/Python100/Day36-40/redis-bind-and-port.png" alt></p>
+<p>配置底层有多少个数据库。</p>
+<p><img src="/images/Python100/Day36-40/redis-databases.png" alt></p>
+<p>配置Redis的持久化机制 - RDB。</p>
+<p><img src="/images/Python100/Day36-40/redis-rdb-1.png" alt></p>
+<p><img src="/images/Python100/Day36-40/redis-rdb-3.png" alt></p>
+<p>配置Redis的持久化机制 - AOF。</p>
+<p><img src="/images/Python100/Day36-40/redis-aof.png" alt></p>
+<p>配置访问Redis服务器的验证口令。</p>
+<p><img src="/images/Python100/Day36-40/redis-security.png" alt></p>
+<p>配置Redis的主从复制，通过主从复制可以实现读写分离。</p>
+<p><img src="/images/Python100/Day36-40/redis-replication.png" alt></p>
+<p>配置慢查询。</p>
+<p><img src="/images/Python100/Day36-40/redis-slow-logs.png" alt></p>
+<p>上面这些内容就是Redis的基本配置，如果你对上面的内容感到困惑也没有关系，先把Redis用起来再回头去推敲这些内容就行了。如果想找一些参考书，<a href="https://item.jd.com/12121730.html" target="_blank" rel="noopener">《Redis开发与运维》</a>是一本不错的入门读物，而<a href="https://item.jd.com/11791607.html" target="_blank" rel="noopener">《Redis实战》</a>是不错的进阶读物。</p>
+<h4 id="Redis的服务器和客户端"><a href="#Redis的服务器和客户端" class="headerlink" title="Redis的服务器和客户端"></a>Redis的服务器和客户端</h4><p>接下来启动Redis服务器，下面的方式将以默认的配置启动Redis服务。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server</span><br></pre></td></tr></table></figure>
+
+<p>如果希望修改Redis的配置（如端口、认证口令、持久化方式等），可以通过下面两种方式。</p>
+<p>方式一：通过参数指定认证口令和AOF持久化方式。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server --requirepass 1qaz2wsx --appendonly yes</span><br></pre></td></tr></table></figure>
+
+<p>方式二：通过指定的配置文件来修改Redis的配置。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server /root/redis-5.0.4/redis.conf</span><br></pre></td></tr></table></figure>
+
+<p>下面我们使用第一种方式来启动Redis并将其置于后台运行，将Redis产生的输出重定向到名为redis.log的文件中。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server --requirepass 1qaz2wsx &gt; redis.log &amp;</span><br></pre></td></tr></table></figure>
+
+<p>可以通过ps或者netstat来检查Redis服务器是否启动成功。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep redis-server</span><br><span class="line">netstat -nap | grep redis-server</span><br></pre></td></tr></table></figure>
+
+<p>接下来，我们尝试用Redis客户端去连接服务器。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis-cli</span><br><span class="line">127.0.0.1:6379&gt; auth 1qaz2wsx</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; ping</span><br><span class="line">PONG</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Redis有着非常丰富的数据类型，也有很多的命令来操作这些数据，具体的内容可以查看<a href="http://redisdoc.com/" target="_blank" rel="noopener">Redis命令参考</a>，在这个网站上，除了Redis的命令参考，还有Redis的详细文档，其中包括了通知、事务、主从复制、持久化、哨兵、集群等内容。</p>
+<p><img src="/images/Python100/Day36-40/redis-data-types.png" alt></p>
+<blockquote>
+<p>说明：上面的插图来自付磊和张益军先生编著的《Redis开发与运维》一书。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set username admin</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get username</span><br><span class="line">"admin"</span><br><span class="line">127.0.0.1:6379&gt; set password "123456" ex 300</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get password</span><br><span class="line">"123456"</span><br><span class="line">127.0.0.1:6379&gt; ttl username</span><br><span class="line">(integer) -1</span><br><span class="line">127.0.0.1:6379&gt; ttl password</span><br><span class="line">(integer) 286</span><br><span class="line">127.0.0.1:6379&gt; hset stu1 name hao</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; hset stu1 age 38</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hset stu1 gender male</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hgetall stu1</span><br><span class="line">1) "name"</span><br><span class="line">2) "hao"</span><br><span class="line">3) "age"</span><br><span class="line">4) "38"</span><br><span class="line">5) "gender"</span><br><span class="line">6) "male"</span><br><span class="line">127.0.0.1:6379&gt; hvals stu1</span><br><span class="line">1) "hao"</span><br><span class="line">2) "38"</span><br><span class="line">3) "male"</span><br><span class="line">127.0.0.1:6379&gt; hmset stu2 name wang age 18 gender female tel 13566778899</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; hgetall stu2</span><br><span class="line">1) "name"</span><br><span class="line">2) "wang"</span><br><span class="line">3) "age"</span><br><span class="line">4) "18"</span><br><span class="line">5) "gender"</span><br><span class="line">6) "female"</span><br><span class="line">7) "tel"</span><br><span class="line">8) "13566778899"</span><br><span class="line">127.0.0.1:6379&gt; lpush nums 1 2 3 4 5</span><br><span class="line">(integer) 5</span><br><span class="line">127.0.0.1:6379&gt; lrange nums 0 -1</span><br><span class="line">1) "5"</span><br><span class="line">2) "4"</span><br><span class="line">3) "3"</span><br><span class="line">4) "2"</span><br><span class="line">5) "1"</span><br><span class="line">127.0.0.1:6379&gt; lpop nums</span><br><span class="line">"5"</span><br><span class="line">127.0.0.1:6379&gt; lpop nums</span><br><span class="line">"4"</span><br><span class="line">127.0.0.1:6379&gt; rpop nums</span><br><span class="line">"1"</span><br><span class="line">127.0.0.1:6379&gt; rpop nums</span><br><span class="line">"2"</span><br><span class="line">127.0.0.1:6379&gt; sadd fruits apple banana orange apple grape grape</span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6379&gt; scard fruits</span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6379&gt; smembers fruits</span><br><span class="line">1) "grape"</span><br><span class="line">2) "orange"</span><br><span class="line">3) "banana"</span><br><span class="line">4) "apple"</span><br><span class="line">127.0.0.1:6379&gt; sismember fruits apple</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sismember fruits durian</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; sadd nums1 1 2 3 4 5</span><br><span class="line">(integer) 5</span><br><span class="line">127.0.0.1:6379&gt; sadd nums2 2 4 6 8</span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6379&gt; sinter nums1 nums2</span><br><span class="line">1) "2"</span><br><span class="line">2) "4"</span><br><span class="line">127.0.0.1:6379&gt; sunion nums1 nums2</span><br><span class="line">1) "1"</span><br><span class="line">2) "2"</span><br><span class="line">3) "3"</span><br><span class="line">4) "4"</span><br><span class="line">5) "5"</span><br><span class="line">6) "6"</span><br><span class="line">7) "8"</span><br><span class="line">127.0.0.1:6379&gt; sdiff nums1 nums2</span><br><span class="line">1) "1"</span><br><span class="line">2) "3"</span><br><span class="line">3) "5"</span><br><span class="line">127.0.0.1:6379&gt; zadd topsinger 5234 zhangxy 1978 chenyx 2235 zhoujl 3520 xuezq</span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6379&gt; zrange topsinger 0 -1 withscores</span><br><span class="line">1) "chenyx"</span><br><span class="line">2) "1978"</span><br><span class="line">3) "zhoujl"</span><br><span class="line">4) "2235"</span><br><span class="line">5) "xuezq"</span><br><span class="line">6) "3520"</span><br><span class="line">7) "zhangxy"</span><br><span class="line">8) "5234"</span><br><span class="line">127.0.0.1:6379&gt; zrevrange topsinger 0 -1</span><br><span class="line">1) "zhangxy"</span><br><span class="line">2) "xuezq"</span><br><span class="line">3) "zhoujl"</span><br><span class="line">4) "chenyx"</span><br><span class="line">127.0.0.1:6379&gt; geoadd pois 116.39738549206541 39.90862689286386 tiananmen 116.27172936413572 39.99</span><br><span class="line">135172904494 yiheyuan 117.27766503308104 40.65332064313784 gubeishuizhen</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6379&gt; geodist pois tiananmen gubeishuizhen km</span><br><span class="line">"111.5333"</span><br><span class="line">127.0.0.1:6379&gt; geodist pois tiananmen yiheyuan km</span><br><span class="line">"14.1230"</span><br><span class="line">127.0.0.1:6379&gt; georadius pois 116.86499108288572 40.40149669363615 50 km withdist</span><br><span class="line">1) 1) "gubeishuizhen"</span><br><span class="line">   2) "44.7408"</span><br></pre></td></tr></table></figure>
+
+<h4 id="在Python程序中使用Redis"><a href="#在Python程序中使用Redis" class="headerlink" title="在Python程序中使用Redis"></a>在Python程序中使用Redis</h4><p>可以使用pip安装redis模块。redis模块的核心是名为Redis的类，该类的对象代表一个Redis客户端，通过该客户端可以向Redis服务器发送命令并获取执行的结果。上面我们在Redis客户端中使用的命令基本上就是Redis对象可以接收的消息，所以如果了解了Redis的命令就可以在Python中玩转Redis。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install redis</span><br><span class="line">python3</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> redis</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client = redis.Redis(host=<span class="string">'1.2.3.4'</span>, port=<span class="number">6379</span>, password=<span class="string">'1qaz2wsx'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.set(<span class="string">'username'</span>, <span class="string">'admin'</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.hset(<span class="string">'student'</span>, <span class="string">'name'</span>, <span class="string">'hao'</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.hset(<span class="string">'student'</span>, <span class="string">'age'</span>, <span class="number">38</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.keys(<span class="string">'*'</span>)</span><br><span class="line">[<span class="string">b'username'</span>, <span class="string">b'student'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.get(<span class="string">'username'</span>)</span><br><span class="line"><span class="string">b'admin'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.hgetall(<span class="string">'student'</span>)</span><br><span class="line">&#123;<span class="string">b'name'</span>: <span class="string">b'hao'</span>, <span class="string">b'age'</span>: <span class="string">b'38'</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="MongoDB概述"><a href="#MongoDB概述" class="headerlink" title="MongoDB概述"></a>MongoDB概述</h3><h4 id="MongoDB简介"><a href="#MongoDB简介" class="headerlink" title="MongoDB简介"></a>MongoDB简介</h4><p>MongoDB是2009年问世的一个面向文档的数据库管理系统，由C++语言编写，旨在为Web应用提供可扩展的高性能数据存储解决方案。虽然在划分类别的时候后，MongoDB被认为是NoSQL的产品，但是它更像一个介于关系数据库和非关系数据库之间的产品，在非关系数据库中它功能最丰富，最像关系数据库。</p>
+<p>MongoDB将数据存储为一个文档，一个文档由一系列的“键值对”组成，其文档类似于JSON对象，但是MongoDB对JSON进行了二进制处理（能够更快的定位key和value），因此其文档的存储格式称为BSON。关于JSON和BSON的差别大家可以看看MongoDB官方网站的文章<a href="https://www.mongodb.com/json-and-bson" target="_blank" rel="noopener">《JSON and BSON》</a>。</p>
+<p>目前，MongoDB已经提供了对Windows、MacOS、Linux、Solaris等多个平台的支持，而且也提供了多种开发语言的驱动程序，Python当然是其中之一。</p>
+<h4 id="MongoDB的安装和配置"><a href="#MongoDB的安装和配置" class="headerlink" title="MongoDB的安装和配置"></a>MongoDB的安装和配置</h4><p>可以从MongoDB的<a href="https://www.mongodb.com/download-center#community" target="_blank" rel="noopener">官方下载链接</a>下载MongoDB，官方为Windows系统提供了一个Installer程序，而Linux和MacOS则提供了压缩文件。下面简单说一下Linux系统如何安装和配置MongoDB。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-amazon-3.6.5.tgz</span><br><span class="line">gunzip mongodb-linux-x86_64-amazon-3.6.5.tgz</span><br><span class="line">mkdir mongodb-3.6.5</span><br><span class="line">tar -xvf mongodb-linux-x86_64-amazon-3.6.5.tar --strip-components 1 -C mongodb-3.6.5/</span><br><span class="line">export PATH=$PATH:~/mongodb-3.6.5/bin</span><br><span class="line">mkdir -p /data/db</span><br><span class="line">mongod --bind_ip 172.18.61.250</span><br><span class="line"></span><br><span class="line">2018-06-03T18:03:28.232+0800 I CONTROL  [initandlisten] MongoDB starting : pid=1163 port=27017 dbpath=/data/db 64-bit host=iZwz97tbgo9lkabnat2lo8Z</span><br><span class="line">2018-06-03T18:03:28.232+0800 I CONTROL  [initandlisten] db version v3.6.5</span><br><span class="line">2018-06-03T18:03:28.232+0800 I CONTROL  [initandlisten] git version: a20ecd3e3a174162052ff99913bc2ca9a839d618</span><br><span class="line">2018-06-03T18:03:28.232+0800 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.0-fips29 Mar 2010</span><br><span class="line">...</span><br><span class="line">2018-06-03T18:03:28.945+0800 I NETWORK  [initandlisten] waiting for connections on port 27017</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>说明：上面的操作中，export命令是设置PATH环境变量，这样可以在任意路径下执行mongod来启动MongoDB服务器。MongoDB默认保存数据的路径是/data/db目录，为此要提前创建该目录。此外，在使用mongod启动MongoDB服务器时，–bind_ip参数用来将服务绑定到指定的IP地址，也可以用–port参数来指定端口，默认端口为27017。</p>
+</blockquote>
+<h4 id="MongoDB基本概念"><a href="#MongoDB基本概念" class="headerlink" title="MongoDB基本概念"></a>MongoDB基本概念</h4><p>我们通过与关系型数据库进行对照的方式来说明MongoDB中的一些概念。</p>
+<table>
+<thead>
+<tr>
+<th>SQL</th>
+<th>MongoDB</th>
+<th>解释（SQL/MongoDB）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>database</td>
+<td>database</td>
+<td>数据库/数据库</td>
+</tr>
+<tr>
+<td>table</td>
+<td>collection</td>
+<td>二维表/集合</td>
+</tr>
+<tr>
+<td>row</td>
+<td>document</td>
+<td>记录（行）/文档</td>
+</tr>
+<tr>
+<td>column</td>
+<td>field</td>
+<td>字段（列）/域</td>
+</tr>
+<tr>
+<td>index</td>
+<td>index</td>
+<td>索引/索引</td>
+</tr>
+<tr>
+<td>table joins</td>
+<td>—</td>
+<td>表连接/嵌套文档</td>
+</tr>
+<tr>
+<td>primary key</td>
+<td>primary key</td>
+<td>主键/主键（<code>_id</code>字段）</td>
+</tr>
+</tbody></table>
+<h4 id="通过Shell操作MongoDB"><a href="#通过Shell操作MongoDB" class="headerlink" title="通过Shell操作MongoDB"></a>通过Shell操作MongoDB</h4><p>启动服务器后可以使用交互式环境跟服务器通信，如下所示。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mongo --host 172.18.61.250</span><br><span class="line"></span><br><span class="line">MongoDB shell version v3.6.5</span><br><span class="line">connecting to: mongodb://172.18.61.250:27017/</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>查看、创建和删除数据库。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">// 显示所有数据库</span></span><br><span class="line">&gt; show dbs</span><br><span class="line">admin   <span class="number">0.000</span>GB</span><br><span class="line">config  <span class="number">0.000</span>GB</span><br><span class="line">local   <span class="number">0.000</span>GB</span><br><span class="line">&gt; <span class="comment">// 创建并切换到school数据库</span></span><br><span class="line">&gt; use school</span><br><span class="line">switched to db school</span><br><span class="line">&gt; <span class="comment">// 删除当前数据库</span></span><br><span class="line">&gt; db.dropDatabase()</span><br><span class="line">&#123; <span class="string">"ok"</span> : <span class="number">1</span> &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建、删除和查看集合。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">// 创建并切换到school数据库</span></span><br><span class="line">&gt; use school</span><br><span class="line">switched to db school</span><br><span class="line">&gt; <span class="comment">// 创建colleges集合</span></span><br><span class="line">&gt; db.createCollection(<span class="string">'colleges'</span>)</span><br><span class="line">&#123; <span class="string">"ok"</span> : <span class="number">1</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 创建students集合</span></span><br><span class="line">&gt; db.createCollection(<span class="string">'students'</span>)</span><br><span class="line">&#123; <span class="string">"ok"</span> : <span class="number">1</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 查看所有集合</span></span><br><span class="line">&gt; show collections</span><br><span class="line">colleges</span><br><span class="line">students</span><br><span class="line">&gt; <span class="comment">// 删除colleges集合</span></span><br><span class="line">&gt; db.colleges.drop()</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>说明：在MongoDB中插入文档时如果集合不存在会自动创建集合，所以也可以按照下面的方式通过创建文档来创建集合。</p>
+</blockquote>
+</li>
+<li><p>文档的CRUD操作。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">// 向students集合插入文档</span></span><br><span class="line">&gt; db.students.insert(&#123;<span class="attr">stuid</span>: <span class="number">1001</span>, <span class="attr">name</span>: <span class="string">'骆昊'</span>, <span class="attr">age</span>: <span class="number">38</span>&#125;)</span><br><span class="line">WriteResult(&#123; <span class="string">"nInserted"</span> : <span class="number">1</span> &#125;)</span><br><span class="line">&gt; <span class="comment">// 向students集合插入文档</span></span><br><span class="line">&gt; db.students.save(&#123;<span class="attr">stuid</span>: <span class="number">1002</span>, <span class="attr">name</span>: <span class="string">'王大锤'</span>, <span class="attr">tel</span>: <span class="string">'13012345678'</span>, <span class="attr">gender</span>: <span class="string">'男'</span>&#125;)</span><br><span class="line">WriteResult(&#123; <span class="string">"nInserted"</span> : <span class="number">1</span> &#125;)</span><br><span class="line">&gt; <span class="comment">// 查看所有文档</span></span><br><span class="line">&gt; db.students.find()</span><br><span class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c72e006ad854460ee70b"</span>), <span class="string">"stuid"</span> : <span class="number">1001</span>, <span class="string">"name"</span> : <span class="string">"骆昊"</span>, <span class="string">"age"</span> : <span class="number">38</span> &#125;</span><br><span class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c790006ad854460ee70c"</span>), <span class="string">"stuid"</span> : <span class="number">1002</span>, <span class="string">"name"</span> : <span class="string">"王大锤"</span>, <span class="string">"tel"</span> : <span class="string">"13012345678"</span>, <span class="string">"gender"</span> : <span class="string">"男"</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 更新stuid为1001的文档</span></span><br><span class="line">&gt; db.students.update(&#123;<span class="attr">stuid</span>: <span class="number">1001</span>&#125;, &#123;<span class="string">'$set'</span>: &#123;<span class="attr">tel</span>: <span class="string">'13566778899'</span>, <span class="attr">gender</span>: <span class="string">'男'</span>&#125;&#125;)</span><br><span class="line">WriteResult(&#123; <span class="string">"nMatched"</span> : <span class="number">1</span>, <span class="string">"nUpserted"</span> : <span class="number">0</span>, <span class="string">"nModified"</span> : <span class="number">1</span> &#125;)</span><br><span class="line">&gt; <span class="comment">// 插入或更新stuid为1003的文档</span></span><br><span class="line">&gt; db.students.update(&#123;<span class="attr">stuid</span>: <span class="number">1003</span>&#125;, &#123;<span class="string">'$set'</span>: &#123;<span class="attr">name</span>: <span class="string">'白元芳'</span>, <span class="attr">tel</span>: <span class="string">'13022223333'</span>, <span class="attr">gender</span>: <span class="string">'男'</span>&#125;&#125;,  upsert=<span class="literal">true</span>)</span><br><span class="line">WriteResult(&#123;</span><br><span class="line">        <span class="string">"nMatched"</span> : <span class="number">0</span>,</span><br><span class="line">        <span class="string">"nUpserted"</span> : <span class="number">1</span>,</span><br><span class="line">        <span class="string">"nModified"</span> : <span class="number">0</span>,</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c92dd185894d7283efab"</span>)</span><br><span class="line">&#125;)</span><br><span class="line">&gt; <span class="comment">// 查询所有文档</span></span><br><span class="line">&gt; db.students.find().pretty()</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c72e006ad854460ee70b"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1001</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"骆昊"</span>,</span><br><span class="line">        <span class="string">"age"</span> : <span class="number">38</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13566778899"</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c790006ad854460ee70c"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1002</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"王大锤"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13012345678"</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c92dd185894d7283efab"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1003</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"白元芳"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13022223333"</span></span><br><span class="line">&#125;</span><br><span class="line">&gt; <span class="comment">// 查询stuid大于1001的文档</span></span><br><span class="line">&gt; db.students.find(&#123;<span class="attr">stuid</span>: &#123;<span class="string">'$gt'</span>: <span class="number">1001</span>&#125;&#125;).pretty()</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c790006ad854460ee70c"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1002</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"王大锤"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13012345678"</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c92dd185894d7283efab"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1003</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"白元芳"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13022223333"</span></span><br><span class="line">&#125;</span><br><span class="line">&gt; <span class="comment">// 查询stuid大于1001的文档只显示name和tel字段</span></span><br><span class="line">&gt; db.students.find(&#123;<span class="attr">stuid</span>: &#123;<span class="string">'$gt'</span>: <span class="number">1001</span>&#125;&#125;, &#123;<span class="attr">_id</span>: <span class="number">0</span>, <span class="attr">name</span>: <span class="number">1</span>, <span class="attr">tel</span>: <span class="number">1</span>&#125;).pretty()</span><br><span class="line">&#123; <span class="string">"name"</span> : <span class="string">"王大锤"</span>, <span class="string">"tel"</span> : <span class="string">"13012345678"</span> &#125;</span><br><span class="line">&#123; <span class="string">"name"</span> : <span class="string">"白元芳"</span>, <span class="string">"tel"</span> : <span class="string">"13022223333"</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 查询name为“骆昊”或者tel为“13022223333”的文档</span></span><br><span class="line">&gt; db.students.find(&#123;<span class="string">'$or'</span>: [&#123;<span class="attr">name</span>: <span class="string">'骆昊'</span>&#125;, &#123;<span class="attr">tel</span>: <span class="string">'13022223333'</span>&#125;]&#125;, &#123;<span class="attr">_id</span>: <span class="number">0</span>, <span class="attr">name</span>: <span class="number">1</span>, <span class="attr">tel</span>: <span class="number">1</span>&#125;).pretty()</span><br><span class="line">&#123; <span class="string">"name"</span> : <span class="string">"骆昊"</span>, <span class="string">"tel"</span> : <span class="string">"13566778899"</span> &#125;</span><br><span class="line">&#123; <span class="string">"name"</span> : <span class="string">"白元芳"</span>, <span class="string">"tel"</span> : <span class="string">"13022223333"</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 查询学生文档跳过第1条文档只查1条文档</span></span><br><span class="line">&gt; db.students.find().skip(<span class="number">1</span>).limit(<span class="number">1</span>).pretty()</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c790006ad854460ee70c"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1002</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"王大锤"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13012345678"</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span></span><br><span class="line">&#125;</span><br><span class="line">&gt; <span class="comment">// 对查询结果进行排序(1表示升序，-1表示降序)</span></span><br><span class="line">&gt; db.students.find(&#123;&#125;, &#123;<span class="attr">_id</span>: <span class="number">0</span>, <span class="attr">stuid</span>: <span class="number">1</span>, <span class="attr">name</span>: <span class="number">1</span>&#125;).sort(&#123;<span class="attr">stuid</span>: <span class="number">-1</span>&#125;)</span><br><span class="line">&#123; <span class="string">"stuid"</span> : <span class="number">1003</span>, <span class="string">"name"</span> : <span class="string">"白元芳"</span> &#125;</span><br><span class="line">&#123; <span class="string">"stuid"</span> : <span class="number">1002</span>, <span class="string">"name"</span> : <span class="string">"王大锤"</span> &#125;</span><br><span class="line">&#123; <span class="string">"stuid"</span> : <span class="number">1001</span>, <span class="string">"name"</span> : <span class="string">"骆昊"</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 在指定的一个或多个字段上创建索引</span></span><br><span class="line">&gt; db.students.ensureIndex(&#123;<span class="attr">name</span>: <span class="number">1</span>&#125;)</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"createdCollectionAutomatically"</span> : <span class="literal">false</span>,</span><br><span class="line">        <span class="string">"numIndexesBefore"</span> : <span class="number">1</span>,</span><br><span class="line">        <span class="string">"numIndexesAfter"</span> : <span class="number">2</span>,</span><br><span class="line">        <span class="string">"ok"</span> : <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>使用MongoDB可以非常方便的配置数据复制，通过冗余数据来实现数据的高可用以及灾难恢复，也可以通过数据分片来应对数据量迅速增长的需求。关于MongoDB更多的操作可以查阅<a href="https://mongodb-documentation.readthedocs.io/en/latest/" target="_blank" rel="noopener">官方文档</a> ，同时推荐大家阅读Kristina Chodorow写的<a href="http://www.ituring.com.cn/book/1172" target="_blank" rel="noopener">《MongoDB权威指南》</a>。</p>
+<h4 id="在Python程序中操作MongoDB"><a href="#在Python程序中操作MongoDB" class="headerlink" title="在Python程序中操作MongoDB"></a>在Python程序中操作MongoDB</h4><p>可以通过pip安装pymongo来实现对MongoDB的操作。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install pymongo</span><br><span class="line">python3</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> pymongo <span class="keyword">import</span> MongoClient</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client = MongoClient(<span class="string">'mongodb://127.0.0.1:27017'</span>) </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>db = client.school</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> student <span class="keyword">in</span> db.students.find():</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'学号:'</span>, student[<span class="string">'stuid'</span>])</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'姓名:'</span>, student[<span class="string">'name'</span>])</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'电话:'</span>, student[<span class="string">'tel'</span>])</span><br><span class="line"><span class="meta">... </span></span><br><span class="line">学号: <span class="number">1001.0</span></span><br><span class="line">姓名: 骆昊</span><br><span class="line">电话: <span class="number">13566778899</span></span><br><span class="line">学号: <span class="number">1002.0</span></span><br><span class="line">姓名: 王大锤</span><br><span class="line">电话: <span class="number">13012345678</span></span><br><span class="line">学号: <span class="number">1003.0</span></span><br><span class="line">姓名: 白元芳</span><br><span class="line">电话: <span class="number">13022223333</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>db.students.find().count()</span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>db.students.remove()</span><br><span class="line">&#123;<span class="string">'n'</span>: <span class="number">3</span>, <span class="string">'ok'</span>: <span class="number">1.0</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>db.students.find().count()</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>coll = db.students</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> pymongo <span class="keyword">import</span> ASCENDING</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>coll.create_index([(<span class="string">'name'</span>, ASCENDING)], unique=<span class="literal">True</span>)</span><br><span class="line"><span class="string">'name_1'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>coll.insert_one(&#123;<span class="string">'stuid'</span>: int(<span class="number">1001</span>), <span class="string">'name'</span>: <span class="string">'骆昊'</span>, <span class="string">'gender'</span>: <span class="literal">True</span>&#125;)</span><br><span class="line">&lt;pymongo.results.InsertOneResult object at <span class="number">0x1050cc6c8</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>coll.insert_many([&#123;<span class="string">'stuid'</span>: int(<span class="number">1002</span>), <span class="string">'name'</span>: <span class="string">'王大锤'</span>, <span class="string">'gender'</span>: <span class="literal">False</span>&#125;, &#123;<span class="string">'stuid'</span>: int(<span class="number">1003</span>), <span class="string">'name'</span>: <span class="string">'白元芳'</span>, <span class="string">'gender'</span>: <span class="literal">True</span>&#125;])</span><br><span class="line">&lt;pymongo.results.InsertManyResult object at <span class="number">0x1050cc8c8</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> student <span class="keyword">in</span> coll.find(&#123;<span class="string">'gender'</span>: <span class="literal">True</span>&#125;):</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'学号:'</span>, student[<span class="string">'stuid'</span>])</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'姓名:'</span>, student[<span class="string">'name'</span>])</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'性别:'</span>, <span class="string">'男'</span> <span class="keyword">if</span> student[<span class="string">'gender'</span>] <span class="keyword">else</span> <span class="string">'女'</span>)</span><br><span class="line"><span class="meta">... </span></span><br><span class="line">学号: <span class="number">1001</span></span><br><span class="line">姓名: 骆昊</span><br><span class="line">性别: 男</span><br><span class="line">学号: <span class="number">1003</span></span><br><span class="line">姓名: 白元芳</span><br><span class="line">性别: 男</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>关于PyMongo更多的知识可以通过它的<a href="https://api.mongodb.com/python/current/tutorial.html" target="_blank" rel="noopener">官方文档</a>进行了解，也可以使用<a href="https://pypi.org/project/mongoengine/" target="_blank" rel="noopener">MongoEngine</a>这样的库来简化Python程序对MongoDB的操作，除此之外，还有以异步I/O方式访问MongoDB的三方库<a href="https://pypi.org/project/motor/" target="_blank" rel="noopener">motor</a>都是不错的选择。</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
   </div>
 
   
@@ -1865,7 +1987,7 @@ $ git archive</code></pre>
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">139</span>
+          <span class="site-state-item-count">138</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

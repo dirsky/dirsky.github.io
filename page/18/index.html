@@ -269,7 +269,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2016/03/17/lang-java-What-s-New-in-JDK8-JDK8新特性总结/">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2015/08/26/os-linux-CentOS7更换yum软件镜像源/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -283,7 +283,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2016/03/17/lang-java-What-s-New-in-JDK8-JDK8新特性总结/" class="post-title-link" itemprop="url">JDK8新特性总结</a>
+            <a href="/2015/08/26/os-linux-CentOS7更换yum软件镜像源/" class="post-title-link" itemprop="url">CentOS7系统更换软件安装源</a>
           
         </h1>
 
@@ -300,7 +300,7 @@
                 
               
 
-              <time title="创建时间：2016-03-17 00:00:00" itemprop="dateCreated datePublished" datetime="2016-03-17T00:00:00+08:00">2016-03-17</time>
+              <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00+08:00">2015-08-26</time>
             </span>
           
             
@@ -311,7 +311,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-31 10:25:36" itemprop="dateModified" datetime="2019-08-31T10:25:36+08:00">2019-08-31</time>
+                <time title="修改时间：2019-08-29 15:13:28" itemprop="dateModified" datetime="2019-08-29T15:13:28+08:00">2019-08-29</time>
               </span>
             
           
@@ -321,7 +321,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/lang/" itemprop="url" rel="index"><span itemprop="name">lang</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a></span>
 
                 
                 
@@ -340,7 +340,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2016/03/17/lang-java-What-s-New-in-JDK8-JDK8新特性总结/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2016/03/17/lang-java-What-s-New-in-JDK8-JDK8新特性总结/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2015/08/26/os-linux-CentOS7更换yum软件镜像源/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-CentOS7更换yum软件镜像源/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -352,7 +352,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>16k</span>
+              <span>1.6k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -362,7 +362,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>15 分钟</span>
+              <span>1 分钟</span>
             </span>
           
 
@@ -375,172 +375,556 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>总结了部分JDK8新特性，另外一些新特性可以通过Oracle的官方文档查看，毕竟是官方文档，各种新特性都会介绍，有兴趣的可以去看。<br></p>
-<h2 id="Oracle官方文档-What’s-New-in-JDK8"><a href="#Oracle官方文档-What’s-New-in-JDK8" class="headerlink" title="Oracle官方文档:What’s New in JDK8"></a><a href="https://www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html" target="_blank" rel="noopener">Oracle官方文档:What’s New in JDK8</a></h2><ul>
-<li><p><a href="#JavaProgrammingLanguage">Java语言特性</a></p>
+          <p>阿里云Linux安装镜像源地址：<a href="http://mirrors.aliyun.com/" target="_blank" rel="noopener">http://mirrors.aliyun.com/</a> 。</p>
+<p>第一步：备份你的原镜像文件，以免出错后可以恢复。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/yum.repos.d/CentOS-Base.repo&#123;,.backup&#125;</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br></pre></td></tr></table></figure>
+
+<p>第二步：下载新的CentOS-Base.repo 到/etc/yum.repos.d/</p>
+<p>如果 wget 没有安装，运行下面命令安装 wget 软件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum update --skip-broken</span><br><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
+
+<p>安装完成更新下载源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CentOS 5</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-5.repo</span><br><span class="line"><span class="comment"># CentOS 6</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</span><br><span class="line"><span class="comment"># CentOS 7</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
+
+<p>第三步：运行yum makecache生成缓存</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
+
+<p>yum 安装报错 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">File <span class="string">"/usr/bin/yum"</span>, line 30 except KeyboardInterrupt, e:</span><br></pre></td></tr></table></figure>
+
+<p>解决：修改文件<code>/usr/bin/yum</code>、<code>/usr/libexec/urlgrabber-ext-down</code>头中相应python为<code>#!/usr/bin/python2.7</code></p>
+<h1 id="163官方说明："><a href="#163官方说明：" class="headerlink" title="163官方说明："></a>163官方说明：</h1><p><a href="http://mirrors.163.com/" target="_blank" rel="noopener">http://mirrors.163.com/</a><br><a href="http://mirrors.163.com/.help/centos.html" target="_blank" rel="noopener">http://mirrors.163.com/.help/centos.html</a>  </p>
+<h1 id="中国开源镜像站点"><a href="#中国开源镜像站点" class="headerlink" title="中国开源镜像站点"></a>中国开源镜像站点</h1><ul>
+<li>阿里云开源镜像站：<a href="http://mirrors.aliyun.com/" target="_blank" rel="noopener">http://mirrors.aliyun.com/</a></li>
+<li>网易开源镜像站：<a href="http://mirrors.163.com/" target="_blank" rel="noopener">http://mirrors.163.com/</a></li>
+<li>搜狐开源镜像站：<a href="http://mirrors.sohu.com/" target="_blank" rel="noopener">http://mirrors.sohu.com/</a></li>
+<li>北京交通大学：<a href="http://mirror.bjtu.edu.cn/cn/" target="_blank" rel="noopener">http://mirror.bjtu.edu.cn/cn/</a> &lt;教育网荐&gt;</li>
+<li>兰州大学：<a href="http://mirror.lzu.edu.cn/" target="_blank" rel="noopener">http://mirror.lzu.edu.cn/</a> &lt;西北高校FTP搜索引擎&gt;</li>
+<li>厦门大学：<a href="http://mirrors.xmu.edu.cn/" target="_blank" rel="noopener">http://mirrors.xmu.edu.cn/</a></li>
+<li>上海交通大学：<a href="http://ftp.sjtu.edu.cn/" target="_blank" rel="noopener">http://ftp.sjtu.edu.cn/</a></li>
+<li>清华大学：<a href="http://mirrors.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">http://mirrors.tuna.tsinghua.edu.cn/</a><ul>
+<li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">http://mirrors.6.tuna.tsinghua.edu.cn/</a></li>
+<li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">http://mirrors.4.tuna.tsinghua.edu.cn/</a></li>
+</ul>
+</li>
+<li>天津大学：<a href="http://mirror.tju.edu.cn/" target="_blank" rel="noopener">http://mirror.tju.edu.cn/</a></li>
+<li>中国科学技术大学：<a href="http://mirrors.ustc.edu.cn/" target="_blank" rel="noopener">http://mirrors.ustc.edu.cn/</a> <ul>
+<li><a href="http://mirrors4.ustc.edu.cn/" target="_blank" rel="noopener">http://mirrors4.ustc.edu.cn/</a> &lt;教育网、电信&gt;</li>
+<li><a href="http://mirrors6.ustc.edu.cn/" target="_blank" rel="noopener">http://mirrors6.ustc.edu.cn/</a> <ipv6 only></ipv6></li>
+</ul>
+</li>
+<li>西南大学：<a href="http://linux.swu.edu.cn/swudownload/" target="_blank" rel="noopener">http://linux.swu.edu.cn/swudownload/</a></li>
+<li>泰安移动：<a href="http://mirrors.ta139.com/" target="_blank" rel="noopener">http://mirrors.ta139.com/</a></li>
+<li>东北大学：<a href="http://mirror.neu.edu.cn/" target="_blank" rel="noopener">http://mirror.neu.edu.cn/</a></li>
+<li>浙江大学：<a href="http://mirrors.zju.edu.cn/" target="_blank" rel="noopener">http://mirrors.zju.edu.cn/</a></li>
+<li>东软信息学院：<a href="http://mirrors.neusoft.edu.cn/" target="_blank" rel="noopener">http://mirrors.neusoft.edu.cn/</a></li>
+</ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2015/08/26/os-linux-部署Seafile搭建自己的网盘/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2015/08/26/os-linux-部署Seafile搭建自己的网盘/" class="post-title-link" itemprop="url">部署Seafile搭建自己的网盘</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00+08:00">2015-08-26</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-29 15:17:34" itemprop="dateModified" datetime="2019-08-29T15:17:34+08:00">2019-08-29</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/08/26/os-linux-部署Seafile搭建自己的网盘/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-部署Seafile搭建自己的网盘/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>8k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>7 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Seafile 是一个开源的文件云存储平台，解决文件集中存储、同步、多平台访问的问，允许用户创建“群组”，在群组内共享和同步文件，方便了团队协同工作。</p>
+<!-- TOC -->
+
 <ul>
-<li><p><a href="#LambdaExpressions">Lambda表达式是一个新的语言特性，已经在JDK8中加入。它是一个可以传递的代码块，你也可以把它们当做方法参数。<br>Lambda表达式允许您更紧凑地创建单虚方法接口（称为功能接口）的实例。</a></p>
-</li>
-<li><p><a href="#MethodReferences">方法引用为已经存在的具名方法提供易于阅读的Lambda表达式</a></p>
-</li>
-<li><p><a href="#DefaultMethods">默认方法允许将新功能添加到库的接口，并确保与为这些接口的旧版本编写的代码的二进制兼容性。</a></p>
-</li>
-<li><p><a href="#ImprovedTypeInference">改进的类型推断。</a></p>
-</li>
-<li><p><a href="#MethodParameterReflection">方法参数反射(通过反射获得方法参数信息)</a>  </p>
-</li>
+<li><a href="#安装依赖">安装依赖</a></li>
+<li><a href="#下载">下载</a></li>
+<li><a href="#安装">安装</a><ul>
+<li><a href="#启动-seafile">启动 Seafile</a></li>
+<li><a href="#启动-seahub">启动 Seahub</a></li>
 </ul>
 </li>
-<li><p><a href="#stream">流(stream)</a></p>
+<li><a href="#备份">备份</a></li>
+<li><a href="#恢复">恢复</a></li>
+<li><a href="#服务管理">服务管理</a></li>
+<li><a href="#开机启动">开机启动</a></li>
+<li><a href="#参考资料">参考资料</a></li>
+</ul>
+<!-- /TOC -->
+
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 CentOS 7 下</span></span><br><span class="line"><span class="comment"># (MariaDB 是 MySQL 的分支)</span></span><br><span class="line">yum install mariadb-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果以来有问题 </span></span><br><span class="line"><span class="comment"># 尝试在后面加上参数  --skip-broken</span></span><br><span class="line">yum install python-setuptools python-imaging python-ldap MySQL-python python-memcached python-urllib3</span><br></pre></td></tr></table></figure>
+
+<p>yum 安装 mysqldb-python 后面seafile安装报错，需要通过 python 的工具pip来安装MySQL-python <code>pip install MySQL-python</code></p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>在这里下载<a href="https://www.seafile.com/download/" target="_blank" rel="noopener">seafile-server_6.0.7_x86-64.tar.gz</a>，你可以选择你需要的版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看系统版本</span></span><br><span class="line">cat /proc/version</span><br><span class="line">wget http://download-cn.seafile.com/seafile-server_6.0.7_x86-64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -zxvf seafile-server_6.0.7_x86-64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压放到一个目录</span></span><br><span class="line"><span class="built_in">cd</span> seafile-server-*</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>我的数据库使用MySQL，你需要先在数据库中建立一个 MySQL 用户 <code>seafile</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 登录MySQL创建一个用户</span></span><br><span class="line">mysql -uroot -p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建用户设置密码</span></span><br><span class="line">mysql&gt; Create USER <span class="string">'seafile'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'123456'</span>;</span><br><span class="line"><span class="comment"># 执行下面语句立即生效</span></span><br><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure>
+
+<p>运行<code>./setup-seafile-mysql.sh</code>安装脚本并回答预设问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line">./setup-seafile-mysql.sh</span><br><span class="line">  Checking python on this machine ...</span><br><span class="line">  Checking python module: setuptools ... Done.</span><br><span class="line">  Checking python module: python-imaging ... Done.</span><br><span class="line">  Checking python module: python-mysqldb ... Done.</span><br><span class="line"></span><br><span class="line">-----------------------------------------------------------------</span><br><span class="line">This script will guide you to setup your seafile server using MySQL.</span><br><span class="line">Make sure you have <span class="built_in">read</span> seafile server manual at</span><br><span class="line"></span><br><span class="line">        https://github.com/haiwen/seafile/wiki</span><br><span class="line"></span><br><span class="line">Press ENTER to <span class="built_in">continue</span></span><br><span class="line">-----------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">What is the name of the server? It will be displayed on the client.</span><br><span class="line">3 - 15 letters or digits</span><br><span class="line">[ server name ] &lt;填写 seafile 服务器的名字&gt;</span><br><span class="line"></span><br><span class="line">What is the ip or domain of the server?</span><br><span class="line">For example: www.mycompany.com, 192.168.1.101</span><br><span class="line">[ This server<span class="string">'s ip or domain ] &lt;seafile 服务器的 IP 地址或者域名&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Where do you want to put your seafile data?</span></span><br><span class="line"><span class="string">Please use a volume with enough free space</span></span><br><span class="line"><span class="string">[ default "/home/www/jinpans/seafile-data" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Which port do you want to use for the seafile fileserver?</span></span><br><span class="line"><span class="string">[ default "8082" ]  [ seafile fileserver 使用的 TCP 端口 ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-------------------------------------------------------</span></span><br><span class="line"><span class="string">Please choose a way to initialize seafile databases:</span></span><br><span class="line"><span class="string">-------------------------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[1] Create new ccnet/seafile/seahub databases</span></span><br><span class="line"><span class="string">    你需要提供根密码. 脚本程序会创建数据库和用户。</span></span><br><span class="line"><span class="string">[2] Use existing ccnet/seafile/seahub databases</span></span><br><span class="line"><span class="string">    ccnet/seafile/seahub 数据库应该已经被你（或者其他人）提前创建。</span></span><br><span class="line"><span class="string">[ 1 or 2 ] &lt;选择一种创建 Seafile 数据库的方式&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">What is the host of mysql server?</span></span><br><span class="line"><span class="string">[ default "localhost" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">What is the port of mysql server?</span></span><br><span class="line"><span class="string">[ default "3306" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">What is the password of the mysql root user?</span></span><br><span class="line"><span class="string">[ root password ] &lt;输入root密码&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">verifying password of user root ...  done</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the name for mysql user of seafile. It would be created if not exists.</span></span><br><span class="line"><span class="string">[ default "seafile" ] &lt;默认seafile的MySQL用户名，可以使用默认&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the password for mysql user "seafile":</span></span><br><span class="line"><span class="string">[ password for seafile ] &lt;输入seafile密码&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">verifying password of user seafile ...  done</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the database name for ccnet-server:</span></span><br><span class="line"><span class="string">[ default "ccnet-db" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the database name for seafile-server:</span></span><br><span class="line"><span class="string">[ default "seafile-db" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the database name for seahub:</span></span><br><span class="line"><span class="string">[ default "seahub-db" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string">This is your configuration</span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    server name:            seafile 服务器的名字</span></span><br><span class="line"><span class="string">    server ip/domain:       192.168.1.101</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    seafile data dir:       /home/www/jinpans/seafile-data</span></span><br><span class="line"><span class="string">    fileserver port:        8082</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    database:               create new</span></span><br><span class="line"><span class="string">    ccnet database:         ccnet-db</span></span><br><span class="line"><span class="string">    seafile database:       seafile-db</span></span><br><span class="line"><span class="string">    seahub database:        seahub-db</span></span><br><span class="line"><span class="string">    database user:          seafile</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string">Press ENTER to continue, or Ctrl-C to abort</span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Generating ccnet configuration ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">done</span></span><br><span class="line"><span class="string">Successly create configuration dir /home/www/jinpans/ccnet.</span></span><br><span class="line"><span class="string">Generating seafile configuration ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Done.</span></span><br><span class="line"><span class="string">done</span></span><br><span class="line"><span class="string">Generating seahub configuration ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">----------------------------------------</span></span><br><span class="line"><span class="string">Now creating seahub database tables ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">----------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">creating seafile-server-latest symbolic link ...  done</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string">Your seafile server configuration has been finished successfully.</span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">run seafile server:     ./seafile.sh &#123; start | stop | restart &#125;</span></span><br><span class="line"><span class="string">run seahub  server:     ./seahub.sh  &#123; start &lt;port&gt; | stop | restart &lt;port&gt; &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string">If you are behind a firewall, remember to allow input/output of these tcp ports:</span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">port of seafile fileserver:   8082</span></span><br><span class="line"><span class="string">port of seahub:               8000</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">When problems occur, Refer to</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        https://github.com/haiwen/seafile/wiki</span></span><br></pre></td></tr></table></figure>
+
+<p>上面算是结束了，然后在 seafile-server_6.0.7 目录下面，运行如下命令</p>
+<h3 id="启动-Seafile"><a href="#启动-Seafile" class="headerlink" title="启动 Seafile"></a>启动 Seafile</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./seafile.sh start <span class="comment"># 启动 Seafile 服务</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="启动-Seahub"><a href="#启动-Seahub" class="headerlink" title="启动 Seahub"></a>启动 Seahub</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">./seahub.sh start &lt;port&gt;  <span class="comment"># 启动 Seahub 网站 （默认运行在8000端口上）</span></span><br><span class="line"><span class="comment"># 你第一次启动 seahub 时，seahub.sh 脚本会提示你创建一个 seafile 管理员帐号。</span></span><br><span class="line"></span><br><span class="line">LC_ALL is not <span class="built_in">set</span> <span class="keyword">in</span> ENV, <span class="built_in">set</span> to en_US.UTF-8</span><br><span class="line">Starting seahub at port 8000 ...</span><br><span class="line"></span><br><span class="line">----------------------------------------</span><br><span class="line">It<span class="string">'s the first time you start the seafile server. Now let'</span>s create the admin account</span><br><span class="line">----------------------------------------</span><br><span class="line"></span><br><span class="line">What is the email <span class="keyword">for</span> the admin account?</span><br><span class="line">[ admin email ] &lt;这里输入邮箱地址&gt;</span><br><span class="line"></span><br><span class="line">What is the password <span class="keyword">for</span> the admin account?</span><br><span class="line">[ admin password ] &lt;这里输入密码&gt;</span><br><span class="line"></span><br><span class="line">Enter the password again:</span><br><span class="line">[ admin password again ] &lt;这里确认输入密码&gt;</span><br><span class="line">----------------------------------------</span><br><span class="line">Successfully created seafile admin</span><br><span class="line">----------------------------------------</span><br><span class="line">Seahub is started</span><br><span class="line">Done.</span><br></pre></td></tr></table></figure>
+
+<p>然后你可以打开它了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.111:8000/</span><br></pre></td></tr></table></figure>
+
+<h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><p>备份数据库，假设你的数据库名分别为 <code>ccnet-db</code> , <code>seafile-db</code> 和 <code>seahubdb</code>，下面命令分别备份这三个数据库，同时要注意备份需要先建立好文件夹。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -h localhost -uroot -p --opt ccnet-db &gt; ./backup/databases/ccnet-db.sql.`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>`</span><br><span class="line">mysqldump -h localhost -uroot -p --opt seafile-db &gt; ./backup/databases/seafile-db.sql.`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>`</span><br><span class="line">mysqldump -h localhost -uroot -p --opt seahub-db &gt; ./backup/databases/seahub-db.sql.`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>`</span><br></pre></td></tr></table></figure>
+
+<p>备份文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nohup cp -R ./seafile-data ./backup/data/seafile-data-`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>` 2&gt;&amp;1 &amp;</span><br><span class="line">nohup cp -R ./seahub-data ./backup/data/seahub-data-`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>` 2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line">[1] 17294</span><br></pre></td></tr></table></figure>
+
+<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p ccnet-db &lt; ccnet-db.sql.2017-11-29-11-36-06 </span><br><span class="line">mysql -uroot -p seafile-db &lt; seafile-db.sql.2017-11-29-11-36-06 </span><br><span class="line">mysql -uroot -p seahub-db &lt; seahub-db.sql.2017-11-29-11-36-06</span><br></pre></td></tr></table></figure>
+
+<h2 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">./seahub.sh stop       <span class="comment"># 停止 Seafile 进程</span></span><br><span class="line">./seafile.sh stop      <span class="comment"># 停止 Seahub</span></span><br><span class="line"></span><br><span class="line">./seafile.sh start     <span class="comment"># 启动 Seafile 服务</span></span><br><span class="line">./seahub.sh start 8001 <span class="comment"># 启动 Seahub 网站 （运行在8001端口上）</span></span><br><span class="line"></span><br><span class="line">./seafile.sh restart   <span class="comment"># 停止当前的 Seafile 进程，然后重启 Seafile</span></span><br><span class="line">./seahub.sh restart    <span class="comment"># 停止当前的 Seahub 进程，并在 8000 端口重新启动 Seahub</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="开机启动"><a href="#开机启动" class="headerlink" title="开机启动"></a>开机启动</h2><p>创建 systemd 服务文件<code>seafile.service</code>，记得将服务文件中的<code>${seafile_dir}</code>替换成你的安装目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/systemd/system/seafile.service</span><br></pre></td></tr></table></figure>
+
+<p>文件内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Seafile</span><br><span class="line"><span class="comment"># add mysql.service or postgresql.service depending on your database to the line below</span></span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">ExecStart=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seafile.sh start</span><br><span class="line">ExecStop=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seafile.sh stop</span><br><span class="line">RemainAfterExit=yes</span><br><span class="line">User=seafile</span><br><span class="line">Group=seafile</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>创建 systemd 服务文件 <code>seahub.service</code>，记得将服务文件中的<code>${seafile_dir}</code>替换成你的安装目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/systemd/system/seahub.service</span><br></pre></td></tr></table></figure>
+
+<p>文件内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Seafile hub</span><br><span class="line">After=network.target seafile.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line"><span class="comment"># change start to start-fastcgi if you want to run fastcgi</span></span><br><span class="line">ExecStart=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seahub.sh start</span><br><span class="line">ExecStop=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seahub.sh stop</span><br><span class="line">User=seafile</span><br><span class="line">Group=seafile</span><br><span class="line">Type=oneshot</span><br><span class="line">RemainAfterExit=yes</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>[Install]<br>WantedBy=multi-user.target</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> seafile.service</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> seahub.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://www.gitbook.com/book/freeplant/seafile-manual-cn/details" target="_blank" rel="noopener">Seafile服务器手册中文版</a></li>
+<li><a href="https://github.com/haiwen/seafile" target="_blank" rel="noopener">Seafile for Github</a></li>
+<li><a href="http://seafile.com/" target="_blank" rel="noopener">Seafile官网</a></li>
+</ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2015/08/26/os-linux-常用基础命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2015/08/26/os-linux-常用基础命令/" class="post-title-link" itemprop="url">Linux常用命令</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00+08:00">2015-08-26</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-29 15:16:27" itemprop="dateModified" datetime="2019-08-29T15:16:27+08:00">2019-08-29</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/08/26/os-linux-常用基础命令/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-常用基础命令/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>10k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>10 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="其它命令"><a href="#其它命令" class="headerlink" title="其它命令"></a>其它命令</h1><p><code>sudo chmod 755 -R node</code> 修改目录权限<br><code>sudo lsof -nP -iTCP -sTCP:LISTEN</code> 查看本地服务<br><code>ps -ef | grep websocket</code> 查看websocket进程<br><code>ps aux | grep mysql</code> 查看mysql进程<br><code>sudo kill 443</code> 杀掉进程  </p>
+<h1 id="给目录权限"><a href="#给目录权限" class="headerlink" title="给目录权限"></a>给目录权限</h1><p><code>sudo chmod -R 777 目录</code></p>
+<h1 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h1><p><code>find path -option [-print] [-exec -ok command] { }\;</code>  </p>
 <ul>
-<li><a href>新java.util.stream包中的类提供Stream API以支持对元素流的功能样式操作。流(stream)和I/O里的流不是同一个概念<br> ，使用stream API可以更方便的操作集合。</a></li>
+<li>pathname: find命令所查找的目录路径。例如用<code>.</code>来表示当前目录，用<code>/</code>来表示系统根目录。</li>
+<li><code>-print</code>: find命令将匹配的文件输出到标准输出。</li>
+<li><code>-exec</code>: find命令对匹配的文件执行该参数所给出的shell命令。相应命令的形式为<code>&#39;command&#39; { } \;</code>，注意<code>{ }</code>和<code>\;</code>之间的空格。</li>
+<li><code>-ok</code>： 和<code>-exec</code>的作用相同，只不过以一种更为安全的模式来执行该参数所给出的shell命令，在执行每一个命令之前，都会给出提示，让用户来确定是否执行。</li>
 </ul>
-</li>
-<li><p><a href>国际化</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ find ~ -name <span class="string">"*.txt"</span>  -<span class="built_in">print</span>   <span class="comment">#在$HOME中查.txt文件并显示</span></span><br><span class="line">$ find . -name <span class="string">"*.txt"</span>  -<span class="built_in">print</span></span><br><span class="line">$ find . -name <span class="string">"[A-Z]*"</span> -<span class="built_in">print</span>   <span class="comment">#查以大写字母开头的文件</span></span><br><span class="line">$ find /etc -name <span class="string">"host*"</span>  -<span class="built_in">print</span>  <span class="comment">#查以host开头的文件</span></span><br><span class="line"><span class="comment"># 查以两个小写字母和两个数字开头的txt文件</span></span><br><span class="line">$ find .   -name   <span class="string">"[a-z][a-z][0–9][0–9].txt"</span> -<span class="built_in">print</span>   </span><br><span class="line">$ ind . -perm   755   -<span class="built_in">print</span></span><br><span class="line">$ ind . -perm -007   -<span class="built_in">exec</span> ls -l &#123;&#125; \;   <span class="comment">#查所有用户都可读写执行的文件同-perm 777</span></span><br><span class="line">$ ind . -<span class="built_in">type</span> d   -<span class="built_in">print</span></span><br><span class="line">$ ind . !  -<span class="built_in">type</span> d   -<span class="built_in">print</span> </span><br><span class="line">$ ind . -<span class="built_in">type</span> l   -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h1><blockquote>
+<p>类似于dos下的dir命令</p>
+</blockquote>
+<p>ls最常用的参数有三个： -a -l -F。</p>
+<p>ls –a</p>
+<p>Linux上的文件以.开头的文件被系统视为隐藏文件，仅用ls命令是看不到他们的，而用ls -<br>a除了显示一般文件名外，连隐藏文件也会显示出来。<br>ls –l<br>该参数显示更详细的文件信息。<br>ls –F<br>使用这个参数表示在文件的后面多添加表示文件类型的符号，例如*表示可执行，/表示目录，@表示连结文件，这都是因为使用了-F这个参数。但是现在基本上所有的Linux发行版本的ls都已经内建了-F参数，也就是说，不用输入这个参数，我们也能看到各种分辨符号。</p>
+<h1 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h1><blockquote>
+<p>用于切换用户当前工作目录</p>
+</blockquote>
+<p>cd aaa 进入aaa目录<br>cd    命令后不指定目录，会切换到当前用户的home 目录<br>cd ~   作用同cd后不指定目录，切换到当前用户的home 目录<br>cd -   命令后跟一个减号，则会退回到切换前的目录<br>cd ..   返回到当前目录下的上一级目录</p>
+<h1 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h1><blockquote>
+<p>用于显示用户当前工作目录</p>
+</blockquote>
+<h1 id="mkdir-和-rmdir"><a href="#mkdir-和-rmdir" class="headerlink" title="mkdir 和 rmdir"></a>mkdir 和 rmdir</h1><blockquote>
+<p>midir:创建目录 / rmdir:删除目录</p>
+</blockquote>
+<p>两个命令都支持-p参数，对于mkdir命令若指定路径的父目录不存在则一并创建，对于rmdir命令则删除指定路径的所有层次目录，如果文件夹里有内容，则不能用rmdir命令</p>
+<p>如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p 1/2/3</span><br><span class="line">rmdir -p 1/2/3</span><br></pre></td></tr></table></figure>
+
+<h2 id="mkdir循环创建目录"><a href="#mkdir循环创建目录" class="headerlink" title="mkdir循环创建目录"></a>mkdir循环创建目录</h2><p><a href="http://unix.stackexchange.com/questions/636/how-do-i-make-multiple-directories-at-once-in-a-directory" target="_blank" rel="noopener">How do I make multiple directories at once in a directory?</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> char <span class="keyword">in</span> &#123;A..Z&#125;; <span class="keyword">do</span></span><br><span class="line">    mkdir <span class="variable">$char</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> &#123;1..100&#125;; <span class="keyword">do</span></span><br><span class="line">    mkdir <span class="variable">$num</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h1><blockquote>
+<p>复制命令</p>
+</blockquote>
 <ul>
-<li>待办</li>
+<li>复制一个文件到另一目录：<code>cp 1.txt ../test2</code></li>
+<li>复制一个文件到本目录并改名：<code>cp 1.txt 2.txt</code></li>
+<li>复制一个文件夹a并改名为b，-r或-R 选项表明递归操作：<code>cp -r a b</code></li>
+<li>同时拷贝多个文件，我们只需要将多个文件用空格隔开。<code>cp file_1.txt file_2.txt file_3.txt /home/pungki/office</code></li>
 </ul>
-</li>
-<li><p>待办</p>
-</li>
-</ul>
-<hr>
-<!-- ---------------------------------------------------Lambda表达式-------------------------------------------------------- -->
-<!-- 标题与跳转-->
-<p><span id="JavaProgrammingLanguage"></span><br><span id="LambdaExpressions"></span></p>
-<!-- 标题与跳转结束-->
-<!-- 正文-->
+<h1 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h1><blockquote>
+<p>移动命令</p>
+</blockquote>
+<p>将一个文件移动到另一个目录：mv 1.txt ../test1<br>将一个文件在本目录改名：mv 1.txt 2.txt<br>将一个文件一定到另一个目录并改名：mv 1.txt ../test1/2.txt</p>
+<h1 id="rm命令"><a href="#rm命令" class="headerlink" title="rm命令"></a>rm命令</h1><blockquote>
+<p>命令用于删除文件，与dos下的del/erase命令相似，rm命令常用的参数有三个：-i，-r，-f。</p>
+</blockquote>
+<ol>
+<li>–i ：系统在删除文件之前会先询问确认，用户回车之后，文件才会真的被删除。需要注意，linux下删除的文件是不能恢复的，删除之前一定要谨慎确认。</li>
+<li>–r：该参数支持目录删除，功能和rmdir命令相似。</li>
+<li>–f：和-i参数相反，-f表示强制删除</li>
+</ol>
+<h1 id="find"><a href="#find" class="headerlink" title="find"></a>find</h1><blockquote>
+<p>find 查找目录和文件</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">-name   filename   <span class="comment">#查找名为filename的文件</span></span><br><span class="line">-perm              <span class="comment">#按执行权限来查找</span></span><br><span class="line">-user    username  <span class="comment">#按文件属主来查找</span></span><br><span class="line">-group groupname   <span class="comment">#按组来查找</span></span><br><span class="line">-mtime   -n +n     <span class="comment">#按文件更改时间来查找文件，-n指n天以内，+n指n天以前</span></span><br><span class="line">-atime    -n +n    <span class="comment">#按文件访问时间来查GIN: 0px"&gt;</span></span><br><span class="line"></span><br><span class="line">-ctime    -n +n    <span class="comment">#按文件创建时间来查找文件，-n指n天以内，+n指n天以前</span></span><br><span class="line"></span><br><span class="line">-nogroup           <span class="comment">#查无有效属组的文件，即文件的属组在/etc/groups中不存在</span></span><br><span class="line">-nouser            <span class="comment">#查无有效属主的文件，即文件的属主在/etc/passwd中不存</span></span><br><span class="line">-newer   f1 !f2    <span class="comment">#找文件，-n指n天以内，+n指n天以前 </span></span><br><span class="line">-ctime    -n +n    <span class="comment">#按文件创建时间来查找文件，-n指n天以内，+n指n天以前 </span></span><br><span class="line">-nogroup           <span class="comment">#查无有效属组的文件，即文件的属组在/etc/groups中不存在</span></span><br><span class="line">-nouser            <span class="comment">#查无有效属主的文件，即文件的属主在/etc/passwd中不存</span></span><br><span class="line">-newer   f1 !f2    <span class="comment">#查更改时间比f1新但比f2旧的文件</span></span><br><span class="line">-<span class="built_in">type</span>    b/d/c/p   <span class="comment">#查是块设备、目录、字符设备、管道、符号链接、普通文件</span></span><br><span class="line">-size      n[c]    <span class="comment">#查长度为n块[或n字节]的文件</span></span><br><span class="line">-depth             <span class="comment">#使查找在进入子目录前先行查找完本目录</span></span><br><span class="line">-fstype            <span class="comment">#查更改时间比f1新但比f2旧的文件</span></span><br><span class="line">-<span class="built_in">type</span>    b/d/c/p   <span class="comment">#查是块设备、目录、字符设备、管道、符号链接、普通文件</span></span><br><span class="line">-size      n[c]    <span class="comment">#查长度为n块[或n字节]的文件</span></span><br><span class="line">-depth             <span class="comment">#使查找在进入子目录前先行查找完本目录</span></span><br><span class="line">-fstype            <span class="comment">#查位于某一类型文件系统中的文件，这些文件系统类型通常可 在/etc/fstab中找到</span></span><br><span class="line">-mount             <span class="comment">#查文件时不跨越文件系统mount点</span></span><br><span class="line">-follow            <span class="comment">#如果遇到符号链接文件，就跟踪链接所指的文件</span></span><br><span class="line">-cpio %;           <span class="comment">#查位于某一类型文件系统中的文件，这些文件系统类型通常可 在/etc/fstab中找到</span></span><br><span class="line">-mount             <span class="comment">#查文件时不跨越文件系统mount点</span></span><br><span class="line">-follow            <span class="comment">#如果遇到符号链接文件，就跟踪链接所指的文件</span></span><br><span class="line">-cpio              <span class="comment">#对匹配的文件使用cpio命令，将他们备份到磁带设备中</span></span><br><span class="line">-prune             <span class="comment">#忽略某个目录</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="　　　　　　　　　　　　　Lambda表达式"></a>　　　　　　　　　　　　　Lambda表达式</h2><h3 id="1-什么是Lambda表达式"><a href="#1-什么是Lambda表达式" class="headerlink" title="1.什么是Lambda表达式"></a>1.什么是Lambda表达式</h3><p><strong>Lambda表达式实质上是一个可传递的代码块，Lambda又称为闭包或者匿名函数，是函数式编程语法，让方法可以像普通参数一样传递</strong></p>
-<h3 id="2-Lambda表达式语法"><a href="#2-Lambda表达式语法" class="headerlink" title="2.Lambda表达式语法"></a>2.Lambda表达式语法</h3><figure class="highlight plain"><figcaption><span>-> &#123;执行代码块&#125;```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;br&gt;参数列表可以为空```()-&gt;&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p><br>可以加类型声明比如<figure class="highlight plain"><figcaption><span>para1, int para2) -> &#123;return para1 + para2;&#125;```我们可以看到，lambda同样可以有返回值.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;br&gt;在编译器可以推断出类型的时候，可以将类型声明省略，比如```(para1, para2) -&gt; &#123;return para1 + para2;&#125;</span><br></pre></td></tr></table></figure></p>
-<p><br>(lambda有点像动态类型语言语法。lambda在字节码层面是用invokedynamic实现的，而这条指令就是为了让JVM更好的支持运行在其上的动态类型语言)</p>
-<h3 id="3-函数式接口"><a href="#3-函数式接口" class="headerlink" title="3.函数式接口"></a>3.函数式接口</h3><p>在了解Lambda表达式之前，有必要先了解什么是函数式接口<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">**函数式接口指的是有且只有一个抽象(abstract)方法的接口**&lt;br&gt;</span><br><span class="line">当需要一个函数式接口的对象时，就可以用Lambda表达式来实现，举个常用的例子:</span><br><span class="line">&lt;br&gt;</span><br><span class="line">```java</span><br><span class="line">  Thread thread = new Thread(() -&gt; &#123;</span><br><span class="line">      System.out.println(&quot;This is JDK8&apos;s Lambda!&quot;);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure></p>
-<p>这段代码和函数式接口有啥关系？我们回忆一下，Thread类的构造函数里是不是有一个以Runnable接口为参数的？</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Thread</span><span class="params">(Runnable target)</span> </span>&#123;...&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Runnable Interface</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Runnable</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>到这里大家可能已经明白了，<strong>Lambda表达式相当于一个匿名类或者说是一个匿名方法</strong>。上面Thread的例子相当于</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Anonymous class"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>也就是说，上面的lambda表达式相当于实现了这个run()方法，然后当做参数传入(个人感觉可以这么理解,lambda表达式就是一个函数，只不过它的返回值、参数列表都<br>由编译器帮我们推断，因此可以减少很多代码量)。<br><br>Lambda也可以这样用 :</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable = () -&gt; &#123;...&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>其实这和上面的用法没有什么本质上的区别。<br><br>至此大家应该明白什么是函数式接口以及函数式接口和lambda表达式之间的关系了。在JDK8中修改了接口的规范，<br>目的是为了在给接口添加新的功能时保持向前兼容(个人理解)，比如一个已经定义了的函数式接口，某天我们想给它添加新功能，那么就不能保持向前兼容了，<br>因为在旧的接口规范下，添加新功能必定会破坏这个函数式接口<a href>(JDK8中接口规范)</a><br><br><br>除了上面说的Runnable接口之外，JDK中已经存在了很多函数式接口<br>比如(当然不止这些):</p>
+<p>例子： </p>
 <ul>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- ```java.util.Comparator</span><br></pre></td></tr></table></figure>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;br&gt;**关于JDK中的预定义的函数式接口**</span><br><span class="line"></span><br><span class="line">- JDK在```java.util.function```下预定义了很多函数式接口</span><br><span class="line">  - ```Function&lt;T, R&gt; &#123;R apply(T t);&#125;``` 接受一个T对象，然后返回一个R对象，就像普通的函数。</span><br><span class="line">  - ```Consumer&lt;T&gt; &#123;void accept(T t);&#125;``` 消费者 接受一个T对象，没有返回值。</span><br><span class="line">  - ```Predicate&lt;T&gt; &#123;boolean test(T t);&#125;``` 判断，接受一个T对象，返回一个布尔值。</span><br><span class="line">  - ```Supplier&lt;T&gt; &#123;T get();&#125; 提供者(工厂)``` 返回一个T对象。</span><br><span class="line">  - 其他的跟上面的相似，大家可以看一下function包下的具体接口。</span><br><span class="line">### 4.变量作用域</span><br><span class="line">```java</span><br><span class="line">public class VaraibleHide &#123;</span><br><span class="line">    @FunctionalInterface</span><br><span class="line">    interface IInner &#123;</span><br><span class="line">        void printInt(int x);</span><br><span class="line">    &#125;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        int x = 20;</span><br><span class="line">        IInner inner = new IInner() &#123;</span><br><span class="line">            int x = 10;</span><br><span class="line">            @Override</span><br><span class="line">            public void printInt(int x) &#123;</span><br><span class="line">                System.out.println(x);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        inner.printInt(30);</span><br><span class="line">        </span><br><span class="line">        inner = (s) -&gt; &#123;</span><br><span class="line">            //Variable used in lambda expression should be final or effectively final</span><br><span class="line">            //!int x = 10;</span><br><span class="line">            //!x= 50; error</span><br><span class="line">            System.out.print(x);</span><br><span class="line">        &#125;;</span><br><span class="line">        inner.printInt(30);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出 :</span><br><span class="line">30</span><br><span class="line">20</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>~ 代表的是$home目录，</li>
 </ul>
-<p>对于lambda表达式<figure class="highlight java"><figcaption><span>inner </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">的参数列表()获取的变量成为自由变量，它是被lambda表达式捕获的。</span><br><span class="line">&lt;br&gt;lambda表达式和内部类一样，对外部自由变量捕获时，外部自由变量必须为<span class="keyword">final</span>或者是最终变量(effectively <span class="keyword">final</span>)的，也就是说这个变量初始化后就不能为它赋新值，同时lambda不像内部类/匿名类，lambda表达式与外围嵌套块有着相同的作用域，因此对变量命名的有关规则对lambda同样适用。大家阅读上面的代码对这些概念应该不难理解。</span><br><span class="line">&lt;span id="MethodReferences"&gt;&lt;/span&gt;</span><br><span class="line">### 5.方法引用</span><br><span class="line">**只需要提供方法的名字，具体的调用过程由Lambda和函数式接口来确定，这样的方法调用成为方法引用。**</span><br><span class="line">&lt;br&gt;下面的例子会打印list中的每个元素:</span><br><span class="line">```java</span><br><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">            list.add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        list.forEach(System.out::println);</span><br></pre></td></tr></table></figure></p>
-<p>其中<figure class="highlight plain"><figcaption><span>```(para)->&#123;System.out.println(para);&#125;```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;br&gt;我们看一下List#forEach方法 ```default void forEach(Consumer&lt;? super T&gt; action)```可以看到它的参数是一个Consumer接口，该接口是一个函数式接口</span><br><span class="line">```java</span><br><span class="line">@FunctionalInterface</span><br><span class="line">public interface Consumer&lt;T&gt; &#123;</span><br><span class="line">    void accept(T t);</span><br></pre></td></tr></table></figure></p>
-<p>大家能发现这个函数接口的方法和<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;br&gt;我们自己定义一个方法，看看能不能像标准输出的打印函数一样被调用</span><br><span class="line">```java</span><br><span class="line">public class MethodReference &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">        for (int i = 0; i &lt; 10; ++i) &#123;</span><br><span class="line">            list.add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        list.forEach(MethodReference::myPrint);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static void myPrint(int i) &#123;</span><br><span class="line">        System.out.print(i + &quot;, &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,</span><br></pre></td></tr></table></figure></p>
-<p>可以看到，我们自己定义的方法也可以当做方法引用。<br><br>到这里大家多少对方法引用有了一定的了解，我们再来说一下方法引用的形式。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">$ find . -name <span class="string">'*.DS_Store'</span> -<span class="built_in">type</span> f -delete <span class="comment"># 删除所有.DS_Store文件</span></span><br><span class="line">$ find ~ -name <span class="string">"*.txt"</span> -<span class="built_in">print</span>       <span class="comment"># 在$HOME中查.txt文件并显示</span></span><br><span class="line">$ find . -size +1000000c -<span class="built_in">print</span>     <span class="comment"># 查长度大于1Mb的文件</span></span><br><span class="line">$ find . -size 100c -<span class="built_in">print</span>          <span class="comment"># 查长度为100c的文件</span></span><br><span class="line">$ find . -size +10 -<span class="built_in">print</span>           <span class="comment"># 查长度超过期作废10块的文件（1块=512字节）</span></span><br><span class="line">$ find -name april*                 <span class="comment"># 在当前目录下查找以april开始的文件</span></span><br><span class="line">$ find -name april* fprint file     <span class="comment"># 在当前目录下查找以april开始的文件，并把结果输出到file中</span></span><br><span class="line">$ find -name ap* -o -name may*          <span class="comment"># 查找以ap或may开头的文件</span></span><br><span class="line">$ find /mnt -name tom.txt -ftype vfat   <span class="comment"># 在/mnt下查找名称为tom.txt且文件系统类型为vfat的文件</span></span><br><span class="line">$ find /mnt -name t.txt ! -ftype vfat   <span class="comment"># 在/mnt下查找名称为tom.txt且文件系统类型不为vfat的文件</span></span><br><span class="line">$ find /tmp -name wa* -<span class="built_in">type</span> l           <span class="comment"># 在/tmp下查找名为wa开头且类型为符号链接的文件</span></span><br><span class="line">$ find ~ -mtime -2                  <span class="comment"># 在/home下查最近两天内改动过的文件</span></span><br><span class="line">$ find ~ -atime -1                  <span class="comment"># 查1天之内被存取过的文件</span></span><br><span class="line">$ find ~ -mmin +60                  <span class="comment"># 在/home下查60分钟前改动过的文件</span></span><br><span class="line">$ find ~ -amin +30                  <span class="comment"># 查最近30分钟前被存取过的文件</span></span><br><span class="line">$ find ~ -newer tmp.txt             <span class="comment"># 在/home下查更新时间比tmp.txt近的文件或目录</span></span><br><span class="line">$ find ~ -anewer tmp.txt            <span class="comment"># 在/home下查存取时间比tmp.txt近的文件或目录</span></span><br><span class="line">$ find ~ -used -2                   <span class="comment"># 列出文件或目录被改动过之后，在2日内被存取过的文件或目录</span></span><br><span class="line">$ find ~ -user cnscn                <span class="comment"># 列出/home目录内属于用户cnscn的文件或目录</span></span><br><span class="line">$ find ~ -uid +501                  <span class="comment"># 列出/home目录内用户的识别码大于501的文件或目录</span></span><br><span class="line">$ find ~ -group cnscn               <span class="comment"># 列出/home内组为cnscn的文件或目录</span></span><br><span class="line">$ find ~ -gid 501                   <span class="comment"># 列出/home内组id为501的文件或目录</span></span><br><span class="line">$ find ~ -nouser                    <span class="comment"># 列出/home内不属于本地用户的文件或目录</span></span><br><span class="line">$ find ~ -nogroup                   <span class="comment"># 列出/home内不属于本地组的文件或目录</span></span><br><span class="line">$ find ~ -name tmp.txt -maxdepth 4  <span class="comment"># 列出/home内的tmp.txt 查时深度最多为3层</span></span><br><span class="line">$ find ~ -name tmp.txt -mindepth 3  <span class="comment"># 从第2层开始查</span></span><br><span class="line">$ find ~ -empty                     <span class="comment"># 查找大小为0的文件或空目录</span></span><br><span class="line">$ find ~ -size   +512k              <span class="comment"># 查大于512k的文件</span></span><br><span class="line">$ find ~ -size   -512k              <span class="comment"># 查小于512k的文件</span></span><br><span class="line">$ find ~ -links   +2                <span class="comment"># 查硬连接数大于2的文件或目录</span></span><br><span class="line">$ find ~ -perm 0700                 <span class="comment"># 查权限为700的文件或目录</span></span><br><span class="line">$ find ~ -perm 755 -<span class="built_in">print</span> | more    <span class="comment"># 查找权限为755的文件</span></span><br><span class="line">$ find /tmp -name tmp.txt -<span class="built_in">exec</span> cat &#123;&#125; \;</span><br><span class="line">$ find /tmp -name tmp.txt ok rm &#123;&#125; \;</span><br><span class="line"></span><br><span class="line">$ find / -amin    -10      <span class="comment"># 查找在系统中最后10分钟访问的文件</span></span><br><span class="line">$ find / -atime   -2       <span class="comment"># 查找在系统中最后48小时访问的文件</span></span><br><span class="line">$ find / -empty            <span class="comment"># 查找在系统中为空的文件或者文件夹</span></span><br><span class="line">$ find / -group   cat      <span class="comment"># 查找在系统中属于 groupcat的文件</span></span><br><span class="line">$ find / -mmin   -5        <span class="comment"># 查找在系统中最后5分钟里修改过的文件</span></span><br><span class="line">$ find / -mtime   -1       <span class="comment"># 查找在系统中最后24小时里修改过的文件</span></span><br><span class="line">$ find / -nouser           <span class="comment"># 查找在系统中属于作废用户的文件</span></span><br><span class="line">$ find / -user    fred     <span class="comment"># 查找在系统中属于FRED这个用户的文件</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="du、df命令"><a href="#du、df命令" class="headerlink" title="du、df命令"></a>du、df命令</h1><blockquote>
+<p>du命令可以显示目前的目录所占用的磁盘空间，df命令可以显示目前磁盘剩余空间。</p>
+</blockquote>
+<p>如果du命令不加任何参数，那么返回的是整个磁盘的使用情况，如果后面加了目录的话，就是这个目录在磁盘上的使用情况。</p>
+<ol>
+<li><code>du -hs</code> 指定目录  查看指定目录的总大小</li>
+<li><code>du -hs ./*</code> 查看当前目录下的所有文件夹和文件的大小</li>
+</ol>
+<p>这两个命令都支持-k，-m和-h参数，-k和-m类似，都表示显示单位，一个是k字节一个是兆字节，-h则表示human-readable，即友好可读的显示方式。</p>
+<h1 id="cat命令"><a href="#cat命令" class="headerlink" title="cat命令"></a>cat命令</h1><blockquote>
+<p>cat命令的功能是显示或连结一般的ascii文本文件。cat是concatenate的简写，类似于dos下面的type命令。用法如下：</p>
+</blockquote>
+<ol>
+<li><code>cat file1</code> 显示file1文件内容</li>
+<li><code>cat file1 file2</code> 依次显示file1,file2的内容</li>
+<li><code>cat file1 file2 &gt; file3</code> 把file1, file2的内容结合起来，再“重定向（&gt;）”到file3文件中。</li>
+<li><code>&gt;</code>是右重定向符，表示将左边命令结果当成右边命令的输入，注意：如果右侧文件是一个已存在文件，其原有内容将会被清空，而变成左侧命令输出内容。如果希望以追加方式写入，请改用”&gt;&gt;”重定向符。</li>
+</ol>
+<p>如果”&gt;”左边没有指定文件，如： cat &gt;file1，将会等用户输入，输入完毕后再按[Ctrl]+[c]或[Ctrl]+[d]，就会将用户的输入内容写入file1。</p>
+<h1 id="echo命令"><a href="#echo命令" class="headerlink" title="echo命令"></a>echo命令</h1><blockquote>
+<p>echo命令的使用频率不少于ls和cat，尤其是在shell脚本编写中。<br>语法：echo [-ne][字符串]<br>功能：echo会将输入的字符串送往标准输出，输出的字符串间以空白字符隔开， 并在最后加上换行符。</p>
+</blockquote>
+<p>参数：</p>
 <ul>
-<li>方法引用<ul>
-<li>类名::静态方法名</li>
-<li>类名::实例方法名</li>
-<li>类名::new (构造方法引用)</li>
-<li>实例名::实例方法名<br>可以看出，方法引用是通过(方法归属名)::(方法名)来调用的。通过上面的例子已经讲解了一个<code>类名::静态方法名</code>的使用方法了，下面再依次介绍其余的几种<br>方法引用的使用方法。<br></li>
+<li><code>-n</code> 显示字串时在最后自动换行</li>
+<li><code>-e</code> 支持以下格式的转义字符， -E 不支持以下格式的转义字符</li>
+<li><code>/a</code> 发出警告声；</li>
+<li><code>/b</code> 删除前一个字符；</li>
+<li><code>/c</code> 最后不加上换行符号；</li>
+<li><code>/f</code> 换行但光标仍旧停留在原来的位置；</li>
+<li><code>/n</code> 换行且光标移至行首；</li>
+<li><code>/r</code> 光标移至行首，但不换行；</li>
+<li><code>/t</code> 插入tab；</li>
+<li><code>/v</code> 与/f相同；</li>
+<li><code>//</code> 插入/字符；</li>
+<li><code>/nnn</code> 插入nnn（八进制）所代表的ASCII字符；</li>
 </ul>
-</li>
+<p>示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> <span class="string">"123"</span> <span class="string">"456"</span></span><br><span class="line">123 456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> <span class="string">"123/n456"</span></span><br><span class="line">123/n456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -e <span class="string">"123/n456"</span></span><br><span class="line">123</span><br><span class="line">456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -E <span class="string">"123/n456"</span></span><br><span class="line">123/n456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -E <span class="string">"123///456"</span></span><br><span class="line">123//456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -e <span class="string">"123///456"</span></span><br><span class="line">123/456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -e <span class="string">"123/100456"</span></span><br><span class="line">123@456</span><br></pre></td></tr></table></figure>
+
+<p>注意事项：<br>在Linux使用的bash下，单引号’’和双引号是有区别的，单引号忽略所有的转义，双引号不会忽略以下特殊字符：<br>Dollar signs ($)，Back quotes (`)，Backslashes (/)，Excalmatory mark(!)</p>
+<p>示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">kenny@jstest:~&gt; echo &quot;`TEST`&quot;</span><br><span class="line">-bash: TEST: command not found</span><br><span class="line">kenny@jstest:~&gt; echo &apos;`TEST`&apos;</span><br><span class="line">`TEST`</span><br><span class="line">kenny@jstest:~&gt; echo &quot;$TEST&quot;</span><br><span class="line">        </span><br><span class="line">kenny@jstest:~&gt; echo &apos;$TEST&apos;</span><br><span class="line">$TEST</span><br><span class="line">kenny@jstest:~&gt; echo &quot;//TEST&quot;</span><br><span class="line">/TEST</span><br><span class="line">kenny@jstest:~&gt; echo &apos;//TEST&apos;</span><br><span class="line">//TEST</span><br><span class="line">kenny@jstest:~&gt; echo &quot;Hello!&quot;</span><br><span class="line">echo &quot;Hello&quot;</span><br><span class="line">Hello</span><br><span class="line">kenny@jstest:~&gt; echo &apos;Hello!&apos;</span><br><span class="line">Hello!</span><br></pre></td></tr></table></figure>
+
+<h1 id="more，less，clear"><a href="#more，less，clear" class="headerlink" title="more，less，clear"></a>more，less，clear</h1><blockquote>
+<p>more，less命令</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这两个命令用于查看文件，如果一个文件太长，显示内容超出一个屏幕，用cat命令只能看到最后的内容，用more和less两个命令可以分页查看。more指令可以使超过一页的文件内容分页暂停显示，用户按键后才继续显示下一页。而less除了有more的功能以外，还可以用方向键往上或往下的滚动文件，更方便浏览阅读。</span><br></pre></td></tr></table></figure>
+
+<p>less的常用动作命令：</p>
+<ul>
+<li>回车键 向下移动一行；</li>
+<li><code>y</code> 向上移动一行；</li>
+<li>空格键 向下滚动一屏；</li>
+<li><code>b</code> 向上滚动一屏；</li>
+<li><code>d</code> 向下滚动半屏；</li>
+<li><code>h</code> less的帮助；</li>
+<li><code>u</code> 向上洋动半屏；</li>
+<li><code>w</code> 可以指定显示哪行开始显示，是从指定数字的下一行显示；比如指定的是6，那就从第7行显示；</li>
+<li><code>g</code> 跳到第一行；</li>
+<li><code>G</code> 跳到最后一行；</li>
+<li><code>p n%</code> 跳到n%，比如 10%，也就是说比整个文件内容的10%处开始显示；</li>
+<li><code>/pattern</code> 搜索pattern ，比如 /MAIL表示在文件中搜索MAIL单词；</li>
+<li><code>v</code> 调用vi编辑器；</li>
+<li><code>q</code> 退出less</li>
+<li><code>!command</code> 调用SHELL，可以运行命令；比如!ls 显示当前列当前目录下的所有文件；</li>
+<li><code>clear</code>命令 clear命令是用来清除当前屏幕显示的，不需任何参数，和dos下的cls命令功能相同。</li>
 </ul>
-<p><strong>类名::实例方法名</strong><br><br>先来看一段代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String[] strings = <span class="keyword">new</span> String[<span class="number">10</span>];</span><br><span class="line">Arrays.sort(strings, String::compareToIgnoreCase);</span><br></pre></td></tr></table></figure>
-
-<p><strong>上面的String::compareToIgnoreCase等价于(x, y) -&gt; {return x.compareToIgnoreCase(y);}</strong><br><br>我们看一下<code>Arrays#sort</code>方法<code>public static &lt;T&gt; void sort(T[] a, Comparator&lt;? super T&gt; c)</code>,<br>可以看到第二个参数是一个Comparator接口，该接口也是一个函数式接口，其中的抽象方法是<code>int compare(T o1, T o2);</code>，再看一下<br><code>String#compareToIgnoreCase</code>方法,<code>public int compareToIgnoreCase(String str)</code>，这个方法好像和上面讲方法引用中<code>类名::静态方法名</code>不大一样啊，它<br>的参数列表和函数式接口的参数列表不一样啊，虽然它的返回值一样？<br><br>是的，确实不一样但是别忘了，String类的这个方法是个实例方法，而不是静态方法，也就是说，这个方法是需要有一个接收者的。所谓接收者就是<br>instance.method(x)中的instance，<br>它是某个类的实例，有的朋友可能已经明白了。上面函数式接口的<code>compare(T o1, T o2)</code>中的第一个参数作为了实例方法的接收者，而第二个参数作为了实例方法的<br>参数。我们再举一个自己实现的例子:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MethodReference</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> Random random = <span class="keyword">new</span> Random(<span class="number">47</span>);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MethodReference[] methodReferences = <span class="keyword">new</span> MethodReference[<span class="number">10</span>];</span><br><span class="line">        Arrays.sort(methodReferences, MethodReference::myCompare);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">myCompare</span><span class="params">(MethodReference o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> random.nextInt(<span class="number">2</span>) - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>上面的例子可以在IDE里通过编译，大家有兴趣的可以模仿上面的例子自己写一个程序，打印出排序后的结果。<br><br><strong>构造器引用</strong><br><br>构造器引用仍然需要与特定的函数式接口配合使用，并不能像下面这样直接使用。IDE会提示String不是一个函数式接口</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//compile error : String is not a functional interface</span></span><br><span class="line">String str = String::<span class="keyword">new</span>;</span><br></pre></td></tr></table></figure>
-
-<p>下面是一个使用构造器引用的例子，可以看出构造器引用可以和这种工厂型的函数式接口一起使用的。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">interface</span> <span class="title">IFunctional</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">T <span class="title">func</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConstructorReference</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConstructorReference</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Supplier&lt;ConstructorReference&gt; supplier0 = () -&gt; <span class="keyword">new</span> ConstructorReference();</span><br><span class="line">        Supplier&lt;ConstructorReference&gt; supplier1 = ConstructorReference::<span class="keyword">new</span>;</span><br><span class="line">        IFunctional&lt;ConstructorReference&gt; functional = () -&gt; <span class="keyword">new</span> ConstructorReference();</span><br><span class="line">        IFunctional&lt;ConstructorReference&gt; functional1 = ConstructorReference::<span class="keyword">new</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>下面是一个JDK官方的例子</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T, SOURCE extends Collection&lt;T&gt;, DEST extends Collection&lt;T&gt;&gt;</span><br><span class="line">  <span class="function">DEST <span class="title">transferElements</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">      SOURCE sourceCollection,</span></span></span><br><span class="line"><span class="function"><span class="params">      Supplier&lt;DEST&gt; collectionFactory)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">      DEST result = collectionFactory.get();</span><br><span class="line">      <span class="keyword">for</span> (T t : sourceCollection) &#123;</span><br><span class="line">          result.add(t);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  ...</span><br><span class="line">  </span><br><span class="line">  Set&lt;Person&gt; rosterSet = transferElements(</span><br><span class="line">          roster, HashSet::<span class="keyword">new</span>);</span><br></pre></td></tr></table></figure>
-
-<p><strong>实例::实例方法</strong><br><br><br>其实开始那个例子就是一个实例::实例方法的引用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">            list.add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        list.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
-
-<p>其中System.out就是一个实例，println是一个实例方法。相信不用再给大家做解释了。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Lambda表达式是JDK8引入Java的函数式编程语法，使用Lambda需要直接或者间接的与函数式接口配合，在开发中使用Lambda可以减少代码量，<br>但是并不是说必须要使用Lambda(虽然它是一个很酷的东西)。有些情况下使用Lambda会使代码的可读性急剧下降，并且也节省不了多少代码，<br>所以在实际开发中还是需要仔细斟酌是否要使用Lambda。和Lambda相似的还有JDK10中加入的var类型推断，同样对于这个特性需要斟酌使用。</p>
-<!-- ---------------------------------------------------Lambda表达式结束---------------------------------------------------- -->
-<hr>
-<!-- ---------------------------------------------------接口默认方法-------------------------------------------------------- -->
-<p><span id="DefaultMethods"></span></p>
-<h2 id="JDK8接口规范"><a href="#JDK8接口规范" class="headerlink" title="　　　　　　　　　　　　　JDK8接口规范"></a>　　　　　　　　　　　　　JDK8接口规范</h2><h3 id="在JDK8中引入了lambda表达式，出现了函数式接口的概念，为了在扩展接口时保持向前兼容性-JDK8之前扩展接口会使得实现了该接口的类必须实现添加的方法，否则会报错。为了保持兼容性而做出妥协的特性还有泛型，泛型也是为了保持兼容性而失去了在一些别的语言泛型拥有的功能-，Java接口规范发生了一些改变。"><a href="#在JDK8中引入了lambda表达式，出现了函数式接口的概念，为了在扩展接口时保持向前兼容性-JDK8之前扩展接口会使得实现了该接口的类必须实现添加的方法，否则会报错。为了保持兼容性而做出妥协的特性还有泛型，泛型也是为了保持兼容性而失去了在一些别的语言泛型拥有的功能-，Java接口规范发生了一些改变。" class="headerlink" title="在JDK8中引入了lambda表达式，出现了函数式接口的概念，为了在扩展接口时保持向前兼容性(JDK8之前扩展接口会使得实现了该接口的类必须实现添加的方法，否则会报错。为了保持兼容性而做出妥协的特性还有泛型，泛型也是为了保持兼容性而失去了在一些别的语言泛型拥有的功能)，Java接口规范发生了一些改变。"></a>在JDK8中引入了lambda表达式，出现了函数式接口的概念，为了在扩展接口时保持向前兼容性(JDK8之前扩展接口会使得实现了该接口的类必须实现添加的方法，否则会报错。为了保持兼容性而做出妥协的特性还有泛型，泛型也是为了保持兼容性而失去了在一些别的语言泛型拥有的功能)，Java接口规范发生了一些改变。</h3><h3 id="1-JDK8以前的接口规范"><a href="#1-JDK8以前的接口规范" class="headerlink" title="1.JDK8以前的接口规范"></a>1.JDK8以前的接口规范</h3><ul>
-<li>JDK8以前接口可以定义的变量和方法<ul>
-<li>所有变量(Field)不论是否<i>显式</i> 的声明为<figure class="highlight plain"><figcaption><span>static final```，它实际上都是```public static final```的。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   - 所有方法(Method)不论是否&lt;i&gt;显示&lt;/i&gt; 的声明为```public abstract```，它实际上都是```public abstract```的。</span><br><span class="line">```java</span><br><span class="line">public interface AInterfaceBeforeJDK8 &#123;</span><br><span class="line">    int FIELD = 0;</span><br><span class="line">    void simpleMethod();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<h1 id="head，tail"><a href="#head，tail" class="headerlink" title="head，tail"></a>head，tail</h1><ul>
+<li>head和tail命令都用于查看文本文件，区别在于： head显示文件的头n行，tail显示文件的尾n行，缺省情况n都为10行。可以通过-n方式指定行数，如：head -100 file和tail -100 file分别表示显示文件头100行和尾100行内容。</li>
+<li>tail -f命令可以实时查看文件新增内容。</li>
 </ul>
-</li>
+<h1 id="wc命令"><a href="#wc命令" class="headerlink" title="wc命令"></a>wc命令</h1><p>该命令用于统计指定文件中的字节数、字数、行数。该命令各选项含义如下：</p>
+<ul>
+<li>-l 统计行数</li>
+<li>-w 统计字数</li>
+<li>-c 统计字节数</li>
 </ul>
-<p>以上接口信息反编译以后可以看到字节码信息里Filed是public static final的，而方法是public abstract的，即是你没有显示的去声明它。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> FIELD;</span><br><span class="line">    descriptor: I</span><br><span class="line">    flags: (<span class="number">0x0019</span>) ACC_PUBLIC, ACC_STATIC, ACC_FINAL</span><br><span class="line">    ConstantValue: <span class="keyword">int</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">simpleMethod</span><span class="params">()</span></span>;</span><br><span class="line">    descriptor: ()V</span><br><span class="line">    flags: (<span class="number">0x0401</span>) ACC_PUBLIC, ACC_ABSTRACT</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这些选项可以组合使用。输出列的顺序和数目不受选项的顺序和数目的影响。总是按下述顺序显示并且每项最多一列。<br>行数、字数、字节数、文件名<br>如果命令行中没有文件名，则输出中不出现文件名。</p>
+<p>例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">oracle@hjtest:~&gt; wc 1.txt 2.txt</span><br><span class="line">  460  1679 16353 1.txt</span><br><span class="line">  300  1095 10665 2.txt</span><br><span class="line">  760  2774 27018 总用量</span><br><span class="line">oracle@hjtest:~&gt; wc -l 1.txt</span><br><span class="line">460 1.txt</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-JDK8之后的接口规范"><a href="#2-JDK8之后的接口规范" class="headerlink" title="2.JDK8之后的接口规范"></a>2.JDK8之后的接口规范</h3><ul>
-<li>JDK8之后接口可以定义的变量和方法<ul>
-<li>变量(Field)仍然必须是 <figure class="highlight java"><figcaption><span>public static final```的</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  - 方法(Method)除了可以是<span class="keyword">public</span> <span class="keyword">abstract</span>之外，还可以是<span class="keyword">public</span> <span class="keyword">static</span>或者是<span class="keyword">default</span>(相当于仅<span class="keyword">public</span>修饰的实例方法)的。</span><br><span class="line">从以上改变不难看出，修改接口的规范主要是为了能在扩展接口时保持向前兼容。</span><br><span class="line">&lt;br&gt;下面是一个JDK8之后的接口例子</span><br><span class="line">```java</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AInterfaceInJDK8</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> simpleFiled = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> staticField = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">staticMethod</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">defaultMethod</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">simpleMethod</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
-<p>进行反编译(去除了一些没用信息)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> simpleFiled;</span><br><span class="line">    flags: (<span class="number">0x0019</span>) ACC_PUBLIC, ACC_STATIC, ACC_FINAL</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> staticField;</span><br><span class="line">    flags: (<span class="number">0x0019</span>) ACC_PUBLIC, ACC_STATIC, ACC_FINAL</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(java.lang.String[])</span></span>;</span><br><span class="line">    flags: (<span class="number">0x0009</span>) ACC_PUBLIC, ACC_STATIC</span><br><span class="line">    </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">staticMethod</span><span class="params">()</span></span>;</span><br><span class="line">    flags: (<span class="number">0x0009</span>) ACC_PUBLIC, ACC_STATIC</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">defaultMethod</span><span class="params">()</span></span>;</span><br><span class="line">    flags: (<span class="number">0x0001</span>) ACC_PUBLIC</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">simpleMethod</span><span class="params">()</span> <span class="keyword">throws</span> java.io.IOException</span>;</span><br><span class="line">    flags: (<span class="number">0x0401</span>) ACC_PUBLIC, ACC_ABSTRACT</span><br><span class="line">    Exceptions:</span><br><span class="line">      <span class="keyword">throws</span> java.io.IOException</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>缺省参数为-lcw，即wc file1 file2命令的执行结果与上面一样。</p>
+<h1 id="grep-命令"><a href="#grep-命令" class="headerlink" title="grep 命令"></a>grep 命令</h1><blockquote>
+<p>grep是（global search regular expression(RE) and print out the line的缩写，用于从文件面搜索包含指定模式的行并打印出来，它是一种强大的文本搜索工具，支持使用正则表达式搜索文本。grep的工作方式是这样的，它在一个或多个文件中搜索字符串模板。如果模板包括空格，则必须被””引用，模板后的所有字符串被看作文件名。搜索结果送到屏幕，不影响原文件内容。</p>
+</blockquote>
+<p>grep可用于shell脚本，因为grep通过返回一个状态值来说明搜索的状态，如果模板搜索成功，则返回0，如果搜索不成功，则返回1，如果搜索的文件不存在，则返回2。我们利用这些返回值就可进行一些自动化的文本处理工作。<br>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l | grep &apos;^a&apos;</span><br><span class="line">通过管道过滤ls -l输出的内容，只显示以a开头的行。</span><br><span class="line">$ grep &apos;test&apos; d*</span><br><span class="line">显示所有以d开头的文件中包含test的行。</span><br><span class="line">$ grep &apos;test&apos; aa bb cc</span><br><span class="line">显示在aa，bb，cc文件中匹配test的行。</span><br><span class="line">$ grep &apos;[a-z]/&#123;5/&#125;&apos; aa</span><br><span class="line">显示所有包含每个字符串至少有5个连续小写字符的字符串的行。</span><br><span class="line">$ grep &apos;w/(es/)t.*/1&apos; aa</span><br><span class="line">如果west被匹配，则es就被存储到内存中，并标记为1，然后搜索任意个字符（.*），这些字符后面紧跟着另外一个es（/1），找到就显示该行。如果用egrep或grep -E，就不用&quot;/&quot;号进行转义，直接写成&apos;w(es)t.*/1&apos;就可以了。</span><br></pre></td></tr></table></figure>
 
-<p>可以看到 default关键字修饰的方法是像实例方法(就是普通类中定义的普通方法)一样定义的，所以我们来定义一个只有default方法的接口并且实现一下这个接口试一<br>试。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4396</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultMethod</span> <span class="keyword">implements</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        DefaultMethod defaultMethod = <span class="keyword">new</span> DefaultMethod();</span><br><span class="line">        System.out.println(defaultMethod.defaultMethod());</span><br><span class="line">        <span class="comment">//compile error : Non-static method 'defaultMethod()' cannot be referenced from a static context</span></span><br><span class="line">        <span class="comment">//! DefaultMethod.defaultMethod();</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="man，logout命令"><a href="#man，logout命令" class="headerlink" title="man，logout命令"></a>man，logout命令</h1><blockquote>
+<p>man命令，man是manual的缩写，相当于Unix/Linux的联机Help，每个系统命令和调用都有非常详细的说明，绝大多数都是英文。如：man ls即是查看ls命令的使用说明，一般还有另一种方法用来查看帮助，如：ls –help，这种方式绝大多数命令都支持。</p>
+</blockquote>
+<blockquote>
+<p>logout命令，该命令用于退出系统，与login命令对应。</p>
+</blockquote>
+<h1 id="管道和xargs"><a href="#管道和xargs" class="headerlink" title="管道和xargs"></a>管道和xargs</h1><h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2><p>利用Linux所提供的管道符“|”将两个命令隔开，管道符左边命令的输出就会作为管道符右边命令的输入。连续使用管道意味着第一个命令的输出会作为第二个命令的输入，第二个命令的输出又会作为第三个命令的输入，依此类推。<br>注意：管道左边命令的输入作为管道右边命令的输入(命令的输入是一定的)，不是参数，并不是所有命令都支持管道<br>例子：ls | grep a  查看当前目录下名称包含a的文件或文件夹</p>
+<h2 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a>xargs</h2><p>大多数 Linux 命令都会产生输出：文件列表、字符串列表等。但如果要使用其他某个命令并将前一个命令的输出作为参数该怎么办？例如，file 命令显示文件类型（可执行文件、ascii 文本等）；你能处理输出，使其仅显示文件名，目前你希望将这些名称传递给 ls -l 命令以查看时间戳记。xargs 命令就是用来完成此项工作的。<br>注意：find命令把匹配到的文件传递给xargs命令，而xargs命令每次只获取一部分文件而不是全部，不像-exec选项那样。这样它可以先处理最先获取的一部分文件，然后是下一批，并如此继续下去</p>
+<p>例子：</p>
+<ol>
+<li>在整个系统中查找内存信息转储文件(core dump) ，然后把结果保存到/tmp/core.log 文件中：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ find / -name &quot;core&quot; -print | xargs echo &quot;&quot; &gt;/tmp/core.log</span><br></pre></td></tr></table></figure>
 
-<p>可以看到default方法确实像实例方法一样，必须有实例对象才能调用，并且子类在实现接口时，可以不用实现default方法，也可以选择覆盖该方法。<br>这有点像子类继承父类实例方法。<br><br><br>接口静态方法就像是类静态方法，唯一的区别是<strong>接口静态方法只能通过接口名调用，而类静态方法既可以通过类名调用也可以通过实例调用</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Static</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">staticMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4396</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> ... main(String...args)</span><br><span class="line">    <span class="comment">//!compile error: Static method may be invoked on containing interface class only</span></span><br><span class="line">    <span class="comment">//!aInstanceOfStatic.staticMethod();</span></span><br><span class="line"> ...</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>当一个目录下文件太多时，直接用rm * 命令会包参数过长,用如下方法可以全部删除</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ls | xargs rm</span><br></pre></td></tr></table></figure>
 
-<p>另一个问题是多继承问题，大家知道Java中类是不支持多继承的，但是接口是多继承和多实现(implements后跟多个接口)的，<br>那么如果一个接口继承另一个接口，两个接口都有同名的default方法会怎么样呢？答案是会像类继承一样覆写(@Override)，以下代码在IDE中可以顺利编译</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4396</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default2</span> <span class="keyword">extends</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">9527</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultMethod</span> <span class="keyword">implements</span> <span class="title">Default</span>,<span class="title">Default2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        DefaultMethod defaultMethod = <span class="keyword">new</span> DefaultMethod();</span><br><span class="line">        System.out.println(defaultMethod.defaultMethod());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出 : <span class="number">9527</span></span><br></pre></td></tr></table></figure>
+<h1 id="basename-和-dirname"><a href="#basename-和-dirname" class="headerlink" title="basename 和 dirname"></a>basename 和 dirname</h1><p>basename用于查看文件不含路径的名字，dirname则用于查看文件路径，使用效果我们测试一下便知：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; basename /home/hj/1.txt</span><br><span class="line">1.txt</span><br><span class="line">&gt; dirname  /home/hj/1.txt</span><br><span class="line">/home/hj</span><br><span class="line">&gt; basename 1.txt</span><br><span class="line">1.txt</span><br><span class="line">&gt; dirname 1.txt</span><br><span class="line">.</span><br></pre></td></tr></table></figure>
 
-<p>出现上面的情况时，会优先找继承树上近的方法，类似于“短路优先”。<br><br><br>那么如果一个类实现了两个没有继承关系的接口，且这两个接口有同名方法的话会怎么样呢？IDE会要求你重写这个冲突的方法，让你自己选择去执行哪个方法，因为IDE它还没智能到你不告诉它，它就知道你想执行哪个方法。可以通过<figure class="highlight java"><figcaption><span>接口名.super```指针来访问接口中定义的实例(default)方法。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">```java</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4396</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">9527</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//如果不重写</span></span><br><span class="line"><span class="comment">//compile error : defaults.DefaultMethod inherits unrelated defaults for defaultMethod() from types defaults.Default and defaults.Default2</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultMethod</span> <span class="keyword">implements</span> <span class="title">Default</span>,<span class="title">Default2</span> </span>&#123;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(Default.<span class="keyword">super</span>.defaultMethod());</span><br><span class="line">        System.out.println(Default2.<span class="keyword">super</span>.defaultMethod());</span><br><span class="line">        <span class="keyword">return</span> <span class="number">996</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        DefaultMethod defaultMethod = <span class="keyword">new</span> DefaultMethod();</span><br><span class="line">        System.out.println(defaultMethod.defaultMethod());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">运行输出 : </span><br><span class="line"><span class="number">4396</span></span><br><span class="line"><span class="number">9527</span></span><br><span class="line"><span class="number">996</span></span><br></pre></td></tr></table></figure></p>
-<!-- ---------------------------------------------------接口默认方法结束---------------------------------------------------- -->
-<hr>
-<!-- --------------------------------------------------- 改进的类型推断 ---------------------------------------------------- -->
-<p><span id="ImprovedTypeInference"></span></p>
-<h2 id="改进的类型推断"><a href="#改进的类型推断" class="headerlink" title="　　　　　　　　　　　　　改进的类型推断"></a>　　　　　　　　　　　　　改进的类型推断</h2><h3 id="1-什么是类型推断"><a href="#1-什么是类型推断" class="headerlink" title="1.什么是类型推断"></a>1.什么是类型推断</h3><p>类型推断就像它的字面意思一样，编译器根据<b><i>你显示声明的已知的信息</i></b> 推断出你没有显示声明的类型，这就是类型推断。<br>看过《Java编程思想 第四版》的朋友可能还记得里面讲解泛型一章的时候，里面很多例子是下面这样的:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Object&gt; map = <span class="keyword">new</span> Map&lt;String, Object&gt;();</span><br></pre></td></tr></table></figure>
-
-<p>而我们平常写的都是这样的:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Object&gt; map = <span class="keyword">new</span> Map&lt;&gt;();</span><br></pre></td></tr></table></figure>
-
-<p>这就是类型推断，《Java编程思想 第四版》这本书出书的时候最新的JDK只有1.6(JDK7推出的类型推断)，在Java编程思想里Bruce Eckel大叔还提到过这个问题<br>(可能JDK的官方人员看了Bruce Eckel大叔的Thinking in Java才加的类型推断，☺)，在JDK7中推出了上面这样的类型推断，可以减少一些无用的代码。<br>(Java编程思想到现在还只有第四版，是不是因为Bruce Eckel大叔觉得Java新推出的语言特性“然并卵”呢？/滑稽)<br><br><br>在JDK7中，类型推断只有上面例子的那样的能力，即只有在使用<strong>赋值语句</strong>时才能自动推断出泛型参数信息(即&lt;&gt;里的信息)，下面的官方文档里的例子在JDK7里会编译<br>错误</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; stringList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">stringList.add(<span class="string">"A"</span>);</span><br><span class="line"><span class="comment">//error : addAll(java.util.Collection&lt;? extends java.lang.String&gt;)in List cannot be applied to (java.util.List&lt;java.lang.Object&gt;)</span></span><br><span class="line">stringList.addAll(Arrays.asList());</span><br></pre></td></tr></table></figure>
-
-<p>但是上面的代码在JDK8里可以通过，也就说，JDK8里，类型推断不仅可以用于赋值语句，而且可以根据代码中上下文里的信息推断出更多的信息，因此我们需要些的代码<br>会更少。加强的类型推断还有一个就是用于Lambda表达式了。<br><br><br>大家其实不必细究类型推断，在日常使用中IDE会自动判断，当IDE自己无法推断出足够的信息时，就需要我们额外做一下工作，比如在&lt;&gt;里添加更多的类型信息，<br>相信随着Java的进化，这些便利的功能会越来越强大。</p>
-<!-- --------------------------------------------------- 改进的类型推断结束------------------------------------------------- -->
-<hr>
-<!-- --------------------------------------------------- 反射获得方法参数信息------------------------------------------------- -->
-<p><span id="MethodParameterReflection"></span></p>
-<h2 id="通过反射获得方法的参数信息"><a href="#通过反射获得方法的参数信息" class="headerlink" title="　　　　　　　　　　　　　通过反射获得方法的参数信息"></a>　　　　　　　　　　　　　通过反射获得方法的参数信息</h2><p>JDK8之前 .class文件是不会存储方法参数信息的，因此也就无法通过反射获取该信息(想想反射获取类信息的入口是什么？当然就是Class类了)。即是是在JDK11里<br>也不会默认生成这些信息，可以通过在javac加上-parameters参数来让javac生成这些信息(javac就是java编译器，可以把java文件编译成.class文件)。生成额外<br>的信息(运行时非必须信息)会消耗内存并且有可能公布敏感信息(某些方法参数比如password，JDK文档里这么说的)，并且确实很多信息javac并不会为我们生成，比如<br>LocalVariableTable，javac就不会默认生成，需要你加上 -g:vars来强制让编译器生成，同样的，方法参数信息也需要加上<br>-parameters来让javac为你在.class文件中生成这些信息，否则运行时反射是无法获取到这些信息的。在讲解Java语言层面的方法之前，先看一下javac加上该<br>参数和不加生成的信息有什么区别(不感兴趣想直接看运行代码的可以跳过这段)。下面是随便写的一个类。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ByteCodeParameters</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">simpleMethod</span><span class="params">(String canUGetMyName, Object yesICan)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"9527"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>先来不加参数编译和反编译一下这个类javac ByteCodeParameters.java , javap -v ByteCodeParameters:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//只截取了部分信息</span></span><br><span class="line"><span class="keyword">public</span> java.lang.<span class="function">String <span class="title">simpleMethod</span><span class="params">(java.lang.String, java.lang.Object)</span></span>;</span><br><span class="line">  descriptor: (Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/String;</span><br><span class="line">  flags: (<span class="number">0x0001</span>) ACC_PUBLIC</span><br><span class="line">  Code:</span><br><span class="line">    stack=<span class="number">1</span>, locals=<span class="number">3</span>, args_size=<span class="number">3</span></span><br><span class="line">       0: ldc           #2                  // String 9527</span><br><span class="line">       <span class="number">2</span>: areturn</span><br><span class="line">    LineNumberTable:</span><br><span class="line">      line <span class="number">5</span>: <span class="number">0</span></span><br><span class="line"><span class="comment">//这个方法的描述到这里就结束了</span></span><br></pre></td></tr></table></figure>
-
-<p>接下来我们加上参数javac -parameters ByteCodeParameters.java 再来看反编译的信息:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> java.lang.<span class="function">String <span class="title">simpleMethod</span><span class="params">(java.lang.String, java.lang.Object)</span></span>;</span><br><span class="line">   descriptor: (Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/String;</span><br><span class="line">   flags: (<span class="number">0x0001</span>) ACC_PUBLIC</span><br><span class="line">   Code:</span><br><span class="line">     stack=<span class="number">1</span>, locals=<span class="number">3</span>, args_size=<span class="number">3</span></span><br><span class="line">        0: ldc           #2                  // String 9527</span><br><span class="line">        <span class="number">2</span>: areturn</span><br><span class="line">     LineNumberTable:</span><br><span class="line">       line <span class="number">8</span>: <span class="number">0</span></span><br><span class="line">   MethodParameters:</span><br><span class="line">     Name                           Flags</span><br><span class="line">     canUGetMyName</span><br><span class="line">     yesICan</span><br></pre></td></tr></table></figure>
-
-<p>可以看到.class文件里多了一个MethodParameters信息，这就是参数的名字，可以看到默认是不保存的。<br><br>下面看一下在Intelj Idea里运行的这个例子，我们试一下通过反射获取方法名 :</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ByteCodeParameters</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">simpleMethod</span><span class="params">(String canUGetMyName, Object yesICan)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"9527"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException </span>&#123;</span><br><span class="line">        Class&lt;?&gt; clazz = ByteCodeParameters.class;</span><br><span class="line">        Method simple = clazz.getDeclaredMethod(<span class="string">"simpleMethod"</span>, String.class, Object.class);</span><br><span class="line">        Parameter[] parameters = simple.getParameters();</span><br><span class="line">        <span class="keyword">for</span> (Parameter p : parameters) &#123;</span><br><span class="line">            System.out.println(p.getName());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出 :</span><br><span class="line">arg0</span><br><span class="line">arg1</span><br></pre></td></tr></table></figure>
-
-<p>？？？说好的方法名呢？？？？别急，哈哈。前面说了，默认是不生成参数名信息的，因此我们需要做一些配置，我们找到IDEA的settings里的Java Compiler选项，在<br>Additional command line parameters:一行加上-parameters(Eclipse 也是找到Java Compiler选中Stoer information about method parameters)，或者自<br>己编译一个.class文件放在IDEA的out下，然后再来运行 :</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输出 :</span><br><span class="line">canUGetMyName</span><br><span class="line">yesICan</span><br></pre></td></tr></table></figure>
-
-<p>这样我们就通过反射获取到参数信息了。想要了解更多的同学可以自己研究一下 [官方文档]<br>(<a href="https://docs.oracle.com/javase/tutorial/reflect/member/methodparameterreflection.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/tutorial/reflect/member/methodparameterreflection.html</a>)<br><br></p>
-<h2 id="总结与补充"><a href="#总结与补充" class="headerlink" title="总结与补充"></a>总结与补充</h2><p>在JDK8之后，可以通过-parameters参数来让编译器生成参数信息然后在运行时通过反射获取方法参数信息，其实在SpringFramework<br>里面也有一个LocalVariableTableParameterNameDiscoverer对象可以获取方法参数名信息，有兴趣的同学可以自行百度(这个类在打印日志时可能会比较有用吧，个人感觉)。</p>
-<!-- --------------------------------------------------- 反射获得方法参数信息结束------------------------------------------------- -->
-<hr>
-<!-- --------------------------------------------------- JDK8流库------------------------------------------------------------- -->
-<p><span id="stream"></span></p>
-<!-- --------------------------------------------------- JDK8流库结束------------------------------------------------- -->
-
-<hr>
 
         
       
@@ -935,487 +1319,6 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2015/08/26/os-linux-常用基础命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2015/08/26/os-linux-常用基础命令/" class="post-title-link" itemprop="url">Linux常用命令</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00+08:00">2015-08-26</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-29 15:16:27" itemprop="dateModified" datetime="2019-08-29T15:16:27+08:00">2019-08-29</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2015/08/26/os-linux-常用基础命令/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-常用基础命令/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>10k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>10 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="其它命令"><a href="#其它命令" class="headerlink" title="其它命令"></a>其它命令</h1><p><code>sudo chmod 755 -R node</code> 修改目录权限<br><code>sudo lsof -nP -iTCP -sTCP:LISTEN</code> 查看本地服务<br><code>ps -ef | grep websocket</code> 查看websocket进程<br><code>ps aux | grep mysql</code> 查看mysql进程<br><code>sudo kill 443</code> 杀掉进程  </p>
-<h1 id="给目录权限"><a href="#给目录权限" class="headerlink" title="给目录权限"></a>给目录权限</h1><p><code>sudo chmod -R 777 目录</code></p>
-<h1 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h1><p><code>find path -option [-print] [-exec -ok command] { }\;</code>  </p>
-<ul>
-<li>pathname: find命令所查找的目录路径。例如用<code>.</code>来表示当前目录，用<code>/</code>来表示系统根目录。</li>
-<li><code>-print</code>: find命令将匹配的文件输出到标准输出。</li>
-<li><code>-exec</code>: find命令对匹配的文件执行该参数所给出的shell命令。相应命令的形式为<code>&#39;command&#39; { } \;</code>，注意<code>{ }</code>和<code>\;</code>之间的空格。</li>
-<li><code>-ok</code>： 和<code>-exec</code>的作用相同，只不过以一种更为安全的模式来执行该参数所给出的shell命令，在执行每一个命令之前，都会给出提示，让用户来确定是否执行。</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ find ~ -name <span class="string">"*.txt"</span>  -<span class="built_in">print</span>   <span class="comment">#在$HOME中查.txt文件并显示</span></span><br><span class="line">$ find . -name <span class="string">"*.txt"</span>  -<span class="built_in">print</span></span><br><span class="line">$ find . -name <span class="string">"[A-Z]*"</span> -<span class="built_in">print</span>   <span class="comment">#查以大写字母开头的文件</span></span><br><span class="line">$ find /etc -name <span class="string">"host*"</span>  -<span class="built_in">print</span>  <span class="comment">#查以host开头的文件</span></span><br><span class="line"><span class="comment"># 查以两个小写字母和两个数字开头的txt文件</span></span><br><span class="line">$ find .   -name   <span class="string">"[a-z][a-z][0–9][0–9].txt"</span> -<span class="built_in">print</span>   </span><br><span class="line">$ ind . -perm   755   -<span class="built_in">print</span></span><br><span class="line">$ ind . -perm -007   -<span class="built_in">exec</span> ls -l &#123;&#125; \;   <span class="comment">#查所有用户都可读写执行的文件同-perm 777</span></span><br><span class="line">$ ind . -<span class="built_in">type</span> d   -<span class="built_in">print</span></span><br><span class="line">$ ind . !  -<span class="built_in">type</span> d   -<span class="built_in">print</span> </span><br><span class="line">$ ind . -<span class="built_in">type</span> l   -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h1><blockquote>
-<p>类似于dos下的dir命令</p>
-</blockquote>
-<p>ls最常用的参数有三个： -a -l -F。</p>
-<p>ls –a</p>
-<p>Linux上的文件以.开头的文件被系统视为隐藏文件，仅用ls命令是看不到他们的，而用ls -<br>a除了显示一般文件名外，连隐藏文件也会显示出来。<br>ls –l<br>该参数显示更详细的文件信息。<br>ls –F<br>使用这个参数表示在文件的后面多添加表示文件类型的符号，例如*表示可执行，/表示目录，@表示连结文件，这都是因为使用了-F这个参数。但是现在基本上所有的Linux发行版本的ls都已经内建了-F参数，也就是说，不用输入这个参数，我们也能看到各种分辨符号。</p>
-<h1 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h1><blockquote>
-<p>用于切换用户当前工作目录</p>
-</blockquote>
-<p>cd aaa 进入aaa目录<br>cd    命令后不指定目录，会切换到当前用户的home 目录<br>cd ~   作用同cd后不指定目录，切换到当前用户的home 目录<br>cd -   命令后跟一个减号，则会退回到切换前的目录<br>cd ..   返回到当前目录下的上一级目录</p>
-<h1 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h1><blockquote>
-<p>用于显示用户当前工作目录</p>
-</blockquote>
-<h1 id="mkdir-和-rmdir"><a href="#mkdir-和-rmdir" class="headerlink" title="mkdir 和 rmdir"></a>mkdir 和 rmdir</h1><blockquote>
-<p>midir:创建目录 / rmdir:删除目录</p>
-</blockquote>
-<p>两个命令都支持-p参数，对于mkdir命令若指定路径的父目录不存在则一并创建，对于rmdir命令则删除指定路径的所有层次目录，如果文件夹里有内容，则不能用rmdir命令</p>
-<p>如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p 1/2/3</span><br><span class="line">rmdir -p 1/2/3</span><br></pre></td></tr></table></figure>
-
-<h2 id="mkdir循环创建目录"><a href="#mkdir循环创建目录" class="headerlink" title="mkdir循环创建目录"></a>mkdir循环创建目录</h2><p><a href="http://unix.stackexchange.com/questions/636/how-do-i-make-multiple-directories-at-once-in-a-directory" target="_blank" rel="noopener">How do I make multiple directories at once in a directory?</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> char <span class="keyword">in</span> &#123;A..Z&#125;; <span class="keyword">do</span></span><br><span class="line">    mkdir <span class="variable">$char</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> &#123;1..100&#125;; <span class="keyword">do</span></span><br><span class="line">    mkdir <span class="variable">$num</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h1><blockquote>
-<p>复制命令</p>
-</blockquote>
-<ul>
-<li>复制一个文件到另一目录：<code>cp 1.txt ../test2</code></li>
-<li>复制一个文件到本目录并改名：<code>cp 1.txt 2.txt</code></li>
-<li>复制一个文件夹a并改名为b，-r或-R 选项表明递归操作：<code>cp -r a b</code></li>
-<li>同时拷贝多个文件，我们只需要将多个文件用空格隔开。<code>cp file_1.txt file_2.txt file_3.txt /home/pungki/office</code></li>
-</ul>
-<h1 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h1><blockquote>
-<p>移动命令</p>
-</blockquote>
-<p>将一个文件移动到另一个目录：mv 1.txt ../test1<br>将一个文件在本目录改名：mv 1.txt 2.txt<br>将一个文件一定到另一个目录并改名：mv 1.txt ../test1/2.txt</p>
-<h1 id="rm命令"><a href="#rm命令" class="headerlink" title="rm命令"></a>rm命令</h1><blockquote>
-<p>命令用于删除文件，与dos下的del/erase命令相似，rm命令常用的参数有三个：-i，-r，-f。</p>
-</blockquote>
-<ol>
-<li>–i ：系统在删除文件之前会先询问确认，用户回车之后，文件才会真的被删除。需要注意，linux下删除的文件是不能恢复的，删除之前一定要谨慎确认。</li>
-<li>–r：该参数支持目录删除，功能和rmdir命令相似。</li>
-<li>–f：和-i参数相反，-f表示强制删除</li>
-</ol>
-<h1 id="find"><a href="#find" class="headerlink" title="find"></a>find</h1><blockquote>
-<p>find 查找目录和文件</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">-name   filename   <span class="comment">#查找名为filename的文件</span></span><br><span class="line">-perm              <span class="comment">#按执行权限来查找</span></span><br><span class="line">-user    username  <span class="comment">#按文件属主来查找</span></span><br><span class="line">-group groupname   <span class="comment">#按组来查找</span></span><br><span class="line">-mtime   -n +n     <span class="comment">#按文件更改时间来查找文件，-n指n天以内，+n指n天以前</span></span><br><span class="line">-atime    -n +n    <span class="comment">#按文件访问时间来查GIN: 0px"&gt;</span></span><br><span class="line"></span><br><span class="line">-ctime    -n +n    <span class="comment">#按文件创建时间来查找文件，-n指n天以内，+n指n天以前</span></span><br><span class="line"></span><br><span class="line">-nogroup           <span class="comment">#查无有效属组的文件，即文件的属组在/etc/groups中不存在</span></span><br><span class="line">-nouser            <span class="comment">#查无有效属主的文件，即文件的属主在/etc/passwd中不存</span></span><br><span class="line">-newer   f1 !f2    <span class="comment">#找文件，-n指n天以内，+n指n天以前 </span></span><br><span class="line">-ctime    -n +n    <span class="comment">#按文件创建时间来查找文件，-n指n天以内，+n指n天以前 </span></span><br><span class="line">-nogroup           <span class="comment">#查无有效属组的文件，即文件的属组在/etc/groups中不存在</span></span><br><span class="line">-nouser            <span class="comment">#查无有效属主的文件，即文件的属主在/etc/passwd中不存</span></span><br><span class="line">-newer   f1 !f2    <span class="comment">#查更改时间比f1新但比f2旧的文件</span></span><br><span class="line">-<span class="built_in">type</span>    b/d/c/p   <span class="comment">#查是块设备、目录、字符设备、管道、符号链接、普通文件</span></span><br><span class="line">-size      n[c]    <span class="comment">#查长度为n块[或n字节]的文件</span></span><br><span class="line">-depth             <span class="comment">#使查找在进入子目录前先行查找完本目录</span></span><br><span class="line">-fstype            <span class="comment">#查更改时间比f1新但比f2旧的文件</span></span><br><span class="line">-<span class="built_in">type</span>    b/d/c/p   <span class="comment">#查是块设备、目录、字符设备、管道、符号链接、普通文件</span></span><br><span class="line">-size      n[c]    <span class="comment">#查长度为n块[或n字节]的文件</span></span><br><span class="line">-depth             <span class="comment">#使查找在进入子目录前先行查找完本目录</span></span><br><span class="line">-fstype            <span class="comment">#查位于某一类型文件系统中的文件，这些文件系统类型通常可 在/etc/fstab中找到</span></span><br><span class="line">-mount             <span class="comment">#查文件时不跨越文件系统mount点</span></span><br><span class="line">-follow            <span class="comment">#如果遇到符号链接文件，就跟踪链接所指的文件</span></span><br><span class="line">-cpio %;           <span class="comment">#查位于某一类型文件系统中的文件，这些文件系统类型通常可 在/etc/fstab中找到</span></span><br><span class="line">-mount             <span class="comment">#查文件时不跨越文件系统mount点</span></span><br><span class="line">-follow            <span class="comment">#如果遇到符号链接文件，就跟踪链接所指的文件</span></span><br><span class="line">-cpio              <span class="comment">#对匹配的文件使用cpio命令，将他们备份到磁带设备中</span></span><br><span class="line">-prune             <span class="comment">#忽略某个目录</span></span><br></pre></td></tr></table></figure>
-
-<p>例子： </p>
-<ul>
-<li>~ 代表的是$home目录，</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">$ find . -name <span class="string">'*.DS_Store'</span> -<span class="built_in">type</span> f -delete <span class="comment"># 删除所有.DS_Store文件</span></span><br><span class="line">$ find ~ -name <span class="string">"*.txt"</span> -<span class="built_in">print</span>       <span class="comment"># 在$HOME中查.txt文件并显示</span></span><br><span class="line">$ find . -size +1000000c -<span class="built_in">print</span>     <span class="comment"># 查长度大于1Mb的文件</span></span><br><span class="line">$ find . -size 100c -<span class="built_in">print</span>          <span class="comment"># 查长度为100c的文件</span></span><br><span class="line">$ find . -size +10 -<span class="built_in">print</span>           <span class="comment"># 查长度超过期作废10块的文件（1块=512字节）</span></span><br><span class="line">$ find -name april*                 <span class="comment"># 在当前目录下查找以april开始的文件</span></span><br><span class="line">$ find -name april* fprint file     <span class="comment"># 在当前目录下查找以april开始的文件，并把结果输出到file中</span></span><br><span class="line">$ find -name ap* -o -name may*          <span class="comment"># 查找以ap或may开头的文件</span></span><br><span class="line">$ find /mnt -name tom.txt -ftype vfat   <span class="comment"># 在/mnt下查找名称为tom.txt且文件系统类型为vfat的文件</span></span><br><span class="line">$ find /mnt -name t.txt ! -ftype vfat   <span class="comment"># 在/mnt下查找名称为tom.txt且文件系统类型不为vfat的文件</span></span><br><span class="line">$ find /tmp -name wa* -<span class="built_in">type</span> l           <span class="comment"># 在/tmp下查找名为wa开头且类型为符号链接的文件</span></span><br><span class="line">$ find ~ -mtime -2                  <span class="comment"># 在/home下查最近两天内改动过的文件</span></span><br><span class="line">$ find ~ -atime -1                  <span class="comment"># 查1天之内被存取过的文件</span></span><br><span class="line">$ find ~ -mmin +60                  <span class="comment"># 在/home下查60分钟前改动过的文件</span></span><br><span class="line">$ find ~ -amin +30                  <span class="comment"># 查最近30分钟前被存取过的文件</span></span><br><span class="line">$ find ~ -newer tmp.txt             <span class="comment"># 在/home下查更新时间比tmp.txt近的文件或目录</span></span><br><span class="line">$ find ~ -anewer tmp.txt            <span class="comment"># 在/home下查存取时间比tmp.txt近的文件或目录</span></span><br><span class="line">$ find ~ -used -2                   <span class="comment"># 列出文件或目录被改动过之后，在2日内被存取过的文件或目录</span></span><br><span class="line">$ find ~ -user cnscn                <span class="comment"># 列出/home目录内属于用户cnscn的文件或目录</span></span><br><span class="line">$ find ~ -uid +501                  <span class="comment"># 列出/home目录内用户的识别码大于501的文件或目录</span></span><br><span class="line">$ find ~ -group cnscn               <span class="comment"># 列出/home内组为cnscn的文件或目录</span></span><br><span class="line">$ find ~ -gid 501                   <span class="comment"># 列出/home内组id为501的文件或目录</span></span><br><span class="line">$ find ~ -nouser                    <span class="comment"># 列出/home内不属于本地用户的文件或目录</span></span><br><span class="line">$ find ~ -nogroup                   <span class="comment"># 列出/home内不属于本地组的文件或目录</span></span><br><span class="line">$ find ~ -name tmp.txt -maxdepth 4  <span class="comment"># 列出/home内的tmp.txt 查时深度最多为3层</span></span><br><span class="line">$ find ~ -name tmp.txt -mindepth 3  <span class="comment"># 从第2层开始查</span></span><br><span class="line">$ find ~ -empty                     <span class="comment"># 查找大小为0的文件或空目录</span></span><br><span class="line">$ find ~ -size   +512k              <span class="comment"># 查大于512k的文件</span></span><br><span class="line">$ find ~ -size   -512k              <span class="comment"># 查小于512k的文件</span></span><br><span class="line">$ find ~ -links   +2                <span class="comment"># 查硬连接数大于2的文件或目录</span></span><br><span class="line">$ find ~ -perm 0700                 <span class="comment"># 查权限为700的文件或目录</span></span><br><span class="line">$ find ~ -perm 755 -<span class="built_in">print</span> | more    <span class="comment"># 查找权限为755的文件</span></span><br><span class="line">$ find /tmp -name tmp.txt -<span class="built_in">exec</span> cat &#123;&#125; \;</span><br><span class="line">$ find /tmp -name tmp.txt ok rm &#123;&#125; \;</span><br><span class="line"></span><br><span class="line">$ find / -amin    -10      <span class="comment"># 查找在系统中最后10分钟访问的文件</span></span><br><span class="line">$ find / -atime   -2       <span class="comment"># 查找在系统中最后48小时访问的文件</span></span><br><span class="line">$ find / -empty            <span class="comment"># 查找在系统中为空的文件或者文件夹</span></span><br><span class="line">$ find / -group   cat      <span class="comment"># 查找在系统中属于 groupcat的文件</span></span><br><span class="line">$ find / -mmin   -5        <span class="comment"># 查找在系统中最后5分钟里修改过的文件</span></span><br><span class="line">$ find / -mtime   -1       <span class="comment"># 查找在系统中最后24小时里修改过的文件</span></span><br><span class="line">$ find / -nouser           <span class="comment"># 查找在系统中属于作废用户的文件</span></span><br><span class="line">$ find / -user    fred     <span class="comment"># 查找在系统中属于FRED这个用户的文件</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="du、df命令"><a href="#du、df命令" class="headerlink" title="du、df命令"></a>du、df命令</h1><blockquote>
-<p>du命令可以显示目前的目录所占用的磁盘空间，df命令可以显示目前磁盘剩余空间。</p>
-</blockquote>
-<p>如果du命令不加任何参数，那么返回的是整个磁盘的使用情况，如果后面加了目录的话，就是这个目录在磁盘上的使用情况。</p>
-<ol>
-<li><code>du -hs</code> 指定目录  查看指定目录的总大小</li>
-<li><code>du -hs ./*</code> 查看当前目录下的所有文件夹和文件的大小</li>
-</ol>
-<p>这两个命令都支持-k，-m和-h参数，-k和-m类似，都表示显示单位，一个是k字节一个是兆字节，-h则表示human-readable，即友好可读的显示方式。</p>
-<h1 id="cat命令"><a href="#cat命令" class="headerlink" title="cat命令"></a>cat命令</h1><blockquote>
-<p>cat命令的功能是显示或连结一般的ascii文本文件。cat是concatenate的简写，类似于dos下面的type命令。用法如下：</p>
-</blockquote>
-<ol>
-<li><code>cat file1</code> 显示file1文件内容</li>
-<li><code>cat file1 file2</code> 依次显示file1,file2的内容</li>
-<li><code>cat file1 file2 &gt; file3</code> 把file1, file2的内容结合起来，再“重定向（&gt;）”到file3文件中。</li>
-<li><code>&gt;</code>是右重定向符，表示将左边命令结果当成右边命令的输入，注意：如果右侧文件是一个已存在文件，其原有内容将会被清空，而变成左侧命令输出内容。如果希望以追加方式写入，请改用”&gt;&gt;”重定向符。</li>
-</ol>
-<p>如果”&gt;”左边没有指定文件，如： cat &gt;file1，将会等用户输入，输入完毕后再按[Ctrl]+[c]或[Ctrl]+[d]，就会将用户的输入内容写入file1。</p>
-<h1 id="echo命令"><a href="#echo命令" class="headerlink" title="echo命令"></a>echo命令</h1><blockquote>
-<p>echo命令的使用频率不少于ls和cat，尤其是在shell脚本编写中。<br>语法：echo [-ne][字符串]<br>功能：echo会将输入的字符串送往标准输出，输出的字符串间以空白字符隔开， 并在最后加上换行符。</p>
-</blockquote>
-<p>参数：</p>
-<ul>
-<li><code>-n</code> 显示字串时在最后自动换行</li>
-<li><code>-e</code> 支持以下格式的转义字符， -E 不支持以下格式的转义字符</li>
-<li><code>/a</code> 发出警告声；</li>
-<li><code>/b</code> 删除前一个字符；</li>
-<li><code>/c</code> 最后不加上换行符号；</li>
-<li><code>/f</code> 换行但光标仍旧停留在原来的位置；</li>
-<li><code>/n</code> 换行且光标移至行首；</li>
-<li><code>/r</code> 光标移至行首，但不换行；</li>
-<li><code>/t</code> 插入tab；</li>
-<li><code>/v</code> 与/f相同；</li>
-<li><code>//</code> 插入/字符；</li>
-<li><code>/nnn</code> 插入nnn（八进制）所代表的ASCII字符；</li>
-</ul>
-<p>示例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> <span class="string">"123"</span> <span class="string">"456"</span></span><br><span class="line">123 456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> <span class="string">"123/n456"</span></span><br><span class="line">123/n456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -e <span class="string">"123/n456"</span></span><br><span class="line">123</span><br><span class="line">456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -E <span class="string">"123/n456"</span></span><br><span class="line">123/n456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -E <span class="string">"123///456"</span></span><br><span class="line">123//456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -e <span class="string">"123///456"</span></span><br><span class="line">123/456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -e <span class="string">"123/100456"</span></span><br><span class="line">123@456</span><br></pre></td></tr></table></figure>
-
-<p>注意事项：<br>在Linux使用的bash下，单引号’’和双引号是有区别的，单引号忽略所有的转义，双引号不会忽略以下特殊字符：<br>Dollar signs ($)，Back quotes (`)，Backslashes (/)，Excalmatory mark(!)</p>
-<p>示例如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">kenny@jstest:~&gt; echo &quot;`TEST`&quot;</span><br><span class="line">-bash: TEST: command not found</span><br><span class="line">kenny@jstest:~&gt; echo &apos;`TEST`&apos;</span><br><span class="line">`TEST`</span><br><span class="line">kenny@jstest:~&gt; echo &quot;$TEST&quot;</span><br><span class="line">        </span><br><span class="line">kenny@jstest:~&gt; echo &apos;$TEST&apos;</span><br><span class="line">$TEST</span><br><span class="line">kenny@jstest:~&gt; echo &quot;//TEST&quot;</span><br><span class="line">/TEST</span><br><span class="line">kenny@jstest:~&gt; echo &apos;//TEST&apos;</span><br><span class="line">//TEST</span><br><span class="line">kenny@jstest:~&gt; echo &quot;Hello!&quot;</span><br><span class="line">echo &quot;Hello&quot;</span><br><span class="line">Hello</span><br><span class="line">kenny@jstest:~&gt; echo &apos;Hello!&apos;</span><br><span class="line">Hello!</span><br></pre></td></tr></table></figure>
-
-<h1 id="more，less，clear"><a href="#more，less，clear" class="headerlink" title="more，less，clear"></a>more，less，clear</h1><blockquote>
-<p>more，less命令</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这两个命令用于查看文件，如果一个文件太长，显示内容超出一个屏幕，用cat命令只能看到最后的内容，用more和less两个命令可以分页查看。more指令可以使超过一页的文件内容分页暂停显示，用户按键后才继续显示下一页。而less除了有more的功能以外，还可以用方向键往上或往下的滚动文件，更方便浏览阅读。</span><br></pre></td></tr></table></figure>
-
-<p>less的常用动作命令：</p>
-<ul>
-<li>回车键 向下移动一行；</li>
-<li><code>y</code> 向上移动一行；</li>
-<li>空格键 向下滚动一屏；</li>
-<li><code>b</code> 向上滚动一屏；</li>
-<li><code>d</code> 向下滚动半屏；</li>
-<li><code>h</code> less的帮助；</li>
-<li><code>u</code> 向上洋动半屏；</li>
-<li><code>w</code> 可以指定显示哪行开始显示，是从指定数字的下一行显示；比如指定的是6，那就从第7行显示；</li>
-<li><code>g</code> 跳到第一行；</li>
-<li><code>G</code> 跳到最后一行；</li>
-<li><code>p n%</code> 跳到n%，比如 10%，也就是说比整个文件内容的10%处开始显示；</li>
-<li><code>/pattern</code> 搜索pattern ，比如 /MAIL表示在文件中搜索MAIL单词；</li>
-<li><code>v</code> 调用vi编辑器；</li>
-<li><code>q</code> 退出less</li>
-<li><code>!command</code> 调用SHELL，可以运行命令；比如!ls 显示当前列当前目录下的所有文件；</li>
-<li><code>clear</code>命令 clear命令是用来清除当前屏幕显示的，不需任何参数，和dos下的cls命令功能相同。</li>
-</ul>
-<h1 id="head，tail"><a href="#head，tail" class="headerlink" title="head，tail"></a>head，tail</h1><ul>
-<li>head和tail命令都用于查看文本文件，区别在于： head显示文件的头n行，tail显示文件的尾n行，缺省情况n都为10行。可以通过-n方式指定行数，如：head -100 file和tail -100 file分别表示显示文件头100行和尾100行内容。</li>
-<li>tail -f命令可以实时查看文件新增内容。</li>
-</ul>
-<h1 id="wc命令"><a href="#wc命令" class="headerlink" title="wc命令"></a>wc命令</h1><p>该命令用于统计指定文件中的字节数、字数、行数。该命令各选项含义如下：</p>
-<ul>
-<li>-l 统计行数</li>
-<li>-w 统计字数</li>
-<li>-c 统计字节数</li>
-</ul>
-<p>这些选项可以组合使用。输出列的顺序和数目不受选项的顺序和数目的影响。总是按下述顺序显示并且每项最多一列。<br>行数、字数、字节数、文件名<br>如果命令行中没有文件名，则输出中不出现文件名。</p>
-<p>例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">oracle@hjtest:~&gt; wc 1.txt 2.txt</span><br><span class="line">  460  1679 16353 1.txt</span><br><span class="line">  300  1095 10665 2.txt</span><br><span class="line">  760  2774 27018 总用量</span><br><span class="line">oracle@hjtest:~&gt; wc -l 1.txt</span><br><span class="line">460 1.txt</span><br></pre></td></tr></table></figure>
-
-<p>缺省参数为-lcw，即wc file1 file2命令的执行结果与上面一样。</p>
-<h1 id="grep-命令"><a href="#grep-命令" class="headerlink" title="grep 命令"></a>grep 命令</h1><blockquote>
-<p>grep是（global search regular expression(RE) and print out the line的缩写，用于从文件面搜索包含指定模式的行并打印出来，它是一种强大的文本搜索工具，支持使用正则表达式搜索文本。grep的工作方式是这样的，它在一个或多个文件中搜索字符串模板。如果模板包括空格，则必须被””引用，模板后的所有字符串被看作文件名。搜索结果送到屏幕，不影响原文件内容。</p>
-</blockquote>
-<p>grep可用于shell脚本，因为grep通过返回一个状态值来说明搜索的状态，如果模板搜索成功，则返回0，如果搜索不成功，则返回1，如果搜索的文件不存在，则返回2。我们利用这些返回值就可进行一些自动化的文本处理工作。<br>示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l | grep &apos;^a&apos;</span><br><span class="line">通过管道过滤ls -l输出的内容，只显示以a开头的行。</span><br><span class="line">$ grep &apos;test&apos; d*</span><br><span class="line">显示所有以d开头的文件中包含test的行。</span><br><span class="line">$ grep &apos;test&apos; aa bb cc</span><br><span class="line">显示在aa，bb，cc文件中匹配test的行。</span><br><span class="line">$ grep &apos;[a-z]/&#123;5/&#125;&apos; aa</span><br><span class="line">显示所有包含每个字符串至少有5个连续小写字符的字符串的行。</span><br><span class="line">$ grep &apos;w/(es/)t.*/1&apos; aa</span><br><span class="line">如果west被匹配，则es就被存储到内存中，并标记为1，然后搜索任意个字符（.*），这些字符后面紧跟着另外一个es（/1），找到就显示该行。如果用egrep或grep -E，就不用&quot;/&quot;号进行转义，直接写成&apos;w(es)t.*/1&apos;就可以了。</span><br></pre></td></tr></table></figure>
-
-<h1 id="man，logout命令"><a href="#man，logout命令" class="headerlink" title="man，logout命令"></a>man，logout命令</h1><blockquote>
-<p>man命令，man是manual的缩写，相当于Unix/Linux的联机Help，每个系统命令和调用都有非常详细的说明，绝大多数都是英文。如：man ls即是查看ls命令的使用说明，一般还有另一种方法用来查看帮助，如：ls –help，这种方式绝大多数命令都支持。</p>
-</blockquote>
-<blockquote>
-<p>logout命令，该命令用于退出系统，与login命令对应。</p>
-</blockquote>
-<h1 id="管道和xargs"><a href="#管道和xargs" class="headerlink" title="管道和xargs"></a>管道和xargs</h1><h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2><p>利用Linux所提供的管道符“|”将两个命令隔开，管道符左边命令的输出就会作为管道符右边命令的输入。连续使用管道意味着第一个命令的输出会作为第二个命令的输入，第二个命令的输出又会作为第三个命令的输入，依此类推。<br>注意：管道左边命令的输入作为管道右边命令的输入(命令的输入是一定的)，不是参数，并不是所有命令都支持管道<br>例子：ls | grep a  查看当前目录下名称包含a的文件或文件夹</p>
-<h2 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a>xargs</h2><p>大多数 Linux 命令都会产生输出：文件列表、字符串列表等。但如果要使用其他某个命令并将前一个命令的输出作为参数该怎么办？例如，file 命令显示文件类型（可执行文件、ascii 文本等）；你能处理输出，使其仅显示文件名，目前你希望将这些名称传递给 ls -l 命令以查看时间戳记。xargs 命令就是用来完成此项工作的。<br>注意：find命令把匹配到的文件传递给xargs命令，而xargs命令每次只获取一部分文件而不是全部，不像-exec选项那样。这样它可以先处理最先获取的一部分文件，然后是下一批，并如此继续下去</p>
-<p>例子：</p>
-<ol>
-<li>在整个系统中查找内存信息转储文件(core dump) ，然后把结果保存到/tmp/core.log 文件中：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ find / -name &quot;core&quot; -print | xargs echo &quot;&quot; &gt;/tmp/core.log</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>当一个目录下文件太多时，直接用rm * 命令会包参数过长,用如下方法可以全部删除</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ls | xargs rm</span><br></pre></td></tr></table></figure>
-
-<h1 id="basename-和-dirname"><a href="#basename-和-dirname" class="headerlink" title="basename 和 dirname"></a>basename 和 dirname</h1><p>basename用于查看文件不含路径的名字，dirname则用于查看文件路径，使用效果我们测试一下便知：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; basename /home/hj/1.txt</span><br><span class="line">1.txt</span><br><span class="line">&gt; dirname  /home/hj/1.txt</span><br><span class="line">/home/hj</span><br><span class="line">&gt; basename 1.txt</span><br><span class="line">1.txt</span><br><span class="line">&gt; dirname 1.txt</span><br><span class="line">.</span><br></pre></td></tr></table></figure>
-
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2015/08/26/os-linux-CentOS7更换yum软件镜像源/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2015/08/26/os-linux-CentOS7更换yum软件镜像源/" class="post-title-link" itemprop="url">CentOS7系统更换软件安装源</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00+08:00">2015-08-26</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-29 15:13:28" itemprop="dateModified" datetime="2019-08-29T15:13:28+08:00">2019-08-29</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2015/08/26/os-linux-CentOS7更换yum软件镜像源/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-CentOS7更换yum软件镜像源/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>1.6k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>1 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>阿里云Linux安装镜像源地址：<a href="http://mirrors.aliyun.com/" target="_blank" rel="noopener">http://mirrors.aliyun.com/</a> 。</p>
-<p>第一步：备份你的原镜像文件，以免出错后可以恢复。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/yum.repos.d/CentOS-Base.repo&#123;,.backup&#125;</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br></pre></td></tr></table></figure>
-
-<p>第二步：下载新的CentOS-Base.repo 到/etc/yum.repos.d/</p>
-<p>如果 wget 没有安装，运行下面命令安装 wget 软件。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum update --skip-broken</span><br><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
-
-<p>安装完成更新下载源</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CentOS 5</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-5.repo</span><br><span class="line"><span class="comment"># CentOS 6</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</span><br><span class="line"><span class="comment"># CentOS 7</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
-
-<p>第三步：运行yum makecache生成缓存</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
-
-<p>yum 安装报错 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">File <span class="string">"/usr/bin/yum"</span>, line 30 except KeyboardInterrupt, e:</span><br></pre></td></tr></table></figure>
-
-<p>解决：修改文件<code>/usr/bin/yum</code>、<code>/usr/libexec/urlgrabber-ext-down</code>头中相应python为<code>#!/usr/bin/python2.7</code></p>
-<h1 id="163官方说明："><a href="#163官方说明：" class="headerlink" title="163官方说明："></a>163官方说明：</h1><p><a href="http://mirrors.163.com/" target="_blank" rel="noopener">http://mirrors.163.com/</a><br><a href="http://mirrors.163.com/.help/centos.html" target="_blank" rel="noopener">http://mirrors.163.com/.help/centos.html</a>  </p>
-<h1 id="中国开源镜像站点"><a href="#中国开源镜像站点" class="headerlink" title="中国开源镜像站点"></a>中国开源镜像站点</h1><ul>
-<li>阿里云开源镜像站：<a href="http://mirrors.aliyun.com/" target="_blank" rel="noopener">http://mirrors.aliyun.com/</a></li>
-<li>网易开源镜像站：<a href="http://mirrors.163.com/" target="_blank" rel="noopener">http://mirrors.163.com/</a></li>
-<li>搜狐开源镜像站：<a href="http://mirrors.sohu.com/" target="_blank" rel="noopener">http://mirrors.sohu.com/</a></li>
-<li>北京交通大学：<a href="http://mirror.bjtu.edu.cn/cn/" target="_blank" rel="noopener">http://mirror.bjtu.edu.cn/cn/</a> &lt;教育网荐&gt;</li>
-<li>兰州大学：<a href="http://mirror.lzu.edu.cn/" target="_blank" rel="noopener">http://mirror.lzu.edu.cn/</a> &lt;西北高校FTP搜索引擎&gt;</li>
-<li>厦门大学：<a href="http://mirrors.xmu.edu.cn/" target="_blank" rel="noopener">http://mirrors.xmu.edu.cn/</a></li>
-<li>上海交通大学：<a href="http://ftp.sjtu.edu.cn/" target="_blank" rel="noopener">http://ftp.sjtu.edu.cn/</a></li>
-<li>清华大学：<a href="http://mirrors.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">http://mirrors.tuna.tsinghua.edu.cn/</a><ul>
-<li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">http://mirrors.6.tuna.tsinghua.edu.cn/</a></li>
-<li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">http://mirrors.4.tuna.tsinghua.edu.cn/</a></li>
-</ul>
-</li>
-<li>天津大学：<a href="http://mirror.tju.edu.cn/" target="_blank" rel="noopener">http://mirror.tju.edu.cn/</a></li>
-<li>中国科学技术大学：<a href="http://mirrors.ustc.edu.cn/" target="_blank" rel="noopener">http://mirrors.ustc.edu.cn/</a> <ul>
-<li><a href="http://mirrors4.ustc.edu.cn/" target="_blank" rel="noopener">http://mirrors4.ustc.edu.cn/</a> &lt;教育网、电信&gt;</li>
-<li><a href="http://mirrors6.ustc.edu.cn/" target="_blank" rel="noopener">http://mirrors6.ustc.edu.cn/</a> <ipv6 only></ipv6></li>
-</ul>
-</li>
-<li>西南大学：<a href="http://linux.swu.edu.cn/swudownload/" target="_blank" rel="noopener">http://linux.swu.edu.cn/swudownload/</a></li>
-<li>泰安移动：<a href="http://mirrors.ta139.com/" target="_blank" rel="noopener">http://mirrors.ta139.com/</a></li>
-<li>东北大学：<a href="http://mirror.neu.edu.cn/" target="_blank" rel="noopener">http://mirror.neu.edu.cn/</a></li>
-<li>浙江大学：<a href="http://mirrors.zju.edu.cn/" target="_blank" rel="noopener">http://mirrors.zju.edu.cn/</a></li>
-<li>东软信息学院：<a href="http://mirrors.neusoft.edu.cn/" target="_blank" rel="noopener">http://mirrors.neusoft.edu.cn/</a></li>
-</ul>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1468,7 +1371,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">139</span>
+          <span class="site-state-item-count">138</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
