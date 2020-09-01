@@ -59,17 +59,17 @@
 <meta name="keywords" content="redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何保证缓存与数据库的双写一致性？">
-<meta property="og:url" content="https://gzxu.top/2018/07/11/subject-high-concurrency-redis-consistence/index.html">
+<meta property="og:url" content="https://dirsky.github.io/2018/07/11/subject-high-concurrency-redis-consistence/index.html">
 <meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="剖析一般来说，如果允许缓存可以稍微的跟数据库偶尔有不一致的情况，也就是说如果你的系统不是严格要求 “缓存+数据库” 必须保持一致性的话，最好不要做这个方案，即：读请求和写请求串行化，串到一个内存队列里去。 串行化可以保证一定不会出现不一致的情况，但是它也会导致系统的吞吐量大幅度降低，用比正常情况下多几倍的机器去支撑线上的一个请求。 Cache Aside Pattern最经典的缓存+数据库读写的模">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://gzxu.top/images/high-concurrency/redis-junior-inconsistent.png">
+<meta property="og:image" content="https://dirsky.github.io/images/high-concurrency/redis-junior-inconsistent.png">
 <meta property="og:updated_time" content="2019-08-31T02:32:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何保证缓存与数据库的双写一致性？">
 <meta name="twitter:description" content="剖析一般来说，如果允许缓存可以稍微的跟数据库偶尔有不一致的情况，也就是说如果你的系统不是严格要求 “缓存+数据库” 必须保持一致性的话，最好不要做这个方案，即：读请求和写请求串行化，串到一个内存队列里去。 串行化可以保证一定不会出现不一致的情况，但是它也会导致系统的吞吐量大幅度降低，用比正常情况下多几倍的机器去支撑线上的一个请求。 Cache Aside Pattern最经典的缓存+数据库读写的模">
-<meta name="twitter:image" content="https://gzxu.top/images/high-concurrency/redis-junior-inconsistent.png">
-  <link rel="canonical" href="https://gzxu.top/2018/07/11/subject-high-concurrency-redis-consistence/">
+<meta name="twitter:image" content="https://dirsky.github.io/images/high-concurrency/redis-junior-inconsistent.png">
+  <link rel="canonical" href="https://dirsky.github.io/2018/07/11/subject-high-concurrency-redis-consistence/">
 
 
 <script id="page-configurations">
@@ -273,7 +273,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2018/07/11/subject-high-concurrency-redis-consistence/">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/07/11/subject-high-concurrency-redis-consistence/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -720,7 +720,7 @@
       
         
       
-        <a href="http://gzxu.top/docsify/#/" title="CV &rarr; http://gzxu.top/docsify/#/"><i class="fa fa-fw fa-twitter"></i>CV</a>
+        <a href="https://dirsky.github.io/docsify//#/" title="CV &rarr; https://dirsky.github.io/docsify//#/"><i class="fa fa-fw fa-twitter"></i>CV</a>
       </span>
     
   </div>

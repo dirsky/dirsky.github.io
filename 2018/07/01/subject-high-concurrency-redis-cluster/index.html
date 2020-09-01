@@ -59,21 +59,21 @@
 <meta name="keywords" content="redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redis 集群模式的工作原理">
-<meta property="og:url" content="https://gzxu.top/2018/07/01/subject-high-concurrency-redis-cluster/index.html">
+<meta property="og:url" content="https://dirsky.github.io/2018/07/01/subject-high-concurrency-redis-cluster/index.html">
 <meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="分析在前几年，redis 如果要搞几个节点，每个节点存储一部分的数据，得借助一些中间件来实现，比如说有 codis，或者 twemproxy，都有。有一些 redis 中间件，你读写 redis 中间件，redis 中间件负责将你的数据分布式存储在多台机器上的 redis 实例中。 这两年，redis 不断在发展，redis 也不断有新的版本，现在的 redis 集群模式，可以做到在多台机器上，部">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://gzxu.top/images/high-concurrency/zookeeper-centralized-storage.png">
-<meta property="og:image" content="https://gzxu.top/images/high-concurrency/redis-gossip.png">
-<meta property="og:image" content="https://gzxu.top/images/high-concurrency/hash.png">
-<meta property="og:image" content="https://gzxu.top/images/high-concurrency/consistent-hashing-algorithm.png">
-<meta property="og:image" content="https://gzxu.top/images/high-concurrency/hash-slot.png">
+<meta property="og:image" content="https://dirsky.github.io/images/high-concurrency/zookeeper-centralized-storage.png">
+<meta property="og:image" content="https://dirsky.github.io/images/high-concurrency/redis-gossip.png">
+<meta property="og:image" content="https://dirsky.github.io/images/high-concurrency/hash.png">
+<meta property="og:image" content="https://dirsky.github.io/images/high-concurrency/consistent-hashing-algorithm.png">
+<meta property="og:image" content="https://dirsky.github.io/images/high-concurrency/hash-slot.png">
 <meta property="og:updated_time" content="2019-08-31T02:32:39.353Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis 集群模式的工作原理">
 <meta name="twitter:description" content="分析在前几年，redis 如果要搞几个节点，每个节点存储一部分的数据，得借助一些中间件来实现，比如说有 codis，或者 twemproxy，都有。有一些 redis 中间件，你读写 redis 中间件，redis 中间件负责将你的数据分布式存储在多台机器上的 redis 实例中。 这两年，redis 不断在发展，redis 也不断有新的版本，现在的 redis 集群模式，可以做到在多台机器上，部">
-<meta name="twitter:image" content="https://gzxu.top/images/high-concurrency/zookeeper-centralized-storage.png">
-  <link rel="canonical" href="https://gzxu.top/2018/07/01/subject-high-concurrency-redis-cluster/">
+<meta name="twitter:image" content="https://dirsky.github.io/images/high-concurrency/zookeeper-centralized-storage.png">
+  <link rel="canonical" href="https://dirsky.github.io/2018/07/01/subject-high-concurrency-redis-cluster/">
 
 
 <script id="page-configurations">
@@ -277,7 +277,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2018/07/01/subject-high-concurrency-redis-cluster/">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/07/01/subject-high-concurrency-redis-cluster/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -737,7 +737,7 @@
       
         
       
-        <a href="http://gzxu.top/docsify/#/" title="CV &rarr; http://gzxu.top/docsify/#/"><i class="fa fa-fw fa-twitter"></i>CV</a>
+        <a href="https://dirsky.github.io/docsify//#/" title="CV &rarr; https://dirsky.github.io/docsify//#/"><i class="fa fa-fw fa-twitter"></i>CV</a>
       </span>
     
   </div>

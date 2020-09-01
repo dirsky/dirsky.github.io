@@ -59,17 +59,17 @@
 <meta name="keywords" content="database">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分库分表之后，id 主键如何处理？">
-<meta property="og:url" content="https://gzxu.top/2018/07/03/subject-high-concurrency-database-shard-global-id-generate/index.html">
+<meta property="og:url" content="https://dirsky.github.io/2018/07/03/subject-high-concurrency-database-shard-global-id-generate/index.html">
 <meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="基于数据库的实现方案数据库自增 id这个就是说你的系统里每次得到一个 id，都是往一个库的一个表里插入一条没什么业务含义的数据，然后获取一个数据库自增的一个 id。拿到这个 id 之后再往对应的分库分表里去写入。 这个方案的好处就是方便简单，谁都会用；缺点就是单库生成自增 id，要是高并发的话，就会有瓶颈的；如果你硬是要改进一下，那么就专门开一个服务出来，这个服务每次就拿到当前 id 最大值，然后">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://gzxu.top/images/high-concurrency/database-id-sequence-step.png">
+<meta property="og:image" content="https://dirsky.github.io/images/high-concurrency/database-id-sequence-step.png">
 <meta property="og:updated_time" content="2019-08-31T02:30:45.918Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分库分表之后，id 主键如何处理？">
 <meta name="twitter:description" content="基于数据库的实现方案数据库自增 id这个就是说你的系统里每次得到一个 id，都是往一个库的一个表里插入一条没什么业务含义的数据，然后获取一个数据库自增的一个 id。拿到这个 id 之后再往对应的分库分表里去写入。 这个方案的好处就是方便简单，谁都会用；缺点就是单库生成自增 id，要是高并发的话，就会有瓶颈的；如果你硬是要改进一下，那么就专门开一个服务出来，这个服务每次就拿到当前 id 最大值，然后">
-<meta name="twitter:image" content="https://gzxu.top/images/high-concurrency/database-id-sequence-step.png">
-  <link rel="canonical" href="https://gzxu.top/2018/07/03/subject-high-concurrency-database-shard-global-id-generate/">
+<meta name="twitter:image" content="https://dirsky.github.io/images/high-concurrency/database-id-sequence-step.png">
+  <link rel="canonical" href="https://dirsky.github.io/2018/07/03/subject-high-concurrency-database-shard-global-id-generate/">
 
 
 <script id="page-configurations">
@@ -273,7 +273,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2018/07/03/subject-high-concurrency-database-shard-global-id-generate/">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/07/03/subject-high-concurrency-database-shard-global-id-generate/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -696,7 +696,7 @@
       
         
       
-        <a href="http://gzxu.top/docsify/#/" title="CV &rarr; http://gzxu.top/docsify/#/"><i class="fa fa-fw fa-twitter"></i>CV</a>
+        <a href="https://dirsky.github.io/docsify//#/" title="CV &rarr; https://dirsky.github.io/docsify//#/"><i class="fa fa-fw fa-twitter"></i>CV</a>
       </span>
     
   </div>

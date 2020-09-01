@@ -59,7 +59,7 @@
 <meta name="keywords" content="redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redis 的过期策略都有哪些？内存淘汰机制都有哪些？">
-<meta property="og:url" content="https://gzxu.top/2018/07/09/subject-high-concurrency-redis-expiration-policies-and-lru/index.html">
+<meta property="og:url" content="https://dirsky.github.io/2018/07/09/subject-high-concurrency-redis-expiration-policies-and-lru/index.html">
 <meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="分析如果你连这个问题都不知道，上来就懵了，回答不出来，那线上你写代码的时候，想当然的认为写进 redis 的数据就一定会存在，后面导致系统各种 bug，谁来负责？ 常见的有两个问题：  往 redis 写入的数据怎么没了？  可能有同学会遇到，在生产环境的 redis 经常会丢掉一些数据，写进去了，过一会儿可能就没了。我的天，同学，你问这个问题就说明 redis 你就没用对啊。redis 是缓存，">
 <meta property="og:locale" content="zh-CN">
@@ -67,7 +67,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis 的过期策略都有哪些？内存淘汰机制都有哪些？">
 <meta name="twitter:description" content="分析如果你连这个问题都不知道，上来就懵了，回答不出来，那线上你写代码的时候，想当然的认为写进 redis 的数据就一定会存在，后面导致系统各种 bug，谁来负责？ 常见的有两个问题：  往 redis 写入的数据怎么没了？  可能有同学会遇到，在生产环境的 redis 经常会丢掉一些数据，写进去了，过一会儿可能就没了。我的天，同学，你问这个问题就说明 redis 你就没用对啊。redis 是缓存，">
-  <link rel="canonical" href="https://gzxu.top/2018/07/09/subject-high-concurrency-redis-expiration-policies-and-lru/">
+  <link rel="canonical" href="https://dirsky.github.io/2018/07/09/subject-high-concurrency-redis-expiration-policies-and-lru/">
 
 
 <script id="page-configurations">
@@ -271,7 +271,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://gzxu.top/2018/07/09/subject-high-concurrency-redis-expiration-policies-and-lru/">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/07/09/subject-high-concurrency-redis-expiration-policies-and-lru/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -698,7 +698,7 @@
       
         
       
-        <a href="http://gzxu.top/docsify/#/" title="CV &rarr; http://gzxu.top/docsify/#/"><i class="fa fa-fw fa-twitter"></i>CV</a>
+        <a href="https://dirsky.github.io/docsify//#/" title="CV &rarr; https://dirsky.github.io/docsify//#/"><i class="fa fa-fw fa-twitter"></i>CV</a>
       </span>
     
   </div>
