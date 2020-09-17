@@ -269,7 +269,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/08/26/os-linux-常用基础命令/">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/08/26/os-linux-CentOS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -283,7 +283,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2015/08/26/os-linux-常用基础命令/" class="post-title-link" itemprop="url">Linux常用命令</a>
+            <a href="/2015/08/26/os-linux-CentOS/" class="post-title-link" itemprop="url">Centos常用命令</a>
           
         </h1>
 
@@ -311,7 +311,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-29 15:16:27" itemprop="dateModified" datetime="2019-08-29T15:16:27+08:00">2019-08-29</time>
+                <time title="修改时间：2019-08-29 15:18:31" itemprop="dateModified" datetime="2019-08-29T15:18:31+08:00">2019-08-29</time>
               </span>
             
           
@@ -340,7 +340,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2015/08/26/os-linux-常用基础命令/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-常用基础命令/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2015/08/26/os-linux-CentOS/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-CentOS/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -352,7 +352,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>10k</span>
+              <span>6.4k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -362,7 +362,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>10 分钟</span>
+              <span>6 分钟</span>
             </span>
           
 
@@ -375,183 +375,224 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="其它命令"><a href="#其它命令" class="headerlink" title="其它命令"></a>其它命令</h1><p><code>sudo chmod 755 -R node</code> 修改目录权限<br><code>sudo lsof -nP -iTCP -sTCP:LISTEN</code> 查看本地服务<br><code>ps -ef | grep websocket</code> 查看websocket进程<br><code>ps aux | grep mysql</code> 查看mysql进程<br><code>sudo kill 443</code> 杀掉进程  </p>
-<h1 id="给目录权限"><a href="#给目录权限" class="headerlink" title="给目录权限"></a>给目录权限</h1><p><code>sudo chmod -R 777 目录</code></p>
-<h1 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h1><p><code>find path -option [-print] [-exec -ok command] { }\;</code>  </p>
-<ul>
-<li>pathname: find命令所查找的目录路径。例如用<code>.</code>来表示当前目录，用<code>/</code>来表示系统根目录。</li>
-<li><code>-print</code>: find命令将匹配的文件输出到标准输出。</li>
-<li><code>-exec</code>: find命令对匹配的文件执行该参数所给出的shell命令。相应命令的形式为<code>&#39;command&#39; { } \;</code>，注意<code>{ }</code>和<code>\;</code>之间的空格。</li>
-<li><code>-ok</code>： 和<code>-exec</code>的作用相同，只不过以一种更为安全的模式来执行该参数所给出的shell命令，在执行每一个命令之前，都会给出提示，让用户来确定是否执行。</li>
+          <h1 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h1><p>username:root<br>password:安装时设置的密码  </p>
+<p>其它终端登录 <code>$ ssh root@192.168.0.23</code>  </p>
+<h1 id="系统配置情况命令"><a href="#系统配置情况命令" class="headerlink" title="系统配置情况命令"></a>系统配置情况命令</h1><h2 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/redhat-release # CentOS 查看系统信息</span><br><span class="line">uname -a                # 查看内核/操作系统/CPU信息</span><br><span class="line">head -n 1 /etc/issue    # 查看操作系统版本</span><br><span class="line">cat /proc/cpuinfo       # 查看CPU信息</span><br><span class="line">hostname                # 查看计算机名</span><br><span class="line">lspci -tv               # 列出所有PCI设备</span><br><span class="line">lsusb -tv               # 列出所有USB设备</span><br><span class="line">lsmod                   # 列出加载的内核模块</span><br><span class="line">env                     # 查看环境变量</span><br><span class="line">dmidecode | grep "Product Nmae"   #查看服务器型号</span><br></pre></td></tr></table></figure>
+
+<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">free -m                # 查看内存使用量和交换区使用量</span><br><span class="line">df -h                  # 查看各分区使用情况</span><br><span class="line">du -sh &lt;目录名&gt;        # 查看指定目录的大小</span><br><span class="line">grep MemTotal /proc/meminfo   # 查看内存总量</span><br><span class="line">grep MemFree /proc/meminfo    # 查看空闲内存量</span><br><span class="line">uptime                 # 查看系统运行时间、用户数、负载</span><br><span class="line">cat /proc/loadavg      # 查看系统负载</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看内存的插槽数，已经使用多少插槽。每条内存多大，已使用内存多大</span></span><br><span class="line">dmidecode|grep -P -A5 "Memory\s+Device"|grep Size|grep -v Range </span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看内存支持的最大内存容量</span></span><br><span class="line">dmidecode|grep -P 'Maximum\s+Capacity'</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看内存的频率</span></span><br><span class="line">dmidecode|grep -A16 "Memory Device"</span><br><span class="line">dmidecode|grep -A16 "Memory Device"|grep 'Speed'</span><br></pre></td></tr></table></figure>
+
+<h2 id="磁盘和分区"><a href="#磁盘和分区" class="headerlink" title="磁盘和分区"></a>磁盘和分区</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mount | column -t      # 查看挂接的分区状态</span><br><span class="line">fdisk -l               # 查看所有分区</span><br><span class="line">swapon -s              # 查看所有交换分区</span><br><span class="line">hdparm -i /dev/hda     # 查看磁盘参数(仅适用于IDE设备)</span><br><span class="line">dmesg | grep IDE       # 查看启动时IDE设备检测状况</span><br></pre></td></tr></table></figure>
+
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ifconfig               # 查看所有网络接口的属性</span><br><span class="line">iptables -L            # 查看防火墙设置</span><br><span class="line">route -n               # 查看路由表</span><br><span class="line">netstat -lntp          # 查看所有监听端口</span><br><span class="line">netstat -antp          # 查看所有已经建立的连接</span><br><span class="line">netstat -s             # 查看网络统计信息</span><br></pre></td></tr></table></figure>
+
+<h2 id="进程查看"><a href="#进程查看" class="headerlink" title="进程查看"></a>进程查看</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -ef                 # 查看所有进程</span><br><span class="line">top                    # 实时显示进程状态</span><br></pre></td></tr></table></figure>
+
+<h2 id="系统时间"><a href="#系统时间" class="headerlink" title="系统时间"></a>系统时间</h2><p><strong>UTC</strong>: 整个地球分为二十四时区，每个时区都有自己的本地时间。在国际无线电通信场合，为了统一起见，使用一个统一的时间，称为通用协调时(UTC, Universal Time Coordinated)。<br><strong>GMT</strong>: 格林威治标准时间 (Greenwich Mean Time)指位于英国伦敦郊区的皇家格林尼治天文台的标准时间，因为本初子午线被定义在通过那里的经线。(UTC与GMT时间基本相同)<br><strong>CST</strong>: 中国标准时间 (China Standard Time)。<code>GMT + 8 = UTC + 8 = CST</code><br><strong>DST</strong>: 夏令时(Daylight Saving Time) 指在夏天太阳升起的比较早时，将时钟拨快一小时，以提早日光的使用。(中国不使用)<br><strong>硬件时钟</strong>: RTC(Real-Time Clock)或CMOS时钟，一般在主板上靠电池供电，服务器断电后也会继续运行。仅保存日期时间数值，无法保存时区和夏令时设置。<br><strong>系统时钟</strong>: 一般在服务器启动时复制RTC时间，之后独立运行，保存了时间、时区和夏令时设置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">timedatectl  <span class="comment"># 等同于 timedatectl status</span></span><br><span class="line">timedatectl <span class="built_in">set</span>-time <span class="string">"YYYY-MM-DD HH:MM:SS"</span>  <span class="comment"># 设置时间</span></span><br><span class="line">timedatectl list-timezones                  <span class="comment"># 列出所有时区</span></span><br><span class="line">timedatectl <span class="built_in">set</span>-timezone Asia/Shanghai      <span class="comment"># 设置时区</span></span><br><span class="line">timedatectl <span class="built_in">set</span>-ntp yes                     <span class="comment"># 是否NTP服务器同步, yes或者no</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将硬件时钟调整为与本地时钟一致</span></span><br><span class="line">timedatectl <span class="built_in">set</span>-local-rtc 1</span><br><span class="line">hwclock --systohc --localtime <span class="comment"># 与上面命令效果一致   </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 硬件时间设置成 UTC</span></span><br><span class="line">timedatectl <span class="built_in">set</span>-local-rtc 1</span><br><span class="line">hwclock --systohc --utc //与上面命令效果一致</span><br></pre></td></tr></table></figure>
+
+<h2 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">w                         # 查看活动用户</span><br><span class="line">id &lt;用户名&gt;                # 查看指定用户信息</span><br><span class="line">last                      # 查看用户登录日志</span><br><span class="line">cut -d: -f1 /etc/passwd   # 查看系统所有用户</span><br><span class="line">cut -d: -f1 /etc/group    # 查看系统所有组</span><br><span class="line">crontab -l                # 查看当前用户的计划任务</span><br></pre></td></tr></table></figure>
+
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看网络接口统计数据的，两种发放  </span></span><br><span class="line">ip link # 或者下面方法</span><br><span class="line">ip -s link </span><br><span class="line"></span><br><span class="line">yum install net-tools # net-tools包提供了ifconfig命令  </span><br><span class="line">ifconfig -a # 查看IP地址  </span><br><span class="line">ip addr # 查看IP地址   </span><br><span class="line">route -n # 使用最快的速度查找主机的路由  </span><br><span class="line"></span><br><span class="line">cat /proc/version # 查看系统信息  </span><br><span class="line">  uname -a # 方法二  </span><br><span class="line">  uname -r #方法三  </span><br><span class="line">getconf LONG_BIT # 查看系统是64位还是32位  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">uname -a  # 查看内核/操作系统/CPU信息  </span><br><span class="line">head -n 1 /etc/issue  #查看操作系统版本  </span><br><span class="line">cat /proc/cpuinfo  #查看CPU信息  </span><br><span class="line">hostname   #查看计算机名  </span><br><span class="line">lspci -tv  #列出所有PCI设备  </span><br><span class="line">lsusb -tv  #列出所有USB设备  </span><br><span class="line">lsmod  #列出加载的内核模块  </span><br><span class="line">env    #查看环境变量  </span><br><span class="line">arch   # 显示机器的处理器架构(1)  </span><br><span class="line">uname -m  # 显示机器的处理器架构(2)  </span><br><span class="line">uname -r  # 显示正在使用的内核版本  </span><br><span class="line">dmidecode -q  # 显示硬件系统部件  </span><br><span class="line">hdparm -i /dev/hda   # 罗列一个磁盘的架构特性  </span><br><span class="line">hdparm -tT /dev/sda  # 在磁盘上执行测试性读取操作  </span><br><span class="line">cat /proc/interrupts # 显示中断  </span><br><span class="line">cat /proc/meminfo  # 校验内存使用  </span><br><span class="line">cat /proc/swaps    # 显示哪些swap被使用  </span><br><span class="line">cat /proc/version  # 显示内核的版本  </span><br><span class="line">cat /proc/net/dev  # 显示网络适配器及统计  </span><br><span class="line">cat /proc/mounts   # 显示已加载的文件系统  </span><br><span class="line">lspci -tv  # 罗列 PCI 设备  </span><br><span class="line">lsusb -tv  # 显示 USB 设备  </span><br><span class="line">date  # 显示系统日期  </span><br><span class="line">date 041217002007.00  # 设置日期和时间 – 月日时分年.秒  </span><br><span class="line">cal 2007  # 显示2007年的日历表  </span><br><span class="line">clock -w  # 将时间修改保存到 BIOS</span><br></pre></td></tr></table></figure>
+
+<h2 id="系统的关机、重启以及登出"><a href="#系统的关机、重启以及登出" class="headerlink" title="系统的关机、重启以及登出"></a>系统的关机、重启以及登出</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">shutdown -h now <span class="comment"># 关闭系统(1)   </span></span><br><span class="line">init 0 <span class="comment"># 关闭系统(2)   </span></span><br><span class="line">telinit 0 <span class="comment"># 关闭系统(3)   </span></span><br><span class="line">shutdown -h hours:minutes &amp;  <span class="comment">#按预定时间关闭系统   </span></span><br><span class="line">shutdown -c  <span class="comment">#取消按预定时间关闭系统   </span></span><br><span class="line">shutdown -r now <span class="comment"># 重启  (1)   </span></span><br><span class="line">reboot  <span class="comment">#重启  (2)   </span></span><br><span class="line"><span class="built_in">logout</span> <span class="comment"># 注销</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看网络配置的命令"><a href="#查看网络配置的命令" class="headerlink" title="查看网络配置的命令"></a>查看网络配置的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ifconfig <span class="comment"># 查看所有网络接口的属性   </span></span><br><span class="line">iptables -L <span class="comment"># 查看防火墙设置   </span></span><br><span class="line">route -n <span class="comment"># 查看路由表   </span></span><br><span class="line">netstat -lntp <span class="comment"># 查看所有监听端口   </span></span><br><span class="line">netstat -antp <span class="comment"># 查看所有已经建立的连接   </span></span><br><span class="line">netstat -s <span class="comment"># 查看网络统计信息</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看linux进程"><a href="#查看linux进程" class="headerlink" title="查看linux进程"></a>查看linux进程</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps -aux | grep node <span class="comment"># 查看`node`进程  </span></span><br><span class="line">ps -ef <span class="comment"># 查看所有进程   </span></span><br><span class="line">top <span class="comment"># 实时显示进程状态</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="杀进程"><a href="#杀进程" class="headerlink" title="杀进程"></a>杀进程</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">killall -9 websocket <span class="comment"># 干掉`websocket`服务进程  </span></span><br><span class="line">ps aux | grep mysql <span class="comment"># 查看mysql进程  </span></span><br><span class="line"><span class="built_in">kill</span> -9 35562 <span class="comment"># 根据进程号杀</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看用户的命令"><a href="#查看用户的命令" class="headerlink" title="查看用户的命令"></a>查看用户的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">w <span class="comment"># 查看活动用户   </span></span><br><span class="line">id &lt;用户名&gt; <span class="comment"># 查看指定用户信息   </span></span><br><span class="line">last <span class="comment"># 查看用户登录日志   </span></span><br><span class="line">cut -d: -f1 /etc/passwd <span class="comment"># 查看系统所有用户   </span></span><br><span class="line">cut -d: -f1 /etc/group <span class="comment"># 查看系统所有组   </span></span><br><span class="line">crontab -l <span class="comment"># 查看当前用户的计划任务</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="log日志查看"><a href="#log日志查看" class="headerlink" title="log日志查看"></a>log日志查看</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /var/<span class="built_in">log</span>/messages <span class="comment"># 查询日志的全部内容</span></span><br><span class="line">head -5 /var/<span class="built_in">log</span>/messages <span class="comment"># 查询日志的前5行</span></span><br><span class="line">tail -5 /var/<span class="built_in">log</span>/messages <span class="comment"># 查询日志的最新5行</span></span><br><span class="line">sed -n <span class="string">'5,10p'</span> /var/<span class="built_in">log</span>/messages <span class="comment"># 查询日志的5到10行</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看系统服务的命令"><a href="#查看系统服务的命令" class="headerlink" title="查看系统服务的命令"></a>查看系统服务的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig –list <span class="comment"># 列出所有系统服务   </span></span><br><span class="line">chkconfig –list | grep on <span class="comment"># 列出所有启动的系统服务</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装程序的命令"><a href="#安装程序的命令" class="headerlink" title="安装程序的命令"></a>安装程序的命令</h2><p><code>rpm -qa</code> 查看所有安装的软件包  </p>
+<h2 id="获取帮助的命令"><a href="#获取帮助的命令" class="headerlink" title="获取帮助的命令"></a>获取帮助的命令</h2><p><code>man &lt;命令&gt;</code> 获得命令帮助  </p>
+<h1 id="安装软件方法"><a href="#安装软件方法" class="headerlink" title="安装软件方法"></a>安装软件方法</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装下载工具wget</span></span><br><span class="line">$ yum install wget</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">$ wget https://nodejs.org/dist/v4.4.4/node-v4.4.4-linux-x64.tar.xz</span><br><span class="line">       https://nodejs.org/dist/v4.4.5/node-v4.4.5-linux-x64.tar.xz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试安装</span></span><br><span class="line"><span class="comment"># 没有用到`gzip`压缩去掉`z`参数</span></span><br><span class="line">$ sudo tar --strip-components 1 -xzvf node-v* -C /usr/<span class="built_in">local</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="yum错误"><a href="#yum错误" class="headerlink" title="yum错误"></a>yum错误</h1><p>yum错误：Cannot retrieve repository metadata (repomd.xml) for repository解决方法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/yum.repos.d/</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<p>找到<code>yum.repos.d</code>这个目录，里面有个文件，以<code>.repo</code> 结尾的，例如<code>zl.repo</code>删除<br>然后<code>#yum clean all</code>  </p>
+<h1 id="安装源"><a href="#安装源" class="headerlink" title="安装源"></a>安装源</h1><p><a href="http://dl.fedoraproject.org/pub/" target="_blank" rel="noopener">http://dl.fedoraproject.org/pub/</a><br><a href="http://rpms.remirepo.net/enterprise/" target="_blank" rel="noopener">http://rpms.remirepo.net/enterprise/</a></p>
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p><a href="https://www.centos.org/" target="_blank" rel="noopener">www.centos.org</a></p>
+<p><a href="http://mirror.neu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirror.neu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://centos.ustc.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://centos.ustc.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.163.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.163.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.hust.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.hust.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.zju.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.zju.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.cqu.edu.cn/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.cqu.edu.cn/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.cug.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.cug.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.neusoft.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.neusoft.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.skyshe.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.skyshe.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.aliyun.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.aliyun.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.nwsuaf.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.nwsuaf.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirror.bit.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirror.bit.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirror.lzu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirror.lzu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://ftp.sjtu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://ftp.sjtu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.yun-idc.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.yun-idc.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.pubyun.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.pubyun.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a> </p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/08/26/os-linux-CentOS7更换yum软件镜像源/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2015/08/26/os-linux-CentOS7更换yum软件镜像源/" class="post-title-link" itemprop="url">CentOS7系统更换软件安装源</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00+08:00">2015-08-26</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-29 15:13:28" itemprop="dateModified" datetime="2019-08-29T15:13:28+08:00">2019-08-29</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/08/26/os-linux-CentOS7更换yum软件镜像源/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-CentOS7更换yum软件镜像源/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>1.6k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>阿里云Linux安装镜像源地址：<a href="http://mirrors.aliyun.com/" target="_blank" rel="noopener">http://mirrors.aliyun.com/</a> 。</p>
+<p>第一步：备份你的原镜像文件，以免出错后可以恢复。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/yum.repos.d/CentOS-Base.repo&#123;,.backup&#125;</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br></pre></td></tr></table></figure>
+
+<p>第二步：下载新的CentOS-Base.repo 到/etc/yum.repos.d/</p>
+<p>如果 wget 没有安装，运行下面命令安装 wget 软件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum update --skip-broken</span><br><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
+
+<p>安装完成更新下载源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CentOS 5</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-5.repo</span><br><span class="line"><span class="comment"># CentOS 6</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</span><br><span class="line"><span class="comment"># CentOS 7</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
+
+<p>第三步：运行yum makecache生成缓存</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
+
+<p>yum 安装报错 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">File <span class="string">"/usr/bin/yum"</span>, line 30 except KeyboardInterrupt, e:</span><br></pre></td></tr></table></figure>
+
+<p>解决：修改文件<code>/usr/bin/yum</code>、<code>/usr/libexec/urlgrabber-ext-down</code>头中相应python为<code>#!/usr/bin/python2.7</code></p>
+<h1 id="163官方说明："><a href="#163官方说明：" class="headerlink" title="163官方说明："></a>163官方说明：</h1><p><a href="http://mirrors.163.com/" target="_blank" rel="noopener">http://mirrors.163.com/</a><br><a href="http://mirrors.163.com/.help/centos.html" target="_blank" rel="noopener">http://mirrors.163.com/.help/centos.html</a>  </p>
+<h1 id="中国开源镜像站点"><a href="#中国开源镜像站点" class="headerlink" title="中国开源镜像站点"></a>中国开源镜像站点</h1><ul>
+<li>阿里云开源镜像站：<a href="http://mirrors.aliyun.com/" target="_blank" rel="noopener">http://mirrors.aliyun.com/</a></li>
+<li>网易开源镜像站：<a href="http://mirrors.163.com/" target="_blank" rel="noopener">http://mirrors.163.com/</a></li>
+<li>搜狐开源镜像站：<a href="http://mirrors.sohu.com/" target="_blank" rel="noopener">http://mirrors.sohu.com/</a></li>
+<li>北京交通大学：<a href="http://mirror.bjtu.edu.cn/cn/" target="_blank" rel="noopener">http://mirror.bjtu.edu.cn/cn/</a> &lt;教育网荐&gt;</li>
+<li>兰州大学：<a href="http://mirror.lzu.edu.cn/" target="_blank" rel="noopener">http://mirror.lzu.edu.cn/</a> &lt;西北高校FTP搜索引擎&gt;</li>
+<li>厦门大学：<a href="http://mirrors.xmu.edu.cn/" target="_blank" rel="noopener">http://mirrors.xmu.edu.cn/</a></li>
+<li>上海交通大学：<a href="http://ftp.sjtu.edu.cn/" target="_blank" rel="noopener">http://ftp.sjtu.edu.cn/</a></li>
+<li>清华大学：<a href="http://mirrors.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">http://mirrors.tuna.tsinghua.edu.cn/</a><ul>
+<li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">http://mirrors.6.tuna.tsinghua.edu.cn/</a></li>
+<li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">http://mirrors.4.tuna.tsinghua.edu.cn/</a></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ find ~ -name <span class="string">"*.txt"</span>  -<span class="built_in">print</span>   <span class="comment">#在$HOME中查.txt文件并显示</span></span><br><span class="line">$ find . -name <span class="string">"*.txt"</span>  -<span class="built_in">print</span></span><br><span class="line">$ find . -name <span class="string">"[A-Z]*"</span> -<span class="built_in">print</span>   <span class="comment">#查以大写字母开头的文件</span></span><br><span class="line">$ find /etc -name <span class="string">"host*"</span>  -<span class="built_in">print</span>  <span class="comment">#查以host开头的文件</span></span><br><span class="line"><span class="comment"># 查以两个小写字母和两个数字开头的txt文件</span></span><br><span class="line">$ find .   -name   <span class="string">"[a-z][a-z][0–9][0–9].txt"</span> -<span class="built_in">print</span>   </span><br><span class="line">$ ind . -perm   755   -<span class="built_in">print</span></span><br><span class="line">$ ind . -perm -007   -<span class="built_in">exec</span> ls -l &#123;&#125; \;   <span class="comment">#查所有用户都可读写执行的文件同-perm 777</span></span><br><span class="line">$ ind . -<span class="built_in">type</span> d   -<span class="built_in">print</span></span><br><span class="line">$ ind . !  -<span class="built_in">type</span> d   -<span class="built_in">print</span> </span><br><span class="line">$ ind . -<span class="built_in">type</span> l   -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h1><blockquote>
-<p>类似于dos下的dir命令</p>
-</blockquote>
-<p>ls最常用的参数有三个： -a -l -F。</p>
-<p>ls –a</p>
-<p>Linux上的文件以.开头的文件被系统视为隐藏文件，仅用ls命令是看不到他们的，而用ls -<br>a除了显示一般文件名外，连隐藏文件也会显示出来。<br>ls –l<br>该参数显示更详细的文件信息。<br>ls –F<br>使用这个参数表示在文件的后面多添加表示文件类型的符号，例如*表示可执行，/表示目录，@表示连结文件，这都是因为使用了-F这个参数。但是现在基本上所有的Linux发行版本的ls都已经内建了-F参数，也就是说，不用输入这个参数，我们也能看到各种分辨符号。</p>
-<h1 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h1><blockquote>
-<p>用于切换用户当前工作目录</p>
-</blockquote>
-<p>cd aaa 进入aaa目录<br>cd    命令后不指定目录，会切换到当前用户的home 目录<br>cd ~   作用同cd后不指定目录，切换到当前用户的home 目录<br>cd -   命令后跟一个减号，则会退回到切换前的目录<br>cd ..   返回到当前目录下的上一级目录</p>
-<h1 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h1><blockquote>
-<p>用于显示用户当前工作目录</p>
-</blockquote>
-<h1 id="mkdir-和-rmdir"><a href="#mkdir-和-rmdir" class="headerlink" title="mkdir 和 rmdir"></a>mkdir 和 rmdir</h1><blockquote>
-<p>midir:创建目录 / rmdir:删除目录</p>
-</blockquote>
-<p>两个命令都支持-p参数，对于mkdir命令若指定路径的父目录不存在则一并创建，对于rmdir命令则删除指定路径的所有层次目录，如果文件夹里有内容，则不能用rmdir命令</p>
-<p>如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p 1/2/3</span><br><span class="line">rmdir -p 1/2/3</span><br></pre></td></tr></table></figure>
-
-<h2 id="mkdir循环创建目录"><a href="#mkdir循环创建目录" class="headerlink" title="mkdir循环创建目录"></a>mkdir循环创建目录</h2><p><a href="http://unix.stackexchange.com/questions/636/how-do-i-make-multiple-directories-at-once-in-a-directory" target="_blank" rel="noopener">How do I make multiple directories at once in a directory?</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> char <span class="keyword">in</span> &#123;A..Z&#125;; <span class="keyword">do</span></span><br><span class="line">    mkdir <span class="variable">$char</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> &#123;1..100&#125;; <span class="keyword">do</span></span><br><span class="line">    mkdir <span class="variable">$num</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h1><blockquote>
-<p>复制命令</p>
-</blockquote>
-<ul>
-<li>复制一个文件到另一目录：<code>cp 1.txt ../test2</code></li>
-<li>复制一个文件到本目录并改名：<code>cp 1.txt 2.txt</code></li>
-<li>复制一个文件夹a并改名为b，-r或-R 选项表明递归操作：<code>cp -r a b</code></li>
-<li>同时拷贝多个文件，我们只需要将多个文件用空格隔开。<code>cp file_1.txt file_2.txt file_3.txt /home/pungki/office</code></li>
+</li>
+<li>天津大学：<a href="http://mirror.tju.edu.cn/" target="_blank" rel="noopener">http://mirror.tju.edu.cn/</a></li>
+<li>中国科学技术大学：<a href="http://mirrors.ustc.edu.cn/" target="_blank" rel="noopener">http://mirrors.ustc.edu.cn/</a> <ul>
+<li><a href="http://mirrors4.ustc.edu.cn/" target="_blank" rel="noopener">http://mirrors4.ustc.edu.cn/</a> &lt;教育网、电信&gt;</li>
+<li><a href="http://mirrors6.ustc.edu.cn/" target="_blank" rel="noopener">http://mirrors6.ustc.edu.cn/</a> <ipv6 only></ipv6></li>
 </ul>
-<h1 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h1><blockquote>
-<p>移动命令</p>
-</blockquote>
-<p>将一个文件移动到另一个目录：mv 1.txt ../test1<br>将一个文件在本目录改名：mv 1.txt 2.txt<br>将一个文件一定到另一个目录并改名：mv 1.txt ../test1/2.txt</p>
-<h1 id="rm命令"><a href="#rm命令" class="headerlink" title="rm命令"></a>rm命令</h1><blockquote>
-<p>命令用于删除文件，与dos下的del/erase命令相似，rm命令常用的参数有三个：-i，-r，-f。</p>
-</blockquote>
-<ol>
-<li>–i ：系统在删除文件之前会先询问确认，用户回车之后，文件才会真的被删除。需要注意，linux下删除的文件是不能恢复的，删除之前一定要谨慎确认。</li>
-<li>–r：该参数支持目录删除，功能和rmdir命令相似。</li>
-<li>–f：和-i参数相反，-f表示强制删除</li>
-</ol>
-<h1 id="find"><a href="#find" class="headerlink" title="find"></a>find</h1><blockquote>
-<p>find 查找目录和文件</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">-name   filename   <span class="comment">#查找名为filename的文件</span></span><br><span class="line">-perm              <span class="comment">#按执行权限来查找</span></span><br><span class="line">-user    username  <span class="comment">#按文件属主来查找</span></span><br><span class="line">-group groupname   <span class="comment">#按组来查找</span></span><br><span class="line">-mtime   -n +n     <span class="comment">#按文件更改时间来查找文件，-n指n天以内，+n指n天以前</span></span><br><span class="line">-atime    -n +n    <span class="comment">#按文件访问时间来查GIN: 0px"&gt;</span></span><br><span class="line"></span><br><span class="line">-ctime    -n +n    <span class="comment">#按文件创建时间来查找文件，-n指n天以内，+n指n天以前</span></span><br><span class="line"></span><br><span class="line">-nogroup           <span class="comment">#查无有效属组的文件，即文件的属组在/etc/groups中不存在</span></span><br><span class="line">-nouser            <span class="comment">#查无有效属主的文件，即文件的属主在/etc/passwd中不存</span></span><br><span class="line">-newer   f1 !f2    <span class="comment">#找文件，-n指n天以内，+n指n天以前 </span></span><br><span class="line">-ctime    -n +n    <span class="comment">#按文件创建时间来查找文件，-n指n天以内，+n指n天以前 </span></span><br><span class="line">-nogroup           <span class="comment">#查无有效属组的文件，即文件的属组在/etc/groups中不存在</span></span><br><span class="line">-nouser            <span class="comment">#查无有效属主的文件，即文件的属主在/etc/passwd中不存</span></span><br><span class="line">-newer   f1 !f2    <span class="comment">#查更改时间比f1新但比f2旧的文件</span></span><br><span class="line">-<span class="built_in">type</span>    b/d/c/p   <span class="comment">#查是块设备、目录、字符设备、管道、符号链接、普通文件</span></span><br><span class="line">-size      n[c]    <span class="comment">#查长度为n块[或n字节]的文件</span></span><br><span class="line">-depth             <span class="comment">#使查找在进入子目录前先行查找完本目录</span></span><br><span class="line">-fstype            <span class="comment">#查更改时间比f1新但比f2旧的文件</span></span><br><span class="line">-<span class="built_in">type</span>    b/d/c/p   <span class="comment">#查是块设备、目录、字符设备、管道、符号链接、普通文件</span></span><br><span class="line">-size      n[c]    <span class="comment">#查长度为n块[或n字节]的文件</span></span><br><span class="line">-depth             <span class="comment">#使查找在进入子目录前先行查找完本目录</span></span><br><span class="line">-fstype            <span class="comment">#查位于某一类型文件系统中的文件，这些文件系统类型通常可 在/etc/fstab中找到</span></span><br><span class="line">-mount             <span class="comment">#查文件时不跨越文件系统mount点</span></span><br><span class="line">-follow            <span class="comment">#如果遇到符号链接文件，就跟踪链接所指的文件</span></span><br><span class="line">-cpio %;           <span class="comment">#查位于某一类型文件系统中的文件，这些文件系统类型通常可 在/etc/fstab中找到</span></span><br><span class="line">-mount             <span class="comment">#查文件时不跨越文件系统mount点</span></span><br><span class="line">-follow            <span class="comment">#如果遇到符号链接文件，就跟踪链接所指的文件</span></span><br><span class="line">-cpio              <span class="comment">#对匹配的文件使用cpio命令，将他们备份到磁带设备中</span></span><br><span class="line">-prune             <span class="comment">#忽略某个目录</span></span><br></pre></td></tr></table></figure>
-
-<p>例子： </p>
-<ul>
-<li>~ 代表的是$home目录，</li>
+</li>
+<li>西南大学：<a href="http://linux.swu.edu.cn/swudownload/" target="_blank" rel="noopener">http://linux.swu.edu.cn/swudownload/</a></li>
+<li>泰安移动：<a href="http://mirrors.ta139.com/" target="_blank" rel="noopener">http://mirrors.ta139.com/</a></li>
+<li>东北大学：<a href="http://mirror.neu.edu.cn/" target="_blank" rel="noopener">http://mirror.neu.edu.cn/</a></li>
+<li>浙江大学：<a href="http://mirrors.zju.edu.cn/" target="_blank" rel="noopener">http://mirrors.zju.edu.cn/</a></li>
+<li>东软信息学院：<a href="http://mirrors.neusoft.edu.cn/" target="_blank" rel="noopener">http://mirrors.neusoft.edu.cn/</a></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">$ find . -name <span class="string">'*.DS_Store'</span> -<span class="built_in">type</span> f -delete <span class="comment"># 删除所有.DS_Store文件</span></span><br><span class="line">$ find ~ -name <span class="string">"*.txt"</span> -<span class="built_in">print</span>       <span class="comment"># 在$HOME中查.txt文件并显示</span></span><br><span class="line">$ find . -size +1000000c -<span class="built_in">print</span>     <span class="comment"># 查长度大于1Mb的文件</span></span><br><span class="line">$ find . -size 100c -<span class="built_in">print</span>          <span class="comment"># 查长度为100c的文件</span></span><br><span class="line">$ find . -size +10 -<span class="built_in">print</span>           <span class="comment"># 查长度超过期作废10块的文件（1块=512字节）</span></span><br><span class="line">$ find -name april*                 <span class="comment"># 在当前目录下查找以april开始的文件</span></span><br><span class="line">$ find -name april* fprint file     <span class="comment"># 在当前目录下查找以april开始的文件，并把结果输出到file中</span></span><br><span class="line">$ find -name ap* -o -name may*          <span class="comment"># 查找以ap或may开头的文件</span></span><br><span class="line">$ find /mnt -name tom.txt -ftype vfat   <span class="comment"># 在/mnt下查找名称为tom.txt且文件系统类型为vfat的文件</span></span><br><span class="line">$ find /mnt -name t.txt ! -ftype vfat   <span class="comment"># 在/mnt下查找名称为tom.txt且文件系统类型不为vfat的文件</span></span><br><span class="line">$ find /tmp -name wa* -<span class="built_in">type</span> l           <span class="comment"># 在/tmp下查找名为wa开头且类型为符号链接的文件</span></span><br><span class="line">$ find ~ -mtime -2                  <span class="comment"># 在/home下查最近两天内改动过的文件</span></span><br><span class="line">$ find ~ -atime -1                  <span class="comment"># 查1天之内被存取过的文件</span></span><br><span class="line">$ find ~ -mmin +60                  <span class="comment"># 在/home下查60分钟前改动过的文件</span></span><br><span class="line">$ find ~ -amin +30                  <span class="comment"># 查最近30分钟前被存取过的文件</span></span><br><span class="line">$ find ~ -newer tmp.txt             <span class="comment"># 在/home下查更新时间比tmp.txt近的文件或目录</span></span><br><span class="line">$ find ~ -anewer tmp.txt            <span class="comment"># 在/home下查存取时间比tmp.txt近的文件或目录</span></span><br><span class="line">$ find ~ -used -2                   <span class="comment"># 列出文件或目录被改动过之后，在2日内被存取过的文件或目录</span></span><br><span class="line">$ find ~ -user cnscn                <span class="comment"># 列出/home目录内属于用户cnscn的文件或目录</span></span><br><span class="line">$ find ~ -uid +501                  <span class="comment"># 列出/home目录内用户的识别码大于501的文件或目录</span></span><br><span class="line">$ find ~ -group cnscn               <span class="comment"># 列出/home内组为cnscn的文件或目录</span></span><br><span class="line">$ find ~ -gid 501                   <span class="comment"># 列出/home内组id为501的文件或目录</span></span><br><span class="line">$ find ~ -nouser                    <span class="comment"># 列出/home内不属于本地用户的文件或目录</span></span><br><span class="line">$ find ~ -nogroup                   <span class="comment"># 列出/home内不属于本地组的文件或目录</span></span><br><span class="line">$ find ~ -name tmp.txt -maxdepth 4  <span class="comment"># 列出/home内的tmp.txt 查时深度最多为3层</span></span><br><span class="line">$ find ~ -name tmp.txt -mindepth 3  <span class="comment"># 从第2层开始查</span></span><br><span class="line">$ find ~ -empty                     <span class="comment"># 查找大小为0的文件或空目录</span></span><br><span class="line">$ find ~ -size   +512k              <span class="comment"># 查大于512k的文件</span></span><br><span class="line">$ find ~ -size   -512k              <span class="comment"># 查小于512k的文件</span></span><br><span class="line">$ find ~ -links   +2                <span class="comment"># 查硬连接数大于2的文件或目录</span></span><br><span class="line">$ find ~ -perm 0700                 <span class="comment"># 查权限为700的文件或目录</span></span><br><span class="line">$ find ~ -perm 755 -<span class="built_in">print</span> | more    <span class="comment"># 查找权限为755的文件</span></span><br><span class="line">$ find /tmp -name tmp.txt -<span class="built_in">exec</span> cat &#123;&#125; \;</span><br><span class="line">$ find /tmp -name tmp.txt ok rm &#123;&#125; \;</span><br><span class="line"></span><br><span class="line">$ find / -amin    -10      <span class="comment"># 查找在系统中最后10分钟访问的文件</span></span><br><span class="line">$ find / -atime   -2       <span class="comment"># 查找在系统中最后48小时访问的文件</span></span><br><span class="line">$ find / -empty            <span class="comment"># 查找在系统中为空的文件或者文件夹</span></span><br><span class="line">$ find / -group   cat      <span class="comment"># 查找在系统中属于 groupcat的文件</span></span><br><span class="line">$ find / -mmin   -5        <span class="comment"># 查找在系统中最后5分钟里修改过的文件</span></span><br><span class="line">$ find / -mtime   -1       <span class="comment"># 查找在系统中最后24小时里修改过的文件</span></span><br><span class="line">$ find / -nouser           <span class="comment"># 查找在系统中属于作废用户的文件</span></span><br><span class="line">$ find / -user    fred     <span class="comment"># 查找在系统中属于FRED这个用户的文件</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="du、df命令"><a href="#du、df命令" class="headerlink" title="du、df命令"></a>du、df命令</h1><blockquote>
-<p>du命令可以显示目前的目录所占用的磁盘空间，df命令可以显示目前磁盘剩余空间。</p>
-</blockquote>
-<p>如果du命令不加任何参数，那么返回的是整个磁盘的使用情况，如果后面加了目录的话，就是这个目录在磁盘上的使用情况。</p>
-<ol>
-<li><code>du -hs</code> 指定目录  查看指定目录的总大小</li>
-<li><code>du -hs ./*</code> 查看当前目录下的所有文件夹和文件的大小</li>
-</ol>
-<p>这两个命令都支持-k，-m和-h参数，-k和-m类似，都表示显示单位，一个是k字节一个是兆字节，-h则表示human-readable，即友好可读的显示方式。</p>
-<h1 id="cat命令"><a href="#cat命令" class="headerlink" title="cat命令"></a>cat命令</h1><blockquote>
-<p>cat命令的功能是显示或连结一般的ascii文本文件。cat是concatenate的简写，类似于dos下面的type命令。用法如下：</p>
-</blockquote>
-<ol>
-<li><code>cat file1</code> 显示file1文件内容</li>
-<li><code>cat file1 file2</code> 依次显示file1,file2的内容</li>
-<li><code>cat file1 file2 &gt; file3</code> 把file1, file2的内容结合起来，再“重定向（&gt;）”到file3文件中。</li>
-<li><code>&gt;</code>是右重定向符，表示将左边命令结果当成右边命令的输入，注意：如果右侧文件是一个已存在文件，其原有内容将会被清空，而变成左侧命令输出内容。如果希望以追加方式写入，请改用”&gt;&gt;”重定向符。</li>
-</ol>
-<p>如果”&gt;”左边没有指定文件，如： cat &gt;file1，将会等用户输入，输入完毕后再按[Ctrl]+[c]或[Ctrl]+[d]，就会将用户的输入内容写入file1。</p>
-<h1 id="echo命令"><a href="#echo命令" class="headerlink" title="echo命令"></a>echo命令</h1><blockquote>
-<p>echo命令的使用频率不少于ls和cat，尤其是在shell脚本编写中。<br>语法：echo [-ne][字符串]<br>功能：echo会将输入的字符串送往标准输出，输出的字符串间以空白字符隔开， 并在最后加上换行符。</p>
-</blockquote>
-<p>参数：</p>
-<ul>
-<li><code>-n</code> 显示字串时在最后自动换行</li>
-<li><code>-e</code> 支持以下格式的转义字符， -E 不支持以下格式的转义字符</li>
-<li><code>/a</code> 发出警告声；</li>
-<li><code>/b</code> 删除前一个字符；</li>
-<li><code>/c</code> 最后不加上换行符号；</li>
-<li><code>/f</code> 换行但光标仍旧停留在原来的位置；</li>
-<li><code>/n</code> 换行且光标移至行首；</li>
-<li><code>/r</code> 光标移至行首，但不换行；</li>
-<li><code>/t</code> 插入tab；</li>
-<li><code>/v</code> 与/f相同；</li>
-<li><code>//</code> 插入/字符；</li>
-<li><code>/nnn</code> 插入nnn（八进制）所代表的ASCII字符；</li>
-</ul>
-<p>示例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> <span class="string">"123"</span> <span class="string">"456"</span></span><br><span class="line">123 456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> <span class="string">"123/n456"</span></span><br><span class="line">123/n456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -e <span class="string">"123/n456"</span></span><br><span class="line">123</span><br><span class="line">456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -E <span class="string">"123/n456"</span></span><br><span class="line">123/n456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -E <span class="string">"123///456"</span></span><br><span class="line">123//456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -e <span class="string">"123///456"</span></span><br><span class="line">123/456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -e <span class="string">"123/100456"</span></span><br><span class="line">123@456</span><br></pre></td></tr></table></figure>
-
-<p>注意事项：<br>在Linux使用的bash下，单引号’’和双引号是有区别的，单引号忽略所有的转义，双引号不会忽略以下特殊字符：<br>Dollar signs ($)，Back quotes (`)，Backslashes (/)，Excalmatory mark(!)</p>
-<p>示例如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">kenny@jstest:~&gt; echo &quot;`TEST`&quot;</span><br><span class="line">-bash: TEST: command not found</span><br><span class="line">kenny@jstest:~&gt; echo &apos;`TEST`&apos;</span><br><span class="line">`TEST`</span><br><span class="line">kenny@jstest:~&gt; echo &quot;$TEST&quot;</span><br><span class="line">        </span><br><span class="line">kenny@jstest:~&gt; echo &apos;$TEST&apos;</span><br><span class="line">$TEST</span><br><span class="line">kenny@jstest:~&gt; echo &quot;//TEST&quot;</span><br><span class="line">/TEST</span><br><span class="line">kenny@jstest:~&gt; echo &apos;//TEST&apos;</span><br><span class="line">//TEST</span><br><span class="line">kenny@jstest:~&gt; echo &quot;Hello!&quot;</span><br><span class="line">echo &quot;Hello&quot;</span><br><span class="line">Hello</span><br><span class="line">kenny@jstest:~&gt; echo &apos;Hello!&apos;</span><br><span class="line">Hello!</span><br></pre></td></tr></table></figure>
-
-<h1 id="more，less，clear"><a href="#more，less，clear" class="headerlink" title="more，less，clear"></a>more，less，clear</h1><blockquote>
-<p>more，less命令</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这两个命令用于查看文件，如果一个文件太长，显示内容超出一个屏幕，用cat命令只能看到最后的内容，用more和less两个命令可以分页查看。more指令可以使超过一页的文件内容分页暂停显示，用户按键后才继续显示下一页。而less除了有more的功能以外，还可以用方向键往上或往下的滚动文件，更方便浏览阅读。</span><br></pre></td></tr></table></figure>
-
-<p>less的常用动作命令：</p>
-<ul>
-<li>回车键 向下移动一行；</li>
-<li><code>y</code> 向上移动一行；</li>
-<li>空格键 向下滚动一屏；</li>
-<li><code>b</code> 向上滚动一屏；</li>
-<li><code>d</code> 向下滚动半屏；</li>
-<li><code>h</code> less的帮助；</li>
-<li><code>u</code> 向上洋动半屏；</li>
-<li><code>w</code> 可以指定显示哪行开始显示，是从指定数字的下一行显示；比如指定的是6，那就从第7行显示；</li>
-<li><code>g</code> 跳到第一行；</li>
-<li><code>G</code> 跳到最后一行；</li>
-<li><code>p n%</code> 跳到n%，比如 10%，也就是说比整个文件内容的10%处开始显示；</li>
-<li><code>/pattern</code> 搜索pattern ，比如 /MAIL表示在文件中搜索MAIL单词；</li>
-<li><code>v</code> 调用vi编辑器；</li>
-<li><code>q</code> 退出less</li>
-<li><code>!command</code> 调用SHELL，可以运行命令；比如!ls 显示当前列当前目录下的所有文件；</li>
-<li><code>clear</code>命令 clear命令是用来清除当前屏幕显示的，不需任何参数，和dos下的cls命令功能相同。</li>
-</ul>
-<h1 id="head，tail"><a href="#head，tail" class="headerlink" title="head，tail"></a>head，tail</h1><ul>
-<li>head和tail命令都用于查看文本文件，区别在于： head显示文件的头n行，tail显示文件的尾n行，缺省情况n都为10行。可以通过-n方式指定行数，如：head -100 file和tail -100 file分别表示显示文件头100行和尾100行内容。</li>
-<li>tail -f命令可以实时查看文件新增内容。</li>
-</ul>
-<h1 id="wc命令"><a href="#wc命令" class="headerlink" title="wc命令"></a>wc命令</h1><p>该命令用于统计指定文件中的字节数、字数、行数。该命令各选项含义如下：</p>
-<ul>
-<li>-l 统计行数</li>
-<li>-w 统计字数</li>
-<li>-c 统计字节数</li>
-</ul>
-<p>这些选项可以组合使用。输出列的顺序和数目不受选项的顺序和数目的影响。总是按下述顺序显示并且每项最多一列。<br>行数、字数、字节数、文件名<br>如果命令行中没有文件名，则输出中不出现文件名。</p>
-<p>例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">oracle@hjtest:~&gt; wc 1.txt 2.txt</span><br><span class="line">  460  1679 16353 1.txt</span><br><span class="line">  300  1095 10665 2.txt</span><br><span class="line">  760  2774 27018 总用量</span><br><span class="line">oracle@hjtest:~&gt; wc -l 1.txt</span><br><span class="line">460 1.txt</span><br></pre></td></tr></table></figure>
-
-<p>缺省参数为-lcw，即wc file1 file2命令的执行结果与上面一样。</p>
-<h1 id="grep-命令"><a href="#grep-命令" class="headerlink" title="grep 命令"></a>grep 命令</h1><blockquote>
-<p>grep是（global search regular expression(RE) and print out the line的缩写，用于从文件面搜索包含指定模式的行并打印出来，它是一种强大的文本搜索工具，支持使用正则表达式搜索文本。grep的工作方式是这样的，它在一个或多个文件中搜索字符串模板。如果模板包括空格，则必须被””引用，模板后的所有字符串被看作文件名。搜索结果送到屏幕，不影响原文件内容。</p>
-</blockquote>
-<p>grep可用于shell脚本，因为grep通过返回一个状态值来说明搜索的状态，如果模板搜索成功，则返回0，如果搜索不成功，则返回1，如果搜索的文件不存在，则返回2。我们利用这些返回值就可进行一些自动化的文本处理工作。<br>示例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l | grep &apos;^a&apos;</span><br><span class="line">通过管道过滤ls -l输出的内容，只显示以a开头的行。</span><br><span class="line">$ grep &apos;test&apos; d*</span><br><span class="line">显示所有以d开头的文件中包含test的行。</span><br><span class="line">$ grep &apos;test&apos; aa bb cc</span><br><span class="line">显示在aa，bb，cc文件中匹配test的行。</span><br><span class="line">$ grep &apos;[a-z]/&#123;5/&#125;&apos; aa</span><br><span class="line">显示所有包含每个字符串至少有5个连续小写字符的字符串的行。</span><br><span class="line">$ grep &apos;w/(es/)t.*/1&apos; aa</span><br><span class="line">如果west被匹配，则es就被存储到内存中，并标记为1，然后搜索任意个字符（.*），这些字符后面紧跟着另外一个es（/1），找到就显示该行。如果用egrep或grep -E，就不用&quot;/&quot;号进行转义，直接写成&apos;w(es)t.*/1&apos;就可以了。</span><br></pre></td></tr></table></figure>
-
-<h1 id="man，logout命令"><a href="#man，logout命令" class="headerlink" title="man，logout命令"></a>man，logout命令</h1><blockquote>
-<p>man命令，man是manual的缩写，相当于Unix/Linux的联机Help，每个系统命令和调用都有非常详细的说明，绝大多数都是英文。如：man ls即是查看ls命令的使用说明，一般还有另一种方法用来查看帮助，如：ls –help，这种方式绝大多数命令都支持。</p>
-</blockquote>
-<blockquote>
-<p>logout命令，该命令用于退出系统，与login命令对应。</p>
-</blockquote>
-<h1 id="管道和xargs"><a href="#管道和xargs" class="headerlink" title="管道和xargs"></a>管道和xargs</h1><h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2><p>利用Linux所提供的管道符“|”将两个命令隔开，管道符左边命令的输出就会作为管道符右边命令的输入。连续使用管道意味着第一个命令的输出会作为第二个命令的输入，第二个命令的输出又会作为第三个命令的输入，依此类推。<br>注意：管道左边命令的输入作为管道右边命令的输入(命令的输入是一定的)，不是参数，并不是所有命令都支持管道<br>例子：ls | grep a  查看当前目录下名称包含a的文件或文件夹</p>
-<h2 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a>xargs</h2><p>大多数 Linux 命令都会产生输出：文件列表、字符串列表等。但如果要使用其他某个命令并将前一个命令的输出作为参数该怎么办？例如，file 命令显示文件类型（可执行文件、ascii 文本等）；你能处理输出，使其仅显示文件名，目前你希望将这些名称传递给 ls -l 命令以查看时间戳记。xargs 命令就是用来完成此项工作的。<br>注意：find命令把匹配到的文件传递给xargs命令，而xargs命令每次只获取一部分文件而不是全部，不像-exec选项那样。这样它可以先处理最先获取的一部分文件，然后是下一批，并如此继续下去</p>
-<p>例子：</p>
-<ol>
-<li>在整个系统中查找内存信息转储文件(core dump) ，然后把结果保存到/tmp/core.log 文件中：</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ find / -name &quot;core&quot; -print | xargs echo &quot;&quot; &gt;/tmp/core.log</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>当一个目录下文件太多时，直接用rm * 命令会包参数过长,用如下方法可以全部删除</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ls | xargs rm</span><br></pre></td></tr></table></figure>
-
-<h1 id="basename-和-dirname"><a href="#basename-和-dirname" class="headerlink" title="basename 和 dirname"></a>basename 和 dirname</h1><p>basename用于查看文件不含路径的名字，dirname则用于查看文件路径，使用效果我们测试一下便知：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; basename /home/hj/1.txt</span><br><span class="line">1.txt</span><br><span class="line">&gt; dirname  /home/hj/1.txt</span><br><span class="line">/home/hj</span><br><span class="line">&gt; basename 1.txt</span><br><span class="line">1.txt</span><br><span class="line">&gt; dirname 1.txt</span><br><span class="line">.</span><br></pre></td></tr></table></figure>
-
 
         
       
@@ -1580,327 +1621,6 @@ $ git archive</code></pre>
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2014/07/29/lang-python-Python-100-Days-39-40-NoSQL入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2014/07/29/lang-python-Python-100-Days-39-40-NoSQL入门/" class="post-title-link" itemprop="url">39-40.NoSQL入门</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2014-07-29 09:10:00" itemprop="dateCreated datePublished" datetime="2014-07-29T09:10:00+08:00">2014-07-29</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-05 14:19:15" itemprop="dateModified" datetime="2019-09-05T14:19:15+08:00">2019-09-05</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/lang/" itemprop="url" rel="index"><span itemprop="name">lang</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2014/07/29/lang-python-Python-100-Days-39-40-NoSQL入门/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2014/07/29/lang-python-Python-100-Days-39-40-NoSQL入门/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>15k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>13 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="NoSQL入门"><a href="#NoSQL入门" class="headerlink" title="NoSQL入门"></a>NoSQL入门</h2><h3 id="NoSQL概述"><a href="#NoSQL概述" class="headerlink" title="NoSQL概述"></a>NoSQL概述</h3><p>如今，大多数的计算机系统（包括服务器、PC、移动设备等）都会产生庞大的数据量。其实，早在2012年的时候，全世界每天产生的数据量就达到了2.5EB（艾字节，$$1EB\approx10^{18}B$$）。这些数据有很大一部分是由关系型数据库来存储和管理的。 早在1970年，E.F.Codd发表了论述关系型数据库的著名论文“<em>A relational model of data for large shared data banks</em>”，这篇文章奠定了关系型数据库的基础并在接下来的数十年时间内产生了深远的影响。实践证明，关系型数据库是实现数据持久化最为重要的方式，它也是大多数应用在选择持久化方案时的首选技术。</p>
-<p>NoSQL是一项全新的数据库革命性运动，虽然它的历史可以追溯到1998年，但是NoSQL真正深入人心并得到广泛的应用是在进入大数据时候以后，业界普遍认为NoSQL是更适合大数据存储的技术方案，这才使得NoSQL的发展达到了前所未有的高度。2012年《纽约时报》的一篇专栏中写到，大数据时代已经降临，在商业、经济及其他领域中，决策将不再基于经验和直觉而是基于数据和分析而作出。事实上，在天文学、气象学、基因组学、生物学、社会学、互联网搜索引擎、金融、医疗、社交网络、电子商务等诸多领域，由于数据过于密集和庞大，在数据的分析和处理上也遇到了前所未有的限制和阻碍，这一切都使得对大数据处理技术的研究被提升到了新的高度，也使得各种NoSQL的技术方案进入到了公众的视野。</p>
-<p>NoSQL数据库按照其存储类型可以大致分为以下几类：</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>部分代表</th>
-<th>特点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>列族数据库</td>
-<td>HBase<br>Cassandra<br>Hypertable</td>
-<td>顾名思义是按列存储数据的。最大的特点是方便存储结构化和半结构化数据，方便做数据压缩，对针对某一列或者某几列的查询有非常大的I/O优势，适合于批量数据处理和即时查询。</td>
-</tr>
-<tr>
-<td>文档数据库</td>
-<td>MongoDB<br>CouchDB<br>ElasticSearch</td>
-<td>文档数据库一般用类JSON格式存储数据，存储的内容是文档型的。这样也就有机会对某些字段建立索引，实现关系数据库的某些功能，但不提供对参照完整性和分布事务的支持。</td>
-</tr>
-<tr>
-<td>KV数据库</td>
-<td>DynamoDB<br>Redis<br>LevelDB</td>
-<td>可以通过key快速查询到其value，有基于内存和基于磁盘两种实现方案。</td>
-</tr>
-<tr>
-<td>图数据库</td>
-<td>Neo4J<br>FlockDB<br>JanusGraph</td>
-<td>使用图结构进行语义查询的数据库，它使用节点、边和属性来表示和存储数据。图数据库从设计上，就可以简单快速的检索难以在关系系统中建模的复杂层次结构。</td>
-</tr>
-<tr>
-<td>对象数据库</td>
-<td>db4o<br>Versant</td>
-<td>通过类似面向对象语言的语法操作数据库，通过对象的方式存取数据。</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>说明：想了解更多的NoSQL数据库，可以访问<a href="http://nosql-database.org/" target="_blank" rel="noopener">http://nosql-database.org/</a>。</p>
-</blockquote>
-<h3 id="Redis概述"><a href="#Redis概述" class="headerlink" title="Redis概述"></a>Redis概述</h3><p>Redis是一种基于键值对的NoSQL数据库，它提供了对多种数据类型（字符串、哈希、列表、集合、有序集合、位图等）的支持，能够满足很多应用场景的需求。Redis将数据放在内存中，因此读写性能是非常惊人的。与此同时，Redis也提供了持久化机制，能够将内存中的数据保存到硬盘上，在发生意外状况时数据也不会丢掉。此外，Redis还支持键过期、地理信息运算、发布订阅、事务、管道、Lua脚本扩展等功能，总而言之，Redis的功能和性能都非常强大，如果项目中要实现高速缓存和消息队列这样的服务，直接交给Redis就可以了。目前，国内外很多著名的企业和商业项目都使用了Redis，包括：Twitter、Github、StackOverflow、新浪微博、百度、优酷土豆、美团、小米、唯品会等。</p>
-<h4 id="Redis简介"><a href="#Redis简介" class="headerlink" title="Redis简介"></a>Redis简介</h4><p>2008年，一个名为Salvatore Sanfilippo的程序员为他开发的LLOOGG项目定制了专属的数据库（因为之前他无论怎样优化MySQL，系统性能已经无法再提升了），这项工作的成果就是Redis的初始版本。后来他将Redis的代码放到了全球最大的代码托管平台<a href="https://github.com/antirez/redis" target="_blank" rel="noopener">Github</a>，从那以后，Redis引发了大量开发者的好评和关注，继而有数百人参与了Redis的开发和维护，这使得Redis的功能越来越强大和性能越来越好。</p>
-<p>Redis是REmote DIctionary Server的缩写，它是一个用ANSI C编写的高性能的key-value存储系统，与其他的key-value存储系统相比，Redis有以下一些特点（也是优点）：</p>
-<ul>
-<li>Redis的读写性能极高，并且有丰富的特性（发布/订阅、事务、通知等）。</li>
-<li>Redis支持数据的持久化（RDB和AOF两种方式），可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。</li>
-<li>Redis支持多种数据类型，包括：string、hash、list、set，zset、bitmap、hyperloglog等。</li>
-<li>Redis支持主从复制（实现读写分析）以及哨兵模式（监控master是否宕机并自动调整配置）。</li>
-<li>Redis支持分布式集群，可以很容易的通过水平扩展来提升系统的整体性能。</li>
-<li>Redis基于TCP提供的可靠传输服务进行通信，很多编程语言都提供了Redis客户端支持。</li>
-</ul>
-<h4 id="Redis的应用场景"><a href="#Redis的应用场景" class="headerlink" title="Redis的应用场景"></a>Redis的应用场景</h4><ol>
-<li>高速缓存  - 将不常变化但又经常被访问的热点数据放到Redis数据库中，可以大大降低关系型数据库的压力，从而提升系统的响应性能。</li>
-<li>排行榜 - 很多网站都有排行榜功能，利用Redis中的列表和有序集合可以非常方便的构造各种排行榜系统。</li>
-<li>商品秒杀/投票点赞 - Redis提供了对计数操作的支持，网站上常见的秒杀、点赞等功能都可以利用Redis的计数器通过+1或-1的操作来实现，从而避免了使用关系型数据的<code>update</code>操作。</li>
-<li>分布式锁 - 利用Redis可以跨多台服务器实现分布式锁（类似于线程锁，但是能够被多台机器上的多个线程或进程共享）的功能，用于实现一个阻塞式操作。</li>
-<li>消息队列 - 消息队列和高速缓存一样，是一个大型网站不可缺少的基础服务，可以实现业务解耦和非实时业务削峰等特性，这些我们都会在后面的项目中为大家展示。</li>
-</ol>
-<h4 id="Redis的安装和配置"><a href="#Redis的安装和配置" class="headerlink" title="Redis的安装和配置"></a>Redis的安装和配置</h4><p>可以使用Linux系统的包管理工具（如yum）来安装Redis，也可以通过在Redis的<a href="https://redis.io/" target="_blank" rel="noopener">官方网站</a>下载Redis的源代码，解压缩解归档之后通过make工具对源代码进行构建并安装，在更新这篇文档时，Redis官方提供的最新稳定版本是<a href="http://download.redis.io/releases/redis-5.0.4.tar.gz" target="_blank" rel="noopener">Redis 5.0.4</a>。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-5.0.4.tar.gz</span><br><span class="line">gunzip redis-5.0.4.tar.gz</span><br><span class="line">tar -xvf redis-5.0.4.tar</span><br><span class="line">cd redis-5.0.4</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-
-<p>在redis源代码目录下有一个名为redis.conf的配置文件，我们可以先查看一下该文件。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim redis.conf</span><br></pre></td></tr></table></figure>
-
-<p>配置将Redis服务绑定到指定的IP地址和端口。</p>
-<p><img src="/images/Python100/Day36-40/redis-bind-and-port.png" alt></p>
-<p>配置底层有多少个数据库。</p>
-<p><img src="/images/Python100/Day36-40/redis-databases.png" alt></p>
-<p>配置Redis的持久化机制 - RDB。</p>
-<p><img src="/images/Python100/Day36-40/redis-rdb-1.png" alt></p>
-<p><img src="/images/Python100/Day36-40/redis-rdb-3.png" alt></p>
-<p>配置Redis的持久化机制 - AOF。</p>
-<p><img src="/images/Python100/Day36-40/redis-aof.png" alt></p>
-<p>配置访问Redis服务器的验证口令。</p>
-<p><img src="/images/Python100/Day36-40/redis-security.png" alt></p>
-<p>配置Redis的主从复制，通过主从复制可以实现读写分离。</p>
-<p><img src="/images/Python100/Day36-40/redis-replication.png" alt></p>
-<p>配置慢查询。</p>
-<p><img src="/images/Python100/Day36-40/redis-slow-logs.png" alt></p>
-<p>上面这些内容就是Redis的基本配置，如果你对上面的内容感到困惑也没有关系，先把Redis用起来再回头去推敲这些内容就行了。如果想找一些参考书，<a href="https://item.jd.com/12121730.html" target="_blank" rel="noopener">《Redis开发与运维》</a>是一本不错的入门读物，而<a href="https://item.jd.com/11791607.html" target="_blank" rel="noopener">《Redis实战》</a>是不错的进阶读物。</p>
-<h4 id="Redis的服务器和客户端"><a href="#Redis的服务器和客户端" class="headerlink" title="Redis的服务器和客户端"></a>Redis的服务器和客户端</h4><p>接下来启动Redis服务器，下面的方式将以默认的配置启动Redis服务。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server</span><br></pre></td></tr></table></figure>
-
-<p>如果希望修改Redis的配置（如端口、认证口令、持久化方式等），可以通过下面两种方式。</p>
-<p>方式一：通过参数指定认证口令和AOF持久化方式。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server --requirepass 1qaz2wsx --appendonly yes</span><br></pre></td></tr></table></figure>
-
-<p>方式二：通过指定的配置文件来修改Redis的配置。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server /root/redis-5.0.4/redis.conf</span><br></pre></td></tr></table></figure>
-
-<p>下面我们使用第一种方式来启动Redis并将其置于后台运行，将Redis产生的输出重定向到名为redis.log的文件中。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server --requirepass 1qaz2wsx &gt; redis.log &amp;</span><br></pre></td></tr></table></figure>
-
-<p>可以通过ps或者netstat来检查Redis服务器是否启动成功。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep redis-server</span><br><span class="line">netstat -nap | grep redis-server</span><br></pre></td></tr></table></figure>
-
-<p>接下来，我们尝试用Redis客户端去连接服务器。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis-cli</span><br><span class="line">127.0.0.1:6379&gt; auth 1qaz2wsx</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; ping</span><br><span class="line">PONG</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Redis有着非常丰富的数据类型，也有很多的命令来操作这些数据，具体的内容可以查看<a href="http://redisdoc.com/" target="_blank" rel="noopener">Redis命令参考</a>，在这个网站上，除了Redis的命令参考，还有Redis的详细文档，其中包括了通知、事务、主从复制、持久化、哨兵、集群等内容。</p>
-<p><img src="/images/Python100/Day36-40/redis-data-types.png" alt></p>
-<blockquote>
-<p>说明：上面的插图来自付磊和张益军先生编著的《Redis开发与运维》一书。</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set username admin</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get username</span><br><span class="line">"admin"</span><br><span class="line">127.0.0.1:6379&gt; set password "123456" ex 300</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get password</span><br><span class="line">"123456"</span><br><span class="line">127.0.0.1:6379&gt; ttl username</span><br><span class="line">(integer) -1</span><br><span class="line">127.0.0.1:6379&gt; ttl password</span><br><span class="line">(integer) 286</span><br><span class="line">127.0.0.1:6379&gt; hset stu1 name hao</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; hset stu1 age 38</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hset stu1 gender male</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hgetall stu1</span><br><span class="line">1) "name"</span><br><span class="line">2) "hao"</span><br><span class="line">3) "age"</span><br><span class="line">4) "38"</span><br><span class="line">5) "gender"</span><br><span class="line">6) "male"</span><br><span class="line">127.0.0.1:6379&gt; hvals stu1</span><br><span class="line">1) "hao"</span><br><span class="line">2) "38"</span><br><span class="line">3) "male"</span><br><span class="line">127.0.0.1:6379&gt; hmset stu2 name wang age 18 gender female tel 13566778899</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; hgetall stu2</span><br><span class="line">1) "name"</span><br><span class="line">2) "wang"</span><br><span class="line">3) "age"</span><br><span class="line">4) "18"</span><br><span class="line">5) "gender"</span><br><span class="line">6) "female"</span><br><span class="line">7) "tel"</span><br><span class="line">8) "13566778899"</span><br><span class="line">127.0.0.1:6379&gt; lpush nums 1 2 3 4 5</span><br><span class="line">(integer) 5</span><br><span class="line">127.0.0.1:6379&gt; lrange nums 0 -1</span><br><span class="line">1) "5"</span><br><span class="line">2) "4"</span><br><span class="line">3) "3"</span><br><span class="line">4) "2"</span><br><span class="line">5) "1"</span><br><span class="line">127.0.0.1:6379&gt; lpop nums</span><br><span class="line">"5"</span><br><span class="line">127.0.0.1:6379&gt; lpop nums</span><br><span class="line">"4"</span><br><span class="line">127.0.0.1:6379&gt; rpop nums</span><br><span class="line">"1"</span><br><span class="line">127.0.0.1:6379&gt; rpop nums</span><br><span class="line">"2"</span><br><span class="line">127.0.0.1:6379&gt; sadd fruits apple banana orange apple grape grape</span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6379&gt; scard fruits</span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6379&gt; smembers fruits</span><br><span class="line">1) "grape"</span><br><span class="line">2) "orange"</span><br><span class="line">3) "banana"</span><br><span class="line">4) "apple"</span><br><span class="line">127.0.0.1:6379&gt; sismember fruits apple</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sismember fruits durian</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; sadd nums1 1 2 3 4 5</span><br><span class="line">(integer) 5</span><br><span class="line">127.0.0.1:6379&gt; sadd nums2 2 4 6 8</span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6379&gt; sinter nums1 nums2</span><br><span class="line">1) "2"</span><br><span class="line">2) "4"</span><br><span class="line">127.0.0.1:6379&gt; sunion nums1 nums2</span><br><span class="line">1) "1"</span><br><span class="line">2) "2"</span><br><span class="line">3) "3"</span><br><span class="line">4) "4"</span><br><span class="line">5) "5"</span><br><span class="line">6) "6"</span><br><span class="line">7) "8"</span><br><span class="line">127.0.0.1:6379&gt; sdiff nums1 nums2</span><br><span class="line">1) "1"</span><br><span class="line">2) "3"</span><br><span class="line">3) "5"</span><br><span class="line">127.0.0.1:6379&gt; zadd topsinger 5234 zhangxy 1978 chenyx 2235 zhoujl 3520 xuezq</span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6379&gt; zrange topsinger 0 -1 withscores</span><br><span class="line">1) "chenyx"</span><br><span class="line">2) "1978"</span><br><span class="line">3) "zhoujl"</span><br><span class="line">4) "2235"</span><br><span class="line">5) "xuezq"</span><br><span class="line">6) "3520"</span><br><span class="line">7) "zhangxy"</span><br><span class="line">8) "5234"</span><br><span class="line">127.0.0.1:6379&gt; zrevrange topsinger 0 -1</span><br><span class="line">1) "zhangxy"</span><br><span class="line">2) "xuezq"</span><br><span class="line">3) "zhoujl"</span><br><span class="line">4) "chenyx"</span><br><span class="line">127.0.0.1:6379&gt; geoadd pois 116.39738549206541 39.90862689286386 tiananmen 116.27172936413572 39.99</span><br><span class="line">135172904494 yiheyuan 117.27766503308104 40.65332064313784 gubeishuizhen</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6379&gt; geodist pois tiananmen gubeishuizhen km</span><br><span class="line">"111.5333"</span><br><span class="line">127.0.0.1:6379&gt; geodist pois tiananmen yiheyuan km</span><br><span class="line">"14.1230"</span><br><span class="line">127.0.0.1:6379&gt; georadius pois 116.86499108288572 40.40149669363615 50 km withdist</span><br><span class="line">1) 1) "gubeishuizhen"</span><br><span class="line">   2) "44.7408"</span><br></pre></td></tr></table></figure>
-
-<h4 id="在Python程序中使用Redis"><a href="#在Python程序中使用Redis" class="headerlink" title="在Python程序中使用Redis"></a>在Python程序中使用Redis</h4><p>可以使用pip安装redis模块。redis模块的核心是名为Redis的类，该类的对象代表一个Redis客户端，通过该客户端可以向Redis服务器发送命令并获取执行的结果。上面我们在Redis客户端中使用的命令基本上就是Redis对象可以接收的消息，所以如果了解了Redis的命令就可以在Python中玩转Redis。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install redis</span><br><span class="line">python3</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> redis</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client = redis.Redis(host=<span class="string">'1.2.3.4'</span>, port=<span class="number">6379</span>, password=<span class="string">'1qaz2wsx'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.set(<span class="string">'username'</span>, <span class="string">'admin'</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.hset(<span class="string">'student'</span>, <span class="string">'name'</span>, <span class="string">'hao'</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.hset(<span class="string">'student'</span>, <span class="string">'age'</span>, <span class="number">38</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.keys(<span class="string">'*'</span>)</span><br><span class="line">[<span class="string">b'username'</span>, <span class="string">b'student'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.get(<span class="string">'username'</span>)</span><br><span class="line"><span class="string">b'admin'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.hgetall(<span class="string">'student'</span>)</span><br><span class="line">&#123;<span class="string">b'name'</span>: <span class="string">b'hao'</span>, <span class="string">b'age'</span>: <span class="string">b'38'</span>&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="MongoDB概述"><a href="#MongoDB概述" class="headerlink" title="MongoDB概述"></a>MongoDB概述</h3><h4 id="MongoDB简介"><a href="#MongoDB简介" class="headerlink" title="MongoDB简介"></a>MongoDB简介</h4><p>MongoDB是2009年问世的一个面向文档的数据库管理系统，由C++语言编写，旨在为Web应用提供可扩展的高性能数据存储解决方案。虽然在划分类别的时候后，MongoDB被认为是NoSQL的产品，但是它更像一个介于关系数据库和非关系数据库之间的产品，在非关系数据库中它功能最丰富，最像关系数据库。</p>
-<p>MongoDB将数据存储为一个文档，一个文档由一系列的“键值对”组成，其文档类似于JSON对象，但是MongoDB对JSON进行了二进制处理（能够更快的定位key和value），因此其文档的存储格式称为BSON。关于JSON和BSON的差别大家可以看看MongoDB官方网站的文章<a href="https://www.mongodb.com/json-and-bson" target="_blank" rel="noopener">《JSON and BSON》</a>。</p>
-<p>目前，MongoDB已经提供了对Windows、MacOS、Linux、Solaris等多个平台的支持，而且也提供了多种开发语言的驱动程序，Python当然是其中之一。</p>
-<h4 id="MongoDB的安装和配置"><a href="#MongoDB的安装和配置" class="headerlink" title="MongoDB的安装和配置"></a>MongoDB的安装和配置</h4><p>可以从MongoDB的<a href="https://www.mongodb.com/download-center#community" target="_blank" rel="noopener">官方下载链接</a>下载MongoDB，官方为Windows系统提供了一个Installer程序，而Linux和MacOS则提供了压缩文件。下面简单说一下Linux系统如何安装和配置MongoDB。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-amazon-3.6.5.tgz</span><br><span class="line">gunzip mongodb-linux-x86_64-amazon-3.6.5.tgz</span><br><span class="line">mkdir mongodb-3.6.5</span><br><span class="line">tar -xvf mongodb-linux-x86_64-amazon-3.6.5.tar --strip-components 1 -C mongodb-3.6.5/</span><br><span class="line">export PATH=$PATH:~/mongodb-3.6.5/bin</span><br><span class="line">mkdir -p /data/db</span><br><span class="line">mongod --bind_ip 172.18.61.250</span><br><span class="line"></span><br><span class="line">2018-06-03T18:03:28.232+0800 I CONTROL  [initandlisten] MongoDB starting : pid=1163 port=27017 dbpath=/data/db 64-bit host=iZwz97tbgo9lkabnat2lo8Z</span><br><span class="line">2018-06-03T18:03:28.232+0800 I CONTROL  [initandlisten] db version v3.6.5</span><br><span class="line">2018-06-03T18:03:28.232+0800 I CONTROL  [initandlisten] git version: a20ecd3e3a174162052ff99913bc2ca9a839d618</span><br><span class="line">2018-06-03T18:03:28.232+0800 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.0-fips29 Mar 2010</span><br><span class="line">...</span><br><span class="line">2018-06-03T18:03:28.945+0800 I NETWORK  [initandlisten] waiting for connections on port 27017</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>说明：上面的操作中，export命令是设置PATH环境变量，这样可以在任意路径下执行mongod来启动MongoDB服务器。MongoDB默认保存数据的路径是/data/db目录，为此要提前创建该目录。此外，在使用mongod启动MongoDB服务器时，–bind_ip参数用来将服务绑定到指定的IP地址，也可以用–port参数来指定端口，默认端口为27017。</p>
-</blockquote>
-<h4 id="MongoDB基本概念"><a href="#MongoDB基本概念" class="headerlink" title="MongoDB基本概念"></a>MongoDB基本概念</h4><p>我们通过与关系型数据库进行对照的方式来说明MongoDB中的一些概念。</p>
-<table>
-<thead>
-<tr>
-<th>SQL</th>
-<th>MongoDB</th>
-<th>解释（SQL/MongoDB）</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>database</td>
-<td>database</td>
-<td>数据库/数据库</td>
-</tr>
-<tr>
-<td>table</td>
-<td>collection</td>
-<td>二维表/集合</td>
-</tr>
-<tr>
-<td>row</td>
-<td>document</td>
-<td>记录（行）/文档</td>
-</tr>
-<tr>
-<td>column</td>
-<td>field</td>
-<td>字段（列）/域</td>
-</tr>
-<tr>
-<td>index</td>
-<td>index</td>
-<td>索引/索引</td>
-</tr>
-<tr>
-<td>table joins</td>
-<td>—</td>
-<td>表连接/嵌套文档</td>
-</tr>
-<tr>
-<td>primary key</td>
-<td>primary key</td>
-<td>主键/主键（<code>_id</code>字段）</td>
-</tr>
-</tbody></table>
-<h4 id="通过Shell操作MongoDB"><a href="#通过Shell操作MongoDB" class="headerlink" title="通过Shell操作MongoDB"></a>通过Shell操作MongoDB</h4><p>启动服务器后可以使用交互式环境跟服务器通信，如下所示。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mongo --host 172.18.61.250</span><br><span class="line"></span><br><span class="line">MongoDB shell version v3.6.5</span><br><span class="line">connecting to: mongodb://172.18.61.250:27017/</span><br></pre></td></tr></table></figure>
-
-<ol>
-<li><p>查看、创建和删除数据库。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">// 显示所有数据库</span></span><br><span class="line">&gt; show dbs</span><br><span class="line">admin   <span class="number">0.000</span>GB</span><br><span class="line">config  <span class="number">0.000</span>GB</span><br><span class="line">local   <span class="number">0.000</span>GB</span><br><span class="line">&gt; <span class="comment">// 创建并切换到school数据库</span></span><br><span class="line">&gt; use school</span><br><span class="line">switched to db school</span><br><span class="line">&gt; <span class="comment">// 删除当前数据库</span></span><br><span class="line">&gt; db.dropDatabase()</span><br><span class="line">&#123; <span class="string">"ok"</span> : <span class="number">1</span> &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>创建、删除和查看集合。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">// 创建并切换到school数据库</span></span><br><span class="line">&gt; use school</span><br><span class="line">switched to db school</span><br><span class="line">&gt; <span class="comment">// 创建colleges集合</span></span><br><span class="line">&gt; db.createCollection(<span class="string">'colleges'</span>)</span><br><span class="line">&#123; <span class="string">"ok"</span> : <span class="number">1</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 创建students集合</span></span><br><span class="line">&gt; db.createCollection(<span class="string">'students'</span>)</span><br><span class="line">&#123; <span class="string">"ok"</span> : <span class="number">1</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 查看所有集合</span></span><br><span class="line">&gt; show collections</span><br><span class="line">colleges</span><br><span class="line">students</span><br><span class="line">&gt; <span class="comment">// 删除colleges集合</span></span><br><span class="line">&gt; db.colleges.drop()</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>说明：在MongoDB中插入文档时如果集合不存在会自动创建集合，所以也可以按照下面的方式通过创建文档来创建集合。</p>
-</blockquote>
-</li>
-<li><p>文档的CRUD操作。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">// 向students集合插入文档</span></span><br><span class="line">&gt; db.students.insert(&#123;<span class="attr">stuid</span>: <span class="number">1001</span>, <span class="attr">name</span>: <span class="string">'骆昊'</span>, <span class="attr">age</span>: <span class="number">38</span>&#125;)</span><br><span class="line">WriteResult(&#123; <span class="string">"nInserted"</span> : <span class="number">1</span> &#125;)</span><br><span class="line">&gt; <span class="comment">// 向students集合插入文档</span></span><br><span class="line">&gt; db.students.save(&#123;<span class="attr">stuid</span>: <span class="number">1002</span>, <span class="attr">name</span>: <span class="string">'王大锤'</span>, <span class="attr">tel</span>: <span class="string">'13012345678'</span>, <span class="attr">gender</span>: <span class="string">'男'</span>&#125;)</span><br><span class="line">WriteResult(&#123; <span class="string">"nInserted"</span> : <span class="number">1</span> &#125;)</span><br><span class="line">&gt; <span class="comment">// 查看所有文档</span></span><br><span class="line">&gt; db.students.find()</span><br><span class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c72e006ad854460ee70b"</span>), <span class="string">"stuid"</span> : <span class="number">1001</span>, <span class="string">"name"</span> : <span class="string">"骆昊"</span>, <span class="string">"age"</span> : <span class="number">38</span> &#125;</span><br><span class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c790006ad854460ee70c"</span>), <span class="string">"stuid"</span> : <span class="number">1002</span>, <span class="string">"name"</span> : <span class="string">"王大锤"</span>, <span class="string">"tel"</span> : <span class="string">"13012345678"</span>, <span class="string">"gender"</span> : <span class="string">"男"</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 更新stuid为1001的文档</span></span><br><span class="line">&gt; db.students.update(&#123;<span class="attr">stuid</span>: <span class="number">1001</span>&#125;, &#123;<span class="string">'$set'</span>: &#123;<span class="attr">tel</span>: <span class="string">'13566778899'</span>, <span class="attr">gender</span>: <span class="string">'男'</span>&#125;&#125;)</span><br><span class="line">WriteResult(&#123; <span class="string">"nMatched"</span> : <span class="number">1</span>, <span class="string">"nUpserted"</span> : <span class="number">0</span>, <span class="string">"nModified"</span> : <span class="number">1</span> &#125;)</span><br><span class="line">&gt; <span class="comment">// 插入或更新stuid为1003的文档</span></span><br><span class="line">&gt; db.students.update(&#123;<span class="attr">stuid</span>: <span class="number">1003</span>&#125;, &#123;<span class="string">'$set'</span>: &#123;<span class="attr">name</span>: <span class="string">'白元芳'</span>, <span class="attr">tel</span>: <span class="string">'13022223333'</span>, <span class="attr">gender</span>: <span class="string">'男'</span>&#125;&#125;,  upsert=<span class="literal">true</span>)</span><br><span class="line">WriteResult(&#123;</span><br><span class="line">        <span class="string">"nMatched"</span> : <span class="number">0</span>,</span><br><span class="line">        <span class="string">"nUpserted"</span> : <span class="number">1</span>,</span><br><span class="line">        <span class="string">"nModified"</span> : <span class="number">0</span>,</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c92dd185894d7283efab"</span>)</span><br><span class="line">&#125;)</span><br><span class="line">&gt; <span class="comment">// 查询所有文档</span></span><br><span class="line">&gt; db.students.find().pretty()</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c72e006ad854460ee70b"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1001</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"骆昊"</span>,</span><br><span class="line">        <span class="string">"age"</span> : <span class="number">38</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13566778899"</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c790006ad854460ee70c"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1002</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"王大锤"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13012345678"</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c92dd185894d7283efab"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1003</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"白元芳"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13022223333"</span></span><br><span class="line">&#125;</span><br><span class="line">&gt; <span class="comment">// 查询stuid大于1001的文档</span></span><br><span class="line">&gt; db.students.find(&#123;<span class="attr">stuid</span>: &#123;<span class="string">'$gt'</span>: <span class="number">1001</span>&#125;&#125;).pretty()</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c790006ad854460ee70c"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1002</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"王大锤"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13012345678"</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c92dd185894d7283efab"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1003</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"白元芳"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13022223333"</span></span><br><span class="line">&#125;</span><br><span class="line">&gt; <span class="comment">// 查询stuid大于1001的文档只显示name和tel字段</span></span><br><span class="line">&gt; db.students.find(&#123;<span class="attr">stuid</span>: &#123;<span class="string">'$gt'</span>: <span class="number">1001</span>&#125;&#125;, &#123;<span class="attr">_id</span>: <span class="number">0</span>, <span class="attr">name</span>: <span class="number">1</span>, <span class="attr">tel</span>: <span class="number">1</span>&#125;).pretty()</span><br><span class="line">&#123; <span class="string">"name"</span> : <span class="string">"王大锤"</span>, <span class="string">"tel"</span> : <span class="string">"13012345678"</span> &#125;</span><br><span class="line">&#123; <span class="string">"name"</span> : <span class="string">"白元芳"</span>, <span class="string">"tel"</span> : <span class="string">"13022223333"</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 查询name为“骆昊”或者tel为“13022223333”的文档</span></span><br><span class="line">&gt; db.students.find(&#123;<span class="string">'$or'</span>: [&#123;<span class="attr">name</span>: <span class="string">'骆昊'</span>&#125;, &#123;<span class="attr">tel</span>: <span class="string">'13022223333'</span>&#125;]&#125;, &#123;<span class="attr">_id</span>: <span class="number">0</span>, <span class="attr">name</span>: <span class="number">1</span>, <span class="attr">tel</span>: <span class="number">1</span>&#125;).pretty()</span><br><span class="line">&#123; <span class="string">"name"</span> : <span class="string">"骆昊"</span>, <span class="string">"tel"</span> : <span class="string">"13566778899"</span> &#125;</span><br><span class="line">&#123; <span class="string">"name"</span> : <span class="string">"白元芳"</span>, <span class="string">"tel"</span> : <span class="string">"13022223333"</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 查询学生文档跳过第1条文档只查1条文档</span></span><br><span class="line">&gt; db.students.find().skip(<span class="number">1</span>).limit(<span class="number">1</span>).pretty()</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c790006ad854460ee70c"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1002</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"王大锤"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13012345678"</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span></span><br><span class="line">&#125;</span><br><span class="line">&gt; <span class="comment">// 对查询结果进行排序(1表示升序，-1表示降序)</span></span><br><span class="line">&gt; db.students.find(&#123;&#125;, &#123;<span class="attr">_id</span>: <span class="number">0</span>, <span class="attr">stuid</span>: <span class="number">1</span>, <span class="attr">name</span>: <span class="number">1</span>&#125;).sort(&#123;<span class="attr">stuid</span>: <span class="number">-1</span>&#125;)</span><br><span class="line">&#123; <span class="string">"stuid"</span> : <span class="number">1003</span>, <span class="string">"name"</span> : <span class="string">"白元芳"</span> &#125;</span><br><span class="line">&#123; <span class="string">"stuid"</span> : <span class="number">1002</span>, <span class="string">"name"</span> : <span class="string">"王大锤"</span> &#125;</span><br><span class="line">&#123; <span class="string">"stuid"</span> : <span class="number">1001</span>, <span class="string">"name"</span> : <span class="string">"骆昊"</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 在指定的一个或多个字段上创建索引</span></span><br><span class="line">&gt; db.students.ensureIndex(&#123;<span class="attr">name</span>: <span class="number">1</span>&#125;)</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"createdCollectionAutomatically"</span> : <span class="literal">false</span>,</span><br><span class="line">        <span class="string">"numIndexesBefore"</span> : <span class="number">1</span>,</span><br><span class="line">        <span class="string">"numIndexesAfter"</span> : <span class="number">2</span>,</span><br><span class="line">        <span class="string">"ok"</span> : <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>使用MongoDB可以非常方便的配置数据复制，通过冗余数据来实现数据的高可用以及灾难恢复，也可以通过数据分片来应对数据量迅速增长的需求。关于MongoDB更多的操作可以查阅<a href="https://mongodb-documentation.readthedocs.io/en/latest/" target="_blank" rel="noopener">官方文档</a> ，同时推荐大家阅读Kristina Chodorow写的<a href="http://www.ituring.com.cn/book/1172" target="_blank" rel="noopener">《MongoDB权威指南》</a>。</p>
-<h4 id="在Python程序中操作MongoDB"><a href="#在Python程序中操作MongoDB" class="headerlink" title="在Python程序中操作MongoDB"></a>在Python程序中操作MongoDB</h4><p>可以通过pip安装pymongo来实现对MongoDB的操作。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install pymongo</span><br><span class="line">python3</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> pymongo <span class="keyword">import</span> MongoClient</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client = MongoClient(<span class="string">'mongodb://127.0.0.1:27017'</span>) </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>db = client.school</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> student <span class="keyword">in</span> db.students.find():</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'学号:'</span>, student[<span class="string">'stuid'</span>])</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'姓名:'</span>, student[<span class="string">'name'</span>])</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'电话:'</span>, student[<span class="string">'tel'</span>])</span><br><span class="line"><span class="meta">... </span></span><br><span class="line">学号: <span class="number">1001.0</span></span><br><span class="line">姓名: 骆昊</span><br><span class="line">电话: <span class="number">13566778899</span></span><br><span class="line">学号: <span class="number">1002.0</span></span><br><span class="line">姓名: 王大锤</span><br><span class="line">电话: <span class="number">13012345678</span></span><br><span class="line">学号: <span class="number">1003.0</span></span><br><span class="line">姓名: 白元芳</span><br><span class="line">电话: <span class="number">13022223333</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>db.students.find().count()</span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>db.students.remove()</span><br><span class="line">&#123;<span class="string">'n'</span>: <span class="number">3</span>, <span class="string">'ok'</span>: <span class="number">1.0</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>db.students.find().count()</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>coll = db.students</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> pymongo <span class="keyword">import</span> ASCENDING</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>coll.create_index([(<span class="string">'name'</span>, ASCENDING)], unique=<span class="literal">True</span>)</span><br><span class="line"><span class="string">'name_1'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>coll.insert_one(&#123;<span class="string">'stuid'</span>: int(<span class="number">1001</span>), <span class="string">'name'</span>: <span class="string">'骆昊'</span>, <span class="string">'gender'</span>: <span class="literal">True</span>&#125;)</span><br><span class="line">&lt;pymongo.results.InsertOneResult object at <span class="number">0x1050cc6c8</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>coll.insert_many([&#123;<span class="string">'stuid'</span>: int(<span class="number">1002</span>), <span class="string">'name'</span>: <span class="string">'王大锤'</span>, <span class="string">'gender'</span>: <span class="literal">False</span>&#125;, &#123;<span class="string">'stuid'</span>: int(<span class="number">1003</span>), <span class="string">'name'</span>: <span class="string">'白元芳'</span>, <span class="string">'gender'</span>: <span class="literal">True</span>&#125;])</span><br><span class="line">&lt;pymongo.results.InsertManyResult object at <span class="number">0x1050cc8c8</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> student <span class="keyword">in</span> coll.find(&#123;<span class="string">'gender'</span>: <span class="literal">True</span>&#125;):</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'学号:'</span>, student[<span class="string">'stuid'</span>])</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'姓名:'</span>, student[<span class="string">'name'</span>])</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'性别:'</span>, <span class="string">'男'</span> <span class="keyword">if</span> student[<span class="string">'gender'</span>] <span class="keyword">else</span> <span class="string">'女'</span>)</span><br><span class="line"><span class="meta">... </span></span><br><span class="line">学号: <span class="number">1001</span></span><br><span class="line">姓名: 骆昊</span><br><span class="line">性别: 男</span><br><span class="line">学号: <span class="number">1003</span></span><br><span class="line">姓名: 白元芳</span><br><span class="line">性别: 男</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
-
-<p>关于PyMongo更多的知识可以通过它的<a href="https://api.mongodb.com/python/current/tutorial.html" target="_blank" rel="noopener">官方文档</a>进行了解，也可以使用<a href="https://pypi.org/project/mongoengine/" target="_blank" rel="noopener">MongoEngine</a>这样的库来简化Python程序对MongoDB的操作，除此之外，还有以异步I/O方式访问MongoDB的三方库<a href="https://pypi.org/project/motor/" target="_blank" rel="noopener">motor</a>都是不错的选择。</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1953,7 +1673,7 @@ $ git archive</code></pre>
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">138</span>
+          <span class="site-state-item-count">139</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1994,7 +1714,9 @@ $ git archive</code></pre>
         
           
         
-        <span class="site-state-item-count">13</span>
+          
+        
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>

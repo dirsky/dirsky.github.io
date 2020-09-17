@@ -269,6 +269,327 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2014/07/29/lang-python-Python-100-Days-39-40-NoSQL入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2014/07/29/lang-python-Python-100-Days-39-40-NoSQL入门/" class="post-title-link" itemprop="url">39-40.NoSQL入门</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2014-07-29 09:10:00" itemprop="dateCreated datePublished" datetime="2014-07-29T09:10:00+08:00">2014-07-29</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-05 14:19:15" itemprop="dateModified" datetime="2019-09-05T14:19:15+08:00">2019-09-05</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/lang/" itemprop="url" rel="index"><span itemprop="name">lang</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2014/07/29/lang-python-Python-100-Days-39-40-NoSQL入门/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2014/07/29/lang-python-Python-100-Days-39-40-NoSQL入门/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>15k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>13 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="NoSQL入门"><a href="#NoSQL入门" class="headerlink" title="NoSQL入门"></a>NoSQL入门</h2><h3 id="NoSQL概述"><a href="#NoSQL概述" class="headerlink" title="NoSQL概述"></a>NoSQL概述</h3><p>如今，大多数的计算机系统（包括服务器、PC、移动设备等）都会产生庞大的数据量。其实，早在2012年的时候，全世界每天产生的数据量就达到了2.5EB（艾字节，$$1EB\approx10^{18}B$$）。这些数据有很大一部分是由关系型数据库来存储和管理的。 早在1970年，E.F.Codd发表了论述关系型数据库的著名论文“<em>A relational model of data for large shared data banks</em>”，这篇文章奠定了关系型数据库的基础并在接下来的数十年时间内产生了深远的影响。实践证明，关系型数据库是实现数据持久化最为重要的方式，它也是大多数应用在选择持久化方案时的首选技术。</p>
+<p>NoSQL是一项全新的数据库革命性运动，虽然它的历史可以追溯到1998年，但是NoSQL真正深入人心并得到广泛的应用是在进入大数据时候以后，业界普遍认为NoSQL是更适合大数据存储的技术方案，这才使得NoSQL的发展达到了前所未有的高度。2012年《纽约时报》的一篇专栏中写到，大数据时代已经降临，在商业、经济及其他领域中，决策将不再基于经验和直觉而是基于数据和分析而作出。事实上，在天文学、气象学、基因组学、生物学、社会学、互联网搜索引擎、金融、医疗、社交网络、电子商务等诸多领域，由于数据过于密集和庞大，在数据的分析和处理上也遇到了前所未有的限制和阻碍，这一切都使得对大数据处理技术的研究被提升到了新的高度，也使得各种NoSQL的技术方案进入到了公众的视野。</p>
+<p>NoSQL数据库按照其存储类型可以大致分为以下几类：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>部分代表</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>列族数据库</td>
+<td>HBase<br>Cassandra<br>Hypertable</td>
+<td>顾名思义是按列存储数据的。最大的特点是方便存储结构化和半结构化数据，方便做数据压缩，对针对某一列或者某几列的查询有非常大的I/O优势，适合于批量数据处理和即时查询。</td>
+</tr>
+<tr>
+<td>文档数据库</td>
+<td>MongoDB<br>CouchDB<br>ElasticSearch</td>
+<td>文档数据库一般用类JSON格式存储数据，存储的内容是文档型的。这样也就有机会对某些字段建立索引，实现关系数据库的某些功能，但不提供对参照完整性和分布事务的支持。</td>
+</tr>
+<tr>
+<td>KV数据库</td>
+<td>DynamoDB<br>Redis<br>LevelDB</td>
+<td>可以通过key快速查询到其value，有基于内存和基于磁盘两种实现方案。</td>
+</tr>
+<tr>
+<td>图数据库</td>
+<td>Neo4J<br>FlockDB<br>JanusGraph</td>
+<td>使用图结构进行语义查询的数据库，它使用节点、边和属性来表示和存储数据。图数据库从设计上，就可以简单快速的检索难以在关系系统中建模的复杂层次结构。</td>
+</tr>
+<tr>
+<td>对象数据库</td>
+<td>db4o<br>Versant</td>
+<td>通过类似面向对象语言的语法操作数据库，通过对象的方式存取数据。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>说明：想了解更多的NoSQL数据库，可以访问<a href="http://nosql-database.org/" target="_blank" rel="noopener">http://nosql-database.org/</a>。</p>
+</blockquote>
+<h3 id="Redis概述"><a href="#Redis概述" class="headerlink" title="Redis概述"></a>Redis概述</h3><p>Redis是一种基于键值对的NoSQL数据库，它提供了对多种数据类型（字符串、哈希、列表、集合、有序集合、位图等）的支持，能够满足很多应用场景的需求。Redis将数据放在内存中，因此读写性能是非常惊人的。与此同时，Redis也提供了持久化机制，能够将内存中的数据保存到硬盘上，在发生意外状况时数据也不会丢掉。此外，Redis还支持键过期、地理信息运算、发布订阅、事务、管道、Lua脚本扩展等功能，总而言之，Redis的功能和性能都非常强大，如果项目中要实现高速缓存和消息队列这样的服务，直接交给Redis就可以了。目前，国内外很多著名的企业和商业项目都使用了Redis，包括：Twitter、Github、StackOverflow、新浪微博、百度、优酷土豆、美团、小米、唯品会等。</p>
+<h4 id="Redis简介"><a href="#Redis简介" class="headerlink" title="Redis简介"></a>Redis简介</h4><p>2008年，一个名为Salvatore Sanfilippo的程序员为他开发的LLOOGG项目定制了专属的数据库（因为之前他无论怎样优化MySQL，系统性能已经无法再提升了），这项工作的成果就是Redis的初始版本。后来他将Redis的代码放到了全球最大的代码托管平台<a href="https://github.com/antirez/redis" target="_blank" rel="noopener">Github</a>，从那以后，Redis引发了大量开发者的好评和关注，继而有数百人参与了Redis的开发和维护，这使得Redis的功能越来越强大和性能越来越好。</p>
+<p>Redis是REmote DIctionary Server的缩写，它是一个用ANSI C编写的高性能的key-value存储系统，与其他的key-value存储系统相比，Redis有以下一些特点（也是优点）：</p>
+<ul>
+<li>Redis的读写性能极高，并且有丰富的特性（发布/订阅、事务、通知等）。</li>
+<li>Redis支持数据的持久化（RDB和AOF两种方式），可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。</li>
+<li>Redis支持多种数据类型，包括：string、hash、list、set，zset、bitmap、hyperloglog等。</li>
+<li>Redis支持主从复制（实现读写分析）以及哨兵模式（监控master是否宕机并自动调整配置）。</li>
+<li>Redis支持分布式集群，可以很容易的通过水平扩展来提升系统的整体性能。</li>
+<li>Redis基于TCP提供的可靠传输服务进行通信，很多编程语言都提供了Redis客户端支持。</li>
+</ul>
+<h4 id="Redis的应用场景"><a href="#Redis的应用场景" class="headerlink" title="Redis的应用场景"></a>Redis的应用场景</h4><ol>
+<li>高速缓存  - 将不常变化但又经常被访问的热点数据放到Redis数据库中，可以大大降低关系型数据库的压力，从而提升系统的响应性能。</li>
+<li>排行榜 - 很多网站都有排行榜功能，利用Redis中的列表和有序集合可以非常方便的构造各种排行榜系统。</li>
+<li>商品秒杀/投票点赞 - Redis提供了对计数操作的支持，网站上常见的秒杀、点赞等功能都可以利用Redis的计数器通过+1或-1的操作来实现，从而避免了使用关系型数据的<code>update</code>操作。</li>
+<li>分布式锁 - 利用Redis可以跨多台服务器实现分布式锁（类似于线程锁，但是能够被多台机器上的多个线程或进程共享）的功能，用于实现一个阻塞式操作。</li>
+<li>消息队列 - 消息队列和高速缓存一样，是一个大型网站不可缺少的基础服务，可以实现业务解耦和非实时业务削峰等特性，这些我们都会在后面的项目中为大家展示。</li>
+</ol>
+<h4 id="Redis的安装和配置"><a href="#Redis的安装和配置" class="headerlink" title="Redis的安装和配置"></a>Redis的安装和配置</h4><p>可以使用Linux系统的包管理工具（如yum）来安装Redis，也可以通过在Redis的<a href="https://redis.io/" target="_blank" rel="noopener">官方网站</a>下载Redis的源代码，解压缩解归档之后通过make工具对源代码进行构建并安装，在更新这篇文档时，Redis官方提供的最新稳定版本是<a href="http://download.redis.io/releases/redis-5.0.4.tar.gz" target="_blank" rel="noopener">Redis 5.0.4</a>。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-5.0.4.tar.gz</span><br><span class="line">gunzip redis-5.0.4.tar.gz</span><br><span class="line">tar -xvf redis-5.0.4.tar</span><br><span class="line">cd redis-5.0.4</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>在redis源代码目录下有一个名为redis.conf的配置文件，我们可以先查看一下该文件。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim redis.conf</span><br></pre></td></tr></table></figure>
+
+<p>配置将Redis服务绑定到指定的IP地址和端口。</p>
+<p><img src="/images/Python100/Day36-40/redis-bind-and-port.png" alt></p>
+<p>配置底层有多少个数据库。</p>
+<p><img src="/images/Python100/Day36-40/redis-databases.png" alt></p>
+<p>配置Redis的持久化机制 - RDB。</p>
+<p><img src="/images/Python100/Day36-40/redis-rdb-1.png" alt></p>
+<p><img src="/images/Python100/Day36-40/redis-rdb-3.png" alt></p>
+<p>配置Redis的持久化机制 - AOF。</p>
+<p><img src="/images/Python100/Day36-40/redis-aof.png" alt></p>
+<p>配置访问Redis服务器的验证口令。</p>
+<p><img src="/images/Python100/Day36-40/redis-security.png" alt></p>
+<p>配置Redis的主从复制，通过主从复制可以实现读写分离。</p>
+<p><img src="/images/Python100/Day36-40/redis-replication.png" alt></p>
+<p>配置慢查询。</p>
+<p><img src="/images/Python100/Day36-40/redis-slow-logs.png" alt></p>
+<p>上面这些内容就是Redis的基本配置，如果你对上面的内容感到困惑也没有关系，先把Redis用起来再回头去推敲这些内容就行了。如果想找一些参考书，<a href="https://item.jd.com/12121730.html" target="_blank" rel="noopener">《Redis开发与运维》</a>是一本不错的入门读物，而<a href="https://item.jd.com/11791607.html" target="_blank" rel="noopener">《Redis实战》</a>是不错的进阶读物。</p>
+<h4 id="Redis的服务器和客户端"><a href="#Redis的服务器和客户端" class="headerlink" title="Redis的服务器和客户端"></a>Redis的服务器和客户端</h4><p>接下来启动Redis服务器，下面的方式将以默认的配置启动Redis服务。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server</span><br></pre></td></tr></table></figure>
+
+<p>如果希望修改Redis的配置（如端口、认证口令、持久化方式等），可以通过下面两种方式。</p>
+<p>方式一：通过参数指定认证口令和AOF持久化方式。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server --requirepass 1qaz2wsx --appendonly yes</span><br></pre></td></tr></table></figure>
+
+<p>方式二：通过指定的配置文件来修改Redis的配置。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server /root/redis-5.0.4/redis.conf</span><br></pre></td></tr></table></figure>
+
+<p>下面我们使用第一种方式来启动Redis并将其置于后台运行，将Redis产生的输出重定向到名为redis.log的文件中。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-server --requirepass 1qaz2wsx &gt; redis.log &amp;</span><br></pre></td></tr></table></figure>
+
+<p>可以通过ps或者netstat来检查Redis服务器是否启动成功。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep redis-server</span><br><span class="line">netstat -nap | grep redis-server</span><br></pre></td></tr></table></figure>
+
+<p>接下来，我们尝试用Redis客户端去连接服务器。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis-cli</span><br><span class="line">127.0.0.1:6379&gt; auth 1qaz2wsx</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; ping</span><br><span class="line">PONG</span><br><span class="line">127.0.0.1:6379&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Redis有着非常丰富的数据类型，也有很多的命令来操作这些数据，具体的内容可以查看<a href="http://redisdoc.com/" target="_blank" rel="noopener">Redis命令参考</a>，在这个网站上，除了Redis的命令参考，还有Redis的详细文档，其中包括了通知、事务、主从复制、持久化、哨兵、集群等内容。</p>
+<p><img src="/images/Python100/Day36-40/redis-data-types.png" alt></p>
+<blockquote>
+<p>说明：上面的插图来自付磊和张益军先生编著的《Redis开发与运维》一书。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set username admin</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get username</span><br><span class="line">"admin"</span><br><span class="line">127.0.0.1:6379&gt; set password "123456" ex 300</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get password</span><br><span class="line">"123456"</span><br><span class="line">127.0.0.1:6379&gt; ttl username</span><br><span class="line">(integer) -1</span><br><span class="line">127.0.0.1:6379&gt; ttl password</span><br><span class="line">(integer) 286</span><br><span class="line">127.0.0.1:6379&gt; hset stu1 name hao</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; hset stu1 age 38</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hset stu1 gender male</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hgetall stu1</span><br><span class="line">1) "name"</span><br><span class="line">2) "hao"</span><br><span class="line">3) "age"</span><br><span class="line">4) "38"</span><br><span class="line">5) "gender"</span><br><span class="line">6) "male"</span><br><span class="line">127.0.0.1:6379&gt; hvals stu1</span><br><span class="line">1) "hao"</span><br><span class="line">2) "38"</span><br><span class="line">3) "male"</span><br><span class="line">127.0.0.1:6379&gt; hmset stu2 name wang age 18 gender female tel 13566778899</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; hgetall stu2</span><br><span class="line">1) "name"</span><br><span class="line">2) "wang"</span><br><span class="line">3) "age"</span><br><span class="line">4) "18"</span><br><span class="line">5) "gender"</span><br><span class="line">6) "female"</span><br><span class="line">7) "tel"</span><br><span class="line">8) "13566778899"</span><br><span class="line">127.0.0.1:6379&gt; lpush nums 1 2 3 4 5</span><br><span class="line">(integer) 5</span><br><span class="line">127.0.0.1:6379&gt; lrange nums 0 -1</span><br><span class="line">1) "5"</span><br><span class="line">2) "4"</span><br><span class="line">3) "3"</span><br><span class="line">4) "2"</span><br><span class="line">5) "1"</span><br><span class="line">127.0.0.1:6379&gt; lpop nums</span><br><span class="line">"5"</span><br><span class="line">127.0.0.1:6379&gt; lpop nums</span><br><span class="line">"4"</span><br><span class="line">127.0.0.1:6379&gt; rpop nums</span><br><span class="line">"1"</span><br><span class="line">127.0.0.1:6379&gt; rpop nums</span><br><span class="line">"2"</span><br><span class="line">127.0.0.1:6379&gt; sadd fruits apple banana orange apple grape grape</span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6379&gt; scard fruits</span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6379&gt; smembers fruits</span><br><span class="line">1) "grape"</span><br><span class="line">2) "orange"</span><br><span class="line">3) "banana"</span><br><span class="line">4) "apple"</span><br><span class="line">127.0.0.1:6379&gt; sismember fruits apple</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sismember fruits durian</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; sadd nums1 1 2 3 4 5</span><br><span class="line">(integer) 5</span><br><span class="line">127.0.0.1:6379&gt; sadd nums2 2 4 6 8</span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6379&gt; sinter nums1 nums2</span><br><span class="line">1) "2"</span><br><span class="line">2) "4"</span><br><span class="line">127.0.0.1:6379&gt; sunion nums1 nums2</span><br><span class="line">1) "1"</span><br><span class="line">2) "2"</span><br><span class="line">3) "3"</span><br><span class="line">4) "4"</span><br><span class="line">5) "5"</span><br><span class="line">6) "6"</span><br><span class="line">7) "8"</span><br><span class="line">127.0.0.1:6379&gt; sdiff nums1 nums2</span><br><span class="line">1) "1"</span><br><span class="line">2) "3"</span><br><span class="line">3) "5"</span><br><span class="line">127.0.0.1:6379&gt; zadd topsinger 5234 zhangxy 1978 chenyx 2235 zhoujl 3520 xuezq</span><br><span class="line">(integer) 4</span><br><span class="line">127.0.0.1:6379&gt; zrange topsinger 0 -1 withscores</span><br><span class="line">1) "chenyx"</span><br><span class="line">2) "1978"</span><br><span class="line">3) "zhoujl"</span><br><span class="line">4) "2235"</span><br><span class="line">5) "xuezq"</span><br><span class="line">6) "3520"</span><br><span class="line">7) "zhangxy"</span><br><span class="line">8) "5234"</span><br><span class="line">127.0.0.1:6379&gt; zrevrange topsinger 0 -1</span><br><span class="line">1) "zhangxy"</span><br><span class="line">2) "xuezq"</span><br><span class="line">3) "zhoujl"</span><br><span class="line">4) "chenyx"</span><br><span class="line">127.0.0.1:6379&gt; geoadd pois 116.39738549206541 39.90862689286386 tiananmen 116.27172936413572 39.99</span><br><span class="line">135172904494 yiheyuan 117.27766503308104 40.65332064313784 gubeishuizhen</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6379&gt; geodist pois tiananmen gubeishuizhen km</span><br><span class="line">"111.5333"</span><br><span class="line">127.0.0.1:6379&gt; geodist pois tiananmen yiheyuan km</span><br><span class="line">"14.1230"</span><br><span class="line">127.0.0.1:6379&gt; georadius pois 116.86499108288572 40.40149669363615 50 km withdist</span><br><span class="line">1) 1) "gubeishuizhen"</span><br><span class="line">   2) "44.7408"</span><br></pre></td></tr></table></figure>
+
+<h4 id="在Python程序中使用Redis"><a href="#在Python程序中使用Redis" class="headerlink" title="在Python程序中使用Redis"></a>在Python程序中使用Redis</h4><p>可以使用pip安装redis模块。redis模块的核心是名为Redis的类，该类的对象代表一个Redis客户端，通过该客户端可以向Redis服务器发送命令并获取执行的结果。上面我们在Redis客户端中使用的命令基本上就是Redis对象可以接收的消息，所以如果了解了Redis的命令就可以在Python中玩转Redis。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install redis</span><br><span class="line">python3</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> redis</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client = redis.Redis(host=<span class="string">'1.2.3.4'</span>, port=<span class="number">6379</span>, password=<span class="string">'1qaz2wsx'</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.set(<span class="string">'username'</span>, <span class="string">'admin'</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.hset(<span class="string">'student'</span>, <span class="string">'name'</span>, <span class="string">'hao'</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.hset(<span class="string">'student'</span>, <span class="string">'age'</span>, <span class="number">38</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.keys(<span class="string">'*'</span>)</span><br><span class="line">[<span class="string">b'username'</span>, <span class="string">b'student'</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.get(<span class="string">'username'</span>)</span><br><span class="line"><span class="string">b'admin'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client.hgetall(<span class="string">'student'</span>)</span><br><span class="line">&#123;<span class="string">b'name'</span>: <span class="string">b'hao'</span>, <span class="string">b'age'</span>: <span class="string">b'38'</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="MongoDB概述"><a href="#MongoDB概述" class="headerlink" title="MongoDB概述"></a>MongoDB概述</h3><h4 id="MongoDB简介"><a href="#MongoDB简介" class="headerlink" title="MongoDB简介"></a>MongoDB简介</h4><p>MongoDB是2009年问世的一个面向文档的数据库管理系统，由C++语言编写，旨在为Web应用提供可扩展的高性能数据存储解决方案。虽然在划分类别的时候后，MongoDB被认为是NoSQL的产品，但是它更像一个介于关系数据库和非关系数据库之间的产品，在非关系数据库中它功能最丰富，最像关系数据库。</p>
+<p>MongoDB将数据存储为一个文档，一个文档由一系列的“键值对”组成，其文档类似于JSON对象，但是MongoDB对JSON进行了二进制处理（能够更快的定位key和value），因此其文档的存储格式称为BSON。关于JSON和BSON的差别大家可以看看MongoDB官方网站的文章<a href="https://www.mongodb.com/json-and-bson" target="_blank" rel="noopener">《JSON and BSON》</a>。</p>
+<p>目前，MongoDB已经提供了对Windows、MacOS、Linux、Solaris等多个平台的支持，而且也提供了多种开发语言的驱动程序，Python当然是其中之一。</p>
+<h4 id="MongoDB的安装和配置"><a href="#MongoDB的安装和配置" class="headerlink" title="MongoDB的安装和配置"></a>MongoDB的安装和配置</h4><p>可以从MongoDB的<a href="https://www.mongodb.com/download-center#community" target="_blank" rel="noopener">官方下载链接</a>下载MongoDB，官方为Windows系统提供了一个Installer程序，而Linux和MacOS则提供了压缩文件。下面简单说一下Linux系统如何安装和配置MongoDB。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-amazon-3.6.5.tgz</span><br><span class="line">gunzip mongodb-linux-x86_64-amazon-3.6.5.tgz</span><br><span class="line">mkdir mongodb-3.6.5</span><br><span class="line">tar -xvf mongodb-linux-x86_64-amazon-3.6.5.tar --strip-components 1 -C mongodb-3.6.5/</span><br><span class="line">export PATH=$PATH:~/mongodb-3.6.5/bin</span><br><span class="line">mkdir -p /data/db</span><br><span class="line">mongod --bind_ip 172.18.61.250</span><br><span class="line"></span><br><span class="line">2018-06-03T18:03:28.232+0800 I CONTROL  [initandlisten] MongoDB starting : pid=1163 port=27017 dbpath=/data/db 64-bit host=iZwz97tbgo9lkabnat2lo8Z</span><br><span class="line">2018-06-03T18:03:28.232+0800 I CONTROL  [initandlisten] db version v3.6.5</span><br><span class="line">2018-06-03T18:03:28.232+0800 I CONTROL  [initandlisten] git version: a20ecd3e3a174162052ff99913bc2ca9a839d618</span><br><span class="line">2018-06-03T18:03:28.232+0800 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.0-fips29 Mar 2010</span><br><span class="line">...</span><br><span class="line">2018-06-03T18:03:28.945+0800 I NETWORK  [initandlisten] waiting for connections on port 27017</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>说明：上面的操作中，export命令是设置PATH环境变量，这样可以在任意路径下执行mongod来启动MongoDB服务器。MongoDB默认保存数据的路径是/data/db目录，为此要提前创建该目录。此外，在使用mongod启动MongoDB服务器时，–bind_ip参数用来将服务绑定到指定的IP地址，也可以用–port参数来指定端口，默认端口为27017。</p>
+</blockquote>
+<h4 id="MongoDB基本概念"><a href="#MongoDB基本概念" class="headerlink" title="MongoDB基本概念"></a>MongoDB基本概念</h4><p>我们通过与关系型数据库进行对照的方式来说明MongoDB中的一些概念。</p>
+<table>
+<thead>
+<tr>
+<th>SQL</th>
+<th>MongoDB</th>
+<th>解释（SQL/MongoDB）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>database</td>
+<td>database</td>
+<td>数据库/数据库</td>
+</tr>
+<tr>
+<td>table</td>
+<td>collection</td>
+<td>二维表/集合</td>
+</tr>
+<tr>
+<td>row</td>
+<td>document</td>
+<td>记录（行）/文档</td>
+</tr>
+<tr>
+<td>column</td>
+<td>field</td>
+<td>字段（列）/域</td>
+</tr>
+<tr>
+<td>index</td>
+<td>index</td>
+<td>索引/索引</td>
+</tr>
+<tr>
+<td>table joins</td>
+<td>—</td>
+<td>表连接/嵌套文档</td>
+</tr>
+<tr>
+<td>primary key</td>
+<td>primary key</td>
+<td>主键/主键（<code>_id</code>字段）</td>
+</tr>
+</tbody></table>
+<h4 id="通过Shell操作MongoDB"><a href="#通过Shell操作MongoDB" class="headerlink" title="通过Shell操作MongoDB"></a>通过Shell操作MongoDB</h4><p>启动服务器后可以使用交互式环境跟服务器通信，如下所示。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mongo --host 172.18.61.250</span><br><span class="line"></span><br><span class="line">MongoDB shell version v3.6.5</span><br><span class="line">connecting to: mongodb://172.18.61.250:27017/</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>查看、创建和删除数据库。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">// 显示所有数据库</span></span><br><span class="line">&gt; show dbs</span><br><span class="line">admin   <span class="number">0.000</span>GB</span><br><span class="line">config  <span class="number">0.000</span>GB</span><br><span class="line">local   <span class="number">0.000</span>GB</span><br><span class="line">&gt; <span class="comment">// 创建并切换到school数据库</span></span><br><span class="line">&gt; use school</span><br><span class="line">switched to db school</span><br><span class="line">&gt; <span class="comment">// 删除当前数据库</span></span><br><span class="line">&gt; db.dropDatabase()</span><br><span class="line">&#123; <span class="string">"ok"</span> : <span class="number">1</span> &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建、删除和查看集合。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">// 创建并切换到school数据库</span></span><br><span class="line">&gt; use school</span><br><span class="line">switched to db school</span><br><span class="line">&gt; <span class="comment">// 创建colleges集合</span></span><br><span class="line">&gt; db.createCollection(<span class="string">'colleges'</span>)</span><br><span class="line">&#123; <span class="string">"ok"</span> : <span class="number">1</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 创建students集合</span></span><br><span class="line">&gt; db.createCollection(<span class="string">'students'</span>)</span><br><span class="line">&#123; <span class="string">"ok"</span> : <span class="number">1</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 查看所有集合</span></span><br><span class="line">&gt; show collections</span><br><span class="line">colleges</span><br><span class="line">students</span><br><span class="line">&gt; <span class="comment">// 删除colleges集合</span></span><br><span class="line">&gt; db.colleges.drop()</span><br><span class="line"><span class="literal">true</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>说明：在MongoDB中插入文档时如果集合不存在会自动创建集合，所以也可以按照下面的方式通过创建文档来创建集合。</p>
+</blockquote>
+</li>
+<li><p>文档的CRUD操作。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">// 向students集合插入文档</span></span><br><span class="line">&gt; db.students.insert(&#123;<span class="attr">stuid</span>: <span class="number">1001</span>, <span class="attr">name</span>: <span class="string">'骆昊'</span>, <span class="attr">age</span>: <span class="number">38</span>&#125;)</span><br><span class="line">WriteResult(&#123; <span class="string">"nInserted"</span> : <span class="number">1</span> &#125;)</span><br><span class="line">&gt; <span class="comment">// 向students集合插入文档</span></span><br><span class="line">&gt; db.students.save(&#123;<span class="attr">stuid</span>: <span class="number">1002</span>, <span class="attr">name</span>: <span class="string">'王大锤'</span>, <span class="attr">tel</span>: <span class="string">'13012345678'</span>, <span class="attr">gender</span>: <span class="string">'男'</span>&#125;)</span><br><span class="line">WriteResult(&#123; <span class="string">"nInserted"</span> : <span class="number">1</span> &#125;)</span><br><span class="line">&gt; <span class="comment">// 查看所有文档</span></span><br><span class="line">&gt; db.students.find()</span><br><span class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c72e006ad854460ee70b"</span>), <span class="string">"stuid"</span> : <span class="number">1001</span>, <span class="string">"name"</span> : <span class="string">"骆昊"</span>, <span class="string">"age"</span> : <span class="number">38</span> &#125;</span><br><span class="line">&#123; <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c790006ad854460ee70c"</span>), <span class="string">"stuid"</span> : <span class="number">1002</span>, <span class="string">"name"</span> : <span class="string">"王大锤"</span>, <span class="string">"tel"</span> : <span class="string">"13012345678"</span>, <span class="string">"gender"</span> : <span class="string">"男"</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 更新stuid为1001的文档</span></span><br><span class="line">&gt; db.students.update(&#123;<span class="attr">stuid</span>: <span class="number">1001</span>&#125;, &#123;<span class="string">'$set'</span>: &#123;<span class="attr">tel</span>: <span class="string">'13566778899'</span>, <span class="attr">gender</span>: <span class="string">'男'</span>&#125;&#125;)</span><br><span class="line">WriteResult(&#123; <span class="string">"nMatched"</span> : <span class="number">1</span>, <span class="string">"nUpserted"</span> : <span class="number">0</span>, <span class="string">"nModified"</span> : <span class="number">1</span> &#125;)</span><br><span class="line">&gt; <span class="comment">// 插入或更新stuid为1003的文档</span></span><br><span class="line">&gt; db.students.update(&#123;<span class="attr">stuid</span>: <span class="number">1003</span>&#125;, &#123;<span class="string">'$set'</span>: &#123;<span class="attr">name</span>: <span class="string">'白元芳'</span>, <span class="attr">tel</span>: <span class="string">'13022223333'</span>, <span class="attr">gender</span>: <span class="string">'男'</span>&#125;&#125;,  upsert=<span class="literal">true</span>)</span><br><span class="line">WriteResult(&#123;</span><br><span class="line">        <span class="string">"nMatched"</span> : <span class="number">0</span>,</span><br><span class="line">        <span class="string">"nUpserted"</span> : <span class="number">1</span>,</span><br><span class="line">        <span class="string">"nModified"</span> : <span class="number">0</span>,</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c92dd185894d7283efab"</span>)</span><br><span class="line">&#125;)</span><br><span class="line">&gt; <span class="comment">// 查询所有文档</span></span><br><span class="line">&gt; db.students.find().pretty()</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c72e006ad854460ee70b"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1001</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"骆昊"</span>,</span><br><span class="line">        <span class="string">"age"</span> : <span class="number">38</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13566778899"</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c790006ad854460ee70c"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1002</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"王大锤"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13012345678"</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c92dd185894d7283efab"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1003</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"白元芳"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13022223333"</span></span><br><span class="line">&#125;</span><br><span class="line">&gt; <span class="comment">// 查询stuid大于1001的文档</span></span><br><span class="line">&gt; db.students.find(&#123;<span class="attr">stuid</span>: &#123;<span class="string">'$gt'</span>: <span class="number">1001</span>&#125;&#125;).pretty()</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c790006ad854460ee70c"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1002</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"王大锤"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13012345678"</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c92dd185894d7283efab"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1003</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"白元芳"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13022223333"</span></span><br><span class="line">&#125;</span><br><span class="line">&gt; <span class="comment">// 查询stuid大于1001的文档只显示name和tel字段</span></span><br><span class="line">&gt; db.students.find(&#123;<span class="attr">stuid</span>: &#123;<span class="string">'$gt'</span>: <span class="number">1001</span>&#125;&#125;, &#123;<span class="attr">_id</span>: <span class="number">0</span>, <span class="attr">name</span>: <span class="number">1</span>, <span class="attr">tel</span>: <span class="number">1</span>&#125;).pretty()</span><br><span class="line">&#123; <span class="string">"name"</span> : <span class="string">"王大锤"</span>, <span class="string">"tel"</span> : <span class="string">"13012345678"</span> &#125;</span><br><span class="line">&#123; <span class="string">"name"</span> : <span class="string">"白元芳"</span>, <span class="string">"tel"</span> : <span class="string">"13022223333"</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 查询name为“骆昊”或者tel为“13022223333”的文档</span></span><br><span class="line">&gt; db.students.find(&#123;<span class="string">'$or'</span>: [&#123;<span class="attr">name</span>: <span class="string">'骆昊'</span>&#125;, &#123;<span class="attr">tel</span>: <span class="string">'13022223333'</span>&#125;]&#125;, &#123;<span class="attr">_id</span>: <span class="number">0</span>, <span class="attr">name</span>: <span class="number">1</span>, <span class="attr">tel</span>: <span class="number">1</span>&#125;).pretty()</span><br><span class="line">&#123; <span class="string">"name"</span> : <span class="string">"骆昊"</span>, <span class="string">"tel"</span> : <span class="string">"13566778899"</span> &#125;</span><br><span class="line">&#123; <span class="string">"name"</span> : <span class="string">"白元芳"</span>, <span class="string">"tel"</span> : <span class="string">"13022223333"</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 查询学生文档跳过第1条文档只查1条文档</span></span><br><span class="line">&gt; db.students.find().skip(<span class="number">1</span>).limit(<span class="number">1</span>).pretty()</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"_id"</span> : ObjectId(<span class="string">"5b13c790006ad854460ee70c"</span>),</span><br><span class="line">        <span class="string">"stuid"</span> : <span class="number">1002</span>,</span><br><span class="line">        <span class="string">"name"</span> : <span class="string">"王大锤"</span>,</span><br><span class="line">        <span class="string">"tel"</span> : <span class="string">"13012345678"</span>,</span><br><span class="line">        <span class="string">"gender"</span> : <span class="string">"男"</span></span><br><span class="line">&#125;</span><br><span class="line">&gt; <span class="comment">// 对查询结果进行排序(1表示升序，-1表示降序)</span></span><br><span class="line">&gt; db.students.find(&#123;&#125;, &#123;<span class="attr">_id</span>: <span class="number">0</span>, <span class="attr">stuid</span>: <span class="number">1</span>, <span class="attr">name</span>: <span class="number">1</span>&#125;).sort(&#123;<span class="attr">stuid</span>: <span class="number">-1</span>&#125;)</span><br><span class="line">&#123; <span class="string">"stuid"</span> : <span class="number">1003</span>, <span class="string">"name"</span> : <span class="string">"白元芳"</span> &#125;</span><br><span class="line">&#123; <span class="string">"stuid"</span> : <span class="number">1002</span>, <span class="string">"name"</span> : <span class="string">"王大锤"</span> &#125;</span><br><span class="line">&#123; <span class="string">"stuid"</span> : <span class="number">1001</span>, <span class="string">"name"</span> : <span class="string">"骆昊"</span> &#125;</span><br><span class="line">&gt; <span class="comment">// 在指定的一个或多个字段上创建索引</span></span><br><span class="line">&gt; db.students.ensureIndex(&#123;<span class="attr">name</span>: <span class="number">1</span>&#125;)</span><br><span class="line">&#123;</span><br><span class="line">        <span class="string">"createdCollectionAutomatically"</span> : <span class="literal">false</span>,</span><br><span class="line">        <span class="string">"numIndexesBefore"</span> : <span class="number">1</span>,</span><br><span class="line">        <span class="string">"numIndexesAfter"</span> : <span class="number">2</span>,</span><br><span class="line">        <span class="string">"ok"</span> : <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>使用MongoDB可以非常方便的配置数据复制，通过冗余数据来实现数据的高可用以及灾难恢复，也可以通过数据分片来应对数据量迅速增长的需求。关于MongoDB更多的操作可以查阅<a href="https://mongodb-documentation.readthedocs.io/en/latest/" target="_blank" rel="noopener">官方文档</a> ，同时推荐大家阅读Kristina Chodorow写的<a href="http://www.ituring.com.cn/book/1172" target="_blank" rel="noopener">《MongoDB权威指南》</a>。</p>
+<h4 id="在Python程序中操作MongoDB"><a href="#在Python程序中操作MongoDB" class="headerlink" title="在Python程序中操作MongoDB"></a>在Python程序中操作MongoDB</h4><p>可以通过pip安装pymongo来实现对MongoDB的操作。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install pymongo</span><br><span class="line">python3</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> pymongo <span class="keyword">import</span> MongoClient</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>client = MongoClient(<span class="string">'mongodb://127.0.0.1:27017'</span>) </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>db = client.school</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> student <span class="keyword">in</span> db.students.find():</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'学号:'</span>, student[<span class="string">'stuid'</span>])</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'姓名:'</span>, student[<span class="string">'name'</span>])</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'电话:'</span>, student[<span class="string">'tel'</span>])</span><br><span class="line"><span class="meta">... </span></span><br><span class="line">学号: <span class="number">1001.0</span></span><br><span class="line">姓名: 骆昊</span><br><span class="line">电话: <span class="number">13566778899</span></span><br><span class="line">学号: <span class="number">1002.0</span></span><br><span class="line">姓名: 王大锤</span><br><span class="line">电话: <span class="number">13012345678</span></span><br><span class="line">学号: <span class="number">1003.0</span></span><br><span class="line">姓名: 白元芳</span><br><span class="line">电话: <span class="number">13022223333</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>db.students.find().count()</span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>db.students.remove()</span><br><span class="line">&#123;<span class="string">'n'</span>: <span class="number">3</span>, <span class="string">'ok'</span>: <span class="number">1.0</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>db.students.find().count()</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>coll = db.students</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> pymongo <span class="keyword">import</span> ASCENDING</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>coll.create_index([(<span class="string">'name'</span>, ASCENDING)], unique=<span class="literal">True</span>)</span><br><span class="line"><span class="string">'name_1'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>coll.insert_one(&#123;<span class="string">'stuid'</span>: int(<span class="number">1001</span>), <span class="string">'name'</span>: <span class="string">'骆昊'</span>, <span class="string">'gender'</span>: <span class="literal">True</span>&#125;)</span><br><span class="line">&lt;pymongo.results.InsertOneResult object at <span class="number">0x1050cc6c8</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>coll.insert_many([&#123;<span class="string">'stuid'</span>: int(<span class="number">1002</span>), <span class="string">'name'</span>: <span class="string">'王大锤'</span>, <span class="string">'gender'</span>: <span class="literal">False</span>&#125;, &#123;<span class="string">'stuid'</span>: int(<span class="number">1003</span>), <span class="string">'name'</span>: <span class="string">'白元芳'</span>, <span class="string">'gender'</span>: <span class="literal">True</span>&#125;])</span><br><span class="line">&lt;pymongo.results.InsertManyResult object at <span class="number">0x1050cc8c8</span>&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">for</span> student <span class="keyword">in</span> coll.find(&#123;<span class="string">'gender'</span>: <span class="literal">True</span>&#125;):</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'学号:'</span>, student[<span class="string">'stuid'</span>])</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'姓名:'</span>, student[<span class="string">'name'</span>])</span><br><span class="line"><span class="meta">... </span>    print(<span class="string">'性别:'</span>, <span class="string">'男'</span> <span class="keyword">if</span> student[<span class="string">'gender'</span>] <span class="keyword">else</span> <span class="string">'女'</span>)</span><br><span class="line"><span class="meta">... </span></span><br><span class="line">学号: <span class="number">1001</span></span><br><span class="line">姓名: 骆昊</span><br><span class="line">性别: 男</span><br><span class="line">学号: <span class="number">1003</span></span><br><span class="line">姓名: 白元芳</span><br><span class="line">性别: 男</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>关于PyMongo更多的知识可以通过它的<a href="https://api.mongodb.com/python/current/tutorial.html" target="_blank" rel="noopener">官方文档</a>进行了解，也可以使用<a href="https://pypi.org/project/mongoengine/" target="_blank" rel="noopener">MongoEngine</a>这样的库来简化Python程序对MongoDB的操作，除此之外，还有以异步I/O方式访问MongoDB的三方库<a href="https://pypi.org/project/motor/" target="_blank" rel="noopener">motor</a>都是不错的选择。</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2014/07/29/lang-python-Python-100-Days-36-38-关系型数据库MySQL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2476,669 +2797,6 @@ $ pass</code></pre>
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2014/07/28/lang-python-Python-100-Days-21-30-Web前端概述/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2014/07/28/lang-python-Python-100-Days-21-30-Web前端概述/" class="post-title-link" itemprop="url">21-30.Web前端概述</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2014-07-28 09:00:00" itemprop="dateCreated datePublished" datetime="2014-07-28T09:00:00+08:00">2014-07-28</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-05 14:19:57" itemprop="dateModified" datetime="2019-09-05T14:19:57+08:00">2019-09-05</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/lang/" itemprop="url" rel="index"><span itemprop="name">lang</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2014/07/28/lang-python-Python-100-Days-21-30-Web前端概述/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2014/07/28/lang-python-Python-100-Days-21-30-Web前端概述/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>17k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>16 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Web前端概述"><a href="#Web前端概述" class="headerlink" title="Web前端概述"></a>Web前端概述</h2><blockquote>
-<p>说明：本文使用的部分插图来自<em>Jon Duckett*先生的</em><a href="https://www.amazon.cn/dp/1118008189/ref=sr_1_5?__mk_zh_CN=%E4%BA%9A%E9%A9%AC%E9%80%8A%E7%BD%91%E7%AB%99&keywords=html+%26+css&qid=1554609325&s=gateway&sr=8-5" target="_blank" rel="noopener">HTML and CSS: Design and Build Websites</a>*一书，这是一本非常棒的前端入门书，有兴趣的读者可以在亚马逊或者其他网站上找到该书的购买链接。</p>
-</blockquote>
-<h3 id="HTML简史"><a href="#HTML简史" class="headerlink" title="HTML简史"></a>HTML简史</h3><ol>
-<li>1991年10月：一个非正式CERN（<a href="https://zh.wikipedia.org/wiki/%E6%AD%90%E6%B4%B2%E6%A0%B8%E5%AD%90%E7%A0%94%E7%A9%B6%E7%B5%84%E7%B9%94" target="_blank" rel="noopener">欧洲核子研究中心</a>）文件首次公开18个HTML标签，这个文件的作者是物理学家<a href="https://zh.wikipedia.org/wiki/%E8%92%82%E5%A7%86%C2%B7%E4%BC%AF%E7%BA%B3%E6%96%AF-%E6%9D%8E" target="_blank" rel="noopener">蒂姆·伯纳斯-李</a>，因此他是<a href="https://zh.wikipedia.org/wiki/%E4%B8%87%E7%BB%B4%E7%BD%91" target="_blank" rel="noopener">万维网</a>的发明者，也是<a href="https://zh.wikipedia.org/wiki/%E4%B8%87%E7%BB%B4%E7%BD%91%E8%81%94%E7%9B%9F" target="_blank" rel="noopener">万维网联盟</a>的主席。</li>
-<li>1995年11月：HTML 2.0标准发布（RFC 1866）。</li>
-<li>1997年1月：HTML 3.2作为<a href="https://zh.wikipedia.org/wiki/W3C" target="_blank" rel="noopener">W3C</a>推荐标准发布。</li>
-<li>1997年12月：HTML 4.0作为W3C推荐标准发布。</li>
-<li>1999年12月：HTML4.01作为W3C推荐标准发布。</li>
-<li>2008年1月：HTML5由W3C作为工作草案发布。</li>
-<li>2011年5月：W3C将HTML5推进至“最终征求”（Last Call）阶段。</li>
-<li>2012年12月：W3C指定HTML5作为“候选推荐”阶段。</li>
-<li>2014年10月：HTML5作为稳定W3C推荐标准发布，这意味着HTML5的标准化已经完成。</li>
-</ol>
-<h4 id="HTML5新特性"><a href="#HTML5新特性" class="headerlink" title="HTML5新特性"></a>HTML5新特性</h4><ol>
-<li>引入原生多媒体支持（audio和video标签）</li>
-<li>引入可编程内容（canvas标签）</li>
-<li>引入语义Web（article、aside、details、figure、footer、header、nav、section、summary等标签）</li>
-<li>引入新的表单控件（日历、邮箱、搜索、滑条等）</li>
-<li>引入对离线存储更好的支持（localStorage和sessionStorage）</li>
-<li>引入对定位、拖放、WebSocket、后台任务等的支持</li>
-</ol>
-<h3 id="使用标签承载内容"><a href="#使用标签承载内容" class="headerlink" title="使用标签承载内容"></a>使用标签承载内容</h3><h4 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h4><ul>
-<li>html<ul>
-<li>head<ul>
-<li>title</li>
-<li>meta</li>
-</ul>
-</li>
-<li>body</li>
-</ul>
-</li>
-</ul>
-<h4 id="文本"><a href="#文本" class="headerlink" title="文本"></a>文本</h4><ul>
-<li>标题（heading）和段落（paragraph）<ul>
-<li>h1 ~ h6</li>
-<li>p</li>
-</ul>
-</li>
-<li>上标（superscript）和下标（subscript）<ul>
-<li>sup</li>
-<li>sub</li>
-</ul>
-</li>
-<li>空白（白色空间折叠）</li>
-<li>折行（break）和水平标尺（horizontal ruler）<ul>
-<li>br</li>
-<li>hr</li>
-</ul>
-</li>
-<li>语义化标签<ul>
-<li>加粗和强调 - strong</li>
-<li>引用 - blockquote</li>
-<li>缩写词和首字母缩写词 - abbr / acronym</li>
-<li>引文 - cite</li>
-<li>所有者联系信息 - address</li>
-<li>内容的修改 - ins / del</li>
-</ul>
-</li>
-</ul>
-<h4 id="列表（list）"><a href="#列表（list）" class="headerlink" title="列表（list）"></a>列表（list）</h4><ul>
-<li>有序列表（ordered list）- ol / li</li>
-<li>无序列表（unordered list）- ul / li</li>
-<li>定义列表（definition list）- dl / dt / dd</li>
-</ul>
-<h4 id="链接（anchor）"><a href="#链接（anchor）" class="headerlink" title="链接（anchor）"></a>链接（anchor）</h4><ul>
-<li>页面链接</li>
-<li>锚链接</li>
-<li>功能链接</li>
-</ul>
-<h4 id="图像（image）"><a href="#图像（image）" class="headerlink" title="图像（image）"></a>图像（image）</h4><ul>
-<li><p>图像存储位置</p>
-<p><img src="/images/Python100/Day21-30/%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84.png" alt></p>
-</li>
-<li><p>图像及其宽高</p>
-</li>
-<li><p>选择正确的图像格式</p>
-<ul>
-<li>JPEG</li>
-<li>GIF</li>
-<li>PNG</li>
-</ul>
-</li>
-<li><p>矢量图</p>
-</li>
-<li><p>语义化标签 - figure / figcaption</p>
-</li>
-</ul>
-<h4 id="表格（table）"><a href="#表格（table）" class="headerlink" title="表格（table）"></a>表格（table）</h4><ul>
-<li>基本的表格结构 - table / tr / td / th</li>
-<li>表格的标题 - caption</li>
-<li>跨行和跨列 - rowspan属性 / colspan属性</li>
-<li>长表格 - thead / tbody / tfoot</li>
-</ul>
-<h4 id="表单（form）"><a href="#表单（form）" class="headerlink" title="表单（form）"></a>表单（form）</h4><ul>
-<li>重要属性 - action / method / enctype</li>
-<li>表单控件（input）- type属性<ul>
-<li>文本框 - text / 密码框 - password / 数字框 - number</li>
-<li>邮箱 - email / 电话 - tel / 日期 - date / 滑条 - range / URL - url / 搜索 - search</li>
-<li>单选按钮 - radio / 复选按钮 - checkbox</li>
-<li>文件上传 - file / 隐藏域 - hidden</li>
-<li>提交按钮 - submit / 图像按钮 - image  / 重置按钮 - reset</li>
-</ul>
-</li>
-<li>下拉列表 - select / option</li>
-<li>文本域（多行文本）- textarea</li>
-<li>组合表单元素 - fieldset / legend</li>
-</ul>
-<h4 id="音视频（audio-video）"><a href="#音视频（audio-video）" class="headerlink" title="音视频（audio / video）"></a>音视频（audio / video）</h4><ul>
-<li>视频格式和播放器</li>
-<li>视频托管服务</li>
-<li>添加视频的准备工作</li>
-<li>video标签和属性 - autoplay / controls / loop / muted / preload / src</li>
-<li>audio标签和属性 - autoplay / controls / loop / muted / preload / src / width / height / poster</li>
-</ul>
-<h4 id="窗口（frame）"><a href="#窗口（frame）" class="headerlink" title="窗口（frame）"></a>窗口（frame）</h4><ul>
-<li><p>框架集（过时，不建议使用） - frameset / frame</p>
-</li>
-<li><p>内嵌窗口 - iframe</p>
-</li>
-</ul>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><ul>
-<li><p>文档类型</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype html&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>注释</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 这是一段注释，注释不能够嵌套 --&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>属性</p>
-<ul>
-<li>id：唯一标识</li>
-<li>class：元素所属的类，用于区分不同的元素</li>
-<li>title：元素的额外信息（鼠标悬浮时会显示工具提示文本）</li>
-<li>tabindex：Tab键切换顺序</li>
-<li>contenteditable：元素是否可编辑</li>
-<li>draggable：元素是否可拖拽</li>
-</ul>
-</li>
-<li><p>块级元素 / 行级元素</p>
-</li>
-<li><p>字符实体（实体替换符）</p>
-<p><img src="/images/Python100/Day21-30/%E5%AD%97%E7%AC%A6%E5%AE%9E%E4%BD%93.png" alt></p>
-</li>
-</ul>
-<h3 id="使用CSS渲染页面"><a href="#使用CSS渲染页面" class="headerlink" title="使用CSS渲染页面"></a>使用CSS渲染页面</h3><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><ul>
-<li><p>CSS的作用</p>
-</li>
-<li><p>CSS的工作原理</p>
-</li>
-<li><p>规则、属性和值</p>
-<p><img src="/images/Python100/Day21-30/%E9%80%89%E6%8B%A9%E5%99%A8%E8%AF%AD%E6%B3%95.png" alt></p>
-</li>
-<li><p>常用选择器</p>
-<p><img src="/images/Python100/Day21-30/%E5%B8%B8%E7%94%A8%E9%80%89%E6%8B%A9%E5%99%A8.png" alt></p>
-</li>
-</ul>
-<h4 id="颜色（color）"><a href="#颜色（color）" class="headerlink" title="颜色（color）"></a>颜色（color）</h4><ul>
-<li>如何指定颜色</li>
-<li>颜色术语和颜色对比</li>
-<li>背景色</li>
-</ul>
-<h4 id="文本（text-font）"><a href="#文本（text-font）" class="headerlink" title="文本（text / font）"></a>文本（text / font）</h4><ul>
-<li><p>文本的大小和字型(font-size / font-family)</p>
-<p><img src="/images/Python100/Day21-30/%E5%B0%BA%E5%AF%B8%E5%8D%95%E4%BD%8D.png" alt></p>
-<p><img src="/images/Python100/Day21-30/%E8%A1%AC%E7%BA%BF%E5%AD%97%E4%BD%93+%E9%9D%9E%E8%A1%AC%E7%BA%BF%E5%AD%97%E4%BD%93+%E7%AD%89%E5%AE%BD%E5%AD%97%E4%BD%93.png" alt></p>
-</li>
-<li><p>粗细、样式、拉伸和装饰(font-weight / font-style / font-stretch / text-decoration)</p>
-<p><img src="/images/Python100/Day21-30/%E5%AD%97%E4%BD%93%E6%A0%B7%E5%BC%8F.png" alt></p>
-</li>
-<li><p>行间距(line-height)、字母间距(letter-spacing)和单词间距(word-spacing)</p>
-</li>
-<li><p>对齐(text-align)方式和缩进(text-ident)</p>
-</li>
-<li><p>链接样式（:link / :visited / :active / :hover）</p>
-</li>
-<li><p>CSS3新属性</p>
-<ul>
-<li>阴影效果 - text-shadow</li>
-<li>首字母和首行文本(:first-letter / :first-line)</li>
-<li>响应用户</li>
-</ul>
-</li>
-</ul>
-<h4 id="盒子（box-model）"><a href="#盒子（box-model）" class="headerlink" title="盒子（box model）"></a>盒子（box model）</h4><ul>
-<li><p>盒子大小的控制（width / height）</p>
-<p><img src="/images/Python100/Day21-30/%E5%B0%BA%E5%AF%B8%E5%8D%95%E4%BD%8D.png" alt></p>
-</li>
-<li><p>盒子的边框、外边距和内边距（border /  margin / padding）</p>
-<p><img src="/images/Python100/Day21-30/%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B.png" alt></p>
-</li>
-<li><p>盒子的显示和隐藏（display / visibility）</p>
-</li>
-<li><p>CSS3新属性</p>
-<ul>
-<li>边框图像（border-image）</li>
-<li>投影（border-shadow）</li>
-<li>圆角（border-radius）</li>
-</ul>
-</li>
-</ul>
-<h4 id="列表、表格和表单"><a href="#列表、表格和表单" class="headerlink" title="列表、表格和表单"></a>列表、表格和表单</h4><ul>
-<li>列表的项目符号（list-style）</li>
-<li>表格的边框和背景（border-collapse）</li>
-<li>表单控件的外观</li>
-<li>表单控件的对齐</li>
-<li>浏览器的开发者工具</li>
-</ul>
-<h4 id="图像"><a href="#图像" class="headerlink" title="图像"></a>图像</h4><ul>
-<li>控制图像的大小（display: inline-block）</li>
-<li>对齐图像</li>
-<li>背景图像（background / background-image / background-repeat / background-position）</li>
-</ul>
-<h4 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h4><ul>
-<li><p>控制元素的位置（position / z-index）</p>
-<ul>
-<li>普通流</li>
-<li>相对定位</li>
-<li>绝对定位</li>
-<li>固定定位</li>
-<li>浮动元素（float / clear）</li>
-</ul>
-</li>
-<li><p>网站布局</p>
-<ul>
-<li><p>HTML5布局</p>
-<p><img src="/images/Python100/Day21-30/%E7%BB%8F%E5%85%B8%E5%B8%83%E5%B1%80-2.png" alt></p>
-</li>
-</ul>
-</li>
-<li><p>适配屏幕尺寸</p>
-<ul>
-<li>固定宽度布局</li>
-<li>流体布局</li>
-<li>布局网格</li>
-</ul>
-</li>
-</ul>
-<h3 id="使用JavaScript控制行为"><a href="#使用JavaScript控制行为" class="headerlink" title="使用JavaScript控制行为"></a>使用JavaScript控制行为</h3><h4 id="JavaScript基本语法"><a href="#JavaScript基本语法" class="headerlink" title="JavaScript基本语法"></a>JavaScript基本语法</h4><ul>
-<li>语句和注释</li>
-<li>变量和数据类型<ul>
-<li>声明和赋值</li>
-<li>简单数据类型和复杂数据类型</li>
-<li>变量的命名规则</li>
-</ul>
-</li>
-<li>表达式和运算符<ul>
-<li>赋值运算符</li>
-<li>算术运算符</li>
-<li>比较运算符</li>
-<li>逻辑运算符</li>
-</ul>
-</li>
-<li>分支结构<ul>
-<li><code>if...else...</code></li>
-<li><code>switch...cas...default...</code></li>
-</ul>
-</li>
-<li>循环结构<ul>
-<li><code>for</code>循环</li>
-<li><code>while</code>循环</li>
-<li><code>do...while</code>循环</li>
-</ul>
-</li>
-<li>数组<ul>
-<li>创建数组</li>
-<li>操作数组中的元素</li>
-</ul>
-</li>
-<li>函数<ul>
-<li>声明函数</li>
-<li>调用函数</li>
-<li>参数和返回值</li>
-<li>匿名函数</li>
-<li>立即调用函数</li>
-</ul>
-</li>
-</ul>
-<h4 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h4><ul>
-<li>对象的概念</li>
-<li>创建对象的字面量语法</li>
-<li>访问成员运算符</li>
-<li>创建对象的构造函数语法<ul>
-<li><code>this</code>关键字</li>
-</ul>
-</li>
-<li>添加和删除属性<ul>
-<li><code>delete</code>关键字</li>
-</ul>
-</li>
-<li>标准对象<ul>
-<li><code>Number</code> / <code>String</code> / <code>Boolean</code> / <code>Symbol</code> / <code>Array</code> / <code>Function</code> </li>
-<li><code>Date</code> / <code>Error</code> / <code>Math</code> / <code>RegEx</code> / <code>Object</code> / <code>Map</code> / <code>Set</code></li>
-<li><code>JSON</code> / <code>Promise</code> / <code>Generator</code> / <code>Reflect</code> / <code>Proxy</code></li>
-</ul>
-</li>
-</ul>
-<h4 id="BOM"><a href="#BOM" class="headerlink" title="BOM"></a>BOM</h4><ul>
-<li><code>window</code>对象的属性和方法</li>
-<li><code>history</code>对象<ul>
-<li><code>forward()</code> / <code>back()</code> / <code>go()</code></li>
-</ul>
-</li>
-<li><code>location</code>对象</li>
-<li><code>navigator</code>对象</li>
-<li><code>screen</code>对象</li>
-</ul>
-<h4 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h4><ul>
-<li>DOM树</li>
-<li>访问元素<ul>
-<li><code>getElementById()</code> / <code>querySelector()</code></li>
-<li><code>getElementsByClassName()</code> / <code>getElementsByTagName()</code> / <code>querySelectorAll()</code></li>
-<li><code>parentNode</code> / <code>previousSibling</code> / <code>nextSibling</code> / <code>children</code> / <code>firstChild</code> / <code>lastChild</code><ul>
-<li>操作元素</li>
-<li><code>nodeValue</code></li>
-<li><code>innerHTML</code> / <code>textContent</code> / <code>createElement()</code> / <code>createTextNode()</code> / <code>appendChild()</code> / <code>insertBefore()</code> / <code>removeChild()</code></li>
-<li><code>className</code> / <code>id</code> / <code>hasAttribute()</code> / <code>getAttribute()</code> / <code>setAttribute()</code> / <code>removeAttribute()</code></li>
-<li>事件处理</li>
-<li>事件类型</li>
-</ul>
-</li>
-<li>UI事件：<code>load</code> / <code>unload</code> / <code>error</code> / <code>resize</code> / <code>scroll</code></li>
-<li>键盘事件：<code>keydown</code> / <code>keyup</code> / <code>keypress</code></li>
-<li>鼠标事件：<code>click</code> / <code>dbclick</code> / <code>mousedown</code> / <code>mouseup</code> / <code>mousemove</code> / <code>mouseover</code> / <code>mouseout</code></li>
-<li>焦点事件：<code>focus</code> / <code>blur</code></li>
-<li>表单事件：<code>input</code> / <code>change</code> / <code>submit</code> / <code>reset</code> / <code>cut</code> / <code>copy</code> / <code>paste</code> / <code>select</code><ul>
-<li>事件绑定</li>
-</ul>
-</li>
-<li>HTML事件处理程序（不推荐使用，因为要做到标签与代码分离）</li>
-<li>传统的DOM事件处理程序（只能附加一个回调函数）</li>
-<li>事件监听器（旧的浏览器中不被支持）<ul>
-<li>事件流：事件捕获 / 事件冒泡</li>
-<li>事件对象（低版本IE中的window.event）</li>
-</ul>
-</li>
-<li><code>target</code>（有些浏览器使用srcElement）</li>
-<li><code>type</code></li>
-<li><code>cancelable</code></li>
-<li><code>preventDefault()</code></li>
-<li><code>stopPropagation()</code>（低版本IE中的cancelBubble）<ul>
-<li>鼠标事件 - 事件发生的位置</li>
-</ul>
-</li>
-<li>屏幕位置：<code>screenX</code>和<code>screenY</code></li>
-<li>页面位置：<code>pageX</code>和<code>pageY</code></li>
-<li>客户端位置：<code>clientX</code>和<code>clientY</code><ul>
-<li>键盘事件 - 哪个键被按下了</li>
-</ul>
-</li>
-<li><code>keyCode</code>属性（有些浏览器使用<code>which</code>）</li>
-<li><code>String.fromCharCode(event.keyCode)</code><ul>
-<li>HTML5事件</li>
-</ul>
-</li>
-<li><code>DOMContentLoaded</code></li>
-<li><code>hashchange</code></li>
-<li><code>beforeunload</code></li>
-</ul>
-</li>
-</ul>
-<h4 id="JavaScript-API"><a href="#JavaScript-API" class="headerlink" title="JavaScript API"></a>JavaScript API</h4><ul>
-<li><p>客户端存储 - <code>localStorage</code>和<code>sessionStorage</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">localStorage.colorSetting = <span class="string">'#a4509b'</span>;</span><br><span class="line">localStorage[<span class="string">'colorSetting'</span>] = <span class="string">'#a4509b'</span>;</span><br><span class="line">localStorage.setItem(<span class="string">'colorSetting'</span>, <span class="string">'#a4509b'</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取位置信息 - <code>geolocation</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">navigator.geolocation.getCurrentPosition(<span class="function"><span class="keyword">function</span>(<span class="params">pos</span>) </span>&#123; 		  </span><br><span class="line">    <span class="built_in">console</span>.log(pos.coords.latitude)</span><br><span class="line">    <span class="built_in">console</span>.log(pos.coords.longitude)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>从服务器获取数据 - Fetch API</p>
-</li>
-<li><p>绘制图形 - <code>&lt;canvas&gt;</code>的API</p>
-</li>
-<li><p>音视频 - <code>&lt;audio&gt;</code>和<code>&lt;video&gt;</code>的API</p>
-</li>
-</ul>
-<h3 id="使用jQuery"><a href="#使用jQuery" class="headerlink" title="使用jQuery"></a>使用jQuery</h3><h4 id="jQuery概述"><a href="#jQuery概述" class="headerlink" title="jQuery概述"></a>jQuery概述</h4><ol>
-<li>Write Less Do More（用更少的代码来完成更多的工作）</li>
-<li>使用CSS选择器来查找元素（更简单更方便）</li>
-<li>使用jQuery方法来操作元素（解决浏览器兼容性问题、应用于所有元素并施加多个方法）</li>
-</ol>
-<h4 id="引入jQuery"><a href="#引入jQuery" class="headerlink" title="引入jQuery"></a>引入jQuery</h4><ul>
-<li>下载jQuery的开发版和压缩版</li>
-<li>从CDN加载jQuery</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.jQuery || </span></span><br><span class="line"><span class="xml">        document.write('<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/jquery-3.3.1.min.js"</span>&gt;</span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>')</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="查找元素"><a href="#查找元素" class="headerlink" title="查找元素"></a>查找元素</h4><ul>
-<li>选择器<ul>
-<li>* / element / #id / .class / selector1, selector2</li>
-<li>ancestor descendant / parent&gt;child / previous+next / previous~siblings </li>
-</ul>
-</li>
-<li>筛选器<ul>
-<li>基本筛选器：:not(selector) / :first / :last / :even / :odd / :eq(index) / :gt(index) / :lt(index) / :animated / :focus</li>
-<li>内容筛选器：:contains(‘…’) / :empty / :parent / :has(selector)</li>
-<li>可见性筛选器：:hidden / :visible</li>
-<li>子节点筛选器：:nth-child(expr) / :first-child / :last-child / :only-child</li>
-<li>属性筛选器：[attribute] / [attribute=’value’] / [attribute!=’value’] / [attribute^=’value’] / [attribute$=’value’] / [attribute|=’value’] / [attribute~=’value’]</li>
-</ul>
-</li>
-<li>表单：:input / :text / :password / :radio / :checkbox / :submit / :image / :reset / :button / :file / :selected / :enabled / :disabled / :checked</li>
-</ul>
-<h4 id="执行操作"><a href="#执行操作" class="headerlink" title="执行操作"></a>执行操作</h4><ul>
-<li>内容操作<ul>
-<li>获取/修改内容：<code>html()</code> / <code>text()</code> / <code>replaceWith()</code> / <code>remove()</code></li>
-<li>获取/设置元素：<code>before()</code> / <code>after()</code> / <code>prepend()</code> / <code>append()</code> / <code>remove()</code> / <code>clone()</code> / <code>unwrap()</code> / <code>detach()</code> / <code>empty()</code> / <code>add()</code></li>
-<li>获取/修改属性：<code>attr()</code> / <code>removeAttr()</code> / <code>addClass()</code> / <code>removeClass()</code> / <code>css()</code></li>
-<li>获取/设置表单值：<code>val()</code></li>
-</ul>
-</li>
-<li>查找操作<ul>
-<li>查找方法：<code>find()</code> /  <code>parent()</code> / <code>children()</code> / <code>siblings()</code> / <code>next()</code> / <code>nextAll()</code> / <code>prev()</code> / <code>prevAll()</code></li>
-<li>筛选器：<code>filter()</code> / <code>not()</code> / <code>has()</code> / <code>is()</code> / <code>contains()</code></li>
-<li>索引编号：<code>eq()</code></li>
-</ul>
-</li>
-<li>尺寸和位置<ul>
-<li>尺寸相关：<code>height()</code> / <code>width()</code> / <code>innerHeight()</code> / <code>innerWidth()</code> / <code>outerWidth()</code> / <code>outerHeight()</code></li>
-<li>位置相关：<code>offset()</code> / <code>position()</code> / <code>scrollLeft()</code> / <code>scrollTop()</code></li>
-</ul>
-</li>
-<li>特效和动画<ul>
-<li>基本动画：<code>show()</code> / <code>hide()</code> / <code>toggle()</code></li>
-<li>消失出现：<code>fadeIn()</code> / <code>fadeOut()</code> / <code>fadeTo()</code> / <code>fadeToggle()</code></li>
-<li>滑动效果：<code>slideDown()</code> / <code>slideUp()</code> / <code>slideToggle()</code></li>
-<li>自定义：<code>delay()</code> / <code>stop()</code> / <code>animate()</code></li>
-</ul>
-</li>
-<li>事件<ul>
-<li>文档加载：<code>ready()</code> / <code>load()</code></li>
-<li>用户交互：<code>on()</code> / <code>off()</code></li>
-</ul>
-</li>
-</ul>
-<h4 id="链式操作"><a href="#链式操作" class="headerlink" title="链式操作"></a>链式操作</h4><h4 id="检测页面是否可用"><a href="#检测页面是否可用" class="headerlink" title="检测页面是否可用"></a>检测页面是否可用</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    $(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line">        </span><br><span class="line">    &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    $(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line">        </span><br><span class="line">    &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="jQuery插件"><a href="#jQuery插件" class="headerlink" title="jQuery插件"></a>jQuery插件</h4><ul>
-<li>jQuery Validation</li>
-<li>jQuery Treeview</li>
-<li>jQuery Autocomplete</li>
-<li>jQuery UI</li>
-</ul>
-<h4 id="避免和其他库的冲突"><a href="#避免和其他库的冲突" class="headerlink" title="避免和其他库的冲突"></a>避免和其他库的冲突</h4><p>先引入其他库再引入jQuery的情况。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"other.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"jquery.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">	jQuery.noConflict();</span><br><span class="line"><span class="javascript">    jQuery(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        jQuery(<span class="string">'div'</span>).hide();</span></span><br><span class="line">    &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>先引入jQuery再引入其他库的情况。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"jquery.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"other.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    jQuery(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        jQuery(<span class="string">'div'</span>).hide();</span></span><br><span class="line">    &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="使用Ajax"><a href="#使用Ajax" class="headerlink" title="使用Ajax"></a>使用Ajax</h4><p>Ajax是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。</p>
-<ul>
-<li>原生的Ajax</li>
-<li>基于jQuery的Ajax<ul>
-<li>加载内容</li>
-<li>提交表单</li>
-</ul>
-</li>
-</ul>
-<h3 id="前端框架"><a href="#前端框架" class="headerlink" title="前端框架"></a>前端框架</h3><h4 id="渐进式框架-Vue-js"><a href="#渐进式框架-Vue-js" class="headerlink" title="渐进式框架 - Vue.js"></a>渐进式框架 - <a href="https://cn.vuejs.org/" target="_blank" rel="noopener">Vue.js</a></h4><p>前后端分离开发（前端渲染）必选框架。</p>
-<h5 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h5><ol>
-<li><p>引入Vue的JavaScript文件，我们仍然推荐从CDN服务器加载它。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>数据绑定（声明式渲染 ）。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123; product &#125;&#125;库存信息<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">		el: <span class="string">'#app'</span>,</span></span><br><span class="line">		data: &#123;</span><br><span class="line"><span class="javascript">			product: <span class="string">'iPhone X'</span></span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>条件与循环。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>库存信息<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"product in products"</span>&gt;</span></span><br><span class="line">			&#123;&#123; product.name &#125;&#125; - &#123;&#123; product.quantity &#125;&#125;</span><br><span class="line">			<span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"product.quantity === 0"</span>&gt;</span></span><br><span class="line">				已经售罄</span><br><span class="line">			<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">		el: <span class="string">'#app'</span>,</span></span><br><span class="line">		data: &#123;</span><br><span class="line">			products: [</span><br><span class="line"><span class="javascript">				&#123;<span class="string">"id"</span>: <span class="number">1</span>, <span class="string">"name"</span>: <span class="string">"iPhone X"</span>, <span class="string">"quantity"</span>: <span class="number">20</span>&#125;,</span></span><br><span class="line"><span class="javascript">				&#123;<span class="string">"id"</span>: <span class="number">2</span>, <span class="string">"name"</span>: <span class="string">"华为 Mate20"</span>, <span class="string">"quantity"</span>: <span class="number">0</span>&#125;,</span></span><br><span class="line"><span class="javascript">				&#123;<span class="string">"id"</span>: <span class="number">3</span>, <span class="string">"name"</span>: <span class="string">"小米 Mix3"</span>, <span class="string">"quantity"</span>: <span class="number">50</span>&#125;</span></span><br><span class="line">			]</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>计算属性。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>库存信息<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"product in products"</span>&gt;</span></span><br><span class="line">			&#123;&#123; product.name &#125;&#125; - &#123;&#123; product.quantity &#125;&#125;</span><br><span class="line">			<span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"product.quantity === 0"</span>&gt;</span></span><br><span class="line">				已经售罄</span><br><span class="line">			<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h2</span>&gt;</span>库存总量：&#123;&#123; totalQuantity &#125;&#125;台<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">		el: <span class="string">'#app'</span>,</span></span><br><span class="line">		data: &#123;</span><br><span class="line">			products: [</span><br><span class="line"><span class="javascript">				&#123;<span class="string">"id"</span>: <span class="number">1</span>, <span class="string">"name"</span>: <span class="string">"iPhone X"</span>, <span class="string">"quantity"</span>: <span class="number">20</span>&#125;,</span></span><br><span class="line"><span class="javascript">				&#123;<span class="string">"id"</span>: <span class="number">2</span>, <span class="string">"name"</span>: <span class="string">"华为 Mate20"</span>, <span class="string">"quantity"</span>: <span class="number">0</span>&#125;,</span></span><br><span class="line"><span class="javascript">				&#123;<span class="string">"id"</span>: <span class="number">3</span>, <span class="string">"name"</span>: <span class="string">"小米 Mix3"</span>, <span class="string">"quantity"</span>: <span class="number">50</span>&#125;</span></span><br><span class="line">			]</span><br><span class="line">		&#125;,</span><br><span class="line">		computed: &#123;</span><br><span class="line">			totalQuantity() &#123;</span><br><span class="line"><span class="javascript">				<span class="keyword">return</span> <span class="keyword">this</span>.products.reduce(<span class="function">(<span class="params">sum, product</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">					<span class="keyword">return</span> sum + product.quantity</span></span><br><span class="line">				&#125;, 0);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>处理事件。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>库存信息<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"product in products"</span>&gt;</span></span><br><span class="line">			&#123;&#123; product.name &#125;&#125; - &#123;&#123; product.quantity &#125;&#125;</span><br><span class="line">			<span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"product.quantity === 0"</span>&gt;</span></span><br><span class="line">				已经售罄</span><br><span class="line">			<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"product.quantity += 1"</span>&gt;</span></span><br><span class="line">				增加库存</span><br><span class="line">			<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h2</span>&gt;</span>库存总量：&#123;&#123; totalQuantity &#125;&#125;台<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">		el: <span class="string">'#app'</span>,</span></span><br><span class="line">		data: &#123;</span><br><span class="line">			products: [</span><br><span class="line"><span class="javascript">				&#123;<span class="string">"id"</span>: <span class="number">1</span>, <span class="string">"name"</span>: <span class="string">"iPhone X"</span>, <span class="string">"quantity"</span>: <span class="number">20</span>&#125;,</span></span><br><span class="line"><span class="javascript">				&#123;<span class="string">"id"</span>: <span class="number">2</span>, <span class="string">"name"</span>: <span class="string">"华为 Mate20"</span>, <span class="string">"quantity"</span>: <span class="number">0</span>&#125;,</span></span><br><span class="line"><span class="javascript">				&#123;<span class="string">"id"</span>: <span class="number">3</span>, <span class="string">"name"</span>: <span class="string">"小米 Mix3"</span>, <span class="string">"quantity"</span>: <span class="number">50</span>&#125;</span></span><br><span class="line">			]</span><br><span class="line">		&#125;,</span><br><span class="line">		computed: &#123;</span><br><span class="line">			totalQuantity() &#123;</span><br><span class="line"><span class="javascript">				<span class="keyword">return</span> <span class="keyword">this</span>.products.reduce(<span class="function">(<span class="params">sum, product</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">					<span class="keyword">return</span> sum + product.quantity</span></span><br><span class="line">				&#125;, 0);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用户输入。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span>&gt;</span>库存信息<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"product in products"</span>&gt;</span></span><br><span class="line">			&#123;&#123; product.name &#125;&#125; - </span><br><span class="line">			<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"number"</span> <span class="attr">v-model.number</span>=<span class="string">"product.quantity"</span> <span class="attr">min</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"product.quantity === 0"</span>&gt;</span></span><br><span class="line">				已经售罄</span><br><span class="line">			<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"product.quantity += 1"</span>&gt;</span></span><br><span class="line">				增加库存</span><br><span class="line">			<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h2</span>&gt;</span>库存总量：&#123;&#123; totalQuantity &#125;&#125;台<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">		el: <span class="string">'#app'</span>,</span></span><br><span class="line">		data: &#123;</span><br><span class="line">			products: [</span><br><span class="line"><span class="javascript">				&#123;<span class="string">"id"</span>: <span class="number">1</span>, <span class="string">"name"</span>: <span class="string">"iPhone X"</span>, <span class="string">"quantity"</span>: <span class="number">20</span>&#125;,</span></span><br><span class="line"><span class="javascript">				&#123;<span class="string">"id"</span>: <span class="number">2</span>, <span class="string">"name"</span>: <span class="string">"华为 Mate20"</span>, <span class="string">"quantity"</span>: <span class="number">0</span>&#125;,</span></span><br><span class="line"><span class="javascript">				&#123;<span class="string">"id"</span>: <span class="number">3</span>, <span class="string">"name"</span>: <span class="string">"小米 Mix3"</span>, <span class="string">"quantity"</span>: <span class="number">50</span>&#125;</span></span><br><span class="line">			]</span><br><span class="line">		&#125;,</span><br><span class="line">		computed: &#123;</span><br><span class="line">			totalQuantity() &#123;</span><br><span class="line"><span class="javascript">				<span class="keyword">return</span> <span class="keyword">this</span>.products.reduce(<span class="function">(<span class="params">sum, product</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">					<span class="keyword">return</span> sum + product.quantity</span></span><br><span class="line">				&#125;, 0);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>通过网络加载JSON数据。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h2</span>&gt;</span>库存信息<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"product in products"</span>&gt;</span></span><br><span class="line">			&#123;&#123; product.name &#125;&#125; - &#123;&#123; product.quantity &#125;&#125;</span><br><span class="line">			<span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"product.quantity === 0"</span>&gt;</span></span><br><span class="line">				已经售罄</span><br><span class="line">			<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">	<span class="keyword">const</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">		el: <span class="string">'#app'</span>,</span></span><br><span class="line">		data: &#123;</span><br><span class="line">			products: []</span><br><span class="line">		&#125;，</span><br><span class="line">		created() &#123;</span><br><span class="line"><span class="javascript">			fetch(<span class="string">'https://jackfrued.top/api/products'</span>)</span></span><br><span class="line"><span class="javascript">				.then(<span class="function"><span class="params">response</span> =&gt;</span> response.json())</span></span><br><span class="line"><span class="javascript">				.then(<span class="function"><span class="params">json</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">					<span class="keyword">this</span>.products = json</span></span><br><span class="line">				&#125;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h5 id="使用脚手架-vue-cli"><a href="#使用脚手架-vue-cli" class="headerlink" title="使用脚手架 - vue-cli"></a>使用脚手架 - vue-cli</h5><p>Vue为商业项目开发提供了非常便捷的脚手架工具vue-cli，通过工具可以省去手工配置开发环境、测试环境和运行环境的步骤，让开发者只需要关注要解决的问题。</p>
-<ol>
-<li>安装脚手架。</li>
-<li>创建项目。</li>
-<li>安装依赖包。</li>
-<li>运行项目。</li>
-</ol>
-<h4 id="UI框架-Element"><a href="#UI框架-Element" class="headerlink" title="UI框架 - Element"></a>UI框架 - <a href="http://element-cn.eleme.io/#/zh-CN" target="_blank" rel="noopener">Element</a></h4><p>基于Vue 2.0的桌面端组件库，用于构造用户界面，支持响应式布局。</p>
-<ol>
-<li><p>引入Element的CSS和JavaScript文件。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 引入样式 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://unpkg.com/element-ui/lib/theme-chalk/index.css"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 引入组件库 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/element-ui/lib/index.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>一个简单的例子。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://unpkg.com/element-ui/lib/theme-chalk/index.css"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">el-button</span> @<span class="attr">click</span>=<span class="string">"visible = true"</span>&gt;</span>点我<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">el-dialog</span> <span class="attr">:visible.sync</span>=<span class="string">"visible"</span> <span class="attr">title</span>=<span class="string">"Hello world"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">p</span>&gt;</span>开始使用Element吧<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">el-dialog</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/element-ui/lib/index.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">			el: <span class="string">'#app'</span>,</span></span><br><span class="line">			data: &#123;</span><br><span class="line"><span class="javascript">				visible: <span class="literal">false</span>,</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>使用组件。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://unpkg.com/element-ui/lib/theme-chalk/index.css"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">el-table</span> <span class="attr">:data</span>=<span class="string">"tableData"</span> <span class="attr">stripe</span> <span class="attr">style</span>=<span class="string">"width: 100%"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"date"</span> <span class="attr">label</span>=<span class="string">"日期"</span> <span class="attr">width</span>=<span class="string">"180"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"name"</span> <span class="attr">label</span>=<span class="string">"姓名"</span> <span class="attr">width</span>=<span class="string">"180"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">prop</span>=<span class="string">"address"</span> <span class="attr">label</span>=<span class="string">"地址"</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/element-ui/lib/index.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">			el: <span class="string">'#app'</span>,</span></span><br><span class="line">			data: &#123;</span><br><span class="line">				tableData:  [</span><br><span class="line">					&#123;</span><br><span class="line"><span class="javascript">						date: <span class="string">'2016-05-02'</span>,</span></span><br><span class="line"><span class="javascript">						name: <span class="string">'王一霸'</span>,</span></span><br><span class="line"><span class="javascript">						address: <span class="string">'上海市普陀区金沙江路 1518 弄'</span></span></span><br><span class="line">					&#125;, </span><br><span class="line">					&#123;</span><br><span class="line"><span class="javascript">						date: <span class="string">'2016-05-04'</span>,</span></span><br><span class="line"><span class="javascript">						name: <span class="string">'刘二狗'</span>,</span></span><br><span class="line"><span class="javascript">						address: <span class="string">'上海市普陀区金沙江路 1517 弄'</span></span></span><br><span class="line">					&#125;, </span><br><span class="line">					&#123;</span><br><span class="line"><span class="javascript">						date: <span class="string">'2016-05-01'</span>,</span></span><br><span class="line"><span class="javascript">						name: <span class="string">'杨三萌'</span>,</span></span><br><span class="line"><span class="javascript">						address: <span class="string">'上海市普陀区金沙江路 1519 弄'</span></span></span><br><span class="line">					&#125;, </span><br><span class="line">					&#123;</span><br><span class="line"><span class="javascript">						date: <span class="string">'2016-05-03'</span>,</span></span><br><span class="line"><span class="javascript">						name: <span class="string">'陈四吹'</span>,</span></span><br><span class="line"><span class="javascript">						address: <span class="string">'上海市普陀区金沙江路 1516 弄'</span></span></span><br><span class="line">					&#125;</span><br><span class="line">				]</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<h4 id="报表框架-ECharts"><a href="#报表框架-ECharts" class="headerlink" title="报表框架 - ECharts"></a>报表框架 - <a href="https://echarts.baidu.com" target="_blank" rel="noopener">ECharts</a></h4><p>百度出品的开源可视化库，常用于生成各种类型的报表。</p>
-<p><img src="/images/Python100/Day21-30/baidu_echarts.png" alt></p>
-<h4 id="基于弹性盒子的CSS框架-Bulma"><a href="#基于弹性盒子的CSS框架-Bulma" class="headerlink" title="基于弹性盒子的CSS框架 - Bulma"></a>基于弹性盒子的CSS框架 - <a href="https://bulma.io/" target="_blank" rel="noopener">Bulma</a></h4><p>Bulma是一个基于Flexbox的现代化的CSS框架，其初衷就是移动优先（Mobile First），模块化设计，可以轻松用来实现各种简单或者复杂的内容布局，即使不懂CSS的开发者也能够使用它定制出漂亮的页面。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Bulma<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"https://cdn.bootcss.com/bulma/0.7.4/css/bulma.min.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span></span><br><span class="line">		div &#123; margin-top: 10px; &#125;</span><br><span class="line">		.column &#123; color: #fff; background-color: #063; margin: 10px 10px; text-align: center; &#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"columns"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"column"</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"button is-primary"</span>&gt;</span>Primary<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"button is-link"</span>&gt;</span>Link<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"button is-info"</span>&gt;</span>Info<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"button is-success"</span>&gt;</span>Success<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"button is-warning"</span>&gt;</span>Warning<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"button is-danger"</span>&gt;</span>Danger<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">progress</span> <span class="attr">class</span>=<span class="string">"progress is-danger is-medium"</span> <span class="attr">max</span>=<span class="string">"100"</span>&gt;</span>60%<span class="tag">&lt;/<span class="name">progress</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table is-hoverable"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">th</span>&gt;</span>One<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">th</span>&gt;</span>Two<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">td</span>&gt;</span>Three<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">td</span>&gt;</span>Four<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">td</span>&gt;</span>Five<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">td</span>&gt;</span>Six<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">td</span>&gt;</span>Seven<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">td</span>&gt;</span>Eight<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">td</span>&gt;</span>Nine<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">td</span>&gt;</span>Ten<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">td</span>&gt;</span>Eleven<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">td</span>&gt;</span>Twelve<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="响应式布局框架-Bootstrap"><a href="#响应式布局框架-Bootstrap" class="headerlink" title="响应式布局框架 - Bootstrap"></a>响应式布局框架 - <a href="http://www.bootcss.com/" target="_blank" rel="noopener">Bootstrap</a></h4><p>用于快速开发Web应用程序的前端框架，支持响应式布局。</p>
-<ol>
-<li><p>特点</p>
-<ul>
-<li>支持主流的浏览器和移动设备</li>
-<li>容易上手</li>
-<li>响应式设计</li>
-</ul>
-</li>
-<li><p>内容</p>
-<ul>
-<li>网格系统</li>
-<li>封装的CSS</li>
-<li>现成的组件</li>
-<li>JavaScript插件</li>
-</ul>
-</li>
-<li><p>可视化</p>
-<p><img src="/images/Python100/Day21-30/bootstrap-layoutit.png" alt></p>
-</li>
-</ol>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -3191,7 +2849,7 @@ $ pass</code></pre>
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">138</span>
+          <span class="site-state-item-count">139</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -3232,7 +2890,9 @@ $ pass</code></pre>
         
           
         
-        <span class="site-state-item-count">13</span>
+          
+        
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>

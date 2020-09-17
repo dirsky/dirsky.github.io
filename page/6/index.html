@@ -269,6 +269,196 @@
   
   
   <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/09/27/db-mysql-赶集mysql军规/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/09/27/db-mysql-赶集mysql军规/" class="post-title-link" itemprop="url">赶集mysql军规</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-27 00:00:00" itemprop="dateCreated datePublished" datetime="2018-09-27T00:00:00+08:00">2018-09-27</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-09-05 14:54:20" itemprop="dateModified" datetime="2019-09-05T14:54:20+08:00">2019-09-05</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/db/" itemprop="url" rel="index"><span itemprop="name">db</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/09/27/db-mysql-赶集mysql军规/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/09/27/db-mysql-赶集mysql军规/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>1.1k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一，核心军规"><a href="#一，核心军规" class="headerlink" title="一，核心军规"></a>一，核心军规</h2><ul>
+<li>不在数据库做计算，cpu计算务必移至业务层</li>
+<li>控制单表数据量，单表记录控制在千万级</li>
+<li>控制列数量，字段数控制在20以内</li>
+<li>平衡范式与冗余，为提高效率可以牺牲范式设计，冗余数据</li>
+<li>拒绝3B(big)，大sql，大事务，大批量</li>
+</ul>
+<h2 id="二，字段类军规"><a href="#二，字段类军规" class="headerlink" title="二，字段类军规"></a>二，字段类军规</h2><ul>
+<li><p>用好数值类型</p>
+<p>tinyint(1Byte)<br>smallint(2Byte)<br>mediumint(3Byte)<br>int(4Byte)<br>bigint(8Byte)<br>bad case：int(1)/int(11)</p>
+</li>
+<li><p>有些字符转化为数字<br>用int而不是char(15)存储ip</p>
+</li>
+<li><p>优先使用enum或set<br>例如：<code>sex</code> enum (‘F’, ‘M’)</p>
+</li>
+<li><p>避免使用NULL字段<br>NULL字段很难查询优化<br>NULL字段的索引需要额外空间<br>NULL字段的复合索引无效<br>bad case：<br><code>name</code> char(32) default null<br><code>age</code> int not null<br>good case：<br><code>age</code> int not null default 0</p>
+</li>
+<li><p>不在数据库里存图片</p>
+</li>
+</ul>
+<h2 id="三，索引类军规"><a href="#三，索引类军规" class="headerlink" title="三，索引类军规"></a>三，索引类军规</h2><ul>
+<li><p>谨慎合理使用索引<br>改善查询、减慢更新<br>索引一定不是越多越好（能不加就不加，要加的一定得加）<br>覆盖记录条数过多不适合建索引，例如“性别”</p>
+</li>
+<li><p>字符字段必须建前缀索引</p>
+</li>
+<li><p>不在索引做列运算<br>bad case：<br>select id where age +1 = 10;</p>
+</li>
+<li><p>innodb主键合理使用自增列<br>主键建立聚簇索引<br>主键不应该被修改<br>字符串不应该做主键<br>如果不指定主键，innodb会使用唯一且非空值索引代替</p>
+</li>
+<li><p>不用外键，请由程序保证约束</p>
+</li>
+</ul>
+<h2 id="四，sql类军规"><a href="#四，sql类军规" class="headerlink" title="四，sql类军规"></a>四，sql类军规</h2><ul>
+<li><p>sql语句尽可能简单<br>一条sql只能在一个cpu运算<br>大语句拆小语句，减少锁时间<br>一条大sql可以堵死整个库</p>
+</li>
+<li><p>简单的事务<br>事务时间尽可能短<br>bad case：<br>上传图片事务</p>
+</li>
+<li><p>避免使用触发器，用户自定义函数，请由程序取而代之</p>
+</li>
+<li><p>不用select *<br>消耗cpu，io，内存，带宽<br>这种程序不具有扩展性</p>
+</li>
+<li><p>OR改写为IN()</p>
+</li>
+<li><p>OR改写为UNION</p>
+</li>
+<li><p>画外音：最新的mysql内核已经进行了相关优化</p>
+</li>
+<li><p>limit高效分页<br>limit越大，效率越低<br>select id from t limit 10000, 10;<br>应该改为 =&gt;<br>select id from t where id &gt; 10000 limit 10;</p>
+</li>
+<li><p>使用union all替代union，union有去重开销</p>
+</li>
+<li><p>尽量不用连接join</p>
+</li>
+<li><p>务必请使用“同类型”进行比较，否则可能全表扫面</p>
+</li>
+<li><p>打散批量更新</p>
+</li>
+<li><p>使用新能分析工具<br>show profile;<br>mysqlsla;<br>mysqldumpslow;<br>explain;<br>show slow log;<br>show processlist;<br>show query_response_time(percona)</p>
+</li>
+</ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/09/27/db-mysql-再议数据库军规/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -950,174 +1140,6 @@
   </article>
 
     
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/07/11/subject-high-concurrency-redis-data-types/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/07/11/subject-high-concurrency-redis-data-types/" class="post-title-link" itemprop="url">redis 都有哪些数据类型？分别在哪些场景下使用比较合适？</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2018-07-11 00:14:01" itemprop="dateCreated datePublished" datetime="2018-07-11T00:14:01+08:00">2018-07-11</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-31 10:32:51" itemprop="dateModified" datetime="2019-08-31T10:32:51+08:00">2019-08-31</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/high-concurrency/" itemprop="url" rel="index"><span itemprop="name">high-concurrency</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2018/07/11/subject-high-concurrency-redis-data-types/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/07/11/subject-high-concurrency-redis-data-types/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>1.8k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>2 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>除非是面试官感觉看你简历，是工作 3 年以内的比较初级的同学，可能对技术没有很深入的研究，面试官才会问这类问题。否则，在宝贵的面试时间里，面试官实在不想多问。</p>
-<p>其实问这个问题，主要有两个原因：</p>
-<ul>
-<li>看看你到底有没有全面的了解 redis 有哪些功能，一般怎么来用，啥场景用什么，就怕你别就会最简单的 KV 操作；</li>
-<li>看看你在实际项目里都怎么玩儿过 redis。</li>
-</ul>
-<p>要是你回答的不好，没说出几种数据类型，也没说什么场景，你完了，面试官对你印象肯定不好，觉得你平时就是做个简单的 set 和 get。</p>
-<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>redis 主要有以下几种数据类型：</p>
-<ul>
-<li>string</li>
-<li>hash</li>
-<li>list</li>
-<li>set</li>
-<li>sorted set</li>
-</ul>
-<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p>这是最简单的类型，就是普通的 set 和 get，做简单的 KV 缓存。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> college szu</span><br></pre></td></tr></table></figure>
-
-<h3 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h3><p>这个是类似 map 的一种结构，这个一般就是可以将结构化的数据，比如一个对象（前提是<strong>这个对象没嵌套其他的对象</strong>）给缓存在 redis 里，然后每次读写缓存的时候，可以就操作 hash 里的<strong>某个字段</strong>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hset person name bingo</span><br><span class="line">hset person age 20</span><br><span class="line">hset person id 1</span><br><span class="line">hget person name</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">person = &#123;</span><br><span class="line">    "name": "bingo",</span><br><span class="line">    "age": 20,</span><br><span class="line">    "id": 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><p>list 是有序列表，这个可以玩儿出很多花样。</p>
-<p>比如可以通过 list 存储一些列表型的数据结构，类似粉丝列表、文章的评论列表之类的东西。</p>
-<p>比如可以通过 lrange 命令，读取某个闭区间内的元素，可以基于 list 实现分页查询，这个是很棒的一个功能，基于 redis 实现简单的高性能分页，可以做类似微博那种下拉不断分页的东西，性能高，就一页一页走。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 0开始位置，-1结束位置，结束位置为-1时，表示列表的最后一个位置，即查看所有。</span></span><br><span class="line">lrange mylist 0 -1</span><br></pre></td></tr></table></figure>
-
-<p>比如可以搞个简单的消息队列，从 list 头怼进去，从 list 尾巴那里弄出来。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lpush mylist 1</span><br><span class="line">lpush mylist 2</span><br><span class="line">lpush mylist 3 4 5</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1</span></span><br><span class="line">rpop mylist</span><br></pre></td></tr></table></figure>
-
-<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p>set 是无序集合，自动去重。</p>
-<p>直接基于 set 将系统里需要去重的数据扔进去，自动就给去重了，如果你需要对一些数据进行快速的全局去重，你当然也可以基于 jvm 内存里的 HashSet 进行去重，但是如果你的某个系统部署在多台机器上呢？得基于 redis 进行全局的 set 去重。</p>
-<p>可以基于 set 玩儿交集、并集、差集的操作，比如交集吧，可以把两个人的粉丝列表整一个交集，看看俩人的共同好友是谁？对吧。</p>
-<p>把两个大 V 的粉丝都放在两个 set 中，对两个 set 做交集。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-------操作一个set-------</span></span><br><span class="line"><span class="comment"># 添加元素</span></span><br><span class="line">sadd mySet 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看全部元素</span></span><br><span class="line">smembers mySet</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断是否包含某个值</span></span><br><span class="line">sismember mySet 3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除某个/些元素</span></span><br><span class="line">srem mySet 1</span><br><span class="line">srem mySet 2 4</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看元素个数</span></span><br><span class="line">scard mySet</span><br><span class="line"></span><br><span class="line"><span class="comment"># 随机删除一个元素</span></span><br><span class="line">spop mySet</span><br><span class="line"></span><br><span class="line"><span class="comment">#-------操作多个set-------</span></span><br><span class="line"><span class="comment"># 将一个set的元素移动到另外一个set</span></span><br><span class="line">smove yourSet mySet 2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求两set的交集</span></span><br><span class="line">sinter yourSet mySet</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求两set的并集</span></span><br><span class="line">sunion yourSet mySet</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求在yourSet中而不在mySet中的元素</span></span><br><span class="line">sdiff yourSet mySet</span><br></pre></td></tr></table></figure>
-
-<h3 id="sorted-set"><a href="#sorted-set" class="headerlink" title="sorted set"></a>sorted set</h3><p>sorted set 是排序的 set，去重但可以排序，写进去的时候给一个分数，自动根据分数排序。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">zadd board 85 zhangsan</span><br><span class="line">zadd board 72 lisi</span><br><span class="line">zadd board 96 wangwu</span><br><span class="line">zadd board 63 zhaoliu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取排名前三的用户（默认是升序，所以需要 rev 改为降序）</span></span><br><span class="line">zrevrange board 0 3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取某用户的排名</span></span><br><span class="line">zrank board zhaoliu</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </div>
 
   
@@ -1170,7 +1192,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">138</span>
+          <span class="site-state-item-count">139</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1211,7 +1233,9 @@
         
           
         
-        <span class="site-state-item-count">13</span>
+          
+        
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
