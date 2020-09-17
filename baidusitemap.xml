@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://dirsky.github.io/2020/08/17/utils-win2linux/</loc>
+    <lastmod>2020-09-17</lastmod>
+  </url>  <url>
+    <loc>https://dirsky.github.io/2020/08/17/utils-git-github-hosts/</loc>
+    <lastmod>2020-09-17</lastmod>
+  </url>  <url>
+    <loc>https://dirsky.github.io/2020/08/17/utils-git-git-log-err-code/</loc>
+    <lastmod>2020-09-17</lastmod>
+  </url>  <url>
+    <loc>https://dirsky.github.io/2020/08/17/utils-git-git-ignore-file-change/</loc>
+    <lastmod>2020-09-17</lastmod>
+  </url>  <url>
+    <loc>https://dirsky.github.io/2020/08/17/utils-git-git-base/</loc>
+    <lastmod>2020-09-17</lastmod>
+  </url>  <url>
+    <loc>https://dirsky.github.io/2019/08/12/db-mysql-mysql-config/</loc>
+    <lastmod>2020-09-17</lastmod>
+  </url>  <url>
     <loc>https://dirsky.github.io/2020/09/17/os-linux-docker-base/</loc>
     <lastmod>2020-09-17</lastmod>
   </url>  <url>
@@ -382,10 +400,10 @@
     <loc>https://dirsky.github.io/2015/07/23/os-linux-%E5%90%8E%E7%AB%AF%E7%A8%8B%E5%BA%8F%E5%91%98%E5%BF%85%E5%A4%87%E7%9A%84Linux%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
     <lastmod>2019-08-29</lastmod>
   </url>  <url>
-    <loc>https://dirsky.github.io/2015/04/09/utils-Git/</loc>
+    <loc>https://dirsky.github.io/2015/04/09/utils-git-Git/</loc>
     <lastmod>2019-08-29</lastmod>
   </url>  <url>
-    <loc>https://dirsky.github.io/2015/04/09/utils-i-git/</loc>
+    <loc>https://dirsky.github.io/2015/04/09/utils-git-i-git/</loc>
     <lastmod>2019-08-29</lastmod>
   </url>  <url>
     <loc>https://dirsky.github.io/2010/02/15/lang-java-basic-HashMap/</loc>

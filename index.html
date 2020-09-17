@@ -417,7 +417,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2019/12/16/ui-npm和yarn的区别及增加国内镜像（淘宝镜像）/">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2020/08/17/utils-win2linux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -431,7 +431,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/12/16/ui-npm和yarn的区别及增加国内镜像（淘宝镜像）/" class="post-title-link" itemprop="url">npm和yarn的区别及增加国内镜像（淘宝镜像）</a>
+            <a href="/2020/08/17/utils-win2linux/" class="post-title-link" itemprop="url">win2linux</a>
           
         </h1>
 
@@ -448,402 +448,7 @@
                 
               
 
-              <time title="创建时间：2019-12-16 00:00:00 / 修改时间：15:17:01" itemprop="dateCreated datePublished" datetime="2019-12-16T00:00:00+08:00">2019-12-16</time>
-            </span>
-          
-            
-
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ui/" itemprop="url" rel="index"><span itemprop="name">ui</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/12/16/ui-npm和yarn的区别及增加国内镜像（淘宝镜像）/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/12/16/ui-npm和yarn的区别及增加国内镜像（淘宝镜像）/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>1.1k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>1 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Yarn和npm命令对比"><a href="#Yarn和npm命令对比" class="headerlink" title="Yarn和npm命令对比"></a>Yarn和npm命令对比</h2><table>
-<thead>
-<tr>
-<th align="left">npm</th>
-<th align="left">yarn</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">npm install, npm i</td>
-<td align="left">yarn</td>
-<td>安装所有依赖包</td>
-</tr>
-<tr>
-<td align="left">npm install react –save, -S</td>
-<td align="left">yarn add react</td>
-<td>添加依赖包</td>
-</tr>
-<tr>
-<td align="left">npm uninstall react –save</td>
-<td align="left">yarn remove react</td>
-<td>移除依赖包</td>
-</tr>
-<tr>
-<td align="left">npm install react –save-dev, -D</td>
-<td align="left">yarn add react –dev</td>
-<td>将依赖项添加到不同依赖项类别中</td>
-</tr>
-<tr>
-<td align="left">npm update –save</td>
-<td align="left">yarn upgrade</td>
-<td>升级依赖包</td>
-</tr>
-</tbody></table>
-<p><strong>npm uninstall 模块</strong>：删除模块，但不删除模块留在package.json中的对应信息</p>
-<p><strong>npm uninstall 模块 –save</strong> 删除模块，同时删除模块留在package.json中dependencies下的对应信息</p>
-<p><strong>npm uninstall 模块 –save-dev</strong>删除模块，同时删除模块留在package.json中devDependencies下的对应信息</p>
-<h2 id="yarn和npm淘宝镜像"><a href="#yarn和npm淘宝镜像" class="headerlink" title="yarn和npm淘宝镜像"></a>yarn和npm淘宝镜像</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org</span><br><span class="line">npm config set disturl https://npm.taobao.org/dist</span><br><span class="line">npm config set electron_mirror https://npm.taobao.org/mirrors/electron/</span><br><span class="line">npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/</span><br><span class="line">npm config set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs/</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org</span><br><span class="line">npm config set disturl https://npm.taobao.org/dist</span><br><span class="line">npm config set electron_mirror https://npm.taobao.org/mirrors/electron/</span><br><span class="line">npm config set sass_binary_site https://npm.taobao.org/mirrors/node-sass/</span><br><span class="line">npm config set phantomjs_cdnurl https://npm.taobao.org/mirrors/phantomjs/</span><br></pre></td></tr></table></figure>
-
-<p>持久化文件路径在 C:\Users\用户名 .npmrc和.yarnrc文件</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2019/09/17/ui-前端知识体系/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/17/ui-前端知识体系/" class="post-title-link" itemprop="url">前端知识体系</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-17 12:19:26 / 修改时间：12:20:03" itemprop="dateCreated datePublished" datetime="2019-09-17T12:19:26+08:00">2019-09-17</time>
-            </span>
-          
-            
-
-            
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/09/17/ui-前端知识体系/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/17/ui-前端知识体系/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>4.3k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>4 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="前端三要素"><a href="#前端三要素" class="headerlink" title="前端三要素"></a>前端三要素</h2><ul>
-<li>HTML（结构）：超文本标记语言（Hyper Text Markup Language），决定网页的结构和内容</li>
-<li>CSS（表现）：层叠样式表（Cascading Style Sheets），设定网页的表现样式</li>
-<li>JavaScript（行为）：是一种弱类型脚本语言，其源代码不需经过编译，而是由浏览器解释运行，用于控制网页的行为</li>
-</ul>
-<h3 id="结构层（HTML）"><a href="#结构层（HTML）" class="headerlink" title="结构层（HTML）"></a>结构层（HTML）</h3><p>略</p>
-<h3 id="表现层（CSS）"><a href="#表现层（CSS）" class="headerlink" title="表现层（CSS）"></a>表现层（CSS）</h3><p>CSS 层叠样式表是一门标记语言，并不是编程语言，因此不可以自定义变量，不可以引用等，换句话说就是不具备任何语法支持，它主要缺陷如下：</p>
-<ul>
-<li>语法不够强大，比如无法嵌套书写，导致模块化开发中需要书写很多重复的选择器；</li>
-<li>没有变量和合理的样式复用机制，使得逻辑上相关的属性值必须以字面量的形式重复输出，导致难以维护；</li>
-</ul>
-<p>这就导致了我们在工作中无端增加了许多工作量。为了解决这个问题，前端开发人员会使用一种称之为 <strong>【CSS 预处理器】</strong> 的工具，提供 CSS 缺失的样式层复用机制、减少冗余代码，提高样式代码的可维护性。大大提高了前端在样式上的开发效率。</p>
-<h4 id="什么是-CSS-预处理器"><a href="#什么是-CSS-预处理器" class="headerlink" title="什么是 CSS 预处理器"></a>什么是 CSS 预处理器</h4><p>CSS 预处理器定义了一种新的语言，其基本思想是，用一种专门的编程语言，为 CSS 增加了一些编程的特性，将 CSS 作为目标生成文件，然后开发者就只要使用这种语言进行 CSS 的编码工作。转化成通俗易懂的话来说就是“<strong>用一种专门的编程语言，进行 Web 页面样式设计，再通过编译器转化为正常的 CSS 文件，以供项目使用</strong>”。</p>
-<h4 id="常用的-CSS-预处理器有哪些"><a href="#常用的-CSS-预处理器有哪些" class="headerlink" title="常用的 CSS 预处理器有哪些"></a>常用的 CSS 预处理器有哪些</h4><ul>
-<li>SASS：基于 Ruby，通过服务端处理，功能强大。解析效率高。需要学习 Ruby 语言，上手难度高于 LESS。</li>
-<li>LESS：基于 NodeJS，通过客户端处理，使用简单。功能比 SASS 简单，解析效率也低于 SASS，但在实际开发中足够了，所以我们后台人员如果需要的话，建议使用 LESS。</li>
-</ul>
-<h3 id="行为层（JavaScript）"><a href="#行为层（JavaScript）" class="headerlink" title="行为层（JavaScript）"></a>行为层（JavaScript）</h3><p>JavaScript 一门弱类型脚本语言，其源代码在发往客户端运行之前不需经过编译，而是将文本格式的字符代码发送给浏览器由浏览器解释运行。</p>
-<h4 id="Native-原生-JS-开发"><a href="#Native-原生-JS-开发" class="headerlink" title="Native 原生 JS 开发"></a>Native 原生 JS 开发</h4><p>原生 JS 开发，也就是让我们按照 <strong>【ECMAScript】</strong> 标准的开发方式，简称是 ES，特点是所有浏览器都支持。截止到当前博客发布时间（2018 年 12 月 04 日），ES 标准已发布如下版本：</p>
-<ul>
-<li>ES3</li>
-<li>ES4（内部，未正式发布）</li>
-<li>ES5（全浏览器支持）</li>
-<li>ES6（常用，当前主流版本）</li>
-<li>ES7</li>
-<li>ES8</li>
-<li>ES9（草案阶段）</li>
-</ul>
-<p>区别就是逐步增加新特性。</p>
-<h4 id="TypeScript-微软的标准"><a href="#TypeScript-微软的标准" class="headerlink" title="TypeScript 微软的标准"></a>TypeScript 微软的标准</h4><p>TypeScript 是一种由微软开发的自由和开源的编程语言。它是 JavaScript 的一个超集，而且本质上向这个语言添加了可选的静态类型和基于类的面向对象编程。由安德斯·海尔斯伯格（C#、Delphi、TypeScript 之父；.NET 创立者）主导。</p>
-<p>该语言的特点就是除了具备 ES 的特性之外还纳入了许多不在标准范围内的新特性，所以会导致很多浏览器不能直接支持 TypeScript 语法，需要编译后（编译成 JS）才能被浏览器正确执行。</p>
-<h4 id="JavaScript-框架"><a href="#JavaScript-框架" class="headerlink" title="JavaScript 框架"></a>JavaScript 框架</h4><ul>
-<li>jQuery：大家熟知的 JavaScript 框架，优点是简化了 DOM 操作，缺点是 DOM 操作太频繁，影响前端性能；在前端眼里使用它仅仅是为了兼容 IE6、7、8；</li>
-<li>Angular：Google 收购的前端框架，由一群 Java 程序员开发，其特点是将后台的 MVC 模式搬到了前端并增加了模块化开发的理念，与微软合作，采用 TypeScript 语法开发；对后台程序员友好，对前端程序员不太友好；最大的缺点是版本迭代不合理（如：1代 -&gt; 2代，除了名字，基本就是两个东西；截止发表博客时已推出了 Angular6）</li>
-<li>React：Facebook 出品，一款高性能的 JS 前端框架；特点是提出了新概念 <strong>【虚拟 DOM】</strong> 用于减少真实 DOM 操作，在内存中模拟 DOM 操作，有效的提升了前端渲染效率；缺点是使用复杂，因为需要额外学习一门 <strong>【JSX】</strong> 语言；</li>
-<li><code>Vue</code>：一款渐进式 JavaScript 框架，所谓渐进式就是逐步实现新特性的意思，如实现模块化开发、路由、状态管理等新特性。其特点是综合了 Angular（模块化） 和 React（虚拟 DOM） 的优点；</li>
-<li><code>Axios</code>：前端通信框架；因为 <code>Vue</code> 的边界很明确，就是为了处理 DOM，所以并不具备通信能力，此时就需要额外使用一个通信框架与服务器交互；当然也可以直接选择使用 jQuery 提供的 AJAX 通信功能；</li>
-</ul>
-<h4 id="UI-框架"><a href="#UI-框架" class="headerlink" title="UI 框架"></a>UI 框架</h4><ul>
-<li>Ant-Design：阿里巴巴出品，基于 React 的 UI 框架</li>
-<li>ElementUI：饿了么出品，基于 Vue 的 UI 框架</li>
-<li>Bootstrap：Twitter 推出的一个用于前端开发的开源工具包</li>
-<li>AmazeUI：又叫“妹子 UI”，一款 HTML5 跨屏前端框架</li>
-</ul>
-<h4 id="JavaScript-构建工具"><a href="#JavaScript-构建工具" class="headerlink" title="JavaScript 构建工具"></a>JavaScript 构建工具</h4><ul>
-<li>Babel：JS 编译工具，主要用于浏览器不支持的 ES 新特性，比如用于编译 TypeScript</li>
-<li>WebPack：模块打包器，主要作用是打包、压缩、合并及按序加载</li>
-</ul>
-<p><strong>注：以上知识点已将 WebApp 开发所需技能全部梳理完毕</strong></p>
-<h2 id="三端统一"><a href="#三端统一" class="headerlink" title="三端统一"></a>三端统一</h2><h3 id="混合开发（Hybrid-App）"><a href="#混合开发（Hybrid-App）" class="headerlink" title="混合开发（Hybrid App）"></a>混合开发（Hybrid App）</h3><p>主要目的是实现一套代码三端统一（PC、Android、iOS）并能够调用到设备底层硬件（如：传感器、GPS、摄像头等），打包方式主要有以下两种：</p>
-<ul>
-<li>云打包：HBuild -&gt; HBuildX，DCloud 出品；API Cloud</li>
-<li>本地打包： Cordova（前身是 PhoneGap）</li>
-</ul>
-<h3 id="微信小程序"><a href="#微信小程序" class="headerlink" title="微信小程序"></a>微信小程序</h3><p>详见微信官网，这里就是介绍一个方便微信小程序 UI 开发的框架：WeUI</p>
-<h2 id="后端技术"><a href="#后端技术" class="headerlink" title="后端技术"></a>后端技术</h2><p>前端人员为了方便开发也需要掌握一定的后端技术，但我们 Java 后台人员知道后台知识体系极其庞大复杂，所以为了方便前端人员开发后台应用，就出现了 NodeJS 这样的技术。</p>
-<p>NodeJS 的作者已经声称放弃 NodeJS（说是架构做的不好再加上笨重的 node_modules，可能让作者不爽了吧），开始开发全新架构的 Deno</p>
-<p>既然是后台技术，那肯定也需要框架和项目管理工具，NodeJS 框架及项目管理工具如下：</p>
-<ul>
-<li>Express：NodeJS 框架</li>
-<li>Koa：Express 简化版</li>
-<li>NPM：项目综合管理工具，类似于 Maven</li>
-<li>YARN：NPM 的替代方案，类似于 Maven 和 Gradle 的关系</li>
-</ul>
-<h2 id="附：当前主流前端框架"><a href="#附：当前主流前端框架" class="headerlink" title="附：当前主流前端框架"></a>附：当前主流前端框架</h2><h3 id="Vue-js"><a href="#Vue-js" class="headerlink" title="Vue.js"></a>Vue.js</h3><h4 id="iView"><a href="#iView" class="headerlink" title="iView"></a>iView</h4><p>iview 是一个强大的基于 Vue 的 UI 库，有很多实用的基础组件比 elementui 的组件更丰富，主要服务于 PC 界面的中后台产品。使用单文件的 Vue 组件化开发模式 基于 npm + webpack + babel 开发，支持 ES2015 高质量、功能丰富 友好的 API ，自由灵活地使用空间。</p>
-<ul>
-<li><a href="https://www.iviewui.com/" target="_blank" rel="noopener">官网地址</a></li>
-<li><a href="https://github.com/TalkingData/iview-weapp" target="_blank" rel="noopener">Github</a></li>
-<li><a href="https://github.com/iview/iview-admin" target="_blank" rel="noopener">iview-admin</a></li>
-</ul>
-<p><strong>备注：属于前端主流框架，选型时可考虑使用，主要特点是移动端支持较多</strong></p>
-<h4 id="ElementUI"><a href="#ElementUI" class="headerlink" title="ElementUI"></a>ElementUI</h4><p>Element 是饿了么前端开源维护的 Vue UI 组件库，组件齐全，基本涵盖后台所需的所有组件，文档讲解详细，例子也很丰富。主要用于开发 PC 端的页面，是一个质量比较高的 Vue UI 组件库。</p>
-<ul>
-<li><a href="http://element-cn.eleme.io/#/zh-CN" target="_blank" rel="noopener">官网地址</a></li>
-<li><a href="https://github.com/ElementUI/element-starter" target="_blank" rel="noopener">Github</a></li>
-<li><a href="https://github.com/PanJiaChen/vue-element-admin" target="_blank" rel="noopener">vue-element-admin</a></li>
-</ul>
-<p><strong>备注：属于前端主流框架，选型时可考虑使用，主要特点是桌面端支持较多</strong></p>
-<h4 id="ICE"><a href="#ICE" class="headerlink" title="ICE"></a>ICE</h4><p>飞冰是阿里巴巴团队基于 React/Angular/Vue 的中后台应用解决方案，在阿里巴巴内部，已经有 270 多个来自几乎所有 BU 的项目在使用。飞冰包含了一条从设计端到开发端的完整链路，帮助用户快速搭建属于自己的中后台应用。</p>
-<ul>
-<li><a href="https://alibaba.github.io/ice" target="_blank" rel="noopener">官网地址</a></li>
-<li><a href="https://github.com/alibaba/ice" target="_blank" rel="noopener">Github</a></li>
-</ul>
-<p><strong>备注：主要组件还是以 React 为主，截止 2019 年 02 月 17 日更新博客前对 Vue 的支持还不太完善，目前尚处于观望阶段</strong></p>
-<h4 id="VantUI"><a href="#VantUI" class="headerlink" title="VantUI"></a>VantUI</h4><p>Vant UI 是有赞前端团队基于有赞统一的规范实现的 Vue 组件库，提供了一整套 UI 基础组件和业务组件。通过 Vant，可以快速搭建出风格统一的页面，提升开发效率。</p>
-<ul>
-<li><a href="https://youzan.github.io/vant/#/zh-CN/intro" target="_blank" rel="noopener">官网地址</a></li>
-<li><a href="https://github.com/youzan/vant" target="_blank" rel="noopener">Github</a></li>
-</ul>
-<h4 id="AtUI"><a href="#AtUI" class="headerlink" title="AtUI"></a>AtUI</h4><p>at-ui 是一款基于 Vue 2.x 的前端 UI 组件库，主要用于快速开发 PC 网站产品。 它提供了一套 npm + webpack + babel 前端开发工作流程，CSS 样式独立，即使采用不同的框架实现都能保持统一的 UI 风格。</p>
-<ul>
-<li><a href="https://at-ui.github.io/at-ui/#/zh" target="_blank" rel="noopener">官网地址</a></li>
-<li><a href="https://github.com/at-ui/at-ui" target="_blank" rel="noopener">Github</a></li>
-</ul>
-<h4 id="CubeUI"><a href="#CubeUI" class="headerlink" title="CubeUI"></a>CubeUI</h4><p>cube-ui 是滴滴团队开发的基于 Vue.js 实现的精致移动端组件库。支持按需引入和后编译，轻量灵活；扩展性强，可以方便地基于现有组件实现二次开发。</p>
-<ul>
-<li><a href="https://didi.github.io/cube-ui/#/zh-CN" target="_blank" rel="noopener">官网地址</a></li>
-<li><a href="https://github.com/didi/cube-ui/" target="_blank" rel="noopener">Github</a></li>
-</ul>
-<h3 id="混合开发"><a href="#混合开发" class="headerlink" title="混合开发"></a>混合开发</h3><h4 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h4><p>Flutter 是谷歌的移动端 UI 框架，可在极短的时间内构建 Android 和 iOS 上高质量的原生级应用。Flutter 可与现有代码一起工作, 它被世界各地的开发者和组织使用, 并且 Flutter 是免费和开源的。</p>
-<ul>
-<li><a href="http://doc.flutter-dev.cn/" target="_blank" rel="noopener">官网地址</a></li>
-<li><a href="https://github.com/flutter/flutter" target="_blank" rel="noopener">Github</a></li>
-</ul>
-<p><strong>备注：Google 出品，主要特点是快速构建原生 APP 应用程序，如做混合应用该框架为必选框架</strong></p>
-<h4 id="Ionic"><a href="#Ionic" class="headerlink" title="Ionic"></a>Ionic</h4><p>Ionic 既是一个 CSS 框架也是一个 Javascript UI 库，Ionic 是目前最有潜力的一款 HTML5 手机应用开发框架。通过 SASS 构建应用程序，它提供了很多 UI 组件来帮助开发者开发强大的应用。它使用 JavaScript MVVM 框架和 AngularJS/Vue 来增强应用。提供数据的双向绑定，使用它成为 Web 和移动开发者的共同选择。</p>
-<ul>
-<li><a href="https://ionicframework.com/" target="_blank" rel="noopener">官网地址</a></li>
-<li><a href="https://ionicframework.com/docs/" target="_blank" rel="noopener">官网文档</a></li>
-<li><a href="https://github.com/ionic-team/ionic" target="_blank" rel="noopener">Github</a></li>
-</ul>
-<h3 id="微信小程序-1"><a href="#微信小程序-1" class="headerlink" title="微信小程序"></a>微信小程序</h3><h4 id="mpvue"><a href="#mpvue" class="headerlink" title="mpvue"></a>mpvue</h4><p>mpvue 是美团开发的一个使用 <code>Vue.js</code> 开发小程序的前端框架，目前支持 <strong>微信小程序</strong>、<strong>百度智能小程序</strong>，<strong>头条小程序</strong> 和 <strong>支付宝小程序</strong>。 框架基于 <code>Vue.js</code>，修改了的运行时框架 <code>runtime</code> 和代码编译器 <code>compiler</code> 实现，使其可运行在小程序环境中，从而为小程序开发引入了 <code>Vue.js</code> 开发体验。</p>
-<ul>
-<li><a href="http://mpvue.com/" target="_blank" rel="noopener">官网地址</a></li>
-<li><a href="https://github.com/Meituan-Dianping/mpvue" target="_blank" rel="noopener">Github</a></li>
-</ul>
-<p><strong>备注：完备的 Vue 开发体验，并且支持多平台的小程序开发，推荐使用</strong></p>
-<h4 id="WeUI"><a href="#WeUI" class="headerlink" title="WeUI"></a>WeUI</h4><p>WeUI 是一套同微信原生视觉体验一致的基础样式库，由微信官方设计团队为微信内网页和微信小程序量身设计，令用户的使用感知更加统一。包含 button、cell、dialog、toast、article、icon 等各式元素。</p>
-<ul>
-<li><a href="https://weui.io/" target="_blank" rel="noopener">官网地址</a></li>
-<li><a href="https://github.com/weui/weui.git" target="_blank" rel="noopener">Github</a></li>
-</ul>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2019/09/14/utils-docker-Docker容器-MySQL中文乱码解决方案/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/14/utils-docker-Docker容器-MySQL中文乱码解决方案/" class="post-title-link" itemprop="url">Docker容器 MySQL中文乱码解决方案</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-14 00:00:00" itemprop="dateCreated datePublished" datetime="2019-09-14T00:00:00+08:00">2019-09-14</time>
+              <time title="创建时间：2020-08-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-17T00:00:00+08:00">2020-08-17</time>
             </span>
           
             
@@ -854,7 +459,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-16 14:23:01" itemprop="dateModified" datetime="2019-09-16T14:23:01+08:00">2019-09-16</time>
+                <time title="修改时间：2020-09-17 16:07:56" itemprop="dateModified" datetime="2020-09-17T16:07:56+08:00">2020-09-17</time>
               </span>
             
           
@@ -883,7 +488,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/09/14/utils-docker-Docker容器-MySQL中文乱码解决方案/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/14/utils-docker-Docker容器-MySQL中文乱码解决方案/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/08/17/utils-win2linux/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/utils-win2linux/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -895,7 +500,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>329</span>
+              <span>77</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -918,17 +523,141 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><h3 id="docker-exec进入容器"><a href="#docker-exec进入容器" class="headerlink" title="docker exec进入容器"></a>docker exec进入容器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker exec -it mysql bash</span><br></pre></td></tr></table></figure>
+          <p>windows的话，你需要装一下git bash软件，<br>然后把bin目录添加到系统环境变量PATH中，你会发现很多linux命令都在windows上可用了。</p>
 
-<blockquote>
-<p>注意：mysql是容器的别名</p>
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2020/08/17/utils-git-git-ignore-file-change/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/08/17/utils-git-git-ignore-file-change/" class="post-title-link" itemprop="url">git忽略对已经纳入版本管理的文件</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-17T00:00:00+08:00">2020-08-17</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-17 16:06:46" itemprop="dateModified" datetime="2020-09-17T16:06:46+08:00">2020-09-17</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/utils/" itemprop="url" rel="index"><span itemprop="name">utils</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/08/17/utils-git-git-ignore-file-change/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/utils-git-git-ignore-file-change/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>389</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>项目开发过程中，会遇到本地配置文件每个开发人员不同的情况，但如果遇到类似数据库配置这种最终需要加入 git 版本控制的配置，则会陷入两难境地。要么不跟踪，要么有人提交后其他人同步下来必须手动修改，非常麻烦。其实，对于已被纳入版本管理的文件，git 也提供了很好的解决办法。</p>
 </blockquote>
-<h3 id="将-character-set-server-utf8-写入mysql配置文件"><a href="#将-character-set-server-utf8-写入mysql配置文件" class="headerlink" title="将 character-set-server=utf8 写入mysql配置文件"></a>将 character-set-server=utf8 写入mysql配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;character-set-server=utf8&quot; &gt;&gt; /etc/mysql/mysql.conf.d/mysqld.cnf</span><br></pre></td></tr></table></figure>
-
-<h3 id="重启mysql-容器使以上修改生效"><a href="#重启mysql-容器使以上修改生效" class="headerlink" title="重启mysql 容器使以上修改生效"></a>重启mysql 容器使以上修改生效</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker restart mysql</span><br></pre></td></tr></table></figure>
-
-<h2 id="启发"><a href="#启发" class="headerlink" title="启发"></a>启发</h2><p>永久性处理方案是在创建容器的时候直接增加下列参数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 告诉git忽略对已经纳入版本管理的文件 .classpath 的修改，git 会一直忽略此文件直到重新告诉 git 可以再次跟踪此文件</span><br><span class="line"><span class="meta">$</span> git update-index --assume-unchanged .classpath</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 告诉 git 恢复跟踪 </span><br><span class="line"><span class="meta">$</span> git update-index --no-assume-unchanged .classpath</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 查看当前被忽略的、已经纳入版本库管理的文件：</span><br><span class="line"><span class="meta">$</span> git ls-files -v | grep -e "^[hsmrck]"</span><br></pre></td></tr></table></figure>
 
 
         
@@ -954,7 +683,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2019/09/13/mgr-了解、熟悉、掌握、精通界定/">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2020/08/17/utils-git-git-log-err-code/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -968,7 +697,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2019/09/13/mgr-了解、熟悉、掌握、精通界定/" class="post-title-link" itemprop="url">简历中对了解、熟悉、掌握、精通的界定</a>
+            <a href="/2020/08/17/utils-git-git-log-err-code/" class="post-title-link" itemprop="url">Git日志回显设置中文</a>
           
         </h1>
 
@@ -985,7 +714,7 @@
                 
               
 
-              <time title="创建时间：2019-09-13 00:00:00" itemprop="dateCreated datePublished" datetime="2019-09-13T00:00:00+08:00">2019-09-13</time>
+              <time title="创建时间：2020-08-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-17T00:00:00+08:00">2020-08-17</time>
             </span>
           
             
@@ -996,7 +725,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-17 12:14:21" itemprop="dateModified" datetime="2019-09-17T12:14:21+08:00">2019-09-17</time>
+                <time title="修改时间：2020-09-17 16:07:17" itemprop="dateModified" datetime="2020-09-17T16:07:17+08:00">2020-09-17</time>
               </span>
             
           
@@ -1006,7 +735,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mgr/" itemprop="url" rel="index"><span itemprop="name">mgr</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/utils/" itemprop="url" rel="index"><span itemprop="name">utils</span></a></span>
 
                 
                 
@@ -1025,7 +754,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2019/09/13/mgr-了解、熟悉、掌握、精通界定/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/09/13/mgr-了解、熟悉、掌握、精通界定/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2020/08/17/utils-git-git-log-err-code/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/utils-git-git-log-err-code/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -1037,7 +766,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>251</span>
+              <span>162</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -1060,10 +789,153 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="“了解”，"><a href="#“了解”，" class="headerlink" title="“了解”，"></a>“了解”，</h3><p>即能够对所需要的知识有所认识，但这种认识可能是局部或点状地，当谈及这些知识时，能意识到自己知道； </p>
-<h3 id="“熟悉”，"><a href="#“熟悉”，" class="headerlink" title="“熟悉”，"></a>“熟悉”，</h3><p>即对所需要的知识有系统性地认识，能够找到知识之间的联系,把点状地认识连成线，且可以运用相关知识解决部分实际问题；</p>
-<h3 id="“掌握”，"><a href="#“掌握”，" class="headerlink" title=" “掌握”，"></a> “掌握”，</h3><p>即对所需要的知识有全局性的认识，能在将各个知识点串成线的基础之上，认清整个知识网络，且可以在实际工作中自由运用；</p>
-<h3 id="“精通”，"><a href="#“精通”，" class="headerlink" title=" “精通”，"></a> “精通”，</h3><p>即对所需要的知识能够做到融会贯通，不仅对知识网络有清晰的认识，而且能够将其与其他相关领域的知识相融合，能够在灵活运用知识的同时不断创新。</p>
+          <p>Git Bash command window insert below code:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global i18n.commitencoding utf-8</span><br><span class="line">git config --global i18n.logoutputencoding utf-8</span><br><span class="line">export LESSCHARSET=utf-8</span><br></pre></td></tr></table></figure>
+
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2020/08/17/utils-git-git-base/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2020/08/17/utils-git-git-base/" class="post-title-link" itemprop="url">Git-Base</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2020-08-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-17T00:00:00+08:00">2020-08-17</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-17 16:06:23" itemprop="dateModified" datetime="2020-09-17T16:06:23+08:00">2020-09-17</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/utils/" itemprop="url" rel="index"><span itemprop="name">utils</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/08/17/utils-git-git-base/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/utils-git-git-base/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>641</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="配置git环境"><a href="#配置git环境" class="headerlink" title="配置git环境"></a>配置git环境</h3><p>git config –global user.email “<a href="mailto:dirsky@126.com" target="_blank" rel="noopener">dirsky@126.com</a>“<br>git config –global user.name “frank”<br>git config –global push.default simple<br>把RSA.public填写到git远程服务器上</p>
+<p>查看配置<br>git config –global -l</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>ssh -T <a href="mailto:git@gitee.com" target="_blank" rel="noopener">git@gitee.com</a><br>ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a></p>
+<h3 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h3><p>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:dirsky/sublime-lab.git<br>git pull origin master</p>
+<ol>
+<li><p>删除<br>git remote rm origin</p>
+</li>
+<li><p>添加<br>git add .<br>git commit -m “init commit”<br>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:dirsky/express-test.git</p>
+</li>
+<li><p>建立本地与远程的关联<br>git push -u origin master</p>
+</li>
+</ol>
+<p>git config –global alias.acp ‘!f() { git add -A &amp;&amp; git commit -m “$@” &amp;&amp; git push; }; f’<br>使用时只需要 git acp “内容”</p>
+<p>find . -name ‘*.DS_Store’ -type f -delete<br>删除项目下的 ds_Store</p>
 
         
       
@@ -1087,7 +959,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1135,7 +1007,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">139</span>
+          <span class="site-state-item-count">145</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
