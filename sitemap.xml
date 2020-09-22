@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://dirsky.github.io/2020/08/20/utils-docker-docker-example/</loc>
+    
+    <lastmod>2020-09-22T02:12:48.565Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://dirsky.github.io/2020/08/11/utils-docker-docker-compose/</loc>
     
     <lastmod>2020-09-17T08:18:45.065Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://dirsky.github.io/2020/08/11/utils-docker-%E7%BC%96%E5%86%99Dockerfile/</loc>
     
     <lastmod>2020-09-17T08:18:30.012Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://dirsky.github.io/2020/08/20/utils-docker-docker-example/</loc>
-    
-    <lastmod>2020-09-17T08:17:13.964Z</lastmod>
     
   </url>
   
