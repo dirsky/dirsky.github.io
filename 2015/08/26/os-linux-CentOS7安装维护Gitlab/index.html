@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/favicon.ico?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/favicon.ico?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="官方安装下面是官网复制过来的官方安装方法，最简单的安装，在我大天朝，只能望天兴叹，你可翻墙安装或者略过这里，看下面的。  安装并配置必要的依赖项  If you install Postfix to send email please select ‘Internet Site’ during setup. Instead of using Postfix you can also use Sen">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CentOS7安装维护Gitlab">
+<meta property="og:url" content="https://dirsky.github.io/2015/08/26/os-linux-CentOS7安装维护Gitlab/index.html">
+<meta property="og:site_name" content="徐先生的技术栈">
+<meta property="og:description" content="官方安装下面是官网复制过来的官方安装方法，最简单的安装，在我大天朝，只能望天兴叹，你可翻墙安装或者略过这里，看下面的。  安装并配置必要的依赖项  If you install Postfix to send email please select ‘Internet Site’ during setup. Instead of using Postfix you can also use Sen">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-08-09T02:00:27.234Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CentOS7安装维护Gitlab">
+<meta name="twitter:description" content="官方安装下面是官网复制过来的官方安装方法，最简单的安装，在我大天朝，只能望天兴叹，你可翻墙安装或者略过这里，看下面的。  安装并配置必要的依赖项  If you install Postfix to send email please select ‘Internet Site’ during setup. Instead of using Postfix you can also use Sen">
+  <link rel="canonical" href="https://dirsky.github.io/2015/08/26/os-linux-CentOS7安装维护Gitlab/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>CentOS7安装维护Gitlab | 徐先生的技术栈</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2acd2bc9d0bd256dbd6679268f609dbd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container">
+    <div class="headband"></div>
+
+<a href="https://github.com/dirsky" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">徐先生的技术栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">生来为创造价值</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/08/26/os-linux-CentOS7安装维护Gitlab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">CentOS7安装维护Gitlab
+
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00+08:00">2015-08-26</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/08/26/os-linux-CentOS7安装维护Gitlab/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-CentOS7安装维护Gitlab/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>18k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>16 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="官方安装"><a href="#官方安装" class="headerlink" title="官方安装"></a>官方安装</h2><p>下面是官网复制过来的官方安装方法，最简单的安装，在我大天朝，只能望天兴叹，你可翻墙安装或者略过这里，看下面的。</p>
+<ol>
+<li>安装并配置必要的依赖项</li>
+</ol>
+<p>If you install Postfix to send email please select ‘Internet Site’ during setup. Instead of using Postfix you can also use Sendmail or configure a custom SMTP server and configure it as an SMTP server.</p>
+<p>On Centos 6 and 7, the commands below will also open HTTP and SSH access in the system firewall.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install curl openssh-server openssh-clients postfix cronie</span><br><span class="line">sudo service postfix start</span><br><span class="line">sudo chkconfig postfix on</span><br><span class="line">sudo lokkit -s http -s ssh</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>添加gitlab服务器包和安装包</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash</span><br><span class="line">sudo yum install gitlab-ce</span><br></pre></td></tr></table></figure>
+
+<p>If you are not comfortable installing the repository through a piped script, you can find the entire script here and select and download the package manually and install using<br><a href="https://packages.gitlab.com/gitlab/gitlab-ce" target="_blank" rel="noopener">gitlab/gitlab-ce</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -LJO https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/6/gitlab-ce-XXX.rpm/download</span><br><span class="line">curl -LJO https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/7/gitlab-ce-10.2.2-ce.0.el7.x86_64.rpm/download</span><br><span class="line">rpm -i gitlab-ce-XXX.rpm</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>配置并启动GitLab</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl reconfigure</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>浏览器打开并登录</li>
+</ol>
+<p>On your first visit, you’ll be redirected to a password reset screen to provide the password for the initial administrator account. Enter your desired password and you’ll be redirected back to the login screen.</p>
+<p>The default account’s username is root. Provide the password you created earlier and login. After login you can change the username if you wish.</p>
+<h2 id="第三方镜像安装"><a href="#第三方镜像安装" class="headerlink" title="第三方镜像安装"></a>第三方镜像安装</h2><ul>
+<li><a href="https://mirror.tuna.tsinghua.edu.cn/help/gitlab-ce/" target="_blank" rel="noopener">Gitlab Community Edition 镜像使用帮助</a></li>
+<li><a href="https://github.com/hehongwei44/my-blog/issues/19" target="_blank" rel="noopener">在阿里云上通过Omnibus一键安装包安装Gitlab</a></li>
+</ul>
+<h3 id="编辑源"><a href="#编辑源" class="headerlink" title="编辑源"></a>编辑源</h3><p>新建 /etc/yum.repos.d/gitlab-ce.repo，内容为</p>
+<p><a href="https://mirror.tuna.tsinghua.edu.cn/help/gitlab-ce/" target="_blank" rel="noopener">使用清华大学 TUNA 镜像源</a> 打开网址将内容复制到<code>gitlab-ce.repo</code>文件中，编辑路径<code>vim /etc/yum.repos.d/gitlab-ce.repo</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[gitlab-ce]</span><br><span class="line">name=gitlab-ce</span><br><span class="line">baseurl=http://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el6</span><br><span class="line">repo_gpgcheck=0</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=https://packages.gitlab.com/gpg.key</span><br></pre></td></tr></table></figure>
+
+<h3 id="更新本地YUM缓存"><a href="#更新本地YUM缓存" class="headerlink" title="更新本地YUM缓存"></a>更新本地YUM缓存</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum makecache</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装社区版"><a href="#安装社区版" class="headerlink" title="安装社区版"></a>安装社区版</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install gitlab-ce <span class="comment">#(自动安装最新版)</span></span><br><span class="line">sudo yum install gitlab-ce-8.15.2-ce.0.el6 <span class="comment">#(安装指定版本)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="更改配置"><a href="#更改配置" class="headerlink" title="更改配置"></a>更改配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/gitlab/gitlab.rb</span><br><span class="line"><span class="comment"># 找到 external_url 'http://000.00.00.00:8081'</span></span><br><span class="line"><span class="comment"># 修改成你的地址</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="配置并启动GitLab"><a href="#配置并启动GitLab" class="headerlink" title="配置并启动GitLab"></a>配置并启动GitLab</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打开`/etc/gitlab/gitlab.rb`,</span></span><br><span class="line"><span class="comment"># 将`external_url = 'http://git.example.com'`修改为自己的IP地址：`http://xxx.xx.xxx.xx`，</span></span><br><span class="line"><span class="comment"># 然后执行下面的命令，对GitLab进行编译。</span></span><br><span class="line">sudo gitlab-ctl reconfigure</span><br><span class="line"><span class="comment"># 清除缓存</span></span><br><span class="line">sudo gitlab-rake cache:clear RAILS_ENV=production</span><br></pre></td></tr></table></figure>
+
+<h3 id="登录GitLab"><a href="#登录GitLab" class="headerlink" title="登录GitLab"></a>登录GitLab</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Username: root </span><br><span class="line">Password: 5iveL!fe</span><br></pre></td></tr></table></figure>
+
+<h2 id="Docker安装"><a href="#Docker安装" class="headerlink" title="Docker安装"></a>Docker安装</h2><p><a href="https://github.com/jaywcjlove/docker-tutorial/blob/master/gitlab.md" target="_blank" rel="noopener">Docker 安装 Gitlab 教程</a></p>
+<h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl uninstall</span><br></pre></td></tr></table></figure>
+
+<h2 id="运维"><a href="#运维" class="headerlink" title="运维"></a>运维</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改默认的配置文件</span></span><br><span class="line">sudo vim /etc/gitlab/gitlab.rb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看版本</span></span><br><span class="line">sudo cat /opt/gitlab/embedded/service/gitlab-rails/VERSION</span><br><span class="line"><span class="comment"># echo "vm.overcommit_memory=1" &gt;&gt; /etc/sysctl.conf</span></span><br><span class="line"><span class="comment"># sysctl -p</span></span><br><span class="line"><span class="comment"># echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查gitlab</span></span><br><span class="line">gitlab-rake gitlab:check SANITIZE=<span class="literal">true</span> --trace</span><br><span class="line">gitlab-rake gitlab:check</span><br><span class="line">gitlab-rake gitlab:check SANITIZE=<span class="literal">true</span></span><br><span class="line"><span class="comment"># 查看日志</span></span><br><span class="line">gitlab-ctl tail</span><br><span class="line"><span class="comment"># 数据库关系升级</span></span><br><span class="line">gitlab-rake db:migrate</span><br><span class="line"><span class="comment"># 清理缓存</span></span><br><span class="line">gitlab-rake cache:clear</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新gitlab包</span></span><br><span class="line">yum update gitlab-ce</span><br><span class="line"></span><br><span class="line"><span class="comment"># 升级gitlab</span></span><br><span class="line">yum install gitlab-ce</span><br><span class="line"></span><br><span class="line"><span class="comment"># 升级数据命令</span></span><br><span class="line">gitlab-ctl pg-upgrade</span><br></pre></td></tr></table></figure>
+
+<h3 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ctl start <span class="comment"># 启动所有 gitlab 组件：</span></span><br><span class="line">gitlab-ctl stop  <span class="comment"># 停止所有 gitlab 组件：</span></span><br><span class="line">gitlab-ctl stop postgresql <span class="comment"># 停止所有 gitlab postgresql 组件：</span></span><br><span class="line"><span class="comment"># 停止相关数据连接服务</span></span><br><span class="line">gitlab-ctl stop unicorn</span><br><span class="line">gitlab-ctl stop sidekiq</span><br><span class="line">gitlab-ctl restart <span class="comment"># 重启所有 gitlab 组件：</span></span><br><span class="line">gitlab-ctl restart gitlab-workhorse <span class="comment"># 重启所有 gitlab gitlab-workhorse 组件：</span></span><br><span class="line">gitlab-ctl status <span class="comment"># 查看服务状态</span></span><br><span class="line">gitlab-ctl reconfigure <span class="comment"># 生成配置启动服务</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="日志查看"><a href="#日志查看" class="headerlink" title="日志查看"></a>日志查看</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl tail <span class="comment"># 查看日志</span></span><br><span class="line">sudo gitlab-ctl tail redis <span class="comment"># 检查redis的日志</span></span><br><span class="line">sudo gitlab-ctl tail postgresql       <span class="comment"># 检查postgresql的日志</span></span><br><span class="line">sudo gitlab-ctl tail gitlab-workhorse <span class="comment"># 检查gitlab-workhorse的日志</span></span><br><span class="line">sudo gitlab-ctl tail logrotate <span class="comment"># 检查logrotate的日志</span></span><br><span class="line">sudo gitlab-ctl tail nginx    <span class="comment"># 检查nginx的日志</span></span><br><span class="line">sudo gitlab-ctl tail sidekiq  <span class="comment"># 检查sidekiq的日志</span></span><br><span class="line">sudo gitlab-ctl tail unicorn  <span class="comment"># 检查unicorn的日志</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="重置管理员密码"><a href="#重置管理员密码" class="headerlink" title="重置管理员密码"></a>重置管理员密码</h3><p>Gitlab管理员密码忘记，怎么重置密码，Gitlab 修改root用户密码，<a href="http://docs.gitlab.com/ce/security/reset_root_password.html" target="_blank" rel="noopener">How to reset your root password</a>。</p>
+<p>使用rails工具打开终端</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-rails console production</span><br></pre></td></tr></table></figure>
+
+<p>查询用户的email，用户名，密码等信息，id:1 表示root账号</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user = User.where(id: 1).first</span><br></pre></td></tr></table></figure>
+
+<p>重新设置密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user.password = <span class="string">'新密码'</span></span><br><span class="line">user.password_confirmation = <span class="string">'新密码'</span></span><br></pre></td></tr></table></figure>
+
+<p>保存密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user.save!</span><br></pre></td></tr></table></figure>
+
+<p>完整的操作ruby脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">user = User.where(id: 1).first</span><br><span class="line">user.password = <span class="string">'新密码'</span></span><br><span class="line">user.password_confirmation = <span class="string">'新密码'</span></span><br><span class="line">user.save!</span><br></pre></td></tr></table></figure>
+
+<h2 id="备份恢复"><a href="#备份恢复" class="headerlink" title="备份恢复"></a>备份恢复</h2><p>使用Gitlab一键安装包安装Gitlab非常简单, 同样的备份恢复与迁移也非常简单,用一条命令即可创建完整的Gitlab备份:</p>
+<h3 id="修改备份文件默认目录"><a href="#修改备份文件默认目录" class="headerlink" title="修改备份文件默认目录"></a>修改备份文件默认目录</h3><p>修改<code>/etc/gitlab/gitlab.rb</code>来修改默认存放备份文件的目录:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab_rails[<span class="string">'backup_path'</span>] = <span class="string">'/mnt/backups'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建备份"><a href="#创建备份" class="headerlink" title="创建备份"></a>创建备份</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-rake gitlab:backup:create</span><br></pre></td></tr></table></figure>
+
+<p>以上命令将在 <code>/var/opt/gitlab/backups</code> 目录下创建一个名称类似为xxxxxxxx_gitlab_backup.tar的压缩包, 这个压缩包就是Gitlab整个的完整部分, 其中开头的xxxxxx是备份创建的时间戳。</p>
+<p>修改后使用gitlab-ctl reconfigure命令重载配置文件。</p>
+<h3 id="开始备份"><a href="#开始备份" class="headerlink" title="开始备份"></a>开始备份</h3><p>这里放你的备份文件文件夹，和仓库源文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/var/opt/gitlab/backups                   <span class="comment"># 备份文件文件夹</span></span><br><span class="line">/var/opt/gitlab/git-data/repositories     <span class="comment"># git仓库源文件</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="自动备份"><a href="#自动备份" class="headerlink" title="自动备份"></a>自动备份</h3><p>通过crontab使用备份命令实现自动备份</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"><span class="comment"># 每天2点备份gitlab数据</span></span><br><span class="line">0 2 * * * /usr/bin/gitlab-rake gitlab:backup:create</span><br><span class="line">0 2 * * * /opt/gitlab/bin/gitlab-rake gitlab:backup:create</span><br></pre></td></tr></table></figure>
+
+<p>上面两行保存之后，重新载入配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">service crond reload</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">systemctl reload crond.service</span><br></pre></td></tr></table></figure>
+
+<h3 id="备份保留七天"><a href="#备份保留七天" class="headerlink" title="备份保留七天"></a>备份保留七天</h3><p>设置只保存最近7天的备份，编辑 /etc/gitlab/gitlab.rb 配置文件，找到如下代码，删除注释 <code>#</code> 保存</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /etc/gitlab/gitlab.rb 配置文件 修改下面这一行</span></span><br><span class="line">gitlab_rails[<span class="string">'backup_keep_time'</span>] = 604800</span><br></pre></td></tr></table></figure>
+
+<p>重新加载gitlab配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl reconfigure</span><br></pre></td></tr></table></figure>
+
+<h3 id="开始恢复"><a href="#开始恢复" class="headerlink" title="开始恢复"></a>开始恢复</h3><p>迁移如同备份与恢复的步骤一样, 只需要将老服务器 <code>/var/opt/gitlab/backups</code> 目录下的备份文件拷贝到新服务器上的 <code>/var/opt/gitlab/backups</code> 即可(如果你没修改过默认备份目录的话)。 然后执行恢复命令。<br>如果修改了，首先进入备份 gitlab 的目录，这个目录是配置文件中的 <code>gitlab_rails[&#39;backup_path&#39;]</code> ，默认为 <code>/var/opt/gitlab/backups</code> 。</p>
+<p>然后停止 unicorn 和 sidekiq ，保证数据库没有新的连接，不会有写数据情况。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 停止相关数据连接服务</span></span><br><span class="line">gitlab-ctl stop unicorn</span><br><span class="line"><span class="comment"># ok: down: unicorn: 0s, normally up</span></span><br><span class="line">gitlab-ctl stop sidekiq</span><br><span class="line"><span class="comment"># ok: down: sidekiq: 0s, normally up</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 从xxxxx编号备份中恢复</span></span><br><span class="line"><span class="comment"># 然后恢复数据，1406691018为备份文件的时间戳</span></span><br><span class="line">gitlab-rake gitlab:backup:restore BACKUP=1406691018</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新版本 1483533591_2017_01_04_gitlab_backup.tar</span></span><br><span class="line">gitlab-rake gitlab:backup:restore BACKUP=1483533591_2017_01_04_gitlab_backup.tar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动Gitlab</span></span><br><span class="line">sudo gitlab-ctl start</span><br></pre></td></tr></table></figure>
+
+<p>判断是执行实际操作的gitlab相关用户：git，没有得到足够的权限。依次执行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 恢复过程中没有权限</span></span><br><span class="line">mkdir /var/opt/gitlab/backups</span><br><span class="line">chown git /var/opt/gitlab/backups</span><br><span class="line">chmod 700 /var/opt/gitlab/backups</span><br><span class="line"></span><br><span class="line"><span class="comment"># 恢复成功页面报没有权限的错误</span></span><br><span class="line">sudo chown -R git:git /var/opt/gitlab/git-data/repositories</span><br><span class="line">sudo chmod -R ug+rwX,o-rwx /var/opt/gitlab/git-data/repositories</span><br><span class="line">sudo chmod -R ug<span class="_">-s</span> /var/opt/gitlab/git-data/repositories</span><br><span class="line">sudo find /var/opt/gitlab/git-data/repositories -<span class="built_in">type</span> d -print0 | sudo xargs -0 chmod g+s</span><br></pre></td></tr></table></figure>
+
+<p>如果备份文件报没有权限，通过<code>ls -al</code>查看权限是不是<code>git</code>，而不是<code>root</code>，通过下面方式给<code>git</code>用户权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R git:git 1483533591_2017_01_04_gitlab_backup.tar</span><br></pre></td></tr></table></figure>
+
+<h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 登陆gitlab的安装服务查看配置文件</span></span><br><span class="line">cat /var/opt/gitlab/gitlab-rails/etc/database.yml </span><br><span class="line"></span><br><span class="line">vim /var/opt/gitlab/postgresql/data/postgresql.conf</span><br><span class="line"><span class="comment"># listen_addresses = '192.168.1.125' # 修改监听地址为ip</span></span><br><span class="line"><span class="comment"># 或者改为 "*"</span></span><br></pre></td></tr></table></figure>
+
+<p>修改 <code>pg_hba.conf</code> 配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim  /var/opt/gitlab/postgresql/data/pg_hba.conf</span><br><span class="line"><span class="comment"># 将下面这一行添加到配置的最后面</span></span><br><span class="line"><span class="comment"># host    all    all    0.0.0.0/0    trust</span></span><br></pre></td></tr></table></figure>
+
+<p>如果不希望允许所有IP远程访问，则可以将上述配置项中的0.0.0.0设定为特定的IP值。</p>
+<p>重启 <code>postgresql</code> 数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ctl restart postgresql</span><br></pre></td></tr></table></figure>
+
+<p>查看 <code>/etc/passwd</code> 文件里边 <code>gitlab</code> 对应的系统用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]$ cat /etc/passwd</span><br><span class="line">...</span><br><span class="line">gitlab-psql:x:493:490::/var/opt/gitlab/postgresql:/bin/sh  <span class="comment"># gitlab的postgresql用户</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="一些常规目录"><a href="#一些常规目录" class="headerlink" title="一些常规目录"></a>一些常规目录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 配置目录</span></span><br><span class="line">/etc/gitlab/gitlab.rb</span><br><span class="line"><span class="comment"># 生成好的nginx配置</span></span><br><span class="line">/var/opt/gitlab/nginx/conf/gitlab-http.conf</span><br><span class="line"><span class="comment"># 备份目录</span></span><br><span class="line">/var/opt/gitlab/backups</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用HTTPS"><a href="#使用HTTPS" class="headerlink" title="使用HTTPS"></a>使用HTTPS</h2><p>直接将nginx配置复制到你自己的nginx配置中，停掉gitlab的nginx</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /var/opt/gitlab/nginx/conf/gitlab-http.conf /usr/<span class="built_in">local</span>/nginx/conf/vhost/</span><br></pre></td></tr></table></figure>
+
+<p>将你的SSL证书配置复制进去</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="attribute">listen</span> <span class="number">443</span> ssl;</span><br><span class="line">  <span class="attribute">server_name</span>  g.doman.cn;</span><br><span class="line">  <span class="attribute">ssl_certificate</span> /etc/letsencrypt/live/*****/certificate.crt;</span><br><span class="line">  <span class="attribute">ssl_certificate_key</span> /etc/letsencrypt/live/*****/private.key;</span><br><span class="line">  <span class="comment"># .....</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编辑<code>vi /usr/local/nginx/conf/nginx.conf</code>你的nginx配置，引用你复制过来的配置。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">  <span class="comment"># .....</span></span><br><span class="line">  <span class="attribute">include</span> vhost/gitlab-http.conf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同时要把<code>/var/opt/gitlab/nginx/conf/nginx.conf</code>中的一些变量复制到自己的nginx配置中<code>nginx.conf</code></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">  <span class="comment"># .....</span></span><br><span class="line">  <span class="attribute">log_format</span> gitlab_access <span class="string">'<span class="variable">$remote_addr</span> - <span class="variable">$remote_user</span> [<span class="variable">$time_local</span>] "<span class="variable">$request_method</span> <span class="variable">$filtered_request_uri</span> <span class="variable">$server_protocol</span>" <span class="variable">$status</span> <span class="variable">$body_bytes_sent</span> "<span class="variable">$filtered_http_referer</span>" "<span class="variable">$http_user_agent</span>"'</span>;</span><br><span class="line">  <span class="attribute">log_format</span> gitlab_mattermost_access <span class="string">'<span class="variable">$remote_addr</span> - <span class="variable">$remote_user</span> [<span class="variable">$time_local</span>] "<span class="variable">$request_method</span> <span class="variable">$filtered_request_uri</span> <span class="variable">$server_protocol</span>" <span class="variable">$status</span> <span class="variable">$body_bytes_sent</span> "<span class="variable">$filtered_http_referer</span>" "<span class="variable">$http_user_agent</span>"'</span>;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">proxy_cache_path</span> proxy_cache keys_zone=gitlab:<span class="number">10m</span> max_size=<span class="number">1g</span> levels=<span class="number">1</span>:<span class="number">2</span>;</span><br><span class="line">  <span class="attribute">proxy_cache</span> gitlab;</span><br><span class="line">  <span class="attribute">map</span> <span class="variable">$http_upgrade</span> <span class="variable">$connection_upgrade</span> &#123;</span><br><span class="line">      <span class="attribute">default</span> upgrade;</span><br><span class="line">      ''      close;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Remove private_token from the request URI</span></span><br><span class="line">  <span class="comment"># In:  /foo?private_token=unfiltered&amp;authenticity_token=unfiltered&amp;rss_token=unfiltered&amp;...</span></span><br><span class="line">  <span class="comment"># Out: /foo?private_token=[FILTERED]&amp;authenticity_token=unfiltered&amp;rss_token=unfiltered&amp;...</span></span><br><span class="line">  <span class="attribute">map</span> <span class="variable">$request_uri</span> <span class="variable">$temp_request_uri_1</span> &#123;</span><br><span class="line">    <span class="attribute">default</span> <span class="variable">$request_uri</span>;</span><br><span class="line">    ~(?i)^(?&lt;start&gt;.*)(?&lt;temp&gt;[\?&amp;]private[\-_]token)=[^&amp;]*(?&lt;rest&gt;.*)$ "$start$temp=[FILTERED]$rest";</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment"># Remove authenticity_token from the request URI</span></span><br><span class="line">  <span class="comment"># In:  /foo?private_token=[FILTERED]&amp;authenticity_token=unfiltered&amp;rss_token=unfiltered&amp;...</span></span><br><span class="line">  <span class="comment"># Out: /foo?private_token=[FILTERED]&amp;authenticity_token=[FILTERED]&amp;rss_token=unfiltered&amp;...</span></span><br><span class="line">  <span class="attribute">map</span> <span class="variable">$temp_request_uri_1</span> <span class="variable">$temp_request_uri_2</span> &#123;</span><br><span class="line">    <span class="attribute">default</span> <span class="variable">$temp_request_uri_1</span>;</span><br><span class="line">    ~(?i)^(?&lt;start&gt;.*)(?&lt;temp&gt;[\?&amp;]authenticity[\-_]token)=[^&amp;]*(?&lt;rest&gt;.*)$ "$start$temp=[FILTERED]$rest";</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment"># Remove rss_token from the request URI</span></span><br><span class="line">  <span class="comment"># In:  /foo?private_token=[FILTERED]&amp;authenticity_token=[FILTERED]&amp;rss_token=unfiltered&amp;...</span></span><br><span class="line">  <span class="comment"># Out: /foo?private_token=[FILTERED]&amp;authenticity_token=[FILTERED]&amp;rss_token=[FILTERED]&amp;...</span></span><br><span class="line">  <span class="attribute">map</span> <span class="variable">$temp_request_uri_2</span> <span class="variable">$filtered_request_uri</span> &#123;</span><br><span class="line">    <span class="attribute">default</span> <span class="variable">$temp_request_uri_2</span>;</span><br><span class="line">    ~(?i)^(?&lt;start&gt;.*)(?&lt;temp&gt;[\?&amp;]rss[\-_]token)=[^&amp;]*(?&lt;rest&gt;.*)$ "$start$temp=[FILTERED]$rest";</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment"># A version of the referer without the query string</span></span><br><span class="line">  <span class="attribute">map</span> <span class="variable">$http_referer</span> <span class="variable">$filtered_http_referer</span> &#123;</span><br><span class="line">    <span class="attribute">default</span> <span class="variable">$http_referer</span>;</span><br><span class="line">    ~^(?&lt;temp&gt;.*)\? $temp;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="暴力升级"><a href="#暴力升级" class="headerlink" title="暴力升级"></a>暴力升级</h2><p>暴力升级前先备份，然后停止所有服务运行，记得备份的良好习惯</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ctl stop  <span class="comment"># 停止所有 gitlab 组件：</span></span><br><span class="line"><span class="comment"># 更新gitlab包</span></span><br><span class="line">yum update gitlab-ce</span><br></pre></td></tr></table></figure>
+
+<p>直接编辑源 /etc/yum.repos.d/gitlab-ce.repo，安装 GitLab 社区版</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum list gitlab-ce <span class="comment"># 查看版本</span></span><br><span class="line">sudo yum install gitlab-ce <span class="comment">#(自动安装最新版)</span></span><br><span class="line">sudo yum install gitlab-ce-8.15.2-ce.0.el6 <span class="comment">#(安装指定版本)</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：<code>10.7</code> 版本升级到 <code>11.x</code> 版本需要先升级到 <code>10.8</code> 版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装指定版本 10.8 的版本</span></span><br><span class="line">sudo yum install gitlab-ce-10.8.0-ce.0.el6</span><br></pre></td></tr></table></figure>
+
+<p>安装完成记得将所有服务启起来哦</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ctl start <span class="comment"># 启动所有数据库</span></span><br><span class="line"><span class="comment"># postgresql 数据库如果启动不了，通过重启启动</span></span><br><span class="line">gitlab-ctl restart postgresql</span><br></pre></td></tr></table></figure>
+
+<p>安装过如果报错，查看提示根据提示操作，版本跨度太大会报错哦。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">gitlab preinstall: Automatically backing up only the GitLab SQL database (excluding everything else!)</span><br><span class="line">Dumping database ...</span><br><span class="line">Dumping PostgreSQL database gitlabhq_production ... pg_dump: [archiver (db)] connection to database &quot;gitlabhq_production&quot; failed: could not connect to server: 没有那个文件或目录</span><br><span class="line">    Is the server running locally and accepting</span><br><span class="line">    connections on Unix domain socket &quot;/var/opt/gitlab/postgresql/.s.PGSQL.5432&quot;?</span><br><span class="line">Backup failed</span><br><span class="line">[FAILED]</span><br><span class="line">gitlab preinstall:</span><br><span class="line">gitlab preinstall: Backup failed! If you want to skip this backup, run the following command and</span><br><span class="line">gitlab preinstall: try again:</span><br><span class="line">gitlab preinstall:</span><br><span class="line">gitlab preinstall:   sudo touch /etc/gitlab/skip-auto-migrations</span><br><span class="line">gitlab preinstall:</span><br><span class="line">error: %pre(gitlab-ce-8.15.2-ce.0.el6.x86_64) scriptlet failed, exit status 1</span><br><span class="line">Error in PREIN scriptlet in rpm package gitlab-ce-8.15.2-ce.0.el6.x86_64</span><br><span class="line">error:   install: %pre scriptlet failed (2), skipping gitlab-ce-8.15.2-ce.0.el6</span><br><span class="line">gitlab-ce-8.11.5-ce.0.el6.x86_64 was supposed to be removed but is not!</span><br><span class="line">  Verifying  : gitlab-ce-8.11.5-ce.0.el6.x86_64                                                                                                                                                             1/2</span><br><span class="line">  Verifying  : gitlab-ce-8.15.2-ce.0.el6.x86_64                                                                                                                                                             2/2</span><br><span class="line"></span><br><span class="line">Failed:</span><br><span class="line">  gitlab-ce.x86_64 0:8.11.5-ce.0.el6</span><br></pre></td></tr></table></figure>
+
+<p>看上面一堆错误，瞬间就懵逼了，看到一条救星命令让我尝试运行 <code>sudo touch /etc/gitlab/skip-auto-migrations</code> 于是我二逼的重新<code>yum install gitlab-ce</code>运行了，结果真的安装成功了，😄。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重新安装命令</span></span><br><span class="line">yum reinstall gitlab-ce</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">yum install gitlab-ce</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">gitlab: Thank you for installing GitLab!</span><br><span class="line">gitlab: To configure and start GitLab, RUN THE FOLLOWING COMMAND:</span><br><span class="line"></span><br><span class="line">sudo gitlab-ctl reconfigure</span><br><span class="line"></span><br><span class="line">gitlab: GitLab should be reachable at http://114.55.148.71:8081</span><br><span class="line">gitlab: Otherwise configure GitLab for your system by editing /etc/gitlab/gitlab.rb file</span><br><span class="line">gitlab: And running reconfigure again.</span><br><span class="line">gitlab:</span><br><span class="line">gitlab: For a comprehensive list of configuration options please see the Omnibus GitLab readme</span><br><span class="line">gitlab: https://gitlab.com/gitlab-org/omnibus-gitlab/blob/master/README.md</span><br><span class="line">gitlab:</span><br><span class="line"></span><br><span class="line">gitlab: GitLab now ships with a newer version of PostgreSQL (9.6.1), and will be used</span><br><span class="line">gitlab: as the default in the next major relase. To upgrade, RUN THE FOLLOWING COMMANDS:</span><br><span class="line"></span><br><span class="line">sudo gitlab-ctl pg-upgrade</span><br><span class="line"></span><br><span class="line">gitlab: For more details, please see:</span><br><span class="line">gitlab: https://docs.gitlab.com/omnibus/settings/database.html#upgrade-packaged-postgresql-server</span><br><span class="line">gitlab:</span><br><span class="line">  清理       : gitlab-ce-8.11.5-ce.0.el6.x86_64                                                                                                                                                             2/2</span><br><span class="line">Found /etc/gitlab/skip-auto-migrations, exiting...</span><br><span class="line">  Verifying  : gitlab-ce-8.15.2-ce.0.el6.x86_64                                                                                                                                                             1/2</span><br><span class="line">  Verifying  : gitlab-ce-8.11.5-ce.0.el6.x86_64                                                                                                                                                             2/2</span><br><span class="line"></span><br><span class="line">更新完毕:</span><br><span class="line">  gitlab-ce.x86_64 0:8.15.2-ce.0.el6</span><br><span class="line"></span><br><span class="line">完毕！</span><br></pre></td></tr></table></figure>
+
+<p>重启配置，可以解决大部分<code>502</code>错误。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ctl reconfigure</span><br></pre></td></tr></table></figure>
+
+<h2 id="优化内存使用"><a href="#优化内存使用" class="headerlink" title="优化内存使用"></a>优化内存使用</h2><p>修改配置文件 <code>/etc/gitlab/gitlab.rb</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 减少 postgresql 数据库缓存</span></span><br><span class="line">postgresql[<span class="string">'shared_buffers'</span>] = <span class="string">"256MB"</span></span><br><span class="line"><span class="comment"># 减少sidekiq的并发数</span></span><br><span class="line">sidekiq[<span class="string">'concurrency'</span>] = 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># worker进程数</span></span><br><span class="line">postgresql[<span class="string">'max_worker_processes'</span>] = 4</span><br><span class="line"></span><br><span class="line">unicorn[<span class="string">'worker_processes'</span>] = 2  <span class="comment">## worker进程数</span></span><br><span class="line">unicorn[<span class="string">'worker_memory_limit_min'</span>] = <span class="string">"400 * 1 &lt;&lt; 20"</span> <span class="comment">##worker最小内存</span></span><br><span class="line">unicorn[<span class="string">'worker_memory_limit_max'</span>] = <span class="string">"650 * 1 &lt;&lt; 20"</span> <span class="comment">##worker最大内存</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><h3 id="解决80端口被占用"><a href="#解决80端口被占用" class="headerlink" title="解决80端口被占用"></a>解决80端口被占用</h3><p>nginx配置解决 <code>80</code> 端口被占用</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> gitlab &#123;</span><br><span class="line">     <span class="attribute">server</span> <span class="number">114.55.111.111:8081</span> ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">  <span class="comment"># 侦听的80端口</span></span><br><span class="line">  <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">  <span class="attribute">server_name</span>  git.diggg.cn;</span><br><span class="line">  <span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span>   http://gitlab;    <span class="comment">#在这里设置一个代理，和upstream的名字一样</span></span><br><span class="line">    <span class="comment">#以下是一些反向代理的配置可删除</span></span><br><span class="line">    <span class="attribute">proxy_redirect</span>             <span class="literal">off</span>;</span><br><span class="line">    <span class="comment">#后端的Web服务器可以通过X-Forwarded-For获取用户真实IP</span></span><br><span class="line">    <span class="attribute">proxy_set_header</span>           Host <span class="variable">$host</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span>           X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span>           X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    <span class="attribute">client_max_body_size</span>       <span class="number">10m</span>; <span class="comment">#允许客户端请求的最大单文件字节数</span></span><br><span class="line">    <span class="attribute">client_body_buffer_size</span>    <span class="number">128k</span>; <span class="comment">#缓冲区代理缓冲用户端请求的最大字节数</span></span><br><span class="line">    <span class="attribute">proxy_connect_timeout</span>      <span class="number">300</span>; <span class="comment">#nginx跟后端服务器连接超时时间(代理连接超时)</span></span><br><span class="line">    <span class="attribute">proxy_send_timeout</span>         <span class="number">300</span>; <span class="comment">#后端服务器数据回传时间(代理发送超时)</span></span><br><span class="line">    <span class="attribute">proxy_read_timeout</span>         <span class="number">300</span>; <span class="comment">#连接成功后，后端服务器响应时间(代理接收超时)</span></span><br><span class="line">    <span class="attribute">proxy_buffer_size</span>          <span class="number">4k</span>; <span class="comment">#设置代理服务器（nginx）保存用户头信息的缓冲区大小</span></span><br><span class="line">    <span class="attribute">proxy_buffers</span>              <span class="number">4</span> <span class="number">32k</span>; <span class="comment">#proxy_buffers缓冲区，网页平均在32k以下的话，这样设置</span></span><br><span class="line">    <span class="attribute">proxy_busy_buffers_size</span>    <span class="number">64k</span>; <span class="comment">#高负荷下缓冲大小（proxy_buffers*2）</span></span><br><span class="line">    <span class="attribute">proxy_temp_file_write_size</span> <span class="number">64k</span>; <span class="comment">#设定缓存文件夹大小，大于这个值，将从upstream服务器传</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>nginx配置检查和立即生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检查配置</span></span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -tc conf/nginx.conf</span><br><span class="line"><span class="comment"># nginx 重新加载配置</span></span><br><span class="line">/usr/<span class="built_in">local</span>/nginx/sbin/nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<h3 id="头像无法正常显示"><a href="#头像无法正常显示" class="headerlink" title="头像无法正常显示"></a>头像无法正常显示</h3><p>原因：gravatar被墙<br>解决办法：<br>编辑 /etc/gitlab/gitlab.rb，将</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># gitlab_rails['gravatar_plain_url'] = 'http://gravatar.duoshuo.com/avatar/%&#123;hash&#125;?s=%&#123;size&#125;&amp;d=identicon'</span></span><br></pre></td></tr></table></figure>
+
+<p>修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab_rails[&apos;gravatar_plain_url&apos;] = &apos;http://gravatar.duoshuo.com/avatar/%&#123;hash&#125;?s=%&#123;size&#125;&amp;d=identicon&apos;</span><br></pre></td></tr></table></figure>
+
+<p>然后在命令行执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo gitlab-ctl reconfigure </span><br><span class="line">sudo gitlab-rake cache:clear RAILS_ENV=production</span><br></pre></td></tr></table></figure>
+
+<h3 id="internal-API-unreachable"><a href="#internal-API-unreachable" class="headerlink" title="internal API unreachable"></a>internal API unreachable</h3><p>这个错误是一个自己制造的坑，我克隆和提交都没有办法搞，但是网站能正常运行，尝试了非常多的方法，最终我的问题是<code>22</code>端口没有隐射出去，好尴尬。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GitLab: Failed to authorize your Git request: internal API unreachable</span><br></pre></td></tr></table></figure>
+
+<p>解决办法：<a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/33702" target="_blank" rel="noopener">https://gitlab.com/gitlab-org/gitlab-ce/issues/33702</a><br>通过防火墙规则 127.0.0.1  </p>
+<h3 id="proxy-temp-目录没有权限"><a href="#proxy-temp-目录没有权限" class="headerlink" title="proxy_temp 目录没有权限"></a>proxy_temp 目录没有权限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[crit] 14788<span class="comment">#0: *215 open() "/usr/local/nginx/proxy_temp/5/01/0000000015" failed (13: Permission denied) while reading upstream</span></span><br></pre></td></tr></table></figure>
+
+<p>以下方式解决</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">chown -R root:root /usr/<span class="built_in">local</span>/nginx/proxy_temp</span><br><span class="line"><span class="comment"># 编辑 nginx.conf</span></span><br><span class="line">sudo vi /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf</span><br><span class="line"><span class="comment"># 在第一行添加</span></span><br><span class="line">user root;</span><br></pre></td></tr></table></figure>
+
+<h3 id="webhooks-错误"><a href="#webhooks-错误" class="headerlink" title="webhooks 错误"></a>webhooks 错误</h3><p>错误显示不允许发送本地请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Url is blocked: Requests to the local network are not allowed</span><br></pre></td></tr></table></figure>
+
+<p>解决方法，在设置中设置允许本地连接即可</p>
+<blockquote>
+<p><code>admin</code> =&gt; <code>Settings</code> =&gt; <code>Outbound requests</code></p>
+</blockquote>
+<h3 id="服务无法启动"><a href="#服务无法启动" class="headerlink" title="服务无法启动"></a>服务无法启动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost gitlab]# gitlab-ctl status</span><br><span class="line">fail: alertmanager: runsv not running</span><br><span class="line">fail: gitaly: runsv not running</span><br><span class="line">fail: gitlab-monitor: runsv not running</span><br><span class="line">fail: gitlab-workhorse: runsv not running</span><br><span class="line">fail: logrotate: runsv not running</span><br><span class="line">fail: nginx: runsv not running</span><br><span class="line">fail: node-exporter: runsv not running</span><br><span class="line">fail: postgres-exporter: runsv not running</span><br><span class="line">fail: postgresql: runsv not running</span><br><span class="line">fail: prometheus: runsv not running</span><br><span class="line">fail: redis: runsv not running</span><br><span class="line">fail: redis-exporter: runsv not running</span><br><span class="line">fail: sidekiq: runsv not running</span><br><span class="line">fail: unicorn: runsv not running</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://confluence.jaytaala.com/pages/viewpage.action?pageId=9666568" target="_blank" rel="noopener"></a><br><a href="https://gitlab.com/gitlab-org/omnibus-gitlab/issues/272" target="_blank" rel="noopener">Omnibus gitlab do not restart on CentOS7</a><br>开机自动启动服务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# systemctl status gitlab-runsvdir.service -l</span><br><span class="line">● gitlab-runsvdir.service - GitLab Runit supervision process</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/gitlab-runsvdir.service; enabled; vendor preset: disabled)</span><br><span class="line">   Active: inactive (dead)</span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>gitlab-runsvdir.service</code> 服务没有响应，你可能要看一下内存是否满了，需要释放内存，老的版本需要 2G 内存，新版本需要至少 4G 内存。</p>
+<h3 id="其它错误"><a href="#其它错误" class="headerlink" title="其它错误"></a>其它错误</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error executing action `run` on resource <span class="string">'bash[migrate gitlab-rails database]'</span></span><br></pre></td></tr></table></figure>
+
+<p>上面错误是数据库没有启动，我不知道如何启动，我重启了服务器，然后好球了。😆<br><a href="https://gitlab.com/gitlab-org/gitlab-ce/issues/2052#note_1667899" target="_blank" rel="noopener">https://gitlab.com/gitlab-org/gitlab-ce/issues/2052#note_1667899</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NameError: uninitialized constant Devise::Async</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Processing by RootController#index as HTML</span><br><span class="line">Completed 401 Unauthorized in 17ms (ActiveRecord: 2.7ms)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/var/log/gitlab/nginx/gitlab_access.log &lt;==</span><br><span class="line">114.55.148.71 - - [04/Jan/2017:17:20:24 +0800] &quot;GET /favicon.ico HTTP/1.0&quot; 502 2662 &quot;http://git.xxxxx.cn/&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://packages.gitlab.com/gitlab/gitlab-ce" target="_blank" rel="noopener">gitlab/gitlab-ce</a></li>
+<li><a href="https://www.gitlab.cc/downloads" target="_blank" rel="noopener">官网下载</a></li>
+<li><a href="https://doc.gitlab.cc/ce/install/requirements.html" target="_blank" rel="noopener">官网安装说明</a></li>
+<li><a href="https://www.gitlab.cc/features/#enterprise" target="_blank" rel="noopener">开源版本和企业版本对比</a></li>
+<li><a href="https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/update/8.14-to-8.15.md" target="_blank" rel="noopener">官方升级Gitlab教程</a></li>
+<li><a href="https://gitlab.com/gitlab-org/gitlab-recipes/tree/master/install/centos" target="_blank" rel="noopener">官方Centos安装Gitlab教程</a></li>
+<li><a href="http://opjasee.com/2016/01/28/gitlab-upgrade.html" target="_blank" rel="noopener">Gitlab升级记录</a></li>
+<li><a href="http://www.yuzhewo.com/2015/11/03/%E4%BF%AE%E6%94%B9gitlab%E4%BD%BF%E7%94%A8%E7%8E%B0%E6%9C%89nginx%E6%9C%8D%E5%8A%A1%E5%8F%8A502%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" target="_blank" rel="noopener">修改gitlab使用现有nginx服务及502问题解决</a></li>
+<li><a href="http://blog.csdn.net/wangxicoding/article/details/43738137" target="_blank" rel="noopener">我所遇到的GitLab 502问题的解决</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+		<div style="text-align:center;color: #ccc;font-size:14px;">---------------- The End ----------------</div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/uploads/wechat-frank.png" alt="Frank wechat" style="width: 200px; max-width: 100%;">
+  <div>扫描+微信，共同学习.</div>
+</div>
+
+      
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
+            
+          </div>
+        
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2015/08/26/os-linux-CentOS7安装配置vsftp搭建FTP/" rel="next" title="CentOS7安装配置vsftp搭建FTP">
+                  <i class="fa fa-chevron-left"></i> CentOS7安装配置vsftp搭建FTP
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2015/08/26/os-linux-CentOS/" rel="prev" title="Centos常用命令">
+                  Centos常用命令 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#官方安装"><span class="nav-number">1.</span> <span class="nav-text">官方安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三方镜像安装"><span class="nav-number">2.</span> <span class="nav-text">第三方镜像安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑源"><span class="nav-number">2.1.</span> <span class="nav-text">编辑源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新本地YUM缓存"><span class="nav-number">2.2.</span> <span class="nav-text">更新本地YUM缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装社区版"><span class="nav-number">2.3.</span> <span class="nav-text">安装社区版</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改配置"><span class="nav-number">2.4.</span> <span class="nav-text">更改配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置并启动GitLab"><span class="nav-number">2.5.</span> <span class="nav-text">配置并启动GitLab</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录GitLab"><span class="nav-number">2.6.</span> <span class="nav-text">登录GitLab</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker安装"><span class="nav-number">3.</span> <span class="nav-text">Docker安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#卸载"><span class="nav-number">4.</span> <span class="nav-text">卸载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运维"><span class="nav-number">5.</span> <span class="nav-text">运维</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务管理"><span class="nav-number">5.1.</span> <span class="nav-text">服务管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志查看"><span class="nav-number">5.2.</span> <span class="nav-text">日志查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重置管理员密码"><span class="nav-number">5.3.</span> <span class="nav-text">重置管理员密码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#备份恢复"><span class="nav-number">6.</span> <span class="nav-text">备份恢复</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#修改备份文件默认目录"><span class="nav-number">6.1.</span> <span class="nav-text">修改备份文件默认目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建备份"><span class="nav-number">6.2.</span> <span class="nav-text">创建备份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始备份"><span class="nav-number">6.3.</span> <span class="nav-text">开始备份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动备份"><span class="nav-number">6.4.</span> <span class="nav-text">自动备份</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#备份保留七天"><span class="nav-number">6.5.</span> <span class="nav-text">备份保留七天</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始恢复"><span class="nav-number">6.6.</span> <span class="nav-text">开始恢复</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接数据库"><span class="nav-number">7.</span> <span class="nav-text">连接数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些常规目录"><span class="nav-number">8.</span> <span class="nav-text">一些常规目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用HTTPS"><span class="nav-number">9.</span> <span class="nav-text">使用HTTPS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#暴力升级"><span class="nav-number">10.</span> <span class="nav-text">暴力升级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化内存使用"><span class="nav-number">11.</span> <span class="nav-text">优化内存使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误处理"><span class="nav-number">12.</span> <span class="nav-text">错误处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决80端口被占用"><span class="nav-number">12.1.</span> <span class="nav-text">解决80端口被占用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#头像无法正常显示"><span class="nav-number">12.2.</span> <span class="nav-text">头像无法正常显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#internal-API-unreachable"><span class="nav-number">12.3.</span> <span class="nav-text">internal API unreachable</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#proxy-temp-目录没有权限"><span class="nav-number">12.4.</span> <span class="nav-text">proxy_temp 目录没有权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webhooks-错误"><span class="nav-number">12.5.</span> <span class="nav-text">webhooks 错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务无法启动"><span class="nav-number">12.6.</span> <span class="nav-text">服务无法启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它错误"><span class="nav-number">12.7.</span> <span class="nav-text">其它错误</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">13.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/uploads/avatar.gif"
+      alt="Frank">
+  <p class="site-author-name" itemprop="name">Frank</p>
+  <div class="site-description" itemprop="description">优秀是一种习惯</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">150</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/dirsky" title="GitHub &rarr; https://github.com/dirsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:gzxu@vip.qq.com" title="E-Mail &rarr; mailto:gzxu@vip.qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/cccsky" title="Weibo &rarr; https://weibo.com/cccsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://dirsky.github.io/docsify/#/" title="CV &rarr; https://dirsky.github.io/docsify/#/"><i class="fa fa-fw fa-twitter"></i>CV</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2008 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Frank</span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d68acfe0fc14e23" async="async"></script>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+<script src="/js/utils.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 20638,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'zwli8bHgrjbtCiAH23o81imX-gzGzoHsz',
+    appKey: 'v3rufApMsIhhwFOR45jn5abL',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

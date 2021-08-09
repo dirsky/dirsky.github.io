@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/favicon.ico?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/favicon.ico?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="优秀是一种习惯">
+<meta name="keywords" content="Python Java">
+<meta property="og:type" content="website">
+<meta property="og:title" content="徐先生的技术栈">
+<meta property="og:url" content="https://dirsky.github.io/page/27/index.html">
+<meta property="og:site_name" content="徐先生的技术栈">
+<meta property="og:description" content="优秀是一种习惯">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="徐先生的技术栈">
+<meta name="twitter:description" content="优秀是一种习惯">
+  <link rel="canonical" href="https://dirsky.github.io/page/27/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>徐先生的技术栈</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2acd2bc9d0bd256dbd6679268f609dbd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container">
+    <div class="headband"></div>
+
+<a href="https://github.com/dirsky" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">徐先生的技术栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">生来为创造价值</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2012/11/28/lang-Javascript-一些正则表达式随记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2012/11/28/lang-Javascript-一些正则表达式随记/" class="post-title-link" itemprop="url">JavaScript正则</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2012-11-28 11:44:00" itemprop="dateCreated datePublished" datetime="2012-11-28T11:44:00+08:00">2012-11-28</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/lang/" itemprop="url" rel="index"><span itemprop="name">lang</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2012/11/28/lang-Javascript-一些正则表达式随记/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2012/11/28/lang-Javascript-一些正则表达式随记/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>7.3k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>7 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一些匹配方法"><a href="#一些匹配方法" class="headerlink" title="一些匹配方法"></a>一些匹配方法</h2><h3 id="去除首尾的"><a href="#去除首尾的" class="headerlink" title="去除首尾的"></a>去除首尾的</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//去除首尾的‘/’</span></span><br><span class="line">input = input.replace(<span class="regexp">/^\/*|\/*$/g</span>,<span class="string">''</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="javascript-、javascript-void-0"><a href="#javascript-、javascript-void-0" class="headerlink" title="javascript:; 、javascript:void(0)"></a>javascript:; 、javascript:void(0)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'javascript:;'</span>.match(<span class="regexp">/^(javascript\s*\:|#)/</span>);</span><br><span class="line"><span class="comment">//["javascript:", "javascript:", index: 0, input: "javascript:;"]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"access_token=dcb90862-29fb-4b03-93ff-5f0a8f546250; refresh_token=702f4815-a0ff-456c-82ce-24e4d7d619e6; account_uid=1361177947320160506170322436"</span>;</span><br><span class="line">str.match(<span class="regexp">/account_uid=([^\=]+(\;)|(.*))/ig</span>);</span><br><span class="line"><span class="comment">//=&gt; ["account_uid=1361177947320160506170322436"]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="匹配一些字符"><a href="#匹配一些字符" class="headerlink" title="匹配一些字符"></a>匹配一些字符</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'asdf html-webpack-plugin for "index/index.html" asdfasdf'</span>;</span><br><span class="line">str.match(<span class="regexp">/html-webpack-plugin for \"(.*)\"/ig</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">RegExp</span>.$<span class="number">1</span>) <span class="comment">//=&gt;index/index.html</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="关键字符替换"><a href="#关键字符替换" class="headerlink" title="关键字符替换"></a>关键字符替换</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'css/[hash:8].index-index.css'</span>.replace(<span class="regexp">/\[(?:(\w+):)?(contenthash|hash)(?::([a-z]+\d*))?(?::(\d+))?\]/ig</span>,<span class="string">'(.*)'</span>);</span><br><span class="line"><span class="comment">//=&gt; css/(.*).index-index.css</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="替换参数中的值"><a href="#替换参数中的值" class="headerlink" title="替换参数中的值"></a>替换参数中的值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str  = <span class="string">'&lt;!DOCTYPE html&gt;&lt;html manifest="../../cache.manifest" lang="en"&gt;&lt;head&gt;&lt;meta charset="UTF-8"&gt;'</span>;</span><br><span class="line">str.replace(<span class="regexp">/&lt;html[^&gt;]*manifest="([^"]*)"[^&gt;]*&gt;/</span>,<span class="function"><span class="keyword">function</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> word.replace(<span class="regexp">/manifest="([^"]*)"/</span>,<span class="string">'manifest="'</span>+url+<span class="string">'"'</span>);</span><br><span class="line">&#125;).replace(<span class="regexp">/&lt;html(\s?[^\&gt;]*\&gt;)/</span>,<span class="function"><span class="keyword">function</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(word.indexOf(<span class="string">'manifest'</span>)) <span class="keyword">return</span> word;</span><br><span class="line">    <span class="keyword">return</span> word.replace(<span class="string">'&lt;html'</span>,<span class="string">'&lt;html manifest="'</span>+url+<span class="string">'"'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//原：&lt;!DOCTYPE html&gt;&lt;html manifest="../../cache.manifest" lang="en"&gt;&lt;head&gt;&lt;meta charset="UTF-8"&gt;</span></span><br><span class="line"><span class="comment">//替换成=&gt; &lt;!DOCTYPE html&gt;&lt;html manifest="cache.manifest" lang="en"&gt;&lt;head&gt;&lt;meta charset="UTF-8"&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="匹配括号内容"><a href="#匹配括号内容" class="headerlink" title="匹配括号内容"></a>匹配括号内容</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'max_length(12)'</span>.match(<span class="regexp">/^(.+?)\((.+)\)$/</span>)</span><br><span class="line"><span class="comment">// ["max_length(12)", "max_length", "12", index: 0, input: "max_length(12)"]</span></span><br><span class="line"><span class="string">'hello(world)code(js)javascirpt'</span>.match(<span class="regexp">/\((\w*)+?\)/gmi</span>);</span><br><span class="line"><span class="comment">// =&gt; ["(world)", "(js)"]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="调换"><a href="#调换" class="headerlink" title="调换"></a>调换</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"Doe, John"</span>; </span><br><span class="line">name.replace(<span class="regexp">/(\w+)\s*, \s*(\w+)/</span>, <span class="string">"$2 $1"</span>); </span><br><span class="line"><span class="comment">//=&gt; "John Doe"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'asfdf === sdfaf ##'</span></span><br><span class="line">str.match(<span class="regexp">/[^===]+(?=[===])/g</span>) <span class="comment">// 截取 ===之前的内容</span></span><br><span class="line"></span><br><span class="line">str.replace(<span class="regexp">/\n/g</span>,<span class="string">''</span>)  <span class="comment">// 替换字符串中的 \n 换行字符</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="浏览器版本"><a href="#浏览器版本" class="headerlink" title="浏览器版本"></a>浏览器版本</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">navigator.userAgent.match(<span class="regexp">/chrome\/([\d]+)\.([\d]+)\.([\d]+)\.([\d]+)/i</span>);</span><br><span class="line"><span class="comment">//=&gt; ["Chrome/64.0.3282.167", "64", "0", "3282", "167", index: 87, input: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) Ap…L, like Gecko) Chrome/64.0.3282.167 Safari/537.36"]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><h3 id="小数点后几位验证"><a href="#小数点后几位验证" class="headerlink" title="小数点后几位验证"></a>小数点后几位验证</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 精确到1位小数</span></span><br><span class="line">/^[<span class="number">1</span><span class="number">-9</span>][<span class="number">0</span><span class="number">-9</span>]*$|^[<span class="number">1</span><span class="number">-9</span>][<span class="number">0</span><span class="number">-9</span>]*\.[<span class="number">0</span><span class="number">-9</span>]$|^<span class="number">0</span>\.[<span class="number">0</span><span class="number">-9</span>]$/.test(<span class="number">1.2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 精确到2位小数</span></span><br><span class="line">/^[<span class="number">0</span><span class="number">-9</span>]+(.[<span class="number">0</span><span class="number">-9</span>]&#123;<span class="number">2</span>&#125;)?$/.test(<span class="number">1.221</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="密码强度正则"><a href="#密码强度正则" class="headerlink" title="密码强度正则"></a>密码强度正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 必须是包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间。</span></span><br><span class="line">/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).&#123;<span class="number">8</span>,<span class="number">10</span>&#125;$/.test(<span class="string">"weeeeeeeW2"</span>);</span><br><span class="line"><span class="comment">//密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符</span></span><br><span class="line">/^.*(?=.&#123;6,&#125;)(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&amp;*? ]).*$/.test("diaoD123#");</span><br><span class="line"><span class="comment">//输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="校验中文"><a href="#校验中文" class="headerlink" title="校验中文"></a>校验中文</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/^[\u4e00-\u9fa5]&#123;<span class="number">0</span>,&#125;$/.test(<span class="string">"但是d"</span>); <span class="comment">//false</span></span><br><span class="line">/^[\u4e00-\u9fa5]&#123;<span class="number">0</span>,&#125;$/.test(<span class="string">"但是"</span>); <span class="comment">//true</span></span><br><span class="line">/^[\u4e00-\u9fa5]&#123;<span class="number">0</span>,&#125;$/.test(<span class="string">"但是"</span>); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="包含中文正则"><a href="#包含中文正则" class="headerlink" title="包含中文正则"></a>包含中文正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/[\u4E00-\u9FA5]/.test(<span class="string">"但是d"</span>) <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="由数字、26个英文字母或下划线组成的字符串"><a href="#由数字、26个英文字母或下划线组成的字符串" class="headerlink" title="由数字、26个英文字母或下划线组成的字符串"></a>由数字、26个英文字母或下划线组成的字符串</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^\w+$/.test(<span class="string">"ds2_@#"</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="身份证号正则"><a href="#身份证号正则" class="headerlink" title="身份证号正则"></a>身份证号正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//身份证号（18位）正则</span></span><br><span class="line">/^[<span class="number">1</span><span class="number">-9</span>]\d&#123;<span class="number">5</span>&#125;(<span class="number">18</span>|<span class="number">19</span>|([<span class="number">23</span>]\d))\d&#123;<span class="number">2</span>&#125;((<span class="number">0</span>[<span class="number">1</span><span class="number">-9</span>])|(<span class="number">10</span>|<span class="number">11</span>|<span class="number">12</span>))(([<span class="number">0</span><span class="number">-2</span>][<span class="number">1</span><span class="number">-9</span>])|<span class="number">10</span>|<span class="number">20</span>|<span class="number">30</span>|<span class="number">31</span>)\d&#123;<span class="number">3</span>&#125;[<span class="number">0</span><span class="number">-9</span>Xx]$/.test(<span class="string">"42112319870115371X"</span>);</span><br><span class="line"><span class="comment">//输出 false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="校验日期"><a href="#校验日期" class="headerlink" title="校验日期"></a>校验日期</h3><p>“yyyy-mm-dd“ 格式的日期校验，已考虑平闰年。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//日期正则，简单判定,未做月份及日期的判定</span></span><br><span class="line"><span class="keyword">var</span> dP1 = <span class="regexp">/^\d&#123;4&#125;(\-)\d&#123;1,2&#125;\1\d&#123;1,2&#125;$/</span>;</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line"><span class="built_in">console</span>.log(dP1.test(<span class="string">"2017-05-11"</span>));</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line"><span class="built_in">console</span>.log(dP1.test(<span class="string">"2017-15-11"</span>));</span><br><span class="line"><span class="comment">//日期正则，复杂判定</span></span><br><span class="line"><span class="keyword">var</span> dP2 = <span class="regexp">/^(?:(?!0000)[0-9]&#123;4&#125;-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]&#123;2&#125;(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/</span>;</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line"><span class="built_in">console</span>.log(dP2.test(<span class="string">"2017-02-11"</span>));</span><br><span class="line"><span class="comment">//输出 false</span></span><br><span class="line"><span class="built_in">console</span>.log(dP2.test(<span class="string">"2017-15-11"</span>));</span><br><span class="line"><span class="comment">//输出 false</span></span><br><span class="line"><span class="built_in">console</span>.log(dP2.test(<span class="string">"2017-02-29"</span>));</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="校验文件后缀"><a href="#校验文件后缀" class="headerlink" title="校验文件后缀"></a>校验文件后缀</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">var</span> strRegex = <span class="string">"(.jpg|.gif|.txt)"</span>;</span><br><span class="line">  <span class="keyword">var</span> re=<span class="keyword">new</span> <span class="built_in">RegExp</span>(strRegex);</span><br><span class="line">  <span class="keyword">if</span> (re.test(str))&#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">/(.jpg|.gif)+(\?|\#|$)/.test('a/b/c.jpgsss'); //=&gt; false</span><br><span class="line">/(.jpg|.gif)+(\?|\#|$)/.test('a/b/c.jpg?'); //=&gt; true</span><br></pre></td></tr></table></figure>
+
+<h3 id="用户名正则"><a href="#用户名正则" class="headerlink" title="用户名正则"></a>用户名正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用户名正则，4到16位（字母，数字，下划线，减号）</span></span><br><span class="line">/^[a-zA-Z0<span class="number">-9</span>_-]&#123;<span class="number">4</span>,<span class="number">16</span>&#125;$/.test(<span class="string">"diaodiao"</span>);</span><br><span class="line"><span class="comment">//输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="整数正则"><a href="#整数正则" class="headerlink" title="整数正则"></a>整数正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/^\d+$/.test(<span class="string">"42"</span>);    <span class="comment">//正整数正则  -&gt; 输出 true</span></span><br><span class="line">/^-\d+$/.test(<span class="string">"-42"</span>);  <span class="comment">//负整数正则  -&gt; 输出 true</span></span><br><span class="line">/^-?\d+$/.test(<span class="string">"-42"</span>); <span class="comment">//整数正则  -&gt; 输出 true</span></span><br><span class="line"></span><br><span class="line">/^[<span class="number">0</span><span class="number">-9</span>]+$/.test(<span class="number">25.5455</span>) <span class="comment">//正整数正则  -&gt; 输出 false</span></span><br><span class="line"><span class="comment">// 浮点数</span></span><br><span class="line">/^(?:[-+])?(?:[<span class="number">0</span><span class="number">-9</span>]+)?(?:\.[<span class="number">0</span><span class="number">-9</span>]*)?(?:[eE][\+\-]?(?:[<span class="number">0</span><span class="number">-9</span>]+))?$/.test(<span class="number">0.2</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="数字正则"><a href="#数字正则" class="headerlink" title="数字正则"></a>数字正则</h3><p>可以是整数也可以是浮点数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/^\d*\.?\d+$/.test(<span class="string">"42.2"</span>);     <span class="comment">//正数正则  -&gt; 输出 true</span></span><br><span class="line">/^-\d*\.?\d+$/.test(<span class="string">"-42.2"</span>);   <span class="comment">//负数正则 -&gt; 输出 true</span></span><br><span class="line">/^-?\d*\.?\d+$/.test(<span class="string">"-42.2"</span>);  <span class="comment">//数字正则 -&gt; 输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Email正则"><a href="#Email正则" class="headerlink" title="Email正则"></a>Email正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Email正则</span></span><br><span class="line">/^([A-Za-z0<span class="number">-9</span>_\-\.])+\@([A-Za-z0<span class="number">-9</span>_\-\.])+\.([A-Za-z]&#123;<span class="number">2</span>,<span class="number">4</span>&#125;)$/.test(<span class="string">"wowohoo@qq.com"</span>);</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1.邮箱以a-z、A-Z、0-9开头，最小长度为1.</span></span><br><span class="line"><span class="comment">// 2.如果左侧部分包含-、_、.则这些特殊符号的前面必须包一位数字或字母。</span></span><br><span class="line"><span class="comment">// 3.@符号是必填项</span></span><br><span class="line"><span class="comment">// 4.右则部分可分为两部分，第一部分为邮件提供商域名地址，第二部分为域名后缀，现已知的最短为2位。</span></span><br><span class="line"><span class="comment">//   最长的为6为。</span></span><br><span class="line"><span class="comment">// 5.邮件提供商域可以包含特殊字符-、_、.</span></span><br><span class="line">/^[a-z0<span class="number">-9</span>]+([._\\-]*[a-z0<span class="number">-9</span>])*@([a-z0<span class="number">-9</span>]+[-a-z0<span class="number">-9</span>]*[a-z0<span class="number">-9</span>]+.)&#123;<span class="number">1</span>,<span class="number">63</span>&#125;[a-z0<span class="number">-9</span>]+$/.test(<span class="string">"wowohoo@qq.com"</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="传真号码"><a href="#传真号码" class="headerlink" title="传真号码"></a>传真号码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 国家代码(2到3位)-区号(2到3位)-电话号码(7到8位)-分机号(3位)</span></span><br><span class="line">/^(([<span class="number">0</span>\+]\d&#123;<span class="number">2</span>,<span class="number">3</span>&#125;-)?(<span class="number">0</span>\d&#123;<span class="number">2</span>,<span class="number">3</span>&#125;)-)(\d&#123;<span class="number">7</span>,<span class="number">8</span>&#125;)(-(\d&#123;<span class="number">3</span>,&#125;))?$/.test(<span class="string">'021-5055455'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="手机号码正则"><a href="#手机号码正则" class="headerlink" title="手机号码正则"></a>手机号码正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//手机号正则</span></span><br><span class="line">/^<span class="number">1</span>[<span class="number">34578</span>]\d&#123;<span class="number">9</span>&#125;$/.test(<span class="string">"13611778887"</span>);</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//* 13段：130、131、132、133、134、135、136、137、138、139</span></span><br><span class="line"><span class="comment">//* 14段：145、147</span></span><br><span class="line"><span class="comment">//* 15段：150、151、152、153、155、156、157、158、159</span></span><br><span class="line"><span class="comment">//* 17段：170、176、177、178</span></span><br><span class="line"><span class="comment">//* 18段：180、181、182、183、184、185、186、187、188、189</span></span><br><span class="line"><span class="comment">//* 国际码 如：中国(+86)</span></span><br><span class="line">/^((\+?[<span class="number">0</span><span class="number">-9</span>]&#123;<span class="number">1</span>,<span class="number">4</span>&#125;)|(\(\+<span class="number">86</span>\)))?(<span class="number">13</span>[<span class="number">0</span><span class="number">-9</span>]|<span class="number">14</span>[<span class="number">57</span>]|<span class="number">15</span>[<span class="number">012356789</span>]|<span class="number">17</span>[<span class="number">03678</span>]|<span class="number">18</span>[<span class="number">0</span><span class="number">-9</span>])\d&#123;<span class="number">8</span>&#125;$/.test(<span class="string">"13611778887"</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="URL正则"><a href="#URL正则" class="headerlink" title="URL正则"></a>URL正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//URL正则</span></span><br><span class="line">/^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]&#123;<span class="number">2</span>,<span class="number">6</span>&#125;)([\/\w \.-]*)*\/?$/.test(<span class="string">"http://wangchujiang.com"</span>);</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取url中域名、协议正则 'http://xxx.xx/xxx','https://xxx.xx/xxx','//xxx.xx/xxx'</span></span><br><span class="line">/^(http(?:|s)\:)*\/\/([^\/]+)/.test(<span class="string">"http://www.baidu.com"</span>);</span><br><span class="line"></span><br><span class="line">/^((http|https):\/\/(\w+:&#123;<span class="number">0</span>,<span class="number">1</span>&#125;\w*@)?(\S+)|)(:[<span class="number">0</span><span class="number">-9</span>]+)?(\/|\/([\w#!:.?+=&amp;%@!\-\/]))?$/.test(<span class="string">'https://www.baidu.com/s?wd=@#%$^&amp;%$#'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 必须有协议 </span></span><br><span class="line">/^[a-zA-Z]+:\/\<span class="comment">//.test("http://www.baidu.com");</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="域名正则表达式"><a href="#域名正则表达式" class="headerlink" title="域名正则表达式"></a>域名正则表达式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/^([a-zA-Z0<span class="number">-9</span>]([a-zA-Z0<span class="number">-9</span>\-]&#123;<span class="number">0</span>,<span class="number">61</span>&#125;[a-zA-Z0<span class="number">-9</span>])?\.)+[a-zA-Z]&#123;<span class="number">2</span>,<span class="number">6</span>&#125;$/.test(<span class="string">'blog.csdn.net'</span>);</span><br><span class="line"><span class="comment">// 输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Mac地址匹配"><a href="#Mac地址匹配" class="headerlink" title="Mac地址匹配"></a>Mac地址匹配</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/^([<span class="number">0</span><span class="number">-9</span>a-fA-F][<span class="number">0</span><span class="number">-9</span>a-fA-F]:)&#123;<span class="number">5</span>&#125;([<span class="number">0</span><span class="number">-9</span>a-fA-F][<span class="number">0</span><span class="number">-9</span>a-fA-F])$/.test(<span class="string">'dc:a9:04:77:37:20'</span>);</span><br><span class="line"><span class="comment">// 输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="浮点数正则表达式"><a href="#浮点数正则表达式" class="headerlink" title="浮点数正则表达式"></a>浮点数正则表达式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/[-+]?(?:\b[<span class="number">0</span><span class="number">-9</span>]+(?:\.[<span class="number">0</span><span class="number">-9</span>]*)?|\.[<span class="number">0</span><span class="number">-9</span>]+\b)(?:[eE][-+]?[<span class="number">0</span><span class="number">-9</span>]+\b)?<span class="regexp">/.test(+334.4443434343e3);</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="IPv4地址正则"><a href="#IPv4地址正则" class="headerlink" title="IPv4地址正则"></a>IPv4地址正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ipv4地址正则</span></span><br><span class="line">/^(?:(?:<span class="number">25</span>[<span class="number">0</span><span class="number">-5</span>]|<span class="number">2</span>[<span class="number">0</span><span class="number">-4</span>][<span class="number">0</span><span class="number">-9</span>]|[<span class="number">01</span>]?[<span class="number">0</span><span class="number">-9</span>][<span class="number">0</span><span class="number">-9</span>]?)\.)&#123;<span class="number">3</span>&#125;(?:<span class="number">25</span>[<span class="number">0</span><span class="number">-5</span>]|<span class="number">2</span>[<span class="number">0</span><span class="number">-4</span>][<span class="number">0</span><span class="number">-9</span>]|[<span class="number">01</span>]?[<span class="number">0</span><span class="number">-9</span>][<span class="number">0</span><span class="number">-9</span>]?)$/.test(<span class="string">"192.168.130.199"</span>);</span><br><span class="line"><span class="comment">//输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="日期格式化yyyy-MM-dd正则"><a href="#日期格式化yyyy-MM-dd正则" class="headerlink" title="日期格式化yyyy-MM-dd正则"></a>日期格式化yyyy-MM-dd正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/(<span class="number">19</span>|<span class="number">20</span>)\d\d([- <span class="regexp">/.])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])/</span>.test(<span class="string">'2019-09-12'</span>)</span><br><span class="line"><span class="comment">//输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="十六进制颜色正则"><a href="#十六进制颜色正则" class="headerlink" title="十六进制颜色正则"></a>十六进制颜色正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//RGB Hex颜色正则</span></span><br><span class="line">/^#?([a-fA-F0-9]&#123;6&#125;|[a-fA-F0-9]&#123;3&#125;)$/.test("#b8b8b8");</span><br><span class="line"><span class="comment">//输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="QQ号码正则"><a href="#QQ号码正则" class="headerlink" title="QQ号码正则"></a>QQ号码正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//QQ号正则，5至11位</span></span><br><span class="line">/^[<span class="number">1</span><span class="number">-9</span>][<span class="number">0</span><span class="number">-9</span>]&#123;<span class="number">4</span>,<span class="number">10</span>&#125;$/.test(<span class="string">"398188661"</span>);<span class="comment">//输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="微信号正则"><a href="#微信号正则" class="headerlink" title="微信号正则"></a>微信号正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//微信号正则，6至20位，以字母开头，字母，数字，减号，下划线</span></span><br><span class="line">/^[a-zA-Z]([-_a-zA-Z0<span class="number">-9</span>]&#123;<span class="number">5</span>,<span class="number">19</span>&#125;)+$/.test(<span class="string">"jslite"</span>); <span class="comment">//输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="车牌号正则"><a href="#车牌号正则" class="headerlink" title="车牌号正则"></a>车牌号正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//车牌号正则</span></span><br><span class="line">/^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]&#123;<span class="number">1</span>&#125;[A-Z]&#123;<span class="number">1</span>&#125;[A-Z0<span class="number">-9</span>]&#123;<span class="number">4</span>&#125;[A-Z0<span class="number">-9</span>挂学警港澳]&#123;<span class="number">1</span>&#125;$/.test(<span class="string">"沪B99116"</span>) <span class="comment">//输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="颜色值校验"><a href="#颜色值校验" class="headerlink" title="颜色值校验"></a>颜色值校验</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// HEX 颜色正则</span></span><br><span class="line">/^#?([0-9a-fA-F]&#123;3&#125;|[0-9a-fA-F]&#123;6&#125;)$/.test("#ccb2b2")</span><br></pre></td></tr></table></figure>
+
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><ul>
+<li><a href="http://regexlib.com/" target="_blank" rel="noopener">Regular Expression Library</a></li>
+<li><a href="https://regexper.com/" target="_blank" rel="noopener">Regular expression visualizer using railroad diagrams</a></li>
+<li><a href="http://myregexp.com/" target="_blank" rel="noopener">Online regex tester. Full highlighting of regex syntax. Very useful. Javascript regex used.</a></li>
+<li><a href="http://regex.zjmainstay.cn/" target="_blank" rel="noopener">正则表达式在线测试工具</a></li>
+<li><a href="https://jex.im/regulex/" target="_blank" rel="noopener">Regulex：JavaScript正则表达式展示器</a></li>
+</ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2012/11/28/lang-Javascript-轻量高效的开源JavaScript插件和库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2012/11/28/lang-Javascript-轻量高效的开源JavaScript插件和库/" class="post-title-link" itemprop="url">轻量高效的开源JavaScript插件和库</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2012-11-28 11:44:00" itemprop="dateCreated datePublished" datetime="2012-11-28T11:44:00+08:00">2012-11-28</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/lang/" itemprop="url" rel="index"><span itemprop="name">lang</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2012/11/28/lang-Javascript-轻量高效的开源JavaScript插件和库/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2012/11/28/lang-Javascript-轻量高效的开源JavaScript插件和库/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>5.9k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>5 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><ul>
+<li><a href="https://github.com/feimosi/baguetteBox.js" target="_blank" rel="noopener">baguetteBox.js</a> - 是一个简单易用的响应式图像灯箱效果脚本。<a href="https://feimosi.github.io/baguetteBox.js/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/sachinchoolur/lightgallery.js" target="_blank" rel="noopener">Lightgallery.js</a> - 是一个功能齐全的JavaScript图像灯箱插件。<a href="https://sachinchoolur.github.io/lightgallery.js/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/fengyuanchen/viewerjs" target="_blank" rel="noopener">viewerjs</a> - 是一个图像预览插件。<a href="https://fengyuanchen.github.io/viewerjs/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/fengyuanchen/cropperjs" target="_blank" rel="noopener">cropperjs</a> - 是一个图片编辑器插件。<a href="https://fengyuanchen.github.io/cropperjs/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/fengyuanchen/photo-editor" target="_blank" rel="noopener">photo-editor</a> - 是一个本地图片编辑器插件。<a href="https://fengyuanchen.github.io/photo-editor/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/dinbror/blazy/" target="_blank" rel="noopener">blazy.js</a> - 是一个懒惰加载插件。<a href="http://dinbror.dk/blazy/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/naptha/tesseract.js" target="_blank" rel="noopener">tesseract.js</a> - 可以从图像中获取几乎任何语言的单词。<a href="http://tesseract.projectnaptha.com/" target="_blank" rel="noopener">demo</a></li>
+</ul>
+<h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><ul>
+<li><a href="https://github.com/corbindavenport/superembed.js" target="_blank" rel="noopener">SuperEmbed.js</a> - 是一个Javascript库，可检测出网页上的内嵌视频并使他们能够变成响应式元素。<a href="https://jsfiddle.net/h6x04LuL/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/jlmakes/scrollreveal" target="_blank" rel="noopener">ScrollReveal</a> - ScrollReveal插件使用户能够无比轻松地创建桌面和移动浏览器的网页滚动动画。<a href="https://scrollrevealjs.org/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/callmecavs/bricks.js" target="_blank" rel="noopener">Bricks.js</a> - 是一款超快的用于固定宽度元素的“砖石”布局生成器。<a href="http://callmecavs.com/bricks.js/" target="_blank" rel="noopener">demo</a></li>
+</ul>
+<h2 id="轮播图"><a href="#轮播图" class="headerlink" title="轮播图"></a>轮播图</h2><ul>
+<li><a href="https://github.com/thebird/Swipe" target="_blank" rel="noopener">Swipe</a> - 准确的触摸滑块。<a href="http://thebird.github.io/Swipe/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/meandmax/lory/" target="_blank" rel="noopener">Lory</a> -  是一个由 Vanilla JavaScript 编写的拥有触摸功能的简约滑块。<a href="http://meandmax.github.io/lory/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/feimosi/baguetteBox.js" target="_blank" rel="noopener">baguetteBox.js</a> -  是一个简单、易用的响应式 Lightbox 图片库，它支持移动端上触滑动手势操作，无依赖。<a href="https://feimosi.github.io/baguetteBox.js/" target="_blank" rel="noopener">demo</a></li>
+</ul>
+<h2 id="弹出层"><a href="#弹出层" class="headerlink" title="弹出层"></a>弹出层</h2><ul>
+<li><a href="https://github.com/FezVrasta/popper.js" target="_blank" rel="noopener">Popper.js</a> - 是一个轻量级的库用于管理工具提示和弹窗效果。<a href="https://popper.js.org/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/limonte/sweetalert2" target="_blank" rel="noopener">SweetAlert2</a> - 是一个颜值很高而且可以自定义的警告弹出窗口插件，可以代替Javascript的弹出窗口。<a href="https://limonte.github.io/sweetalert2/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/aui/artDialog" target="_blank" rel="noopener">artDialog</a> - 是一个经典、优雅的网页对话框控件。<a href="http://aui.github.io/artDialog/doc/index.html" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/sentsin/layer" target="_blank" rel="noopener">layer</a> - 是一个web弹层组件。<a href="http://layer.layui.com" target="_blank" rel="noopener">demo</a></li>
+</ul>
+<h2 id="音频视频"><a href="#音频视频" class="headerlink" title="音频视频"></a>音频视频</h2><ul>
+<li><a href="https://github.com/mahdif/loud-links" target="_blank" rel="noopener">Loud Links</a> - 是一个轻量级的JavaScript库用于添加交互声音到您的站点。<a href="http://loudlinks.rocks/#examples" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/Bilibili/flv.js" target="_blank" rel="noopener">flv.js</a> - B 站 HTML5 播放器内核开源。</li>
+<li><a href="https://github.com/mahdif/loud-links/" target="_blank" rel="noopener">Loud Links</a> - 是一个轻量级 JavaScript 库，用于向您的网站添加交互音频。。<a href="https://loudlinks.rocks/" target="_blank" rel="noopener">demo</a></li>
+</ul>
+<h2 id="编辑器"><a href="#编辑器" class="headerlink" title="编辑器"></a>编辑器</h2><ul>
+<li><a href="https://github.com/yabwe/medium-editor" target="_blank" rel="noopener">MediumEditor</a> - 仿Medium.com的所见即所得在线编辑器工具栏。<a href="https://yabwe.github.io/medium-editor/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/yabwe/medium-editor" target="_blank" rel="noopener">Substance</a> - 是一个基于Web的内容自定义编辑器。<a href="http://substance.io/examples/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/chmln/flatpickr" target="_blank" rel="noopener">flatpickr</a> - 是一个轻量级的代码高亮库，适用于任何编程语言。<a href="https://chmln.github.io/flatpickr" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/sofish/pen" target="_blank" rel="noopener">pen</a> - 是一个Markdown编辑器工具。<a href="http://sofish.github.io/pen" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/ajaxorg/ace" target="_blank" rel="noopener">aceAce</a>（Ajax.org Cloud9 Editor）。<a href="https://ace.c9.io/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/codemirror/CodeMirror" target="_blank" rel="noopener">CodeMirror</a>浏览器端的代码编辑器。<a href="http://codemirror.net/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/ariya/esprima" target="_blank" rel="noopener">esprima</a>用于综合分析的 ECMAScript 解析器。<a href="https://yabwe.github.io/medium-editor/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/quilljs/quill" target="_blank" rel="noopener">quill</a>一个带有 API 的跨浏览器富文本编辑器。(<a href="http://quilljs.com/" target="_blank" rel="noopener">demo</a>)</li>
+<li><a href="https://github.com/ckeditor/ckeditor-releases" target="_blank" rel="noopener">ckeditor-releases</a> 适用于每个人的 web 文本编辑器。<a href="http://ckeditor.com/demo" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/lepture/editor" target="_blank" rel="noopener">editor</a> 一个 markdown 编辑器，但仍在开发中。<a href="http://lab.lepture.com/editor/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/OscarGodson/EpicEditor" target="_blank" rel="noopener">EpicEditor</a> 一个可嵌入的 js Markdown的编辑器，拥有全屏编辑、即时预览、自动保存草稿和离线支持等功能。<a href="http://epiceditor.com" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/josdejong/jsoneditor" target="_blank" rel="noopener">jsoneditor</a> 查看、编辑和格式化 JSON 的 web 工具。<a href="http://jsoneditoronline.org/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/coolwanglu/vim.js" target="_blank" rel="noopener">vim.js</a>  拥有持久化 ~/.vimrc 的 Vim 编辑器的 JavaScript 移植版本。<a href="http://coolwanglu.github.io/vim.js/emterpreter/vim.html" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/neilj/Squire" target="_blank" rel="noopener">Squire</a> HTML5 富文本编辑器。<a href="http://neilj.github.io/Squire/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/tinymce/tinymce" target="_blank" rel="noopener">TinyMCE</a> JavaScript 富文本编辑器。<a href="https://www.tinymce.com/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/basecamp/trix" target="_blank" rel="noopener">trix</a> 由 Basecamp 制作，适用于每天写作的富文本编辑器。<a href="https://trix-editor.org/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/pandao/editor.md" target="_blank" rel="noopener">Editor.md</a> 由 Basecamp 制作，适用于每天写作的富文本编辑器。<a href="https://trix-editor.org/" target="_blank" rel="noopener">demo</a></li>
+</ul>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ul>
+<li><a href="https://github.com/EvandroLG/selecting" target="_blank" rel="noopener">selecting</a> - 一个允许你获取用户选定文本的库。</li>
+<li><a href="https://github.com/jprichardson/string.js" target="_blank" rel="noopener">string.js</a> - 额外的 JavaScript 字符串方法。<a href="http://stringjs.com/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/mathiasbynens/he" target="_blank" rel="noopener">he</a> - 健壮的 HTML 实体编码/解码器。</li>
+<li><a href="https://github.com/sindresorhus/multiline" target="_blank" rel="noopener">multiline</a> - 多行字符串。</li>
+<li><a href="https://github.com/sindresorhus/query-string" target="_blank" rel="noopener">query-string</a> - 解析和字符串化 URL 查询字符串。</li>
+<li><a href="https://github.com/medialize/URI.js/" target="_blank" rel="noopener">URI.js</a> - URL 操作库。<a href="http://medialize.github.io/URI.js/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/Mikhus/jsurl" target="_blank" rel="noopener">jsurl</a> - 轻量的 URL 操作库。</li>
+<li><a href="https://github.com/alexei/sprintf.js" target="_blank" rel="noopener">sprintf.js</a> - 实现字符串格式化。</li>
+<li><a href="https://github.com/snd/url-pattern" target="_blank" rel="noopener">url-pattern</a> - 让 url 和其它字符串进行比正则表达式匹配更简单。字符串和数据可相互转化。</li>
+<li><a href="https://github.com/adamwdraper/Numeral-js" target="_blank" rel="noopener">Numeral.js</a> - 格式化和操作数字的 JS 库。 <a href="http://numeraljs.com/" target="_blank" rel="noopener">demo</a></li>
+</ul>
+<h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><ul>
+<li><a href="https://github.com/jaywcjlove/validator.js" target="_blank" rel="noopener">validator.js</a> - 轻量级的JavaScript表单验证，字符串验证。<a href="http://jaywcjlove.github.io/validator.js" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/javve/list.js" target="_blank" rel="noopener">List.js</a> - 是一个轻量级的为列表、表格或其他任何HTMLL标签增加了搜索，排序，过滤器和灵活性等元素。<a href="http://listjs.com/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/algolia/places/" target="_blank" rel="noopener">Algolia Places</a> - 是一个能让你在网页轻易实现搜索栏自动完成功能。<a href="https://community.algolia.com/places/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/nosir/cleave.js" target="_blank" rel="noopener">Cleave.js</a> - 是一个会在你输入时格式化你的<code>&lt;input/&gt;</code>标签里面的内容。<a href="http://nosir.github.io/cleave.js/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/sofish/validator.js" target="_blank" rel="noopener">validator.js</a> - 是一个简单、轻量级，但功能强大的 Validator 组件。<a href="http://sofish.github.io/validator.js/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/mzabriskie/axios" target="_blank" rel="noopener">axios</a> - 是一个基于浏览器和node的HTTP请求库，绿色环保只有12kb。</li>
+</ul>
+<h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><ul>
+<li><a href="https://github.com/jaywcjlove/store.js" target="_blank" rel="noopener">store.js</a> - 本地存储localstorage的封装，提供简单的API。<a href="http://jaywcjlove.github.io/store.js" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/jaywcjlove/cookie.js" target="_blank" rel="noopener">cookie.js</a> - 对操作cookie的封装，提供简单的AIP 兼容IE6。<a href="http://jaywcjlove.github.io/cookie.js" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/marcuswestin/store.js" target="_blank" rel="noopener">store.js</a> - 为所有浏览器封装了LocalStorage，隐秘地使用localStorage、globalStorage和用户数据。</li>
+<li><a href="https://github.com/mozilla/localForage" target="_blank" rel="noopener">localForage</a> - 改善后的离线存储。封装了IndexedDB、WebSQL和localStorage。<a href="https://localforage.github.io/localForage" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/zendesk/cross-storage" target="_blank" rel="noopener">cross-storage</a> - 获得权限后，能跨域名本地存储。</li>
+<li><a href="https://github.com/addyosmani/basket.js" target="_blank" rel="noopener">basket.js</a> - 用 localStorage 加载和缓存脚本的资源加载器。<a href="https://addyosmani.com/basket.js/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/nodeca/bag.js" target="_blank" rel="noopener">bag.js</a> - 可以缓存脚本和加载资源，增加了键值对接口和对localStorage/websql/indexedDB 的支持。</li>
+<li><a href="https://github.com/Wisembly/basil.js" target="_blank" rel="noopener">basil.js</a> - 智能的&nbsp;JavaScript 数据持久层库。</li>
+<li><a href="https://github.com/ScottHamper/Cookies" target="_blank" rel="noopener">Cookies</a> - 客户端 Cookie 操作库。</li>
+<li><a href="https://github.com/aaronpowell/db.js/" target="_blank" rel="noopener">DB.js</a> - 基于 Promise 的、封装了 IndexedDB 的库。<a href="http://aaronpowell.github.io/db.js/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/brianleroux/lawnchair/" target="_blank" rel="noopener">lawnchair.js</a> - 简单的客户端 JSON 存储。<a href="http://brian.io/lawnchair/" target="_blank" rel="noopener">demo</a></li>
+</ul>
+<h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><ul>
+<li><a href="https://github.com/juliangarnier/anime" target="_blank" rel="noopener">anime.js</a> - 是一个灵活轻便的JavaScript动画库。<a href="http://codepen.io/collection/XLebem/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/mrdoob/three.js" target="_blank" rel="noopener">three.js</a> - 是一个JS 3D库。<a href="https://threejs.org/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/ConnorAtherton/loaders.css" target="_blank" rel="noopener">loaders.css</a> - CSS 动画加载效果。<a href="https://connoratherton.com/loaders" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/IanLunn/Hover" target="_blank" rel="noopener">Hover.css</a> - 一款基于 CSS3 的悬停特效合集。<a href="http://ianlunn.github.io/Hover/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/h5bp/Effeckt.css" target="_blank" rel="noopener">Effeckt.css</a> - 一个包含众多精妙的 CSS3 切换和动画效果库。<a href="http://h5bp.github.io/Effeckt.css/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/miniMAC/magic" target="_blank" rel="noopener">Magic Animations</a> - 一个独特的 CSS3 动画特效包。<a href="https://minimamente.com/example/magic_animations/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/grayghostvisuals/transformicons" target="_blank" rel="noopener">Transformicons</a> - 一个结合 SVG、CSS 和 HTML 技术，让图标、按钮和符号具有变种（特殊）动画效果的库。<a href="http://www.transformicons.com/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/tobiasahlin/SpinKit" target="_blank" rel="noopener">SpinKit</a> - 一款  CSS 加载动画合集，可高度自定义动画效果。<a href="http://tobiasahlin.com/spinkit/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/d3/d3-ease" target="_blank" rel="noopener">d3-ease</a> - 这是一个让动画更为平滑的 Easing 库。</li>
+<li><a href="https://github.com/janpaepke/ScrollMagic" target="_blank" rel="noopener">ScrollMagic</a> - 一个用来创建魔幻滚动交互的 JavaScript 库，可以像使用进度条一样使用滚动条。<a href="http://scrollmagic.io/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/jlmakes/scrollreveal" target="_blank" rel="noopener">ScrollReveal</a> - 一款页面滚动显示动画，可以播放一次也可以播放无限次，能让页面更加有趣，更吸引用户眼球。。<a href="https://scrollrevealjs.org/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/dixonandmoe/rellax" target="_blank" rel="noopener">RELLAX.js</a> - 是一款主打轻量级的纯 JavaScript 视差效果库。<a href="https://dixonandmoe.com/rellax/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/inorganik/CountUp.js" target="_blank" rel="noopener">CountUp.js</a> - 可以用来快速创建以一种更有趣的动画方式显示数值数据。<a href="https://inorganik.github.io/countUp.js/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="http://dynamicsjs.com/" target="_blank" rel="noopener">Dynamics.js</a> - 可以创建物理运动动画效果 JavaScript 库。<a href="https://github.com/michaelvillar/dynamics.js" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/legomushroom/mojs" target="_blank" rel="noopener">Mojs</a> - 一个拥有极简的声明式 API ，能够轻松掌控运动轨迹，为运动图形而生的工具库。<a href="http://mojs.io/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/joshwcomeau/react-flip-move" target="_blank" rel="noopener">React FLIP Move</a> - 一个翻转移动的库，旨在解决当列表的顺序发生变化时，项目列表动画化的问题。<a href="http://joshwcomeau.github.io/react-flip-move/examples/#/shuffle?_k=og3e8m" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/tweenjs/tween.js" target="_blank" rel="noopener">tween.js</a> - 是一个JS 平滑动画库。<a href="http://tweenjs.github.io/tween.js/examples/12_graphs_custom_functions.html" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/mattboldt/typed.js" target="_blank" rel="noopener">Typed.js</a> - 是一个JS 打字动画库。<a href="https://mattboldt.com/typed.js/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/maxwellito/vivus" target="_blank" rel="noopener">vivus</a> - JavaScript库，使SVG绘制动画。<a href="http://maxwellito.github.io/vivus/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/christinecha/choreographer-js" target="_blank" rel="noopener">Choreographer-js</a> - 是一个用于处理复杂动画的简单库。<a href="https://christinecha.github.io/choreographer-js/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/minirefresh/minirefresh" target="_blank" rel="noopener">minirefresh</a> - 优雅的H5下拉刷新。零依赖。<a href="https://minirefresh.github.io/minirefresh-doc/minirefresh-doc/guid/guid_effect.html" target="_blank" rel="noopener">demo</a></li>
+</ul>
+<h2 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h2><ul>
+<li><a href="https://github.com/xx45/dayjs" target="_blank" rel="noopener">Day.js</a> - 是一个轻量的 JavaScript 时间日期处理库。</li>
+<li><a href="https://github.com/iamkun/dayjs" target="_blank" rel="noopener">dayjs</a> 只有2KB日期库，替代Moment.js，具有相同的现代API。</li>
+<li><a href="https://github.com/moment/moment" target="_blank" rel="noopener">moment</a> - 是一个日期处理类库,用于解析、检验、操作、以及显示日期。<a href="http://momentjs.com" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/date-fns/date-fns" target="_blank" rel="noopener">date-fns</a> - 现代JavaScript日期实用程序库。<a href="https://date-fns.org/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/moment/luxon" target="_blank" rel="noopener">luxon</a> - 在JS中使用日期和时间的库。<a href="https://moment.github.io/luxon/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/sbstjn/timesheet.js" target="_blank" rel="noopener">timesheet.js</a> - 是一个时间展示片段插件。<a href="https://sbstjn.github.io/timesheet.js" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/jaywcjlove/date.js" target="_blank" rel="noopener">date.js</a> - 是一个格式化时间、过去时间展示、解决因时区变更插件。</li>
+<li><a href="https://github.com/hustcc/timeago.js" target="_blank" rel="noopener">timeago.js</a> - 格式化时间显示多久以前的插件。 <a href="http://timeago.org/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/bevacqua/rome" target="_blank" rel="noopener">rome</a> - 可定制的日期（和时间）选择器。无依赖，可选 UI。 <a href="https://bevacqua.github.io/rome/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/moment/moment-timezone" target="_blank" rel="noopener">moment-timezone</a> - 基于 moment.js 的时区库。<a href="http://momentjs.com/timezone" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/MatthewMueller/date" target="_blank" rel="noopener">date</a> - 拥有人性化的 Date() 方法。<a href="http://matthewmueller.github.io/date/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/rauchg/ms.js" target="_blank" rel="noopener">ms.js</a> - 小巧的毫秒转换工具。</li>
+</ul>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><ul>
+<li><a href="https://github.com/jaywcjlove/hotkeys" target="_blank" rel="noopener">hotkeys</a> - 是一个强健的 Javascript 库用于捕获键盘输入和输入的组合键。<a href="http://jaywcjlove.github.io/hotkeys/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/kaimallea/isMobile" target="_blank" rel="noopener">isMobile</a> - 一个检测移动设备的简单JS库。</li>
+<li><a href="https://github.com/zenorocha/clipboard.js" target="_blank" rel="noopener">clipboard.js</a> - 现代复制到剪贴板。没有Flash，gzip压缩只有3KB 。<a href="https://clipboardjs.com/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/jaywcjlove/onlinenetwork" target="_blank" rel="noopener">translater.js</a> - 这是一个利用HTML注释的页面翻译解决方案。<a href="https://jaywcjlove.github.io/translater.js/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/russellgoldenberg/scrollama" target="_blank" rel="noopener">scrollama</a> - 为 Scrollytelling 开发的现代、轻量级的 JavaScript 库。<a href="https://russellgoldenberg.github.io/scrollama/basic" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/jaywcjlove/translater.js" target="_blank" rel="noopener">Push.js</a> - 是一个跨浏览器的Javascript桌面通知插件。<a href="http://nickersoft.github.io/push.js/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/jaywcjlove/onlinenetwork" target="_blank" rel="noopener">onlinenetwork</a> - js判断是否断网了。</li>
+<li><a href="https://github.com/jaywcjlove/iNotify" target="_blank" rel="noopener">iNotify</a> - 是一个实现浏览器的 title 闪烁、滚动、声音提示、chrome、等系统通知。<a href="http://jaywcjlove.github.io/iNotify" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/naptha/tesseract.js" target="_blank" rel="noopener">tesseract.js</a> - 是一个文字识别转换，可以运行在浏览器和服务器NodeJS上。<a href="http://tesseract.projectnaptha.com/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="http://github.com/Leaflet/Leaflet" target="_blank" rel="noopener">Leaflet.js</a> - 是一个开源的移动友好交互式地图 JavaScript 库。体积仅有 33 KB。<a href="http://leafletjs.com/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/osrec/currencyFormatter.js/" target="_blank" rel="noopener">CurrencyFormatter.js</a> - 是一款简单纯JS格式化155种不同国家货币格式库，gzip压缩后仅7KB。<a href="https://osrec.github.io/currencyFormatter.js/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/osrec/currencyFormatter.js/" target="_blank" rel="noopener">Feature.js</a> - 是一个快速、简单、轻量级的浏览器功能检测库。它没有任何的依赖，并且 gzip 压缩后仅有1kb。<a href="hhttp://featurejs.com/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/sindresorhus/screenfull.js" target="_blank" rel="noopener">screenfull.js</a> -  极小、跨平台的 JavaScript 全屏插件。<a href="https://sindresorhus.com/screenfull.js/" target="_blank" rel="noopener">demo</a></li>
+</ul>
+<h2 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h2><ul>
+<li><a href="https://github.com/nhnent/tui.chart" target="_blank" rel="noopener">TOAST UI Chart</a> - 提供了直方图、折线图、散点图、饼图、热力图等多种类型格式的图表，兼容 IE8+ <a href="http://ui.toast.com/tui-chart/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/chartjs/Chart.js" target="_blank" rel="noopener">Chart.js</a> - Simple HTML5 Charts using the <code>&lt;canvas&gt;</code> tag <a href="http://www.chartjs.org/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/ecomfe/echarts" target="_blank" rel="noopener">ECharts</a> - A powerful, interactive charting and visualization library for browser  <a href="http://echarts.baidu.com/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/d3/d3" target="_blank" rel="noopener">D3</a> - Bring data to life with SVG, Canvas and HTML. <a href="https://d3js.org" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/frappe/charts" target="_blank" rel="noopener">Frappe Charts</a> - Bring data to life with SVG, Canvas and HTML. <a href="https://frappe.github.io/charts/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/gionkunz/chartist-js" target="_blank" rel="noopener">Chartist.js</a> - Simple responsive charts. <a href="http://gionkunz.github.io/chartist-js/" target="_blank" rel="noopener">demo</a></li>
+<li><a href="https://github.com/recharts/recharts" target="_blank" rel="noopener">Recharts</a> - Simple responsive charts. <a href="http://recharts.org/#/en-US/" target="_blank" rel="noopener">demo</a></li>
+</ul>
+<h2 id="加载器"><a href="#加载器" class="headerlink" title="加载器"></a>加载器</h2><ul>
+<li><a href="https://github.com/requirejs/requirejs" target="_blank" rel="noopener">requirejs</a> - JS模块化工具</li>
+<li><a href="https://github.com/seajs/seajs" target="_blank" rel="noopener">SeaJS</a> - JavaScript模块加载框架</li>
+<li><a href="https://github.com/muicss/loadjs" target="_blank" rel="noopener">loadjs</a> - JavaScript模块加载框架</li>
+<li><a href="https://github.com/ecomfe/esl" target="_blank" rel="noopener">ESL</a> - 浏览器端AMD标准加载器</li>
+</ul>
+<h2 id="构建工具"><a href="#构建工具" class="headerlink" title="构建工具"></a>构建工具</h2><ul>
+<li><a href="https://github.com/webpack/webpack" target="_blank" rel="noopener">webpack</a> - 前端构建工具</li>
+<li><a href="https://github.com/gulpjs/gulp" target="_blank" rel="noopener">Gulp</a> - 自动化构建工具</li>
+<li><a href="https://github.com/babel/babel" target="_blank" rel="noopener">Babel</a> - 下一代JavasScript语法编译器</li>
+<li><a href="https://github.com/postcss/postcss" target="_blank" rel="noopener">PostCSS</a> - 利用JS插件转换CSS样式的工具</li>
+<li><a href="https://github.com/gruntjs/grunt" target="_blank" rel="noopener">Grunt</a> - JavaScript世界的构建工具</li>
+<li><a href="https://github.com/rollup/rollup" target="_blank" rel="noopener">rollup.js</a> - JS模块打包器</li>
+<li><a href="https://github.com/FormidableLabs/webpack-dashboard" target="_blank" rel="noopener">webpack-dashboard</a> - webpack开发服务器的CLI仪表板</li>
+<li><a href="https://github.com/google/traceur-compiler" target="_blank" rel="noopener">traceur-compiler</a> - 支持ES6的JS编译器</li>
+<li><a href="https://github.com/brunch/brunch" target="_blank" rel="noopener">brunch</a> - 超快的HTML5构建工具</li>
+<li><a href="https://github.com/geuis/helium-css" target="_blank" rel="noopener">Helium-css</a> - 显示网站中未使用的CSS</li>
+</ul>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><ul>
+<li><a href="https://github.com/mochajs/mocha" target="_blank" rel="noopener">mocha</a> - JavaScript 测试框架</li>
+<li><a href="https://github.com/eslint/eslint" target="_blank" rel="noopener">ESLint</a> - JavaScript代码检查工具</li>
+<li><a href="https://github.com/jshint/jshint" target="_blank" rel="noopener">JSHint</a> - JavaScript语法和风格检查工具</li>
+<li><a href="https://github.com/casperjs/casperjs" target="_blank" rel="noopener">casperjs</a> - 开源的导航脚本处理和测试工具</li>
+<li><a href="https://github.com/nightwatchjs/nightwatch" target="_blank" rel="noopener">Nightwatch</a> - 用户界面自动化测试框架</li>
+<li><a href="https://github.com/gotwarlost/istanbul" target="_blank" rel="noopener">istanbul</a> - JS代码覆盖工具</li>
+<li><a href="https://github.com/theintern/intern" target="_blank" rel="noopener">intern</a> - JavaScript测试系统</li>
+<li><a href="https://github.com/bestiejs/benchmark.js" target="_blank" rel="noopener">benchmark.js</a> - 强大的JavaScript基准库</li>
+<li><a href="https://github.com/alexfernandez/loadtest" target="_blank" rel="noopener">loadtest</a> - HTTP或WebSockets URL的负载测试</li>
+<li><a href="https://github.com/tntim96/JSCover" target="_blank" rel="noopener">JSCover</a> - JavaScript代码覆盖测量工具</li>
+</ul>
+<h2 id="包管理器"><a href="#包管理器" class="headerlink" title="包管理器"></a>包管理器</h2><ul>
+<li><a href="https://github.com/yarnpkg/yarn" target="_blank" rel="noopener">yarn</a> - 新的 Hadoop 资源管理器</li>
+<li><a href="https://github.com/bower/bower" target="_blank" rel="noopener">bower</a> - web包管理器</li>
+<li><a href="https://github.com/npm/npm" target="_blank" rel="noopener">npm</a> - NodeJS包安装的管理模块</li>
+<li><a href="https://github.com/720kb/ndm" target="_blank" rel="noopener">ndm</a> - npm桌面管理器</li>
+</ul>
+<h2 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h2><ul>
+<li><a href="https://cdnjs.com" target="_blank" rel="noopener">https://cdnjs.com</a></li>
+<li><a href="http://cdnjs.net" target="_blank" rel="noopener">http://cdnjs.net</a></li>
+<li><a href="http://www.jsdelivr.com" target="_blank" rel="noopener">http://www.jsdelivr.com</a></li>
+<li><a href="http://unpkg.com" target="_blank" rel="noopener">http://unpkg.com</a></li>
+<li><a href="http://rawgit.com" target="_blank" rel="noopener">http://rawgit.com</a> </li>
+<li><a href="http://staticfile.org" target="_blank" rel="noopener">http://staticfile.org</a> </li>
+<li><a href="http://www.bootcdn.cn" target="_blank" rel="noopener">http://www.bootcdn.cn</a></li>
+<li><a href="http://cdn.baomitu.com" target="_blank" rel="noopener">http://cdn.baomitu.com</a> </li>
+<li><a href="http://lib.sinaapp.com" target="_blank" rel="noopener">http://lib.sinaapp.com</a> </li>
+<li><a href="http://cdn.code.baidu.com" target="_blank" rel="noopener">http://cdn.code.baidu.com</a></li>
+<li><a href="http://jscdn.upai.com" target="_blank" rel="noopener">http://jscdn.upai.com</a></li>
+<li><a href="https://www.asp.net/ajax/cdn" target="_blank" rel="noopener">https://www.asp.net/ajax/cdn</a></li>
+<li><a href="http://libs.sun0769.com" target="_blank" rel="noopener">http://libs.sun0769.com</a></li>
+<li><a href="https://css.net" target="_blank" rel="noopener">https://css.net</a></li>
+<li><a href="https://developers.google.com/speed/libraries/" target="_blank" rel="noopener">https://developers.google.com/speed/libraries/</a></li>
+</ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2011/06/06/db-mysql-question-9-1-5-连接的种类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2011/06/06/db-mysql-question-9-1-5-连接的种类/" class="post-title-link" itemprop="url">连接的种类</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2011-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2011-06-06T00:00:00+08:00">2011-06-06</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/db/" itemprop="url" rel="index"><span itemprop="name">db</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2011/06/06/db-mysql-question-9-1-5-连接的种类/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2011/06/06/db-mysql-question-9-1-5-连接的种类/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>2.6k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>2 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="题目-：连接的种类"><a href="#题目-：连接的种类" class="headerlink" title="题目**：连接的种类"></a>题目**：连接的种类</h4><h4 id="参考答案："><a href="#参考答案：" class="headerlink" title="参考答案："></a><strong>参考答案</strong>：</h4><p>查询分析器中执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">--建表table1,table2：</span><br><span class="line">create table table1(id int,name varchar(10))</span><br><span class="line">create table table2(id int,score int)</span><br><span class="line">insert into table1 select 1,&apos;lee&apos;</span><br><span class="line">insert into table1 select 2,&apos;zhang&apos;</span><br><span class="line">insert into table1 select 4,&apos;wang&apos;</span><br><span class="line">insert into table2 select 1,90</span><br><span class="line">insert into table2 select 2,100</span><br><span class="line">insert into table2 select 3,70</span><br></pre></td></tr></table></figure>
+
+<p>如表:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-------------------------------------------------</span><br><span class="line">table1 | table2 |</span><br><span class="line">-------------------------------------------------</span><br><span class="line">id name |id score |</span><br><span class="line">1 lee |1 90|</span><br><span class="line">2 zhang| 2 100|</span><br><span class="line">4 wang| 3 70|</span><br><span class="line">-------------------------------------------------</span><br></pre></td></tr></table></figure>
+
+<p>以下均在查询分析器中执行<br>一、外连接<br>1.概念：包括左向外联接、右向外联接或完整外部联接</p>
+<p>2.左连接：left join 或 left outer join<br>(1)左向外联接的结果集包括 LEFT OUTER 子句中指定的左表的所有行，而不仅仅是联接列所匹配的行。如果左表的某行在右表中没有匹配行，则在相关联的结果集行中右表的所有选择列表列均为空值(null)。<br>(2)sql 语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select * from table1 left join table2 on table1.id=table2.id</span><br><span class="line">-------------结果-------------</span><br><span class="line">idnameidscore</span><br><span class="line">------------------------------</span><br><span class="line">1lee190</span><br><span class="line">2zhang2100</span><br><span class="line">4wangNULLNULL</span><br><span class="line">------------------------------</span><br></pre></td></tr></table></figure>
+
+<p>注释：包含table1的所有子句，根据指定条件返回table2相应的字段，不符合的以null显示</p>
+<p>3.右连接：right join 或 right outer join<br>(1)右向外联接是左向外联接的反向联接。将返回右表的所有行。如果右表的某行在左表中没有匹配行，则将为左表返回空值。<br>(2)sql 语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select * from table1 right join table2 on table1.id=table2.id</span><br><span class="line">-------------结果-------------</span><br><span class="line">idnameidscore</span><br><span class="line">------------------------------</span><br><span class="line">1lee190</span><br><span class="line">2zhang2100</span><br><span class="line">NULLNULL370</span><br><span class="line">------------------------------</span><br></pre></td></tr></table></figure>
+
+<p>注释：包含table2的所有子句，根据指定条件返回table1相应的字段，不符合的以null显示</p>
+<p>4.完整外部联接:full join 或 full outer join<br>(1)完整外部联接返回左表和右表中的所有行。当某行在另一个表中没有匹配行时，则另一个表的选择列表列包含空值。如果表之间有匹配行，则整个结果集行包含基表的数据值。<br>(2)sql 语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select * from table1 full join table2 on table1.id=table2.id</span><br><span class="line">-------------结果-------------</span><br><span class="line">idnameidscore</span><br><span class="line">------------------------------</span><br><span class="line">1lee190</span><br><span class="line">2zhang2100</span><br><span class="line">4wangNULLNULL</span><br><span class="line">NULLNULL370</span><br><span class="line">------------------------------</span><br></pre></td></tr></table></figure>
+
+<p>注释：返回左右连接的和（见上左、右连接）</p>
+<p>二、内连接<br>1.概念：内联接是用比较运算符比较要联接列的值的联接</p>
+<p>2.内连接：join 或 inner join</p>
+<p>3.sql 语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select * from table1 join table2 on table1.id=table2.id</span><br><span class="line">-------------结果-------------</span><br><span class="line">idnameidscore</span><br><span class="line">------------------------------</span><br><span class="line">1lee190</span><br><span class="line">2zhang2100</span><br><span class="line">------------------------------</span><br></pre></td></tr></table></figure>
+
+<p>注释：只返回符合条件的table1和table2的列</p>
+<p>4.等价（与下列执行效果相同）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A:select a.*,b.* from table1 a,table2 b where a.id=b.id</span><br><span class="line">B:select * from table1 cross join table2 where table1.id=table2.id (注：cross join后加条件只能用where,不能用on)</span><br></pre></td></tr></table></figure>
+
+<p>三、交叉连接(完全)</p>
+<p>1.概念：没有 WHERE 子句的交叉联接将产生联接所涉及的表的笛卡尔积。第一个表的行数乘以第二个表的行数等于笛卡尔积结果集的大小。（table1和table2交叉连接产生3*3=9条记录）</p>
+<p>2.交叉连接：cross join (不带条件where…)</p>
+<p>3.sql语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">select * from table1 cross join table2</span><br><span class="line">-------------结果-------------</span><br><span class="line">idnameidscore</span><br><span class="line">------------------------------</span><br><span class="line">1lee190</span><br><span class="line">2zhang190</span><br><span class="line">4wang190</span><br><span class="line">1lee2100</span><br><span class="line">2zhang2100</span><br><span class="line">4wang2100</span><br><span class="line">1lee370</span><br><span class="line">2zhang370</span><br><span class="line">4wang370</span><br><span class="line">------------------------------</span><br></pre></td></tr></table></figure>
+
+<p>注释：返回3*3=9条记录，即笛卡尔积</p>
+<p>4.等价（与下列执行效果相同）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A:select * from table1,table2</span><br></pre></td></tr></table></figure>
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2011/06/06/db-mysql-question-9-1-7-数据库优化的思路/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2011/06/06/db-mysql-question-9-1-7-数据库优化的思路/" class="post-title-link" itemprop="url">数据库优化的思路</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2011-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2011-06-06T00:00:00+08:00">2011-06-06</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/db/" itemprop="url" rel="index"><span itemprop="name">db</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2011/06/06/db-mysql-question-9-1-7-数据库优化的思路/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2011/06/06/db-mysql-question-9-1-7-数据库优化的思路/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>1.3k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="题目：数据库优化的思路"><a href="#题目：数据库优化的思路" class="headerlink" title="题目：数据库优化的思路"></a><strong>题目</strong>：数据库优化的思路</h4><h4 id="参考答案："><a href="#参考答案：" class="headerlink" title="参考答案："></a><strong>参考答案</strong>：</h4><p>这个我借鉴了慕课上关于数据库优化的课程。</p>
+<p>1.SQL语句优化<br>1）应尽量避免在 where 子句中使用!=或&lt;&gt;操作符，否则将引擎放弃使用索引而进行全表扫描。<br>2）应尽量避免在 where 子句中对字段进行 null 值判断，否则将导致引擎放弃使用索引而进行全表扫描，如：<br>select id from t where num is null<br>可以在num上设置默认值0，确保表中num列没有null值，然后这样查询：<br>select id from t where num=0<br>========================= liueleven的评论 =================================<br>不是非我杠精，关于null,isNull,isNotNull其实是要看成本的，是否回表等因素总和考虑，才会决定是要走索引还是走全表扫描</p>
+<p>也给大家找了一个作者的博文（<a href="https://mp.weixin.qq.com/s/CEJFsDBizdl0SvugGX7UmQ" target="_blank" rel="noopener">MySQL中IS NULL、IS NOT NULL、!=不能用索引？胡扯！</a>），仅供参考！！！</p>
+<p>[zhiyong0804d的意见]<br>之所以未把第二条删除还是考虑可能很多人都被误导了。那这样的组织能让大家兼听则明。</p>
+<p>3）很多时候用 exists 代替 in 是一个好的选择<br>4）用Where子句替换HAVING 子句 因为HAVING 只会在检索出所有记录之后才对结果集进行过滤  </p>
+<p>2.索引优化<br>看上文索引</p>
+<p>3.数据库结构优化<br>1）范式优化： 比如消除冗余（节省空间。。）<br>2）反范式优化：比如适当加冗余等（减少join）<br>3）拆分表：   分区将数据在物理上分隔开，不同分区的数据可以制定保存在处于不同磁盘上的数据文件里。这样，当对这个表进行查询时，只需要在表分区中进行扫描，而不必进行全表扫描，明显缩短了查询时间，另外处于不同磁盘的分区也将对这个表的数据传输分散在不同的磁盘I/O，一个精心设置的分区可以将数据传输对磁盘I/O竞争均匀地分散开。对数据量大的时时表可采取此方法。可按月自动建表分区。<br>4）拆分其实又分垂直拆分和水平拆分：<br>  案例： 简单购物系统暂设涉及如下表：<br>    1.产品表（数据量10w，稳定）<br>    2.订单表（数据量200w，且有增长趋势）<br>    3.用户表 （数据量100w，且有增长趋势）<br>  以mysql为例讲述下水平拆分和垂直拆分，mysql能容忍的数量级在百万静态数据可以到千万 垂直拆分：解决问题：表与表之间的io竞争 不解决问题：单表中数据量增长出现的压力 方案： 把产品表和用户表放到一个server上 订单表单独放到一个server上 水平拆分： 解决问题：单表中数据量增长出现的压力 不解决问题：表与表之间的io争夺<br>方案： 用户表通过性别拆分为男用户表和女用户表 订单表通过已完成和完成中拆分为已完成订单和未完成订单 产品表 未完成订单放一个server上 已完成订单表盒男用户表放一个server上 女用户表放一个server上(女的爱购物 哈哈)</p>
+<p>4.服务器硬件优化<br>这个么多花钱咯！</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2011/06/06/db-mysql-question-9-1-8-存储过程与触发器的区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2011/06/06/db-mysql-question-9-1-8-存储过程与触发器的区别/" class="post-title-link" itemprop="url">存储过程与触发器的区别</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2011-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2011-06-06T00:00:00+08:00">2011-06-06</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/db/" itemprop="url" rel="index"><span itemprop="name">db</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2011/06/06/db-mysql-question-9-1-8-存储过程与触发器的区别/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2011/06/06/db-mysql-question-9-1-8-存储过程与触发器的区别/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>351</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="题目：存储过程与触发器的区别"><a href="#题目：存储过程与触发器的区别" class="headerlink" title="题目：存储过程与触发器的区别"></a><strong>题目</strong>：存储过程与触发器的区别</h4><h4 id="参考答案："><a href="#参考答案：" class="headerlink" title="参考答案："></a><strong>参考答案</strong>：</h4><p>触发器与存储过程非常相似，触发器也是SQL语句集，两者唯一的区别是触发器不能用EXECUTE语句调用，而是在用户执行Transact-SQL语句时自动触发（激活）执行。触发器是在一个修改了指定表中的数据时执行的存储过程。通常通过创建触发器来强制实现不同表中的逻辑相关数据的引用完整性和一致性。由于用户不能绕过触发器，所以可以用它来强制实施复杂的业务规则，以确保数据的完整性。触发器不同于存储过程，触发器主要是通过事件执行触发而被执行的，而存储过程可以通过存储过程名称名字而直接调用。当对某一表进行诸如UPDATE、INSERT、DELETE这些操作时，SQLSERVER就会自动执行触发器所定义的SQL语句，从而确保对数据的处理必须符合这些SQL语句所定义的规则。</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/26/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/28/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/uploads/avatar.gif"
+      alt="Frank">
+  <p class="site-author-name" itemprop="name">Frank</p>
+  <div class="site-description" itemprop="description">优秀是一种习惯</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">150</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/dirsky" title="GitHub &rarr; https://github.com/dirsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:gzxu@vip.qq.com" title="E-Mail &rarr; mailto:gzxu@vip.qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/cccsky" title="Weibo &rarr; https://weibo.com/cccsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://dirsky.github.io/docsify/#/" title="CV &rarr; https://dirsky.github.io/docsify/#/"><i class="fa fa-fw fa-twitter"></i>CV</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2008 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Frank</span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d68acfe0fc14e23" async="async"></script>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+<script src="/js/utils.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 20638,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'zwli8bHgrjbtCiAH23o81imX-gzGzoHsz',
+    appKey: 'v3rufApMsIhhwFOR45jn5abL',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

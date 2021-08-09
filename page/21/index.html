@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/favicon.ico?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/favicon.ico?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="优秀是一种习惯">
+<meta name="keywords" content="Python Java">
+<meta property="og:type" content="website">
+<meta property="og:title" content="徐先生的技术栈">
+<meta property="og:url" content="https://dirsky.github.io/page/21/index.html">
+<meta property="og:site_name" content="徐先生的技术栈">
+<meta property="og:description" content="优秀是一种习惯">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="徐先生的技术栈">
+<meta name="twitter:description" content="优秀是一种习惯">
+  <link rel="canonical" href="https://dirsky.github.io/page/21/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>徐先生的技术栈</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2acd2bc9d0bd256dbd6679268f609dbd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container">
+    <div class="headband"></div>
+
+<a href="https://github.com/dirsky" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">徐先生的技术栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">生来为创造价值</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/08/26/os-linux-CentOS7更换yum软件镜像源/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2015/08/26/os-linux-CentOS7更换yum软件镜像源/" class="post-title-link" itemprop="url">CentOS7系统更换软件安装源</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00+08:00">2015-08-26</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/08/26/os-linux-CentOS7更换yum软件镜像源/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-CentOS7更换yum软件镜像源/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>1.6k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>阿里云Linux安装镜像源地址：<a href="http://mirrors.aliyun.com/" target="_blank" rel="noopener">http://mirrors.aliyun.com/</a> 。</p>
+<p>第一步：备份你的原镜像文件，以免出错后可以恢复。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp /etc/yum.repos.d/CentOS-Base.repo&#123;,.backup&#125;</span><br><span class="line"><span class="comment"># 或者</span></span><br><span class="line">mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br></pre></td></tr></table></figure>
+
+<p>第二步：下载新的CentOS-Base.repo 到/etc/yum.repos.d/</p>
+<p>如果 wget 没有安装，运行下面命令安装 wget 软件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum update --skip-broken</span><br><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
+
+<p>安装完成更新下载源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CentOS 5</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-5.repo</span><br><span class="line"><span class="comment"># CentOS 6</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo</span><br><span class="line"><span class="comment"># CentOS 7</span></span><br><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
+
+<p>第三步：运行yum makecache生成缓存</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
+
+<p>yum 安装报错 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">File <span class="string">"/usr/bin/yum"</span>, line 30 except KeyboardInterrupt, e:</span><br></pre></td></tr></table></figure>
+
+<p>解决：修改文件<code>/usr/bin/yum</code>、<code>/usr/libexec/urlgrabber-ext-down</code>头中相应python为<code>#!/usr/bin/python2.7</code></p>
+<h1 id="163官方说明："><a href="#163官方说明：" class="headerlink" title="163官方说明："></a>163官方说明：</h1><p><a href="http://mirrors.163.com/" target="_blank" rel="noopener">http://mirrors.163.com/</a><br><a href="http://mirrors.163.com/.help/centos.html" target="_blank" rel="noopener">http://mirrors.163.com/.help/centos.html</a>  </p>
+<h1 id="中国开源镜像站点"><a href="#中国开源镜像站点" class="headerlink" title="中国开源镜像站点"></a>中国开源镜像站点</h1><ul>
+<li>阿里云开源镜像站：<a href="http://mirrors.aliyun.com/" target="_blank" rel="noopener">http://mirrors.aliyun.com/</a></li>
+<li>网易开源镜像站：<a href="http://mirrors.163.com/" target="_blank" rel="noopener">http://mirrors.163.com/</a></li>
+<li>搜狐开源镜像站：<a href="http://mirrors.sohu.com/" target="_blank" rel="noopener">http://mirrors.sohu.com/</a></li>
+<li>北京交通大学：<a href="http://mirror.bjtu.edu.cn/cn/" target="_blank" rel="noopener">http://mirror.bjtu.edu.cn/cn/</a> &lt;教育网荐&gt;</li>
+<li>兰州大学：<a href="http://mirror.lzu.edu.cn/" target="_blank" rel="noopener">http://mirror.lzu.edu.cn/</a> &lt;西北高校FTP搜索引擎&gt;</li>
+<li>厦门大学：<a href="http://mirrors.xmu.edu.cn/" target="_blank" rel="noopener">http://mirrors.xmu.edu.cn/</a></li>
+<li>上海交通大学：<a href="http://ftp.sjtu.edu.cn/" target="_blank" rel="noopener">http://ftp.sjtu.edu.cn/</a></li>
+<li>清华大学：<a href="http://mirrors.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">http://mirrors.tuna.tsinghua.edu.cn/</a><ul>
+<li><a href="http://mirrors.6.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">http://mirrors.6.tuna.tsinghua.edu.cn/</a></li>
+<li><a href="http://mirrors.4.tuna.tsinghua.edu.cn/" target="_blank" rel="noopener">http://mirrors.4.tuna.tsinghua.edu.cn/</a></li>
+</ul>
+</li>
+<li>天津大学：<a href="http://mirror.tju.edu.cn/" target="_blank" rel="noopener">http://mirror.tju.edu.cn/</a></li>
+<li>中国科学技术大学：<a href="http://mirrors.ustc.edu.cn/" target="_blank" rel="noopener">http://mirrors.ustc.edu.cn/</a> <ul>
+<li><a href="http://mirrors4.ustc.edu.cn/" target="_blank" rel="noopener">http://mirrors4.ustc.edu.cn/</a> &lt;教育网、电信&gt;</li>
+<li><a href="http://mirrors6.ustc.edu.cn/" target="_blank" rel="noopener">http://mirrors6.ustc.edu.cn/</a> <ipv6 only></ipv6></li>
+</ul>
+</li>
+<li>西南大学：<a href="http://linux.swu.edu.cn/swudownload/" target="_blank" rel="noopener">http://linux.swu.edu.cn/swudownload/</a></li>
+<li>泰安移动：<a href="http://mirrors.ta139.com/" target="_blank" rel="noopener">http://mirrors.ta139.com/</a></li>
+<li>东北大学：<a href="http://mirror.neu.edu.cn/" target="_blank" rel="noopener">http://mirror.neu.edu.cn/</a></li>
+<li>浙江大学：<a href="http://mirrors.zju.edu.cn/" target="_blank" rel="noopener">http://mirrors.zju.edu.cn/</a></li>
+<li>东软信息学院：<a href="http://mirrors.neusoft.edu.cn/" target="_blank" rel="noopener">http://mirrors.neusoft.edu.cn/</a></li>
+</ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/08/26/os-linux-部署Seafile搭建自己的网盘/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2015/08/26/os-linux-部署Seafile搭建自己的网盘/" class="post-title-link" itemprop="url">部署Seafile搭建自己的网盘</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00+08:00">2015-08-26</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/08/26/os-linux-部署Seafile搭建自己的网盘/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-部署Seafile搭建自己的网盘/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>8k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>7 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Seafile 是一个开源的文件云存储平台，解决文件集中存储、同步、多平台访问的问，允许用户创建“群组”，在群组内共享和同步文件，方便了团队协同工作。</p>
+<!-- TOC -->
+
+<ul>
+<li><a href="#安装依赖">安装依赖</a></li>
+<li><a href="#下载">下载</a></li>
+<li><a href="#安装">安装</a><ul>
+<li><a href="#启动-seafile">启动 Seafile</a></li>
+<li><a href="#启动-seahub">启动 Seahub</a></li>
+</ul>
+</li>
+<li><a href="#备份">备份</a></li>
+<li><a href="#恢复">恢复</a></li>
+<li><a href="#服务管理">服务管理</a></li>
+<li><a href="#开机启动">开机启动</a></li>
+<li><a href="#参考资料">参考资料</a></li>
+</ul>
+<!-- /TOC -->
+
+<h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 CentOS 7 下</span></span><br><span class="line"><span class="comment"># (MariaDB 是 MySQL 的分支)</span></span><br><span class="line">yum install mariadb-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果以来有问题 </span></span><br><span class="line"><span class="comment"># 尝试在后面加上参数  --skip-broken</span></span><br><span class="line">yum install python-setuptools python-imaging python-ldap MySQL-python python-memcached python-urllib3</span><br></pre></td></tr></table></figure>
+
+<p>yum 安装 mysqldb-python 后面seafile安装报错，需要通过 python 的工具pip来安装MySQL-python <code>pip install MySQL-python</code></p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>在这里下载<a href="https://www.seafile.com/download/" target="_blank" rel="noopener">seafile-server_6.0.7_x86-64.tar.gz</a>，你可以选择你需要的版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看系统版本</span></span><br><span class="line">cat /proc/version</span><br><span class="line">wget http://download-cn.seafile.com/seafile-server_6.0.7_x86-64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">tar -zxvf seafile-server_6.0.7_x86-64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压放到一个目录</span></span><br><span class="line"><span class="built_in">cd</span> seafile-server-*</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>我的数据库使用MySQL，你需要先在数据库中建立一个 MySQL 用户 <code>seafile</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 登录MySQL创建一个用户</span></span><br><span class="line">mysql -uroot -p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建用户设置密码</span></span><br><span class="line">mysql&gt; Create USER <span class="string">'seafile'</span>@<span class="string">'%'</span> IDENTIFIED BY <span class="string">'123456'</span>;</span><br><span class="line"><span class="comment"># 执行下面语句立即生效</span></span><br><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure>
+
+<p>运行<code>./setup-seafile-mysql.sh</code>安装脚本并回答预设问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line">./setup-seafile-mysql.sh</span><br><span class="line">  Checking python on this machine ...</span><br><span class="line">  Checking python module: setuptools ... Done.</span><br><span class="line">  Checking python module: python-imaging ... Done.</span><br><span class="line">  Checking python module: python-mysqldb ... Done.</span><br><span class="line"></span><br><span class="line">-----------------------------------------------------------------</span><br><span class="line">This script will guide you to setup your seafile server using MySQL.</span><br><span class="line">Make sure you have <span class="built_in">read</span> seafile server manual at</span><br><span class="line"></span><br><span class="line">        https://github.com/haiwen/seafile/wiki</span><br><span class="line"></span><br><span class="line">Press ENTER to <span class="built_in">continue</span></span><br><span class="line">-----------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">What is the name of the server? It will be displayed on the client.</span><br><span class="line">3 - 15 letters or digits</span><br><span class="line">[ server name ] &lt;填写 seafile 服务器的名字&gt;</span><br><span class="line"></span><br><span class="line">What is the ip or domain of the server?</span><br><span class="line">For example: www.mycompany.com, 192.168.1.101</span><br><span class="line">[ This server<span class="string">'s ip or domain ] &lt;seafile 服务器的 IP 地址或者域名&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Where do you want to put your seafile data?</span></span><br><span class="line"><span class="string">Please use a volume with enough free space</span></span><br><span class="line"><span class="string">[ default "/home/www/jinpans/seafile-data" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Which port do you want to use for the seafile fileserver?</span></span><br><span class="line"><span class="string">[ default "8082" ]  [ seafile fileserver 使用的 TCP 端口 ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-------------------------------------------------------</span></span><br><span class="line"><span class="string">Please choose a way to initialize seafile databases:</span></span><br><span class="line"><span class="string">-------------------------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[1] Create new ccnet/seafile/seahub databases</span></span><br><span class="line"><span class="string">    你需要提供根密码. 脚本程序会创建数据库和用户。</span></span><br><span class="line"><span class="string">[2] Use existing ccnet/seafile/seahub databases</span></span><br><span class="line"><span class="string">    ccnet/seafile/seahub 数据库应该已经被你（或者其他人）提前创建。</span></span><br><span class="line"><span class="string">[ 1 or 2 ] &lt;选择一种创建 Seafile 数据库的方式&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">What is the host of mysql server?</span></span><br><span class="line"><span class="string">[ default "localhost" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">What is the port of mysql server?</span></span><br><span class="line"><span class="string">[ default "3306" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">What is the password of the mysql root user?</span></span><br><span class="line"><span class="string">[ root password ] &lt;输入root密码&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">verifying password of user root ...  done</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the name for mysql user of seafile. It would be created if not exists.</span></span><br><span class="line"><span class="string">[ default "seafile" ] &lt;默认seafile的MySQL用户名，可以使用默认&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the password for mysql user "seafile":</span></span><br><span class="line"><span class="string">[ password for seafile ] &lt;输入seafile密码&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">verifying password of user seafile ...  done</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the database name for ccnet-server:</span></span><br><span class="line"><span class="string">[ default "ccnet-db" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the database name for seafile-server:</span></span><br><span class="line"><span class="string">[ default "seafile-db" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Enter the database name for seahub:</span></span><br><span class="line"><span class="string">[ default "seahub-db" ]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string">This is your configuration</span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    server name:            seafile 服务器的名字</span></span><br><span class="line"><span class="string">    server ip/domain:       192.168.1.101</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    seafile data dir:       /home/www/jinpans/seafile-data</span></span><br><span class="line"><span class="string">    fileserver port:        8082</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    database:               create new</span></span><br><span class="line"><span class="string">    ccnet database:         ccnet-db</span></span><br><span class="line"><span class="string">    seafile database:       seafile-db</span></span><br><span class="line"><span class="string">    seahub database:        seahub-db</span></span><br><span class="line"><span class="string">    database user:          seafile</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string">Press ENTER to continue, or Ctrl-C to abort</span></span><br><span class="line"><span class="string">---------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Generating ccnet configuration ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">done</span></span><br><span class="line"><span class="string">Successly create configuration dir /home/www/jinpans/ccnet.</span></span><br><span class="line"><span class="string">Generating seafile configuration ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Done.</span></span><br><span class="line"><span class="string">done</span></span><br><span class="line"><span class="string">Generating seahub configuration ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">----------------------------------------</span></span><br><span class="line"><span class="string">Now creating seahub database tables ...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">----------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">creating seafile-server-latest symbolic link ...  done</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string">Your seafile server configuration has been finished successfully.</span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">run seafile server:     ./seafile.sh &#123; start | stop | restart &#125;</span></span><br><span class="line"><span class="string">run seahub  server:     ./seahub.sh  &#123; start &lt;port&gt; | stop | restart &lt;port&gt; &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string">If you are behind a firewall, remember to allow input/output of these tcp ports:</span></span><br><span class="line"><span class="string">-----------------------------------------------------------------</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">port of seafile fileserver:   8082</span></span><br><span class="line"><span class="string">port of seahub:               8000</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">When problems occur, Refer to</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        https://github.com/haiwen/seafile/wiki</span></span><br></pre></td></tr></table></figure>
+
+<p>上面算是结束了，然后在 seafile-server_6.0.7 目录下面，运行如下命令</p>
+<h3 id="启动-Seafile"><a href="#启动-Seafile" class="headerlink" title="启动 Seafile"></a>启动 Seafile</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./seafile.sh start <span class="comment"># 启动 Seafile 服务</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="启动-Seahub"><a href="#启动-Seahub" class="headerlink" title="启动 Seahub"></a>启动 Seahub</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">./seahub.sh start &lt;port&gt;  <span class="comment"># 启动 Seahub 网站 （默认运行在8000端口上）</span></span><br><span class="line"><span class="comment"># 你第一次启动 seahub 时，seahub.sh 脚本会提示你创建一个 seafile 管理员帐号。</span></span><br><span class="line"></span><br><span class="line">LC_ALL is not <span class="built_in">set</span> <span class="keyword">in</span> ENV, <span class="built_in">set</span> to en_US.UTF-8</span><br><span class="line">Starting seahub at port 8000 ...</span><br><span class="line"></span><br><span class="line">----------------------------------------</span><br><span class="line">It<span class="string">'s the first time you start the seafile server. Now let'</span>s create the admin account</span><br><span class="line">----------------------------------------</span><br><span class="line"></span><br><span class="line">What is the email <span class="keyword">for</span> the admin account?</span><br><span class="line">[ admin email ] &lt;这里输入邮箱地址&gt;</span><br><span class="line"></span><br><span class="line">What is the password <span class="keyword">for</span> the admin account?</span><br><span class="line">[ admin password ] &lt;这里输入密码&gt;</span><br><span class="line"></span><br><span class="line">Enter the password again:</span><br><span class="line">[ admin password again ] &lt;这里确认输入密码&gt;</span><br><span class="line">----------------------------------------</span><br><span class="line">Successfully created seafile admin</span><br><span class="line">----------------------------------------</span><br><span class="line">Seahub is started</span><br><span class="line">Done.</span><br></pre></td></tr></table></figure>
+
+<p>然后你可以打开它了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.1.111:8000/</span><br></pre></td></tr></table></figure>
+
+<h2 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h2><p>备份数据库，假设你的数据库名分别为 <code>ccnet-db</code> , <code>seafile-db</code> 和 <code>seahubdb</code>，下面命令分别备份这三个数据库，同时要注意备份需要先建立好文件夹。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -h localhost -uroot -p --opt ccnet-db &gt; ./backup/databases/ccnet-db.sql.`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>`</span><br><span class="line">mysqldump -h localhost -uroot -p --opt seafile-db &gt; ./backup/databases/seafile-db.sql.`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>`</span><br><span class="line">mysqldump -h localhost -uroot -p --opt seahub-db &gt; ./backup/databases/seahub-db.sql.`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>`</span><br></pre></td></tr></table></figure>
+
+<p>备份文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nohup cp -R ./seafile-data ./backup/data/seafile-data-`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>` 2&gt;&amp;1 &amp;</span><br><span class="line">nohup cp -R ./seahub-data ./backup/data/seahub-data-`date +<span class="string">"%Y-%m-%d-%H-%M-%S"</span>` 2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line">[1] 17294</span><br></pre></td></tr></table></figure>
+
+<h2 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p ccnet-db &lt; ccnet-db.sql.2017-11-29-11-36-06 </span><br><span class="line">mysql -uroot -p seafile-db &lt; seafile-db.sql.2017-11-29-11-36-06 </span><br><span class="line">mysql -uroot -p seahub-db &lt; seahub-db.sql.2017-11-29-11-36-06</span><br></pre></td></tr></table></figure>
+
+<h2 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">./seahub.sh stop       <span class="comment"># 停止 Seafile 进程</span></span><br><span class="line">./seafile.sh stop      <span class="comment"># 停止 Seahub</span></span><br><span class="line"></span><br><span class="line">./seafile.sh start     <span class="comment"># 启动 Seafile 服务</span></span><br><span class="line">./seahub.sh start 8001 <span class="comment"># 启动 Seahub 网站 （运行在8001端口上）</span></span><br><span class="line"></span><br><span class="line">./seafile.sh restart   <span class="comment"># 停止当前的 Seafile 进程，然后重启 Seafile</span></span><br><span class="line">./seahub.sh restart    <span class="comment"># 停止当前的 Seahub 进程，并在 8000 端口重新启动 Seahub</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="开机启动"><a href="#开机启动" class="headerlink" title="开机启动"></a>开机启动</h2><p>创建 systemd 服务文件<code>seafile.service</code>，记得将服务文件中的<code>${seafile_dir}</code>替换成你的安装目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/systemd/system/seafile.service</span><br></pre></td></tr></table></figure>
+
+<p>文件内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Seafile</span><br><span class="line"><span class="comment"># add mysql.service or postgresql.service depending on your database to the line below</span></span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">ExecStart=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seafile.sh start</span><br><span class="line">ExecStop=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seafile.sh stop</span><br><span class="line">RemainAfterExit=yes</span><br><span class="line">User=seafile</span><br><span class="line">Group=seafile</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>创建 systemd 服务文件 <code>seahub.service</code>，记得将服务文件中的<code>${seafile_dir}</code>替换成你的安装目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/systemd/system/seahub.service</span><br></pre></td></tr></table></figure>
+
+<p>文件内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Seafile hub</span><br><span class="line">After=network.target seafile.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line"><span class="comment"># change start to start-fastcgi if you want to run fastcgi</span></span><br><span class="line">ExecStart=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seahub.sh start</span><br><span class="line">ExecStop=<span class="variable">$&#123;seafile_dir&#125;</span>/seafile-server-latest/seahub.sh stop</span><br><span class="line">User=seafile</span><br><span class="line">Group=seafile</span><br><span class="line">Type=oneshot</span><br><span class="line">RemainAfterExit=yes</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>[Install]<br>WantedBy=multi-user.target</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> seafile.service</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> seahub.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://www.gitbook.com/book/freeplant/seafile-manual-cn/details" target="_blank" rel="noopener">Seafile服务器手册中文版</a></li>
+<li><a href="https://github.com/haiwen/seafile" target="_blank" rel="noopener">Seafile for Github</a></li>
+<li><a href="http://seafile.com/" target="_blank" rel="noopener">Seafile官网</a></li>
+</ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/08/26/os-linux-常用基础命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2015/08/26/os-linux-常用基础命令/" class="post-title-link" itemprop="url">Linux常用命令</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00+08:00">2015-08-26</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/08/26/os-linux-常用基础命令/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-常用基础命令/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>10k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>10 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="其它命令"><a href="#其它命令" class="headerlink" title="其它命令"></a>其它命令</h1><p><code>sudo chmod 755 -R node</code> 修改目录权限<br><code>sudo lsof -nP -iTCP -sTCP:LISTEN</code> 查看本地服务<br><code>ps -ef | grep websocket</code> 查看websocket进程<br><code>ps aux | grep mysql</code> 查看mysql进程<br><code>sudo kill 443</code> 杀掉进程  </p>
+<h1 id="给目录权限"><a href="#给目录权限" class="headerlink" title="给目录权限"></a>给目录权限</h1><p><code>sudo chmod -R 777 目录</code></p>
+<h1 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h1><p><code>find path -option [-print] [-exec -ok command] { }\;</code>  </p>
+<ul>
+<li>pathname: find命令所查找的目录路径。例如用<code>.</code>来表示当前目录，用<code>/</code>来表示系统根目录。</li>
+<li><code>-print</code>: find命令将匹配的文件输出到标准输出。</li>
+<li><code>-exec</code>: find命令对匹配的文件执行该参数所给出的shell命令。相应命令的形式为<code>&#39;command&#39; { } \;</code>，注意<code>{ }</code>和<code>\;</code>之间的空格。</li>
+<li><code>-ok</code>： 和<code>-exec</code>的作用相同，只不过以一种更为安全的模式来执行该参数所给出的shell命令，在执行每一个命令之前，都会给出提示，让用户来确定是否执行。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ find ~ -name <span class="string">"*.txt"</span>  -<span class="built_in">print</span>   <span class="comment">#在$HOME中查.txt文件并显示</span></span><br><span class="line">$ find . -name <span class="string">"*.txt"</span>  -<span class="built_in">print</span></span><br><span class="line">$ find . -name <span class="string">"[A-Z]*"</span> -<span class="built_in">print</span>   <span class="comment">#查以大写字母开头的文件</span></span><br><span class="line">$ find /etc -name <span class="string">"host*"</span>  -<span class="built_in">print</span>  <span class="comment">#查以host开头的文件</span></span><br><span class="line"><span class="comment"># 查以两个小写字母和两个数字开头的txt文件</span></span><br><span class="line">$ find .   -name   <span class="string">"[a-z][a-z][0–9][0–9].txt"</span> -<span class="built_in">print</span>   </span><br><span class="line">$ ind . -perm   755   -<span class="built_in">print</span></span><br><span class="line">$ ind . -perm -007   -<span class="built_in">exec</span> ls -l &#123;&#125; \;   <span class="comment">#查所有用户都可读写执行的文件同-perm 777</span></span><br><span class="line">$ ind . -<span class="built_in">type</span> d   -<span class="built_in">print</span></span><br><span class="line">$ ind . !  -<span class="built_in">type</span> d   -<span class="built_in">print</span> </span><br><span class="line">$ ind . -<span class="built_in">type</span> l   -<span class="built_in">print</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h1><blockquote>
+<p>类似于dos下的dir命令</p>
+</blockquote>
+<p>ls最常用的参数有三个： -a -l -F。</p>
+<p>ls –a</p>
+<p>Linux上的文件以.开头的文件被系统视为隐藏文件，仅用ls命令是看不到他们的，而用ls -<br>a除了显示一般文件名外，连隐藏文件也会显示出来。<br>ls –l<br>该参数显示更详细的文件信息。<br>ls –F<br>使用这个参数表示在文件的后面多添加表示文件类型的符号，例如*表示可执行，/表示目录，@表示连结文件，这都是因为使用了-F这个参数。但是现在基本上所有的Linux发行版本的ls都已经内建了-F参数，也就是说，不用输入这个参数，我们也能看到各种分辨符号。</p>
+<h1 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h1><blockquote>
+<p>用于切换用户当前工作目录</p>
+</blockquote>
+<p>cd aaa 进入aaa目录<br>cd    命令后不指定目录，会切换到当前用户的home 目录<br>cd ~   作用同cd后不指定目录，切换到当前用户的home 目录<br>cd -   命令后跟一个减号，则会退回到切换前的目录<br>cd ..   返回到当前目录下的上一级目录</p>
+<h1 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h1><blockquote>
+<p>用于显示用户当前工作目录</p>
+</blockquote>
+<h1 id="mkdir-和-rmdir"><a href="#mkdir-和-rmdir" class="headerlink" title="mkdir 和 rmdir"></a>mkdir 和 rmdir</h1><blockquote>
+<p>midir:创建目录 / rmdir:删除目录</p>
+</blockquote>
+<p>两个命令都支持-p参数，对于mkdir命令若指定路径的父目录不存在则一并创建，对于rmdir命令则删除指定路径的所有层次目录，如果文件夹里有内容，则不能用rmdir命令</p>
+<p>如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p 1/2/3</span><br><span class="line">rmdir -p 1/2/3</span><br></pre></td></tr></table></figure>
+
+<h2 id="mkdir循环创建目录"><a href="#mkdir循环创建目录" class="headerlink" title="mkdir循环创建目录"></a>mkdir循环创建目录</h2><p><a href="http://unix.stackexchange.com/questions/636/how-do-i-make-multiple-directories-at-once-in-a-directory" target="_blank" rel="noopener">How do I make multiple directories at once in a directory?</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> char <span class="keyword">in</span> &#123;A..Z&#125;; <span class="keyword">do</span></span><br><span class="line">    mkdir <span class="variable">$char</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> &#123;1..100&#125;; <span class="keyword">do</span></span><br><span class="line">    mkdir <span class="variable">$num</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h1><blockquote>
+<p>复制命令</p>
+</blockquote>
+<ul>
+<li>复制一个文件到另一目录：<code>cp 1.txt ../test2</code></li>
+<li>复制一个文件到本目录并改名：<code>cp 1.txt 2.txt</code></li>
+<li>复制一个文件夹a并改名为b，-r或-R 选项表明递归操作：<code>cp -r a b</code></li>
+<li>同时拷贝多个文件，我们只需要将多个文件用空格隔开。<code>cp file_1.txt file_2.txt file_3.txt /home/pungki/office</code></li>
+</ul>
+<h1 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h1><blockquote>
+<p>移动命令</p>
+</blockquote>
+<p>将一个文件移动到另一个目录：mv 1.txt ../test1<br>将一个文件在本目录改名：mv 1.txt 2.txt<br>将一个文件一定到另一个目录并改名：mv 1.txt ../test1/2.txt</p>
+<h1 id="rm命令"><a href="#rm命令" class="headerlink" title="rm命令"></a>rm命令</h1><blockquote>
+<p>命令用于删除文件，与dos下的del/erase命令相似，rm命令常用的参数有三个：-i，-r，-f。</p>
+</blockquote>
+<ol>
+<li>–i ：系统在删除文件之前会先询问确认，用户回车之后，文件才会真的被删除。需要注意，linux下删除的文件是不能恢复的，删除之前一定要谨慎确认。</li>
+<li>–r：该参数支持目录删除，功能和rmdir命令相似。</li>
+<li>–f：和-i参数相反，-f表示强制删除</li>
+</ol>
+<h1 id="find"><a href="#find" class="headerlink" title="find"></a>find</h1><blockquote>
+<p>find 查找目录和文件</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">-name   filename   <span class="comment">#查找名为filename的文件</span></span><br><span class="line">-perm              <span class="comment">#按执行权限来查找</span></span><br><span class="line">-user    username  <span class="comment">#按文件属主来查找</span></span><br><span class="line">-group groupname   <span class="comment">#按组来查找</span></span><br><span class="line">-mtime   -n +n     <span class="comment">#按文件更改时间来查找文件，-n指n天以内，+n指n天以前</span></span><br><span class="line">-atime    -n +n    <span class="comment">#按文件访问时间来查GIN: 0px"&gt;</span></span><br><span class="line"></span><br><span class="line">-ctime    -n +n    <span class="comment">#按文件创建时间来查找文件，-n指n天以内，+n指n天以前</span></span><br><span class="line"></span><br><span class="line">-nogroup           <span class="comment">#查无有效属组的文件，即文件的属组在/etc/groups中不存在</span></span><br><span class="line">-nouser            <span class="comment">#查无有效属主的文件，即文件的属主在/etc/passwd中不存</span></span><br><span class="line">-newer   f1 !f2    <span class="comment">#找文件，-n指n天以内，+n指n天以前 </span></span><br><span class="line">-ctime    -n +n    <span class="comment">#按文件创建时间来查找文件，-n指n天以内，+n指n天以前 </span></span><br><span class="line">-nogroup           <span class="comment">#查无有效属组的文件，即文件的属组在/etc/groups中不存在</span></span><br><span class="line">-nouser            <span class="comment">#查无有效属主的文件，即文件的属主在/etc/passwd中不存</span></span><br><span class="line">-newer   f1 !f2    <span class="comment">#查更改时间比f1新但比f2旧的文件</span></span><br><span class="line">-<span class="built_in">type</span>    b/d/c/p   <span class="comment">#查是块设备、目录、字符设备、管道、符号链接、普通文件</span></span><br><span class="line">-size      n[c]    <span class="comment">#查长度为n块[或n字节]的文件</span></span><br><span class="line">-depth             <span class="comment">#使查找在进入子目录前先行查找完本目录</span></span><br><span class="line">-fstype            <span class="comment">#查更改时间比f1新但比f2旧的文件</span></span><br><span class="line">-<span class="built_in">type</span>    b/d/c/p   <span class="comment">#查是块设备、目录、字符设备、管道、符号链接、普通文件</span></span><br><span class="line">-size      n[c]    <span class="comment">#查长度为n块[或n字节]的文件</span></span><br><span class="line">-depth             <span class="comment">#使查找在进入子目录前先行查找完本目录</span></span><br><span class="line">-fstype            <span class="comment">#查位于某一类型文件系统中的文件，这些文件系统类型通常可 在/etc/fstab中找到</span></span><br><span class="line">-mount             <span class="comment">#查文件时不跨越文件系统mount点</span></span><br><span class="line">-follow            <span class="comment">#如果遇到符号链接文件，就跟踪链接所指的文件</span></span><br><span class="line">-cpio %;           <span class="comment">#查位于某一类型文件系统中的文件，这些文件系统类型通常可 在/etc/fstab中找到</span></span><br><span class="line">-mount             <span class="comment">#查文件时不跨越文件系统mount点</span></span><br><span class="line">-follow            <span class="comment">#如果遇到符号链接文件，就跟踪链接所指的文件</span></span><br><span class="line">-cpio              <span class="comment">#对匹配的文件使用cpio命令，将他们备份到磁带设备中</span></span><br><span class="line">-prune             <span class="comment">#忽略某个目录</span></span><br></pre></td></tr></table></figure>
+
+<p>例子： </p>
+<ul>
+<li>~ 代表的是$home目录，</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">$ find . -name <span class="string">'*.DS_Store'</span> -<span class="built_in">type</span> f -delete <span class="comment"># 删除所有.DS_Store文件</span></span><br><span class="line">$ find ~ -name <span class="string">"*.txt"</span> -<span class="built_in">print</span>       <span class="comment"># 在$HOME中查.txt文件并显示</span></span><br><span class="line">$ find . -size +1000000c -<span class="built_in">print</span>     <span class="comment"># 查长度大于1Mb的文件</span></span><br><span class="line">$ find . -size 100c -<span class="built_in">print</span>          <span class="comment"># 查长度为100c的文件</span></span><br><span class="line">$ find . -size +10 -<span class="built_in">print</span>           <span class="comment"># 查长度超过期作废10块的文件（1块=512字节）</span></span><br><span class="line">$ find -name april*                 <span class="comment"># 在当前目录下查找以april开始的文件</span></span><br><span class="line">$ find -name april* fprint file     <span class="comment"># 在当前目录下查找以april开始的文件，并把结果输出到file中</span></span><br><span class="line">$ find -name ap* -o -name may*          <span class="comment"># 查找以ap或may开头的文件</span></span><br><span class="line">$ find /mnt -name tom.txt -ftype vfat   <span class="comment"># 在/mnt下查找名称为tom.txt且文件系统类型为vfat的文件</span></span><br><span class="line">$ find /mnt -name t.txt ! -ftype vfat   <span class="comment"># 在/mnt下查找名称为tom.txt且文件系统类型不为vfat的文件</span></span><br><span class="line">$ find /tmp -name wa* -<span class="built_in">type</span> l           <span class="comment"># 在/tmp下查找名为wa开头且类型为符号链接的文件</span></span><br><span class="line">$ find ~ -mtime -2                  <span class="comment"># 在/home下查最近两天内改动过的文件</span></span><br><span class="line">$ find ~ -atime -1                  <span class="comment"># 查1天之内被存取过的文件</span></span><br><span class="line">$ find ~ -mmin +60                  <span class="comment"># 在/home下查60分钟前改动过的文件</span></span><br><span class="line">$ find ~ -amin +30                  <span class="comment"># 查最近30分钟前被存取过的文件</span></span><br><span class="line">$ find ~ -newer tmp.txt             <span class="comment"># 在/home下查更新时间比tmp.txt近的文件或目录</span></span><br><span class="line">$ find ~ -anewer tmp.txt            <span class="comment"># 在/home下查存取时间比tmp.txt近的文件或目录</span></span><br><span class="line">$ find ~ -used -2                   <span class="comment"># 列出文件或目录被改动过之后，在2日内被存取过的文件或目录</span></span><br><span class="line">$ find ~ -user cnscn                <span class="comment"># 列出/home目录内属于用户cnscn的文件或目录</span></span><br><span class="line">$ find ~ -uid +501                  <span class="comment"># 列出/home目录内用户的识别码大于501的文件或目录</span></span><br><span class="line">$ find ~ -group cnscn               <span class="comment"># 列出/home内组为cnscn的文件或目录</span></span><br><span class="line">$ find ~ -gid 501                   <span class="comment"># 列出/home内组id为501的文件或目录</span></span><br><span class="line">$ find ~ -nouser                    <span class="comment"># 列出/home内不属于本地用户的文件或目录</span></span><br><span class="line">$ find ~ -nogroup                   <span class="comment"># 列出/home内不属于本地组的文件或目录</span></span><br><span class="line">$ find ~ -name tmp.txt -maxdepth 4  <span class="comment"># 列出/home内的tmp.txt 查时深度最多为3层</span></span><br><span class="line">$ find ~ -name tmp.txt -mindepth 3  <span class="comment"># 从第2层开始查</span></span><br><span class="line">$ find ~ -empty                     <span class="comment"># 查找大小为0的文件或空目录</span></span><br><span class="line">$ find ~ -size   +512k              <span class="comment"># 查大于512k的文件</span></span><br><span class="line">$ find ~ -size   -512k              <span class="comment"># 查小于512k的文件</span></span><br><span class="line">$ find ~ -links   +2                <span class="comment"># 查硬连接数大于2的文件或目录</span></span><br><span class="line">$ find ~ -perm 0700                 <span class="comment"># 查权限为700的文件或目录</span></span><br><span class="line">$ find ~ -perm 755 -<span class="built_in">print</span> | more    <span class="comment"># 查找权限为755的文件</span></span><br><span class="line">$ find /tmp -name tmp.txt -<span class="built_in">exec</span> cat &#123;&#125; \;</span><br><span class="line">$ find /tmp -name tmp.txt ok rm &#123;&#125; \;</span><br><span class="line"></span><br><span class="line">$ find / -amin    -10      <span class="comment"># 查找在系统中最后10分钟访问的文件</span></span><br><span class="line">$ find / -atime   -2       <span class="comment"># 查找在系统中最后48小时访问的文件</span></span><br><span class="line">$ find / -empty            <span class="comment"># 查找在系统中为空的文件或者文件夹</span></span><br><span class="line">$ find / -group   cat      <span class="comment"># 查找在系统中属于 groupcat的文件</span></span><br><span class="line">$ find / -mmin   -5        <span class="comment"># 查找在系统中最后5分钟里修改过的文件</span></span><br><span class="line">$ find / -mtime   -1       <span class="comment"># 查找在系统中最后24小时里修改过的文件</span></span><br><span class="line">$ find / -nouser           <span class="comment"># 查找在系统中属于作废用户的文件</span></span><br><span class="line">$ find / -user    fred     <span class="comment"># 查找在系统中属于FRED这个用户的文件</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="du、df命令"><a href="#du、df命令" class="headerlink" title="du、df命令"></a>du、df命令</h1><blockquote>
+<p>du命令可以显示目前的目录所占用的磁盘空间，df命令可以显示目前磁盘剩余空间。</p>
+</blockquote>
+<p>如果du命令不加任何参数，那么返回的是整个磁盘的使用情况，如果后面加了目录的话，就是这个目录在磁盘上的使用情况。</p>
+<ol>
+<li><code>du -hs</code> 指定目录  查看指定目录的总大小</li>
+<li><code>du -hs ./*</code> 查看当前目录下的所有文件夹和文件的大小</li>
+</ol>
+<p>这两个命令都支持-k，-m和-h参数，-k和-m类似，都表示显示单位，一个是k字节一个是兆字节，-h则表示human-readable，即友好可读的显示方式。</p>
+<h1 id="cat命令"><a href="#cat命令" class="headerlink" title="cat命令"></a>cat命令</h1><blockquote>
+<p>cat命令的功能是显示或连结一般的ascii文本文件。cat是concatenate的简写，类似于dos下面的type命令。用法如下：</p>
+</blockquote>
+<ol>
+<li><code>cat file1</code> 显示file1文件内容</li>
+<li><code>cat file1 file2</code> 依次显示file1,file2的内容</li>
+<li><code>cat file1 file2 &gt; file3</code> 把file1, file2的内容结合起来，再“重定向（&gt;）”到file3文件中。</li>
+<li><code>&gt;</code>是右重定向符，表示将左边命令结果当成右边命令的输入，注意：如果右侧文件是一个已存在文件，其原有内容将会被清空，而变成左侧命令输出内容。如果希望以追加方式写入，请改用”&gt;&gt;”重定向符。</li>
+</ol>
+<p>如果”&gt;”左边没有指定文件，如： cat &gt;file1，将会等用户输入，输入完毕后再按[Ctrl]+[c]或[Ctrl]+[d]，就会将用户的输入内容写入file1。</p>
+<h1 id="echo命令"><a href="#echo命令" class="headerlink" title="echo命令"></a>echo命令</h1><blockquote>
+<p>echo命令的使用频率不少于ls和cat，尤其是在shell脚本编写中。<br>语法：echo [-ne][字符串]<br>功能：echo会将输入的字符串送往标准输出，输出的字符串间以空白字符隔开， 并在最后加上换行符。</p>
+</blockquote>
+<p>参数：</p>
+<ul>
+<li><code>-n</code> 显示字串时在最后自动换行</li>
+<li><code>-e</code> 支持以下格式的转义字符， -E 不支持以下格式的转义字符</li>
+<li><code>/a</code> 发出警告声；</li>
+<li><code>/b</code> 删除前一个字符；</li>
+<li><code>/c</code> 最后不加上换行符号；</li>
+<li><code>/f</code> 换行但光标仍旧停留在原来的位置；</li>
+<li><code>/n</code> 换行且光标移至行首；</li>
+<li><code>/r</code> 光标移至行首，但不换行；</li>
+<li><code>/t</code> 插入tab；</li>
+<li><code>/v</code> 与/f相同；</li>
+<li><code>//</code> 插入/字符；</li>
+<li><code>/nnn</code> 插入nnn（八进制）所代表的ASCII字符；</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> <span class="string">"123"</span> <span class="string">"456"</span></span><br><span class="line">123 456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> <span class="string">"123/n456"</span></span><br><span class="line">123/n456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -e <span class="string">"123/n456"</span></span><br><span class="line">123</span><br><span class="line">456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -E <span class="string">"123/n456"</span></span><br><span class="line">123/n456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -E <span class="string">"123///456"</span></span><br><span class="line">123//456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -e <span class="string">"123///456"</span></span><br><span class="line">123/456</span><br><span class="line">kenny@jstest:~/hgd&gt; <span class="built_in">echo</span> -e <span class="string">"123/100456"</span></span><br><span class="line">123@456</span><br></pre></td></tr></table></figure>
+
+<p>注意事项：<br>在Linux使用的bash下，单引号’’和双引号是有区别的，单引号忽略所有的转义，双引号不会忽略以下特殊字符：<br>Dollar signs ($)，Back quotes (`)，Backslashes (/)，Excalmatory mark(!)</p>
+<p>示例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">kenny@jstest:~&gt; echo &quot;`TEST`&quot;</span><br><span class="line">-bash: TEST: command not found</span><br><span class="line">kenny@jstest:~&gt; echo &apos;`TEST`&apos;</span><br><span class="line">`TEST`</span><br><span class="line">kenny@jstest:~&gt; echo &quot;$TEST&quot;</span><br><span class="line">        </span><br><span class="line">kenny@jstest:~&gt; echo &apos;$TEST&apos;</span><br><span class="line">$TEST</span><br><span class="line">kenny@jstest:~&gt; echo &quot;//TEST&quot;</span><br><span class="line">/TEST</span><br><span class="line">kenny@jstest:~&gt; echo &apos;//TEST&apos;</span><br><span class="line">//TEST</span><br><span class="line">kenny@jstest:~&gt; echo &quot;Hello!&quot;</span><br><span class="line">echo &quot;Hello&quot;</span><br><span class="line">Hello</span><br><span class="line">kenny@jstest:~&gt; echo &apos;Hello!&apos;</span><br><span class="line">Hello!</span><br></pre></td></tr></table></figure>
+
+<h1 id="more，less，clear"><a href="#more，less，clear" class="headerlink" title="more，less，clear"></a>more，less，clear</h1><blockquote>
+<p>more，less命令</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这两个命令用于查看文件，如果一个文件太长，显示内容超出一个屏幕，用cat命令只能看到最后的内容，用more和less两个命令可以分页查看。more指令可以使超过一页的文件内容分页暂停显示，用户按键后才继续显示下一页。而less除了有more的功能以外，还可以用方向键往上或往下的滚动文件，更方便浏览阅读。</span><br></pre></td></tr></table></figure>
+
+<p>less的常用动作命令：</p>
+<ul>
+<li>回车键 向下移动一行；</li>
+<li><code>y</code> 向上移动一行；</li>
+<li>空格键 向下滚动一屏；</li>
+<li><code>b</code> 向上滚动一屏；</li>
+<li><code>d</code> 向下滚动半屏；</li>
+<li><code>h</code> less的帮助；</li>
+<li><code>u</code> 向上洋动半屏；</li>
+<li><code>w</code> 可以指定显示哪行开始显示，是从指定数字的下一行显示；比如指定的是6，那就从第7行显示；</li>
+<li><code>g</code> 跳到第一行；</li>
+<li><code>G</code> 跳到最后一行；</li>
+<li><code>p n%</code> 跳到n%，比如 10%，也就是说比整个文件内容的10%处开始显示；</li>
+<li><code>/pattern</code> 搜索pattern ，比如 /MAIL表示在文件中搜索MAIL单词；</li>
+<li><code>v</code> 调用vi编辑器；</li>
+<li><code>q</code> 退出less</li>
+<li><code>!command</code> 调用SHELL，可以运行命令；比如!ls 显示当前列当前目录下的所有文件；</li>
+<li><code>clear</code>命令 clear命令是用来清除当前屏幕显示的，不需任何参数，和dos下的cls命令功能相同。</li>
+</ul>
+<h1 id="head，tail"><a href="#head，tail" class="headerlink" title="head，tail"></a>head，tail</h1><ul>
+<li>head和tail命令都用于查看文本文件，区别在于： head显示文件的头n行，tail显示文件的尾n行，缺省情况n都为10行。可以通过-n方式指定行数，如：head -100 file和tail -100 file分别表示显示文件头100行和尾100行内容。</li>
+<li>tail -f命令可以实时查看文件新增内容。</li>
+</ul>
+<h1 id="wc命令"><a href="#wc命令" class="headerlink" title="wc命令"></a>wc命令</h1><p>该命令用于统计指定文件中的字节数、字数、行数。该命令各选项含义如下：</p>
+<ul>
+<li>-l 统计行数</li>
+<li>-w 统计字数</li>
+<li>-c 统计字节数</li>
+</ul>
+<p>这些选项可以组合使用。输出列的顺序和数目不受选项的顺序和数目的影响。总是按下述顺序显示并且每项最多一列。<br>行数、字数、字节数、文件名<br>如果命令行中没有文件名，则输出中不出现文件名。</p>
+<p>例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">oracle@hjtest:~&gt; wc 1.txt 2.txt</span><br><span class="line">  460  1679 16353 1.txt</span><br><span class="line">  300  1095 10665 2.txt</span><br><span class="line">  760  2774 27018 总用量</span><br><span class="line">oracle@hjtest:~&gt; wc -l 1.txt</span><br><span class="line">460 1.txt</span><br></pre></td></tr></table></figure>
+
+<p>缺省参数为-lcw，即wc file1 file2命令的执行结果与上面一样。</p>
+<h1 id="grep-命令"><a href="#grep-命令" class="headerlink" title="grep 命令"></a>grep 命令</h1><blockquote>
+<p>grep是（global search regular expression(RE) and print out the line的缩写，用于从文件面搜索包含指定模式的行并打印出来，它是一种强大的文本搜索工具，支持使用正则表达式搜索文本。grep的工作方式是这样的，它在一个或多个文件中搜索字符串模板。如果模板包括空格，则必须被””引用，模板后的所有字符串被看作文件名。搜索结果送到屏幕，不影响原文件内容。</p>
+</blockquote>
+<p>grep可用于shell脚本，因为grep通过返回一个状态值来说明搜索的状态，如果模板搜索成功，则返回0，如果搜索不成功，则返回1，如果搜索的文件不存在，则返回2。我们利用这些返回值就可进行一些自动化的文本处理工作。<br>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l | grep &apos;^a&apos;</span><br><span class="line">通过管道过滤ls -l输出的内容，只显示以a开头的行。</span><br><span class="line">$ grep &apos;test&apos; d*</span><br><span class="line">显示所有以d开头的文件中包含test的行。</span><br><span class="line">$ grep &apos;test&apos; aa bb cc</span><br><span class="line">显示在aa，bb，cc文件中匹配test的行。</span><br><span class="line">$ grep &apos;[a-z]/&#123;5/&#125;&apos; aa</span><br><span class="line">显示所有包含每个字符串至少有5个连续小写字符的字符串的行。</span><br><span class="line">$ grep &apos;w/(es/)t.*/1&apos; aa</span><br><span class="line">如果west被匹配，则es就被存储到内存中，并标记为1，然后搜索任意个字符（.*），这些字符后面紧跟着另外一个es（/1），找到就显示该行。如果用egrep或grep -E，就不用&quot;/&quot;号进行转义，直接写成&apos;w(es)t.*/1&apos;就可以了。</span><br></pre></td></tr></table></figure>
+
+<h1 id="man，logout命令"><a href="#man，logout命令" class="headerlink" title="man，logout命令"></a>man，logout命令</h1><blockquote>
+<p>man命令，man是manual的缩写，相当于Unix/Linux的联机Help，每个系统命令和调用都有非常详细的说明，绝大多数都是英文。如：man ls即是查看ls命令的使用说明，一般还有另一种方法用来查看帮助，如：ls –help，这种方式绝大多数命令都支持。</p>
+</blockquote>
+<blockquote>
+<p>logout命令，该命令用于退出系统，与login命令对应。</p>
+</blockquote>
+<h1 id="管道和xargs"><a href="#管道和xargs" class="headerlink" title="管道和xargs"></a>管道和xargs</h1><h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2><p>利用Linux所提供的管道符“|”将两个命令隔开，管道符左边命令的输出就会作为管道符右边命令的输入。连续使用管道意味着第一个命令的输出会作为第二个命令的输入，第二个命令的输出又会作为第三个命令的输入，依此类推。<br>注意：管道左边命令的输入作为管道右边命令的输入(命令的输入是一定的)，不是参数，并不是所有命令都支持管道<br>例子：ls | grep a  查看当前目录下名称包含a的文件或文件夹</p>
+<h2 id="xargs"><a href="#xargs" class="headerlink" title="xargs"></a>xargs</h2><p>大多数 Linux 命令都会产生输出：文件列表、字符串列表等。但如果要使用其他某个命令并将前一个命令的输出作为参数该怎么办？例如，file 命令显示文件类型（可执行文件、ascii 文本等）；你能处理输出，使其仅显示文件名，目前你希望将这些名称传递给 ls -l 命令以查看时间戳记。xargs 命令就是用来完成此项工作的。<br>注意：find命令把匹配到的文件传递给xargs命令，而xargs命令每次只获取一部分文件而不是全部，不像-exec选项那样。这样它可以先处理最先获取的一部分文件，然后是下一批，并如此继续下去</p>
+<p>例子：</p>
+<ol>
+<li>在整个系统中查找内存信息转储文件(core dump) ，然后把结果保存到/tmp/core.log 文件中：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ find / -name &quot;core&quot; -print | xargs echo &quot;&quot; &gt;/tmp/core.log</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>当一个目录下文件太多时，直接用rm * 命令会包参数过长,用如下方法可以全部删除</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ls | xargs rm</span><br></pre></td></tr></table></figure>
+
+<h1 id="basename-和-dirname"><a href="#basename-和-dirname" class="headerlink" title="basename 和 dirname"></a>basename 和 dirname</h1><p>basename用于查看文件不含路径的名字，dirname则用于查看文件路径，使用效果我们测试一下便知：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; basename /home/hj/1.txt</span><br><span class="line">1.txt</span><br><span class="line">&gt; dirname  /home/hj/1.txt</span><br><span class="line">/home/hj</span><br><span class="line">&gt; basename 1.txt</span><br><span class="line">1.txt</span><br><span class="line">&gt; dirname 1.txt</span><br><span class="line">.</span><br></pre></td></tr></table></figure>
+
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/07/23/os-linux-后端程序员必备的Linux基础知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2015/07/23/os-linux-后端程序员必备的Linux基础知识/" class="post-title-link" itemprop="url">Linux操作系统</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2015-07-23 00:00:00" itemprop="dateCreated datePublished" datetime="2015-07-23T00:00:00+08:00">2015-07-23</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/07/23/os-linux-后端程序员必备的Linux基础知识/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/07/23/os-linux-后端程序员必备的Linux基础知识/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>7k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>6 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>学习Linux之前，我们先来简单的认识一下操作系统。</p>
+</blockquote>
+<h2 id="一-从认识操作系统开始"><a href="#一-从认识操作系统开始" class="headerlink" title="一 从认识操作系统开始"></a>一 从认识操作系统开始</h2><h3 id="1-1-操作系统简介"><a href="#1-1-操作系统简介" class="headerlink" title="1.1 操作系统简介"></a>1.1 操作系统简介</h3><p>我通过以下四点介绍什么操作系统：</p>
+<ul>
+<li><strong>操作系统（Operation System，简称OS）是管理计算机硬件与软件资源的程序，是计算机系统的内核与基石；</strong></li>
+<li><strong>操作系统本质上是运行在计算机上的软件程序 ；</strong></li>
+<li><strong>为用户提供一个与系统交互的操作界面 ；</strong></li>
+<li><strong>操作系统分内核与外壳（我们可以把外壳理解成围绕着内核的应用程序，而内核就是能操作硬件的程序）。</strong></li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/3/1645ee3dc5cf626e?w=862&h=637&f=png&s=23899" alt="操作系统分内核与外壳"></p>
+<h3 id="1-2-操作系统简单分类"><a href="#1-2-操作系统简单分类" class="headerlink" title="1.2 操作系统简单分类"></a>1.2 操作系统简单分类</h3><ol>
+<li><strong>Windows:</strong> 目前最流行的个人桌面操作系统 ，不做多的介绍，大家都清楚。</li>
+<li><strong>Unix：</strong> 最早的多用户、多任务操作系统 .按照操作系统的分类，属于分时操作系统。Unix 大多被用在服务器、工作站，现在也有用在个人计算机上。它在创建互联网、计算机网络或客户端/服务器模型方面发挥着非常重要的作用。<br><img src="https://user-gold-cdn.xitu.io/2018/7/3/1645ee83f036846d?w=1075&h=475&f=png&s=914462" alt="Unix"></li>
+<li><strong>Linux:</strong> Linux是一套免费使用和自由传播的类Unix操作系统.Linux存在着许多不同的Linux版本，但它们都使用了 <strong>Linux内核</strong> 。Linux可安装在各种计算机硬件设备中，比如手机、平板电脑、路由器、视频游戏控制台、台式计算机、大型机和超级计算机。严格来讲，Linux这个词本身只表示Linux内核，但实际上人们已经习惯了用Linux来形容整个基于Linux内核，并且使用GNU 工程各种工具和数据库的操作系统。</li>
+</ol>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/3/1645eeb8e843f29d?w=426&h=240&f=png&s=32650" alt="Linux"></p>
+<h2 id="二-初探Linux"><a href="#二-初探Linux" class="headerlink" title="二 初探Linux"></a>二 初探Linux</h2><h3 id="2-1-Linux简介"><a href="#2-1-Linux简介" class="headerlink" title="2.1 Linux简介"></a>2.1 Linux简介</h3><p>我们上面已经介绍到了Linux，我们这里只强调三点。</p>
+<ul>
+<li><strong>类Unix系统：</strong> Linux是一种自由、开放源码的类似Unix的操作系统 </li>
+<li><strong>Linux内核：</strong> 严格来说，Linux这个词本身只表示Linux内核 </li>
+<li><strong>Linux之父：</strong> 一个编程领域的传奇式人物。他是Linux内核的最早作者，随后发起了这个开源项目，担任Linux内核的首要架构师与项目协调者，是当今世界最著名的电脑程序员、黑客之一。他还发起了Git这个开源项目，并为主要的开发者。</li>
+</ul>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/3/1645ef0a5a4f137f?w=270&h=376&f=png&s=193487" alt="Linux"></p>
+<h3 id="2-2-Linux诞生简介"><a href="#2-2-Linux诞生简介" class="headerlink" title="2.2 Linux诞生简介"></a>2.2 Linux诞生简介</h3><ul>
+<li>1991年，芬兰的业余计算机爱好者Linus Torvalds编写了一款类似Minix的系统（基于微内核架构的类Unix操作系统）被ftp管理员命名为Linux 加入到自由软件基金的GNU计划中; </li>
+<li>Linux以一只可爱的企鹅作为标志，象征着敢作敢为、热爱生活。 </li>
+</ul>
+<h3 id="2-3-Linux的分类"><a href="#2-3-Linux的分类" class="headerlink" title="2.3 Linux的分类"></a>2.3 Linux的分类</h3><p><strong>Linux根据原生程度，分为两种：</strong></p>
+<ol>
+<li><strong>内核版本：</strong> Linux不是一个操作系统，严格来讲，Linux只是一个操作系统中的内核。内核是什么？内核建立了计算机软件与硬件之间通讯的平台，内核提供系统服务，比如文件管理、虚拟内存、设备I/O等；</li>
+<li><strong>发行版本：</strong> 一些组织或公司在内核版基础上进行二次开发而重新发行的版本。Linux发行版本有很多种（ubuntu和CentOS用的都很多，初学建议选择CentOS），如下图所示：<br><img src="https://user-gold-cdn.xitu.io/2018/7/3/1645efa7048fd018?w=548&h=274&f=png&s=99213" alt="Linux发行版本"></li>
+</ol>
+<h2 id="三-Linux文件系统概览"><a href="#三-Linux文件系统概览" class="headerlink" title="三 Linux文件系统概览"></a>三 Linux文件系统概览</h2><h3 id="3-1-Linux文件系统简介"><a href="#3-1-Linux文件系统简介" class="headerlink" title="3.1 Linux文件系统简介"></a>3.1 Linux文件系统简介</h3><p><strong>在Linux操作系统中，所有被操作系统管理的资源，例如网络接口卡、磁盘驱动器、打印机、输入输出设备、普通文件或是目录都被看作是一个文件。</strong></p>
+<p>也就是说在LINUX系统中有一个重要的概念：<strong>一切都是文件</strong>。其实这是UNIX哲学的一个体现，而Linux是重写UNIX而来，所以这个概念也就传承了下来。在UNIX系统中，把一切资源都看作是文件，包括硬件设备。UNIX系统把每个硬件都看成是一个文件，通常称为设备文件，这样用户就可以用读写文件的方式实现对硬件的访问。</p>
+<h3 id="3-2-文件类型与目录结构"><a href="#3-2-文件类型与目录结构" class="headerlink" title="3.2 文件类型与目录结构"></a>3.2 文件类型与目录结构</h3><p><strong>Linux支持5种文件类型 ：</strong><br><img src="https://user-gold-cdn.xitu.io/2018/7/3/1645f1a7d64def1a?w=901&h=547&f=png&s=72692" alt="文件类型"></p>
+<p><strong>Linux的目录结构如下：</strong></p>
+<p>Linux文件系统的结构层次鲜明，就像一棵倒立的树，最顶层是其根目录：<br><img src="https://user-gold-cdn.xitu.io/2018/7/3/1645f1c65676caf6?w=823&h=315&f=png&s=15226" alt="Linux的目录结构"></p>
+<p><strong>常见目录说明：</strong></p>
+<ul>
+<li><strong>/bin：</strong> 存放二进制可执行文件(ls、cat、mkdir等)，常用命令一般都在这里；</li>
+<li><strong>/etc：</strong>  存放系统管理和配置文件；</li>
+<li><strong>/home：</strong>  存放所有用户文件的根目录，是用户主目录的基点，比如用户user的主目录就是/home/user，可以用~user表示；</li>
+<li><strong>/usr ：</strong> 用于存放系统应用程序；</li>
+<li><strong>/opt：</strong> 额外安装的可选应用程序包所放置的位置。一般情况下，我们可以把tomcat等都安装到这里；</li>
+<li><strong>/proc：</strong>  虚拟文件系统目录，是系统内存的映射。可直接访问这个目录来获取系统信息；</li>
+<li><strong>/root：</strong>  超级用户（系统管理员）的主目录（特权阶级^o^）；</li>
+<li><strong>/sbin:</strong>  存放二进制可执行文件，只有root才能访问。这里存放的是系统管理员使用的系统级别的管理命令和程序。如ifconfig等；</li>
+<li><strong>/dev：</strong> 用于存放设备文件；</li>
+<li><strong>/mnt：</strong> 系统管理员安装临时文件系统的安装点，系统提供这个目录是让用户临时挂载其他的文件系统；</li>
+<li><strong>/boot：</strong>  存放用于系统引导时使用的各种文件；</li>
+<li><strong>/lib ：</strong>      存放着和系统运行相关的库文件 ；</li>
+<li><strong>/tmp：</strong> 用于存放各种临时文件，是公用的临时文件存储点；</li>
+<li><strong>/var：</strong> 用于存放运行时需要改变数据的文件，也是某些大文件的溢出区，比方说各种服务的日志文件（系统启动日志等。）等；</li>
+<li><strong>/lost+found：</strong>  这个目录平时是空的，系统非正常关机而留下“无家可归”的文件（windows下叫什么.chk）就在这里。</li>
+</ul>
+<h2 id="四-Linux基本命令"><a href="#四-Linux基本命令" class="headerlink" title="四 Linux基本命令"></a>四 Linux基本命令</h2><p>下面只是给出了一些比较常用的命令。推荐一个Linux命令快查网站，非常不错，大家如果遗忘某些命令或者对某些命令不理解都可以在这里得到解决。</p>
+<p>Linux命令大全：<a href="http://man.linuxde.net/" target="_blank" rel="noopener">http://man.linuxde.net/</a></p>
+<h3 id="4-1-目录切换命令"><a href="#4-1-目录切换命令" class="headerlink" title="4.1 目录切换命令"></a>4.1 目录切换命令</h3><ul>
+<li><strong><code>cd usr</code>：</strong>   切换到该目录下usr目录  </li>
+<li><strong><code>cd ..（或cd../）</code>：</strong>  切换到上一层目录 </li>
+<li><strong><code>cd /</code>：</strong>   切换到系统根目录  </li>
+<li><strong><code>cd ~</code>：</strong>   切换到用户主目录 </li>
+<li><strong><code>cd -</code>：</strong>   切换到上一个操作所在目录</li>
+</ul>
+<h3 id="4-2-目录的操作命令-增删改查"><a href="#4-2-目录的操作命令-增删改查" class="headerlink" title="4.2 目录的操作命令(增删改查)"></a>4.2 目录的操作命令(增删改查)</h3><ol>
+<li><p><strong><code>mkdir 目录名称</code>：</strong> 增加目录</p>
+</li>
+<li><p><strong><code>ls或者ll</code></strong>（ll是ls -l的别名，ll命令可以看到该目录下的所有目录和文件的详细信息）：查看目录信息</p>
+</li>
+<li><p><strong><code>find 目录 参数</code>：</strong> 寻找目录（查）</p>
+<p> 示例：</p>
+<ul>
+<li>列出当前目录及子目录下所有文件和文件夹: <code>find .</code></li>
+<li>在<code>/home</code>目录下查找以.txt结尾的文件名:<code>find /home -name &quot;*.txt&quot;</code></li>
+<li>同上，但忽略大小写: <code>find /home -iname &quot;*.txt&quot;</code></li>
+<li>当前目录及子目录下查找所有以.txt和.pdf结尾的文件:<code>find . \( -name &quot;*.txt&quot; -o -name &quot;*.pdf&quot; \)</code>或<code>find . -name &quot;*.txt&quot; -o -name &quot;*.pdf&quot;</code></li>
+</ul>
+</li>
+<li><p><strong><code>mv 目录名称 新目录名称</code>：</strong> 修改目录的名称（改）</p>
+<p>注意：mv的语法不仅可以对目录进行重命名而且也可以对各种文件，压缩包等进行  重命名的操作。mv命令用来对文件或目录重新命名，或者将文件从一个目录移到另一个目录中。后面会介绍到mv命令的另一个用法。</p>
+</li>
+<li><p><strong><code>mv 目录名称 目录的新位置</code>：</strong>  移动目录的位置—剪切（改）</p>
+<p> 注意：mv语法不仅可以对目录进行剪切操作，对文件和压缩包等都可执行剪切操作。另外mv与cp的结果不同，mv好像文件“搬家”，文件个数并未增加。而cp对文件进行复制，文件个数增加了。</p>
+</li>
+<li><p><strong><code>cp -r 目录名称 目录拷贝的目标位置</code>：</strong> 拷贝目录（改），-r代表递归拷贝 </p>
+<p> 注意：cp命令不仅可以拷贝目录还可以拷贝文件，压缩包等，拷贝文件和压缩包时不  用写-r递归</p>
+</li>
+<li><p><strong><code>rm [-rf] 目录</code>:</strong> 删除目录（删）</p>
+<p> 注意：rm不仅可以删除目录，也可以删除其他文件或压缩包，为了增强大家的记忆，  无论删除任何目录或文件，都直接使用<code>rm -rf</code> 目录/文件/压缩包</p>
+</li>
+</ol>
+<h3 id="4-3-文件的操作命令-增删改查"><a href="#4-3-文件的操作命令-增删改查" class="headerlink" title="4.3 文件的操作命令(增删改查)"></a>4.3 文件的操作命令(增删改查)</h3><ol>
+<li><p><strong><code>touch 文件名称</code>:</strong>  文件的创建（增）</p>
+</li>
+<li><p><strong><code>cat/more/less/tail 文件名称</code></strong> 文件的查看（查）</p>
+<ul>
+<li><strong><code>cat</code>：</strong> 查看显示文件内容</li>
+<li><strong><code>more</code>：</strong> 可以显示百分比，回车可以向下一行， 空格可以向下一页，q可以退出查看</li>
+<li><strong><code>less</code>：</strong> 可以使用键盘上的PgUp和PgDn向上 和向下翻页，q结束查看</li>
+<li><strong><code>tail-10</code> ：</strong> 查看文件的后10行，Ctrl+C结束</li>
+</ul>
+<p>注意：命令 tail -f 文件 可以对某个文件进行动态监控，例如tomcat的日志文件，  会随着程序的运行，日志会变化，可以使用tail -f catalina-2016-11-11.log 监控 文 件的变化 </p>
+</li>
+<li><p><strong><code>vim 文件</code>：</strong>  修改文件的内容（改）</p>
+<p>vim编辑器是Linux中的强大组件，是vi编辑器的加强版，vim编辑器的命令和快捷方式有很多，但此处不一一阐述，大家也无需研究的很透彻，使用vim编辑修改文件的方式基本会使用就可以了。</p>
+<p><strong>在实际开发中，使用vim编辑器主要作用就是修改配置文件，下面是一般步骤：</strong></p>
+<p> vim 文件——&gt;进入文件—–&gt;命令模式——&gt;按i进入编辑模式—–&gt;编辑文件  ——-&gt;按Esc进入底行模式—–&gt;输入：wq/q! （输入wq代表写入内容并退出，即保存；输入q!代表强制退出不保存。）</p>
+</li>
+<li><p><strong><code>rm -rf 文件</code>：</strong> 删除文件（删）</p>
+<p> 同目录删除：熟记 <code>rm -rf</code> 文件 即可</p>
+</li>
+</ol>
+<h3 id="4-4-压缩文件的操作命令"><a href="#4-4-压缩文件的操作命令" class="headerlink" title="4.4 压缩文件的操作命令"></a>4.4 压缩文件的操作命令</h3><p><strong>1）打包并压缩文件：</strong></p>
+<p>Linux中的打包文件一般是以.tar结尾的，压缩的命令一般是以.gz结尾的。</p>
+<p>而一般情况下打包和压缩是一起进行的，打包并压缩后的文件的后缀名一般.tar.gz。<br>命令：<strong><code>tar -zcvf 打包压缩后的文件名 要打包压缩的文件</code></strong><br>其中：</p>
+<p>  z：调用gzip压缩命令进行压缩</p>
+<p>  c：打包文件</p>
+<p>  v：显示运行过程</p>
+<p>  f：指定文件名</p>
+<p>比如：加入test目录下有三个文件分别是：aaa.txt bbb.txt ccc.txt，如果我们要打包test目录并指定压缩后的压缩包名称为test.tar.gz可以使用命令：<strong><code>tar -zcvf test.tar.gz aaa.txt bbb.txt ccc.txt</code>或：<code>tar -zcvf test.tar.gz       /test/</code></strong></p>
+<p><strong>2）解压压缩包：</strong></p>
+<p>命令：tar [-xvf] 压缩文件</p>
+<p>其中：x：代表解压</p>
+<p>示例：</p>
+<p>1 将/test下的test.tar.gz解压到当前目录下可以使用命令：<strong><code>tar -xvf test.tar.gz</code></strong></p>
+<p>2 将/test下的test.tar.gz解压到根目录/usr下:<strong><code>tar -xvf xxx.tar.gz -C /usr</code></strong>（- C代表指定解压的位置）</p>
+<h3 id="4-5-Linux的权限命令"><a href="#4-5-Linux的权限命令" class="headerlink" title="4.5 Linux的权限命令"></a>4.5 Linux的权限命令</h3><p> 操作系统中每个文件都拥有特定的权限、所属用户和所属组。权限是操作系统用来限制资源访问的机制，在Linux中权限一般分为读(readable)、写(writable)和执行(excutable)，分为三组。分别对应文件的属主(owner)，属组(group)和其他用户(other)，通过这样的机制来限制哪些用户、哪些组可以对特定的文件进行什么样的操作。通过 <strong><code>ls -l</code></strong> 命令我们可以  查看某个目录下的文件或目录的权限</p>
+<p>示例：在随意某个目录下<code>ls -l</code></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/5/1646955be781daaa?w=589&h=228&f=png&s=16360" alt></p>
+<p>第一列的内容的信息解释如下：</p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/5/16469565b6951791?w=489&h=209&f=png&s=39791" alt></p>
+<blockquote>
+<p>下面将详细讲解文件的类型、Linux中权限以及文件有所有者、所在组、其它组具体是什么？</p>
+</blockquote>
+<p><strong>文件的类型：</strong></p>
+<ul>
+<li>d： 代表目录</li>
+<li>-： 代表文件</li>
+<li>l： 代表软链接（可以认为是window中的快捷方式）</li>
+</ul>
+<p><strong>Linux中权限分为以下几种：</strong></p>
+<ul>
+<li>r：代表权限是可读，r也可以用数字4表示</li>
+<li>w：代表权限是可写，w也可以用数字2表示</li>
+<li>x：代表权限是可执行，x也可以用数字1表示</li>
+</ul>
+<p><strong>文件和目录权限的区别：</strong></p>
+<p> 对文件和目录而言，读写执行表示不同的意义。</p>
+<p> 对于文件：</p>
+<table>
+<thead>
+<tr>
+<th align="left">权限名称</th>
+<th align="right">可执行操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">r</td>
+<td align="right">可以使用cat查看文件的内容</td>
+</tr>
+<tr>
+<td align="left">w</td>
+<td align="right">可以修改文件的内容</td>
+</tr>
+<tr>
+<td align="left">x</td>
+<td align="right">可以将其运行为二进制文件</td>
+</tr>
+</tbody></table>
+<p> 对于目录：</p>
+<table>
+<thead>
+<tr>
+<th align="left">权限名称</th>
+<th align="right">可执行操作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">r</td>
+<td align="right">可以查看目录下列表</td>
+</tr>
+<tr>
+<td align="left">w</td>
+<td align="right">可以创建和删除目录下文件</td>
+</tr>
+<tr>
+<td align="left">x</td>
+<td align="right">可以使用cd进入目录</td>
+</tr>
+</tbody></table>
+<p><strong>需要注意的是超级用户可以无视普通用户的权限，即使文件目录权限是000，依旧可以访问。</strong><br><strong>在linux中的每个用户必须属于一个组，不能独立于组外。在linux中每个文件有所有者、所在组、其它组的概念。</strong></p>
+<ul>
+<li><p><strong>所有者</strong></p>
+<p>一般为文件的创建者，谁创建了该文件，就天然的成为该文件的所有者，用ls ‐ahl命令可以看到文件的所有者 也可以使用chown 用户名  文件名来修改文件的所有者 。</p>
+</li>
+<li><p><strong>文件所在组</strong></p>
+<p>当某个用户创建了一个文件后，这个文件的所在组就是该用户所在的组 用ls ‐ahl命令可以看到文件的所有组 也可以使用chgrp  组名  文件名来修改文件所在的组。 </p>
+</li>
+<li><p><strong>其它组</strong></p>
+<p>除开文件的所有者和所在组的用户外，系统的其它用户都是文件的其它组 </p>
+</li>
+</ul>
+<blockquote>
+<p>我们再来看看如何修改文件/目录的权限。</p>
+</blockquote>
+<p><strong>修改文件/目录的权限的命令：<code>chmod</code></strong></p>
+<p>示例：修改/test下的aaa.txt的权限为属主有全部权限，属主所在的组有读写权限，<br>其他用户只有读的权限</p>
+<p><strong><code>chmod u=rwx,g=rw,o=r aaa.txt</code></strong></p>
+<p><img src="https://user-gold-cdn.xitu.io/2018/7/5/164697447dc6ecac?w=525&h=246&f=png&s=12362" alt></p>
+<p>上述示例还可以使用数字表示：</p>
+<p>chmod 764 aaa.txt</p>
+<p><strong>补充一个比较常用的东西:</strong></p>
+<p>假如我们装了一个zookeeper，我们每次开机到要求其自动启动该怎么办？</p>
+<ol>
+<li>新建一个脚本zookeeper</li>
+<li>为新建的脚本zookeeper添加可执行权限，命令是:<code>chmod +x zookeeper</code></li>
+<li>把zookeeper这个脚本添加到开机启动项里面，命令是：<code>chkconfig --add  zookeeper</code></li>
+<li>如果想看看是否添加成功，命令是：<code>chkconfig --list</code></li>
+</ol>
+<h3 id="4-6-Linux-用户管理"><a href="#4-6-Linux-用户管理" class="headerlink" title="4.6 Linux 用户管理"></a>4.6 Linux 用户管理</h3><p>Linux系统是一个多用户多任务的分时操作系统，任何一个要使用系统资源的用户，都必须首先向系统管理员申请一个账号，然后以这个账号的身份进入系统。</p>
+<p>用户的账号一方面可以帮助系统管理员对使用系统的用户进行跟踪，并控制他们对系统资源的访问；另一方面也可以帮助用户组织文件，并为用户提供安全性保护。</p>
+<p><strong>Linux用户管理相关命令:</strong></p>
+<ul>
+<li><code>useradd 选项 用户名</code>:添加用户账号</li>
+<li><code>userdel 选项 用户名</code>:删除用户帐号</li>
+<li><code>usermod 选项 用户名</code>:修改帐号</li>
+<li><code>passwd 用户名</code>:更改或创建用户的密码</li>
+<li><code>passwd -S 用户名</code> :显示用户账号密码信息</li>
+<li><code>passwd -d 用户名</code>:  清除用户密码</li>
+</ul>
+<p>useradd命令用于Linux中创建的新的系统用户。useradd可用来建立用户帐号。帐号建好之后，再用passwd设定帐号的密码．而可用userdel删除帐号。使用useradd指令所建立的帐号，实际上是保存在/etc/passwd文本文件中。</p>
+<p>passwd命令用于设置用户的认证信息，包括用户密码、密码过期时间等。系统管理者则能用它管理系统用户的密码。只有管理者可以指定用户名称，一般用户只能变更自己的密码。</p>
+<h3 id="4-7-Linux系统用户组的管理"><a href="#4-7-Linux系统用户组的管理" class="headerlink" title="4.7 Linux系统用户组的管理"></a>4.7 Linux系统用户组的管理</h3><p>每个用户都有一个用户组，系统可以对一个用户组中的所有用户进行集中管理。不同Linux 系统对用户组的规定有所不同，如Linux下的用户属于与它同名的用户组，这个用户组在创建用户时同时创建。</p>
+<p>用户组的管理涉及用户组的添加、删除和修改。组的增加、删除和修改实际上就是对/etc/group文件的更新。</p>
+<p><strong>Linux系统用户组的管理相关命令:</strong></p>
+<ul>
+<li><code>groupadd 选项 用户组</code> :增加一个新的用户组</li>
+<li><code>groupdel 用户组</code>:要删除一个已有的用户组</li>
+<li><code>groupmod 选项 用户组</code> : 修改用户组的属性</li>
+</ul>
+<h3 id="4-8-其他常用命令"><a href="#4-8-其他常用命令" class="headerlink" title="4.8 其他常用命令"></a>4.8 其他常用命令</h3><ul>
+<li><p><strong><code>pwd</code>：</strong> 显示当前所在位置</p>
+</li>
+<li><p><strong><code>grep 要搜索的字符串 要搜索的文件 --color</code>：</strong> 搜索命令，–color代表高亮显示</p>
+</li>
+<li><p><strong><code>ps -ef</code>/<code>ps -aux</code>：</strong> 这两个命令都是查看当前系统正在运行进程，两者的区别是展示格式不同。如果想要查看特定的进程可以使用这样的格式：<strong><code>ps aux|grep redis</code></strong> （查看包括redis字符串的进程），也可使用 <code>pgrep redis -a</code>。</p>
+<p>注意：如果直接用ps（（Process Status））命令，会显示所有进程的状态，通常结合grep命令查看某进程的状态。</p>
+</li>
+<li><p><strong><code>kill -9 进程的pid</code>：</strong> 杀死进程（-9 表示强制终止。）</p>
+<p>先用ps查找进程，然后用kill杀掉</p>
+</li>
+<li><p><strong>网络通信命令：</strong></p>
+<ul>
+<li>查看当前系统的网卡信息：ifconfig</li>
+<li>查看与某台机器的连接情况：ping </li>
+<li>查看当前系统的端口使用：netstat -an</li>
+</ul>
+</li>
+<li><p><strong>net-tools 和 iproute2 ：</strong><br> <code>net-tools</code>起源于BSD的TCP/IP工具箱，后来成为老版本Linux内核中配置网络功能的工具。但自2001年起，Linux社区已经对其停止维护。同时，一些Linux发行版比如Arch Linux和CentOS/RHEL 7则已经完全抛弃了net-tools，只支持<code>iproute2</code>。linux ip命令类似于ifconfig，但功能更强大，旨在替代它。更多详情请阅读<a href="https://linoxide.com/linux-command/use-ip-command-linux" target="_blank" rel="noopener">如何在Linux中使用IP命令和示例</a></p>
+</li>
+<li><p><strong><code>shutdown</code>：</strong>  <code>shutdown -h now</code>： 指定现在立即关机；<code>shutdown +5 &quot;System will shutdown after 5 minutes&quot;</code>：指定5分钟后关机，同时送出警告信息给登入用户。</p>
+</li>
+<li><p><strong><code>reboot</code>：</strong>  <strong><code>reboot</code>：</strong>  重开机。<strong><code>reboot -w</code>：</strong> 做个重开机的模拟（只有纪录并不会真的重开机）。</p>
+</li>
+</ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/04/09/utils-git-Git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2015/04/09/utils-git-Git/" class="post-title-link" itemprop="url">关于Git的理解</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2015-04-09 00:00:00" itemprop="dateCreated datePublished" datetime="2015-04-09T00:00:00+08:00">2015-04-09</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/utils/" itemprop="url" rel="index"><span itemprop="name">utils</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/04/09/utils-git-Git/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/04/09/utils-git-Git/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>4.2k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>4 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="版本控制"><a href="#版本控制" class="headerlink" title="版本控制"></a>版本控制</h2><h3 id="什么是版本控制"><a href="#什么是版本控制" class="headerlink" title="什么是版本控制"></a>什么是版本控制</h3><p>版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。 除了项目源代码，你可以对任何类型的文件进行版本控制。</p>
+<h3 id="为什么要版本控制"><a href="#为什么要版本控制" class="headerlink" title="为什么要版本控制"></a>为什么要版本控制</h3><p>有了它你就可以将某个文件回溯到之前的状态，甚至将整个项目都回退到过去某个时间点的状态，你可以比较文件的变化细节，查出最后是谁修改了哪个地方，从而找出导致怪异问题出现的原因，又是谁在何时报告了某个功能缺陷等等。</p>
+<h3 id="本地版本控制系统"><a href="#本地版本控制系统" class="headerlink" title="本地版本控制系统"></a>本地版本控制系统</h3><p>许多人习惯用复制整个项目目录的方式来保存不同的版本，或许还会改名加上备份时间以示区别。 这么做唯一的好处就是简单，但是特别容易犯错。 有时候会混淆所在的工作目录，一不小心会写错文件或者覆盖意想外的文件。</p>
+<p>为了解决这个问题，人们很久以前就开发了许多种本地版本控制系统，大多都是采用某种简单的数据库来记录文件的历次更新差异。</p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/%E6%9C%AC%E5%9C%B0%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F.png" alt="本地版本控制系统"></p>
+<h3 id="集中化的版本控制系统"><a href="#集中化的版本控制系统" class="headerlink" title="集中化的版本控制系统"></a>集中化的版本控制系统</h3><p>接下来人们又遇到一个问题，如何让在不同系统上的开发者协同工作？ 于是，集中化的版本控制系统（Centralized Version Control Systems，简称 CVCS）应运而生。 </p>
+<p>集中化的版本控制系统都有一个单一的集中管理的服务器，保存所有文件的修订版本，而协同工作的人们都通过客户端连到这台服务器，取出最新的文件或者提交更新。</p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/%E9%9B%86%E4%B8%AD%E5%8C%96%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F.png" alt="集中化的版本控制系统"></p>
+<p>这么做虽然解决了本地版本控制系统无法让在不同系统上的开发者协同工作的诟病，但也还是存在下面的问题：</p>
+<ul>
+<li><strong>单点故障：</strong> 中央服务器宕机，则其他人无法使用；如果中心数据库磁盘损坏有没有进行备份，你将丢失所有数据。本地版本控制系统也存在类似问题，只要整个项目的历史记录被保存在单一位置，就有丢失所有历史更新记录的风险。</li>
+<li><strong>必须联网才能工作：</strong> 受网络状况、带宽影响。</li>
+</ul>
+<h3 id="分布式版本控制系统"><a href="#分布式版本控制系统" class="headerlink" title="分布式版本控制系统"></a>分布式版本控制系统</h3><p>于是分布式版本控制系统（Distributed Version Control System，简称 DVCS）面世了。 Git 就是一个典型的分布式版本控制系统。</p>
+<p>这类系统，客户端并不只提取最新版本的文件快照，而是把代码仓库完整地镜像下来。 这么一来，任何一处协同工作用的服务器发生故障，事后都可以用任何一个镜像出来的本地仓库恢复。 因为每一次的克隆操作，实际上都是一次对代码仓库的完整备份。</p>
+<p><img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/%E5%88%86%E5%B8%83%E5%BC%8F%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F.png" alt="分布式版本控制系统"></p>
+<p>分布式版本控制系统可以不用联网就可以工作，因为每个人的电脑上都是完整的版本库，当你修改了某个文件后，你只需要将自己的修改推送给别人就可以了。但是，在实际使用分布式版本控制系统的时候，很少会直接进行推送修改，而是使用一台充当“中央服务器”的东西。这个服务器的作用仅仅是用来方便“交换”大家的修改，没有它大家也一样干活，只是交换修改不方便而已。</p>
+<p>分布式版本控制系统的优势不单是不必联网这么简单，后面我们还会看到 Git 极其强大的分支管理等功能。</p>
+<h2 id="认识-Git"><a href="#认识-Git" class="headerlink" title="认识 Git"></a>认识 Git</h2><h3 id="Git-简史"><a href="#Git-简史" class="headerlink" title="Git 简史"></a>Git 简史</h3><p>Linux 内核项目组当时使用分布式版本控制系统 BitKeeper 来管理和维护代码。但是，后来开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了 Linux 内核社区免费使用 BitKeeper 的权力。 Linux 开源社区（特别是 Linux 的缔造者 Linus Torvalds）基于使用 BitKeeper 时的经验教训，开发出自己的版本系统，而且对新的版本控制系统做了很多改进。 </p>
+<h3 id="Git-与其他版本管理系统的主要区别"><a href="#Git-与其他版本管理系统的主要区别" class="headerlink" title="Git 与其他版本管理系统的主要区别"></a>Git 与其他版本管理系统的主要区别</h3><p> Git 在保存和对待各种信息的时候与其它版本控制系统有很大差异，尽管操作起来的命令形式非常相近，理解这些差异将有助于防止你使用中的困惑。</p>
+<p>下面我们主要说一个关于 Git 其他版本管理系统的主要差别：<strong>对待数据的方式</strong>。</p>
+<p><strong>Git采用的是直接记录快照的方式，而非差异比较。我后面会详细介绍这两种方式的差别。</strong></p>
+<p>大部分版本控制系统（CVS、Subversion、Perforce、Bazaar 等等）都是以文件变更列表的方式存储信息，这类系统<strong>将它们保存的信息看作是一组基本文件和每个文件随时间逐步累积的差异。</strong></p>
+<p>具体原理如下图所示，理解起来其实很简单，每个我们对提交更新一个文件之后，系统记录都会记录这个文件做了哪些更新，以增量符号Δ(Delta)表示。</p>
+<div align="center">  
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3deltas.png" width="500px">
+<br>
+</div>
+
+<p><strong>我们怎样才能得到一个文件的最终版本呢？</strong></p>
+<p>很简单，高中数学的基本知识，我们只需要将这些原文件和这些增加进行相加就行了。</p>
+<p><strong>这种方式有什么问题呢？</strong></p>
+<p>比如我们的增量特别特别多的话，如果我们要得到最终的文件是不是会耗费时间和性能。</p>
+<p>Git 不按照以上方式对待或保存数据。 反之，Git 更像是把数据看作是对小型文件系统的一组快照。 每次你提交更新，或在 Git 中保存项目状态时，它主要对当时的全部文件制作一个快照并保存这个快照的索引。 为了高效，如果文件没有修改，Git 不再重新存储该文件，而是只保留一个链接指向之前存储的文件。 Git 对待数据更像是一个 <strong>快照流</strong>。</p>
+<div align="center">  
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3snapshots.png" width="500px">
+<br>
+</div>
+
+
+<h3 id="Git-的三种状态"><a href="#Git-的三种状态" class="headerlink" title="Git 的三种状态"></a>Git 的三种状态</h3><p>Git 有三种状态，你的文件可能处于其中之一：</p>
+<ol>
+<li><strong>已提交（committed）</strong>：数据已经安全的保存在本地数据库中。</li>
+<li><strong>已修改（modified）</strong>：已修改表示修改了文件，但还没保存到数据库中。</li>
+<li><strong>已暂存（staged）</strong>：表示对一个已修改文件的当前版本做了标记，使之包含在下次提交的快照中。</li>
+</ol>
+<p>由此引入 Git 项目的三个工作区域的概念：<strong>Git 仓库(.git directoty) **、</strong>工作目录(Working Directory)** 以及 <strong>暂存区域(Staging Area)</strong> 。</p>
+<div align="center">  
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3areas.png" width="500px">
+</div>
+
+<p><strong>基本的 Git 工作流程如下：</strong></p>
+<ol>
+<li>在工作目录中修改文件。</li>
+<li>暂存文件，将文件的快照放入暂存区域。</li>
+<li>提交更新，找到暂存区域的文件，将快照永久性存储到 Git 仓库目录。</li>
+</ol>
+<h2 id="Git-使用快速入门"><a href="#Git-使用快速入门" class="headerlink" title="Git 使用快速入门"></a>Git 使用快速入门</h2><h3 id="获取-Git-仓库"><a href="#获取-Git-仓库" class="headerlink" title="获取 Git 仓库"></a>获取 Git 仓库</h3><p>有两种取得 Git 项目仓库的方法。</p>
+<ol>
+<li>在现有目录中初始化仓库: 进入项目目录运行  <code>git init</code>  命令,该命令将创建一个名为 <code>.git</code> 的子目录。</li>
+<li>从一个服务器克隆一个现有的 Git 仓库: <code>git clone [url]</code> 自定义本地仓库的名字: <code>git clone [url]</code> directoryname </li>
+</ol>
+<h3 id="记录每次更新到仓库"><a href="#记录每次更新到仓库" class="headerlink" title="记录每次更新到仓库"></a>记录每次更新到仓库</h3><ol>
+<li><strong>检测当前文件状态</strong> : <code>git status</code></li>
+<li><strong>提出更改（把它们添加到暂存区</strong>）：<code>git add filename</code> (针对特定文件)、<code>git add *</code>(所有文件)、<code>git add *.txt</code>（支持通配符，所有 .txt 文件）</li>
+<li><strong>忽略文件</strong>：<code>.gitignore</code> 文件</li>
+<li><strong>提交更新:</strong> <code>git commit -m &quot;代码提交信息&quot;</code> （每次准备提交前，先用 <code>git status</code> 看下，是不是都已暂存起来了， 然后再运行提交命令 <code>git commit</code>）</li>
+<li><strong>跳过使用暂存区域更新的方式</strong> : <code>git commit -a -m &quot;代码提交信息&quot;</code>。 <code>git commit</code> 加上 <code>-a</code> 选项，Git 就会自动把所有已经跟踪过的文件暂存起来一并提交，从而跳过 <code>git add</code> 步骤。</li>
+<li><strong>移除文件</strong> ：<code>git rm filename</code>  （从暂存区域移除，然后提交。）</li>
+<li><strong>对文件重命名</strong> ：<code>git mv README.md README</code>(这个命令相当于<code>mv README.md README</code>、<code>git rm README.md</code>、<code>git add README</code> 这三条命令的集合)</li>
+</ol>
+<h3 id="推送改动到远程仓库"><a href="#推送改动到远程仓库" class="headerlink" title="推送改动到远程仓库"></a>推送改动到远程仓库</h3><ul>
+<li><p>如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：·<code>git remote add origin &lt;server&gt;</code> ,比如我们要让本地的一个仓库和 Github 上创建的一个仓库关联可以这样<code>git remote add origin https://github.com/Snailclimb/test.git</code> </p>
+</li>
+<li><p>将这些改动提交到远端仓库：<code>git push origin master</code> (可以把 <em>master</em> 换成你想要推送的任何分支)</p>
+<p>如此你就能够将你的改动推送到所添加的服务器上去了。</p>
+</li>
+</ul>
+<h3 id="远程仓库的移除与重命名"><a href="#远程仓库的移除与重命名" class="headerlink" title="远程仓库的移除与重命名"></a>远程仓库的移除与重命名</h3><ul>
+<li>将 test 重命名位 test1：<code>git remote rename test test1</code></li>
+<li>移除远程仓库 test1:<code>git remote rm test1</code></li>
+</ul>
+<h3 id="查看提交历史"><a href="#查看提交历史" class="headerlink" title="查看提交历史"></a>查看提交历史</h3><p>在提交了若干更新，又或者克隆了某个项目之后，你也许想回顾下提交历史。 完成这个任务最简单而又有效的工具是 <code>git log</code> 命令。<code>git log</code> 会按提交时间列出所有的更新，最近的更新排在最上面。</p>
+<p><strong>可以添加一些参数来查看自己希望看到的内容：</strong></p>
+<p>只看某个人的提交记录：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log --author=bob</span><br></pre></td></tr></table></figure>
+
+<h3 id="撤销操作"><a href="#撤销操作" class="headerlink" title="撤销操作"></a>撤销操作</h3><p>有时候我们提交完了才发现漏掉了几个文件没有添加，或者提交信息写错了。 此时，可以运行带有 <code>--amend</code> 选项的提交命令尝试重新提交：</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
+
+<p>取消暂存的文件</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset filename</span><br></pre></td></tr></table></figure>
+
+<p>撤消对文件的修改:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -- filename</span><br></pre></td></tr></table></figure>
+
+<p>假如你想丢弃你在本地的所有改动与提交，可以到服务器上获取最新的版本历史，并将你本地主分支指向它：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch origin</span><br><span class="line">git reset --hard origin/master</span><br></pre></td></tr></table></figure>
+
+<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><p>分支是用来将特性开发绝缘开来的。在你创建仓库的时候，<em>master</em> 是“默认的”分支。在其他分支上进行开发，完成后再将它们合并到主分支上。</p>
+<p>我们通常在开发新功能、修复一个紧急 bug 等等时候会选择创建分支。单分支开发好还是多分支开发好，还是要看具体场景来说。</p>
+<p>创建一个名字叫做 test 的分支</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch test</span><br></pre></td></tr></table></figure>
+
+<p>切换当前分支到 test（当你切换分支的时候，Git 会重置你的工作目录，使其看起来像回到了你在那个分支上最后一次提交的样子。 Git 会自动添加、删除、修改文件以确保此时你的工作目录和这个分支最后一次提交时的样子一模一样）</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout test</span><br></pre></td></tr></table></figure>
+
+<div align="center">  
+<img src="https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3切换分支.png" width="500px">
+</div>
+
+<p>你也可以直接这样创建分支并切换过去(上面两条命令的合写)</p>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b feature_x</span><br></pre></td></tr></table></figure>
+
+<p>切换到主分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout master</span><br></pre></td></tr></table></figure>
+
+<p>合并分支(可能会有冲突)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge test</span><br></pre></td></tr></table></figure>
+
+<p>把新建的分支删掉</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -d feature_x</span><br></pre></td></tr></table></figure>
+
+<p>将分支推送到远端仓库（推送成功后其他人可见）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin</span><br></pre></td></tr></table></figure>
+
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/20/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/22/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/uploads/avatar.gif"
+      alt="Frank">
+  <p class="site-author-name" itemprop="name">Frank</p>
+  <div class="site-description" itemprop="description">优秀是一种习惯</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">150</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/dirsky" title="GitHub &rarr; https://github.com/dirsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:gzxu@vip.qq.com" title="E-Mail &rarr; mailto:gzxu@vip.qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/cccsky" title="Weibo &rarr; https://weibo.com/cccsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://dirsky.github.io/docsify/#/" title="CV &rarr; https://dirsky.github.io/docsify/#/"><i class="fa fa-fw fa-twitter"></i>CV</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2008 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Frank</span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d68acfe0fc14e23" async="async"></script>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+<script src="/js/utils.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 20638,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'zwli8bHgrjbtCiAH23o81imX-gzGzoHsz',
+    appKey: 'v3rufApMsIhhwFOR45jn5abL',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

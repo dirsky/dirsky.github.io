@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/favicon.ico?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/favicon.ico?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="总结了部分JDK8新特性，另外一些新特性可以通过Oracle的官方文档查看，毕竟是官方文档，各种新特性都会介绍，有兴趣的可以去看。 Oracle官方文档:What’s New in JDK8 Java语言特性  Lambda表达式是一个新的语言特性，已经在JDK8中加入。它是一个可以传递的代码块，你也可以把它们当做方法参数。Lambda表达式允许您更紧凑地创建单虚方法接口（称为功能接口）的实例。">
+<meta name="keywords" content="java,java8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JDK8新特性总结">
+<meta property="og:url" content="https://dirsky.github.io/2016/03/17/lang-java-What-s-New-in-JDK8-JDK8新特性总结/index.html">
+<meta property="og:site_name" content="徐先生的技术栈">
+<meta property="og:description" content="总结了部分JDK8新特性，另外一些新特性可以通过Oracle的官方文档查看，毕竟是官方文档，各种新特性都会介绍，有兴趣的可以去看。 Oracle官方文档:What’s New in JDK8 Java语言特性  Lambda表达式是一个新的语言特性，已经在JDK8中加入。它是一个可以传递的代码块，你也可以把它们当做方法参数。Lambda表达式允许您更紧凑地创建单虚方法接口（称为功能接口）的实例。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-08-09T02:00:27.197Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JDK8新特性总结">
+<meta name="twitter:description" content="总结了部分JDK8新特性，另外一些新特性可以通过Oracle的官方文档查看，毕竟是官方文档，各种新特性都会介绍，有兴趣的可以去看。 Oracle官方文档:What’s New in JDK8 Java语言特性  Lambda表达式是一个新的语言特性，已经在JDK8中加入。它是一个可以传递的代码块，你也可以把它们当做方法参数。Lambda表达式允许您更紧凑地创建单虚方法接口（称为功能接口）的实例。">
+  <link rel="canonical" href="https://dirsky.github.io/2016/03/17/lang-java-What-s-New-in-JDK8-JDK8新特性总结/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>JDK8新特性总结 | 徐先生的技术栈</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2acd2bc9d0bd256dbd6679268f609dbd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container">
+    <div class="headband"></div>
+
+<a href="https://github.com/dirsky" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">徐先生的技术栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">生来为创造价值</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2016/03/17/lang-java-What-s-New-in-JDK8-JDK8新特性总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">JDK8新特性总结
+
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2016-03-17 00:00:00" itemprop="dateCreated datePublished" datetime="2016-03-17T00:00:00+08:00">2016-03-17</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/lang/" itemprop="url" rel="index"><span itemprop="name">lang</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2016/03/17/lang-java-What-s-New-in-JDK8-JDK8新特性总结/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2016/03/17/lang-java-What-s-New-in-JDK8-JDK8新特性总结/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>16k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>15 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>总结了部分JDK8新特性，另外一些新特性可以通过Oracle的官方文档查看，毕竟是官方文档，各种新特性都会介绍，有兴趣的可以去看。<br></p>
+<h2 id="Oracle官方文档-What’s-New-in-JDK8"><a href="#Oracle官方文档-What’s-New-in-JDK8" class="headerlink" title="Oracle官方文档:What’s New in JDK8"></a><a href="https://www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html" target="_blank" rel="noopener">Oracle官方文档:What’s New in JDK8</a></h2><ul>
+<li><p><a href="#JavaProgrammingLanguage">Java语言特性</a></p>
+<ul>
+<li><p><a href="#LambdaExpressions">Lambda表达式是一个新的语言特性，已经在JDK8中加入。它是一个可以传递的代码块，你也可以把它们当做方法参数。<br>Lambda表达式允许您更紧凑地创建单虚方法接口（称为功能接口）的实例。</a></p>
+</li>
+<li><p><a href="#MethodReferences">方法引用为已经存在的具名方法提供易于阅读的Lambda表达式</a></p>
+</li>
+<li><p><a href="#DefaultMethods">默认方法允许将新功能添加到库的接口，并确保与为这些接口的旧版本编写的代码的二进制兼容性。</a></p>
+</li>
+<li><p><a href="#ImprovedTypeInference">改进的类型推断。</a></p>
+</li>
+<li><p><a href="#MethodParameterReflection">方法参数反射(通过反射获得方法参数信息)</a>  </p>
+</li>
+</ul>
+</li>
+<li><p><a href="#stream">流(stream)</a></p>
+<ul>
+<li><a href>新java.util.stream包中的类提供Stream API以支持对元素流的功能样式操作。流(stream)和I/O里的流不是同一个概念<br> ，使用stream API可以更方便的操作集合。</a></li>
+</ul>
+</li>
+<li><p><a href>国际化</a></p>
+<ul>
+<li>待办</li>
+</ul>
+</li>
+<li><p>待办</p>
+</li>
+</ul>
+<hr>
+<!-- ---------------------------------------------------Lambda表达式-------------------------------------------------------- -->
+<!-- 标题与跳转-->
+<p><span id="JavaProgrammingLanguage"></span><br><span id="LambdaExpressions"></span></p>
+<!-- 标题与跳转结束-->
+<!-- 正文-->
+
+<h2 id="Lambda表达式"><a href="#Lambda表达式" class="headerlink" title="　　　　　　　　　　　　　Lambda表达式"></a>　　　　　　　　　　　　　Lambda表达式</h2><h3 id="1-什么是Lambda表达式"><a href="#1-什么是Lambda表达式" class="headerlink" title="1.什么是Lambda表达式"></a>1.什么是Lambda表达式</h3><p><strong>Lambda表达式实质上是一个可传递的代码块，Lambda又称为闭包或者匿名函数，是函数式编程语法，让方法可以像普通参数一样传递</strong></p>
+<h3 id="2-Lambda表达式语法"><a href="#2-Lambda表达式语法" class="headerlink" title="2.Lambda表达式语法"></a>2.Lambda表达式语法</h3><figure class="highlight plain"><figcaption><span>-> &#123;执行代码块&#125;```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;br&gt;参数列表可以为空```()-&gt;&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><br>可以加类型声明比如<figure class="highlight plain"><figcaption><span>para1, int para2) -> &#123;return para1 + para2;&#125;```我们可以看到，lambda同样可以有返回值.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;br&gt;在编译器可以推断出类型的时候，可以将类型声明省略，比如```(para1, para2) -&gt; &#123;return para1 + para2;&#125;</span><br></pre></td></tr></table></figure></p>
+<p><br>(lambda有点像动态类型语言语法。lambda在字节码层面是用invokedynamic实现的，而这条指令就是为了让JVM更好的支持运行在其上的动态类型语言)</p>
+<h3 id="3-函数式接口"><a href="#3-函数式接口" class="headerlink" title="3.函数式接口"></a>3.函数式接口</h3><p>在了解Lambda表达式之前，有必要先了解什么是函数式接口<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">**函数式接口指的是有且只有一个抽象(abstract)方法的接口**&lt;br&gt;</span><br><span class="line">当需要一个函数式接口的对象时，就可以用Lambda表达式来实现，举个常用的例子:</span><br><span class="line">&lt;br&gt;</span><br><span class="line">```java</span><br><span class="line">  Thread thread = new Thread(() -&gt; &#123;</span><br><span class="line">      System.out.println(&quot;This is JDK8&apos;s Lambda!&quot;);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>这段代码和函数式接口有啥关系？我们回忆一下，Thread类的构造函数里是不是有一个以Runnable接口为参数的？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Thread</span><span class="params">(Runnable target)</span> </span>&#123;...&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Runnable Interface</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Runnable</span> </span>&#123;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>到这里大家可能已经明白了，<strong>Lambda表达式相当于一个匿名类或者说是一个匿名方法</strong>。上面Thread的例子相当于</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Anonymous class"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>也就是说，上面的lambda表达式相当于实现了这个run()方法，然后当做参数传入(个人感觉可以这么理解,lambda表达式就是一个函数，只不过它的返回值、参数列表都<br>由编译器帮我们推断，因此可以减少很多代码量)。<br><br>Lambda也可以这样用 :</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Runnable runnable = () -&gt; &#123;...&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>其实这和上面的用法没有什么本质上的区别。<br><br>至此大家应该明白什么是函数式接口以及函数式接口和lambda表达式之间的关系了。在JDK8中修改了接口的规范，<br>目的是为了在给接口添加新的功能时保持向前兼容(个人理解)，比如一个已经定义了的函数式接口，某天我们想给它添加新功能，那么就不能保持向前兼容了，<br>因为在旧的接口规范下，添加新功能必定会破坏这个函数式接口<a href>(JDK8中接口规范)</a><br><br><br>除了上面说的Runnable接口之外，JDK中已经存在了很多函数式接口<br>比如(当然不止这些):</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- ```java.util.Comparator</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;br&gt;**关于JDK中的预定义的函数式接口**</span><br><span class="line"></span><br><span class="line">- JDK在```java.util.function```下预定义了很多函数式接口</span><br><span class="line">  - ```Function&lt;T, R&gt; &#123;R apply(T t);&#125;``` 接受一个T对象，然后返回一个R对象，就像普通的函数。</span><br><span class="line">  - ```Consumer&lt;T&gt; &#123;void accept(T t);&#125;``` 消费者 接受一个T对象，没有返回值。</span><br><span class="line">  - ```Predicate&lt;T&gt; &#123;boolean test(T t);&#125;``` 判断，接受一个T对象，返回一个布尔值。</span><br><span class="line">  - ```Supplier&lt;T&gt; &#123;T get();&#125; 提供者(工厂)``` 返回一个T对象。</span><br><span class="line">  - 其他的跟上面的相似，大家可以看一下function包下的具体接口。</span><br><span class="line">### 4.变量作用域</span><br><span class="line">```java</span><br><span class="line">public class VaraibleHide &#123;</span><br><span class="line">    @FunctionalInterface</span><br><span class="line">    interface IInner &#123;</span><br><span class="line">        void printInt(int x);</span><br><span class="line">    &#125;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        int x = 20;</span><br><span class="line">        IInner inner = new IInner() &#123;</span><br><span class="line">            int x = 10;</span><br><span class="line">            @Override</span><br><span class="line">            public void printInt(int x) &#123;</span><br><span class="line">                System.out.println(x);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        inner.printInt(30);</span><br><span class="line">        </span><br><span class="line">        inner = (s) -&gt; &#123;</span><br><span class="line">            //Variable used in lambda expression should be final or effectively final</span><br><span class="line">            //!int x = 10;</span><br><span class="line">            //!x= 50; error</span><br><span class="line">            System.out.print(x);</span><br><span class="line">        &#125;;</span><br><span class="line">        inner.printInt(30);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出 :</span><br><span class="line">30</span><br><span class="line">20</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>对于lambda表达式<figure class="highlight java"><figcaption><span>inner </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">的参数列表()获取的变量成为自由变量，它是被lambda表达式捕获的。</span><br><span class="line">&lt;br&gt;lambda表达式和内部类一样，对外部自由变量捕获时，外部自由变量必须为<span class="keyword">final</span>或者是最终变量(effectively <span class="keyword">final</span>)的，也就是说这个变量初始化后就不能为它赋新值，同时lambda不像内部类/匿名类，lambda表达式与外围嵌套块有着相同的作用域，因此对变量命名的有关规则对lambda同样适用。大家阅读上面的代码对这些概念应该不难理解。</span><br><span class="line">&lt;span id="MethodReferences"&gt;&lt;/span&gt;</span><br><span class="line">### 5.方法引用</span><br><span class="line">**只需要提供方法的名字，具体的调用过程由Lambda和函数式接口来确定，这样的方法调用成为方法引用。**</span><br><span class="line">&lt;br&gt;下面的例子会打印list中的每个元素:</span><br><span class="line">```java</span><br><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">            list.add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        list.forEach(System.out::println);</span><br></pre></td></tr></table></figure></p>
+<p>其中<figure class="highlight plain"><figcaption><span>```(para)->&#123;System.out.println(para);&#125;```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;br&gt;我们看一下List#forEach方法 ```default void forEach(Consumer&lt;? super T&gt; action)```可以看到它的参数是一个Consumer接口，该接口是一个函数式接口</span><br><span class="line">```java</span><br><span class="line">@FunctionalInterface</span><br><span class="line">public interface Consumer&lt;T&gt; &#123;</span><br><span class="line">    void accept(T t);</span><br></pre></td></tr></table></figure></p>
+<p>大家能发现这个函数接口的方法和<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;br&gt;我们自己定义一个方法，看看能不能像标准输出的打印函数一样被调用</span><br><span class="line">```java</span><br><span class="line">public class MethodReference &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">        for (int i = 0; i &lt; 10; ++i) &#123;</span><br><span class="line">            list.add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        list.forEach(MethodReference::myPrint);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    static void myPrint(int i) &#123;</span><br><span class="line">        System.out.print(i + &quot;, &quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,</span><br></pre></td></tr></table></figure></p>
+<p>可以看到，我们自己定义的方法也可以当做方法引用。<br><br>到这里大家多少对方法引用有了一定的了解，我们再来说一下方法引用的形式。</p>
+<ul>
+<li>方法引用<ul>
+<li>类名::静态方法名</li>
+<li>类名::实例方法名</li>
+<li>类名::new (构造方法引用)</li>
+<li>实例名::实例方法名<br>可以看出，方法引用是通过(方法归属名)::(方法名)来调用的。通过上面的例子已经讲解了一个<code>类名::静态方法名</code>的使用方法了，下面再依次介绍其余的几种<br>方法引用的使用方法。<br></li>
+</ul>
+</li>
+</ul>
+<p><strong>类名::实例方法名</strong><br><br>先来看一段代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String[] strings = <span class="keyword">new</span> String[<span class="number">10</span>];</span><br><span class="line">Arrays.sort(strings, String::compareToIgnoreCase);</span><br></pre></td></tr></table></figure>
+
+<p><strong>上面的String::compareToIgnoreCase等价于(x, y) -&gt; {return x.compareToIgnoreCase(y);}</strong><br><br>我们看一下<code>Arrays#sort</code>方法<code>public static &lt;T&gt; void sort(T[] a, Comparator&lt;? super T&gt; c)</code>,<br>可以看到第二个参数是一个Comparator接口，该接口也是一个函数式接口，其中的抽象方法是<code>int compare(T o1, T o2);</code>，再看一下<br><code>String#compareToIgnoreCase</code>方法,<code>public int compareToIgnoreCase(String str)</code>，这个方法好像和上面讲方法引用中<code>类名::静态方法名</code>不大一样啊，它<br>的参数列表和函数式接口的参数列表不一样啊，虽然它的返回值一样？<br><br>是的，确实不一样但是别忘了，String类的这个方法是个实例方法，而不是静态方法，也就是说，这个方法是需要有一个接收者的。所谓接收者就是<br>instance.method(x)中的instance，<br>它是某个类的实例，有的朋友可能已经明白了。上面函数式接口的<code>compare(T o1, T o2)</code>中的第一个参数作为了实例方法的接收者，而第二个参数作为了实例方法的<br>参数。我们再举一个自己实现的例子:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MethodReference</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> Random random = <span class="keyword">new</span> Random(<span class="number">47</span>);</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MethodReference[] methodReferences = <span class="keyword">new</span> MethodReference[<span class="number">10</span>];</span><br><span class="line">        Arrays.sort(methodReferences, MethodReference::myCompare);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">myCompare</span><span class="params">(MethodReference o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> random.nextInt(<span class="number">2</span>) - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的例子可以在IDE里通过编译，大家有兴趣的可以模仿上面的例子自己写一个程序，打印出排序后的结果。<br><br><strong>构造器引用</strong><br><br>构造器引用仍然需要与特定的函数式接口配合使用，并不能像下面这样直接使用。IDE会提示String不是一个函数式接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//compile error : String is not a functional interface</span></span><br><span class="line">String str = String::<span class="keyword">new</span>;</span><br></pre></td></tr></table></figure>
+
+<p>下面是一个使用构造器引用的例子，可以看出构造器引用可以和这种工厂型的函数式接口一起使用的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  <span class="class"><span class="keyword">interface</span> <span class="title">IFunctional</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">T <span class="title">func</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConstructorReference</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConstructorReference</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Supplier&lt;ConstructorReference&gt; supplier0 = () -&gt; <span class="keyword">new</span> ConstructorReference();</span><br><span class="line">        Supplier&lt;ConstructorReference&gt; supplier1 = ConstructorReference::<span class="keyword">new</span>;</span><br><span class="line">        IFunctional&lt;ConstructorReference&gt; functional = () -&gt; <span class="keyword">new</span> ConstructorReference();</span><br><span class="line">        IFunctional&lt;ConstructorReference&gt; functional1 = ConstructorReference::<span class="keyword">new</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面是一个JDK官方的例子</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T, SOURCE extends Collection&lt;T&gt;, DEST extends Collection&lt;T&gt;&gt;</span><br><span class="line">  <span class="function">DEST <span class="title">transferElements</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">      SOURCE sourceCollection,</span></span></span><br><span class="line"><span class="function"><span class="params">      Supplier&lt;DEST&gt; collectionFactory)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">      DEST result = collectionFactory.get();</span><br><span class="line">      <span class="keyword">for</span> (T t : sourceCollection) &#123;</span><br><span class="line">          result.add(t);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  ...</span><br><span class="line">  </span><br><span class="line">  Set&lt;Person&gt; rosterSet = transferElements(</span><br><span class="line">          roster, HashSet::<span class="keyword">new</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>实例::实例方法</strong><br><br><br>其实开始那个例子就是一个实例::实例方法的引用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">            list.add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        list.forEach(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<p>其中System.out就是一个实例，println是一个实例方法。相信不用再给大家做解释了。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>Lambda表达式是JDK8引入Java的函数式编程语法，使用Lambda需要直接或者间接的与函数式接口配合，在开发中使用Lambda可以减少代码量，<br>但是并不是说必须要使用Lambda(虽然它是一个很酷的东西)。有些情况下使用Lambda会使代码的可读性急剧下降，并且也节省不了多少代码，<br>所以在实际开发中还是需要仔细斟酌是否要使用Lambda。和Lambda相似的还有JDK10中加入的var类型推断，同样对于这个特性需要斟酌使用。</p>
+<!-- ---------------------------------------------------Lambda表达式结束---------------------------------------------------- -->
+<hr>
+<!-- ---------------------------------------------------接口默认方法-------------------------------------------------------- -->
+<p><span id="DefaultMethods"></span></p>
+<h2 id="JDK8接口规范"><a href="#JDK8接口规范" class="headerlink" title="　　　　　　　　　　　　　JDK8接口规范"></a>　　　　　　　　　　　　　JDK8接口规范</h2><h3 id="在JDK8中引入了lambda表达式，出现了函数式接口的概念，为了在扩展接口时保持向前兼容性-JDK8之前扩展接口会使得实现了该接口的类必须实现添加的方法，否则会报错。为了保持兼容性而做出妥协的特性还有泛型，泛型也是为了保持兼容性而失去了在一些别的语言泛型拥有的功能-，Java接口规范发生了一些改变。"><a href="#在JDK8中引入了lambda表达式，出现了函数式接口的概念，为了在扩展接口时保持向前兼容性-JDK8之前扩展接口会使得实现了该接口的类必须实现添加的方法，否则会报错。为了保持兼容性而做出妥协的特性还有泛型，泛型也是为了保持兼容性而失去了在一些别的语言泛型拥有的功能-，Java接口规范发生了一些改变。" class="headerlink" title="在JDK8中引入了lambda表达式，出现了函数式接口的概念，为了在扩展接口时保持向前兼容性(JDK8之前扩展接口会使得实现了该接口的类必须实现添加的方法，否则会报错。为了保持兼容性而做出妥协的特性还有泛型，泛型也是为了保持兼容性而失去了在一些别的语言泛型拥有的功能)，Java接口规范发生了一些改变。"></a>在JDK8中引入了lambda表达式，出现了函数式接口的概念，为了在扩展接口时保持向前兼容性(JDK8之前扩展接口会使得实现了该接口的类必须实现添加的方法，否则会报错。为了保持兼容性而做出妥协的特性还有泛型，泛型也是为了保持兼容性而失去了在一些别的语言泛型拥有的功能)，Java接口规范发生了一些改变。</h3><h3 id="1-JDK8以前的接口规范"><a href="#1-JDK8以前的接口规范" class="headerlink" title="1.JDK8以前的接口规范"></a>1.JDK8以前的接口规范</h3><ul>
+<li>JDK8以前接口可以定义的变量和方法<ul>
+<li>所有变量(Field)不论是否<i>显式</i> 的声明为<figure class="highlight plain"><figcaption><span>static final```，它实际上都是```public static final```的。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   - 所有方法(Method)不论是否&lt;i&gt;显示&lt;/i&gt; 的声明为```public abstract```，它实际上都是```public abstract```的。</span><br><span class="line">```java</span><br><span class="line">public interface AInterfaceBeforeJDK8 &#123;</span><br><span class="line">    int FIELD = 0;</span><br><span class="line">    void simpleMethod();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p>以上接口信息反编译以后可以看到字节码信息里Filed是public static final的，而方法是public abstract的，即是你没有显示的去声明它。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> FIELD;</span><br><span class="line">    descriptor: I</span><br><span class="line">    flags: (<span class="number">0x0019</span>) ACC_PUBLIC, ACC_STATIC, ACC_FINAL</span><br><span class="line">    ConstantValue: <span class="keyword">int</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">simpleMethod</span><span class="params">()</span></span>;</span><br><span class="line">    descriptor: ()V</span><br><span class="line">    flags: (<span class="number">0x0401</span>) ACC_PUBLIC, ACC_ABSTRACT</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-JDK8之后的接口规范"><a href="#2-JDK8之后的接口规范" class="headerlink" title="2.JDK8之后的接口规范"></a>2.JDK8之后的接口规范</h3><ul>
+<li>JDK8之后接口可以定义的变量和方法<ul>
+<li>变量(Field)仍然必须是 <figure class="highlight java"><figcaption><span>public static final```的</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  - 方法(Method)除了可以是<span class="keyword">public</span> <span class="keyword">abstract</span>之外，还可以是<span class="keyword">public</span> <span class="keyword">static</span>或者是<span class="keyword">default</span>(相当于仅<span class="keyword">public</span>修饰的实例方法)的。</span><br><span class="line">从以上改变不难看出，修改接口的规范主要是为了能在扩展接口时保持向前兼容。</span><br><span class="line">&lt;br&gt;下面是一个JDK8之后的接口例子</span><br><span class="line">```java</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">AInterfaceInJDK8</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> simpleFiled = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> staticField = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">staticMethod</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">defaultMethod</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">simpleMethod</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p>进行反编译(去除了一些没用信息)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> simpleFiled;</span><br><span class="line">    flags: (<span class="number">0x0019</span>) ACC_PUBLIC, ACC_STATIC, ACC_FINAL</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> staticField;</span><br><span class="line">    flags: (<span class="number">0x0019</span>) ACC_PUBLIC, ACC_STATIC, ACC_FINAL</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(java.lang.String[])</span></span>;</span><br><span class="line">    flags: (<span class="number">0x0009</span>) ACC_PUBLIC, ACC_STATIC</span><br><span class="line">    </span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">staticMethod</span><span class="params">()</span></span>;</span><br><span class="line">    flags: (<span class="number">0x0009</span>) ACC_PUBLIC, ACC_STATIC</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">defaultMethod</span><span class="params">()</span></span>;</span><br><span class="line">    flags: (<span class="number">0x0001</span>) ACC_PUBLIC</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">simpleMethod</span><span class="params">()</span> <span class="keyword">throws</span> java.io.IOException</span>;</span><br><span class="line">    flags: (<span class="number">0x0401</span>) ACC_PUBLIC, ACC_ABSTRACT</span><br><span class="line">    Exceptions:</span><br><span class="line">      <span class="keyword">throws</span> java.io.IOException</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到 default关键字修饰的方法是像实例方法(就是普通类中定义的普通方法)一样定义的，所以我们来定义一个只有default方法的接口并且实现一下这个接口试一<br>试。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4396</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultMethod</span> <span class="keyword">implements</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        DefaultMethod defaultMethod = <span class="keyword">new</span> DefaultMethod();</span><br><span class="line">        System.out.println(defaultMethod.defaultMethod());</span><br><span class="line">        <span class="comment">//compile error : Non-static method 'defaultMethod()' cannot be referenced from a static context</span></span><br><span class="line">        <span class="comment">//! DefaultMethod.defaultMethod();</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到default方法确实像实例方法一样，必须有实例对象才能调用，并且子类在实现接口时，可以不用实现default方法，也可以选择覆盖该方法。<br>这有点像子类继承父类实例方法。<br><br><br>接口静态方法就像是类静态方法，唯一的区别是<strong>接口静态方法只能通过接口名调用，而类静态方法既可以通过类名调用也可以通过实例调用</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Static</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">staticMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4396</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> ... main(String...args)</span><br><span class="line">    <span class="comment">//!compile error: Static method may be invoked on containing interface class only</span></span><br><span class="line">    <span class="comment">//!aInstanceOfStatic.staticMethod();</span></span><br><span class="line"> ...</span><br></pre></td></tr></table></figure>
+
+<p>另一个问题是多继承问题，大家知道Java中类是不支持多继承的，但是接口是多继承和多实现(implements后跟多个接口)的，<br>那么如果一个接口继承另一个接口，两个接口都有同名的default方法会怎么样呢？答案是会像类继承一样覆写(@Override)，以下代码在IDE中可以顺利编译</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4396</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default2</span> <span class="keyword">extends</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">9527</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultMethod</span> <span class="keyword">implements</span> <span class="title">Default</span>,<span class="title">Default2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        DefaultMethod defaultMethod = <span class="keyword">new</span> DefaultMethod();</span><br><span class="line">        System.out.println(defaultMethod.defaultMethod());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">输出 : <span class="number">9527</span></span><br></pre></td></tr></table></figure>
+
+<p>出现上面的情况时，会优先找继承树上近的方法，类似于“短路优先”。<br><br><br>那么如果一个类实现了两个没有继承关系的接口，且这两个接口有同名方法的话会怎么样呢？IDE会要求你重写这个冲突的方法，让你自己选择去执行哪个方法，因为IDE它还没智能到你不告诉它，它就知道你想执行哪个方法。可以通过<figure class="highlight java"><figcaption><span>接口名.super```指针来访问接口中定义的实例(default)方法。</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">```java</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4396</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Default2</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">9527</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//如果不重写</span></span><br><span class="line"><span class="comment">//compile error : defaults.DefaultMethod inherits unrelated defaults for defaultMethod() from types defaults.Default and defaults.Default2</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultMethod</span> <span class="keyword">implements</span> <span class="title">Default</span>,<span class="title">Default2</span> </span>&#123;</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">defaultMethod</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(Default.<span class="keyword">super</span>.defaultMethod());</span><br><span class="line">        System.out.println(Default2.<span class="keyword">super</span>.defaultMethod());</span><br><span class="line">        <span class="keyword">return</span> <span class="number">996</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        DefaultMethod defaultMethod = <span class="keyword">new</span> DefaultMethod();</span><br><span class="line">        System.out.println(defaultMethod.defaultMethod());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">运行输出 : </span><br><span class="line"><span class="number">4396</span></span><br><span class="line"><span class="number">9527</span></span><br><span class="line"><span class="number">996</span></span><br></pre></td></tr></table></figure></p>
+<!-- ---------------------------------------------------接口默认方法结束---------------------------------------------------- -->
+<hr>
+<!-- --------------------------------------------------- 改进的类型推断 ---------------------------------------------------- -->
+<p><span id="ImprovedTypeInference"></span></p>
+<h2 id="改进的类型推断"><a href="#改进的类型推断" class="headerlink" title="　　　　　　　　　　　　　改进的类型推断"></a>　　　　　　　　　　　　　改进的类型推断</h2><h3 id="1-什么是类型推断"><a href="#1-什么是类型推断" class="headerlink" title="1.什么是类型推断"></a>1.什么是类型推断</h3><p>类型推断就像它的字面意思一样，编译器根据<b><i>你显示声明的已知的信息</i></b> 推断出你没有显示声明的类型，这就是类型推断。<br>看过《Java编程思想 第四版》的朋友可能还记得里面讲解泛型一章的时候，里面很多例子是下面这样的:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Object&gt; map = <span class="keyword">new</span> Map&lt;String, Object&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>而我们平常写的都是这样的:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Object&gt; map = <span class="keyword">new</span> Map&lt;&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>这就是类型推断，《Java编程思想 第四版》这本书出书的时候最新的JDK只有1.6(JDK7推出的类型推断)，在Java编程思想里Bruce Eckel大叔还提到过这个问题<br>(可能JDK的官方人员看了Bruce Eckel大叔的Thinking in Java才加的类型推断，☺)，在JDK7中推出了上面这样的类型推断，可以减少一些无用的代码。<br>(Java编程思想到现在还只有第四版，是不是因为Bruce Eckel大叔觉得Java新推出的语言特性“然并卵”呢？/滑稽)<br><br><br>在JDK7中，类型推断只有上面例子的那样的能力，即只有在使用<strong>赋值语句</strong>时才能自动推断出泛型参数信息(即&lt;&gt;里的信息)，下面的官方文档里的例子在JDK7里会编译<br>错误</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; stringList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">stringList.add(<span class="string">"A"</span>);</span><br><span class="line"><span class="comment">//error : addAll(java.util.Collection&lt;? extends java.lang.String&gt;)in List cannot be applied to (java.util.List&lt;java.lang.Object&gt;)</span></span><br><span class="line">stringList.addAll(Arrays.asList());</span><br></pre></td></tr></table></figure>
+
+<p>但是上面的代码在JDK8里可以通过，也就说，JDK8里，类型推断不仅可以用于赋值语句，而且可以根据代码中上下文里的信息推断出更多的信息，因此我们需要些的代码<br>会更少。加强的类型推断还有一个就是用于Lambda表达式了。<br><br><br>大家其实不必细究类型推断，在日常使用中IDE会自动判断，当IDE自己无法推断出足够的信息时，就需要我们额外做一下工作，比如在&lt;&gt;里添加更多的类型信息，<br>相信随着Java的进化，这些便利的功能会越来越强大。</p>
+<!-- --------------------------------------------------- 改进的类型推断结束------------------------------------------------- -->
+<hr>
+<!-- --------------------------------------------------- 反射获得方法参数信息------------------------------------------------- -->
+<p><span id="MethodParameterReflection"></span></p>
+<h2 id="通过反射获得方法的参数信息"><a href="#通过反射获得方法的参数信息" class="headerlink" title="　　　　　　　　　　　　　通过反射获得方法的参数信息"></a>　　　　　　　　　　　　　通过反射获得方法的参数信息</h2><p>JDK8之前 .class文件是不会存储方法参数信息的，因此也就无法通过反射获取该信息(想想反射获取类信息的入口是什么？当然就是Class类了)。即是是在JDK11里<br>也不会默认生成这些信息，可以通过在javac加上-parameters参数来让javac生成这些信息(javac就是java编译器，可以把java文件编译成.class文件)。生成额外<br>的信息(运行时非必须信息)会消耗内存并且有可能公布敏感信息(某些方法参数比如password，JDK文档里这么说的)，并且确实很多信息javac并不会为我们生成，比如<br>LocalVariableTable，javac就不会默认生成，需要你加上 -g:vars来强制让编译器生成，同样的，方法参数信息也需要加上<br>-parameters来让javac为你在.class文件中生成这些信息，否则运行时反射是无法获取到这些信息的。在讲解Java语言层面的方法之前，先看一下javac加上该<br>参数和不加生成的信息有什么区别(不感兴趣想直接看运行代码的可以跳过这段)。下面是随便写的一个类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ByteCodeParameters</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">simpleMethod</span><span class="params">(String canUGetMyName, Object yesICan)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"9527"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>先来不加参数编译和反编译一下这个类javac ByteCodeParameters.java , javap -v ByteCodeParameters:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//只截取了部分信息</span></span><br><span class="line"><span class="keyword">public</span> java.lang.<span class="function">String <span class="title">simpleMethod</span><span class="params">(java.lang.String, java.lang.Object)</span></span>;</span><br><span class="line">  descriptor: (Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/String;</span><br><span class="line">  flags: (<span class="number">0x0001</span>) ACC_PUBLIC</span><br><span class="line">  Code:</span><br><span class="line">    stack=<span class="number">1</span>, locals=<span class="number">3</span>, args_size=<span class="number">3</span></span><br><span class="line">       0: ldc           #2                  // String 9527</span><br><span class="line">       <span class="number">2</span>: areturn</span><br><span class="line">    LineNumberTable:</span><br><span class="line">      line <span class="number">5</span>: <span class="number">0</span></span><br><span class="line"><span class="comment">//这个方法的描述到这里就结束了</span></span><br></pre></td></tr></table></figure>
+
+<p>接下来我们加上参数javac -parameters ByteCodeParameters.java 再来看反编译的信息:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> java.lang.<span class="function">String <span class="title">simpleMethod</span><span class="params">(java.lang.String, java.lang.Object)</span></span>;</span><br><span class="line">   descriptor: (Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/String;</span><br><span class="line">   flags: (<span class="number">0x0001</span>) ACC_PUBLIC</span><br><span class="line">   Code:</span><br><span class="line">     stack=<span class="number">1</span>, locals=<span class="number">3</span>, args_size=<span class="number">3</span></span><br><span class="line">        0: ldc           #2                  // String 9527</span><br><span class="line">        <span class="number">2</span>: areturn</span><br><span class="line">     LineNumberTable:</span><br><span class="line">       line <span class="number">8</span>: <span class="number">0</span></span><br><span class="line">   MethodParameters:</span><br><span class="line">     Name                           Flags</span><br><span class="line">     canUGetMyName</span><br><span class="line">     yesICan</span><br></pre></td></tr></table></figure>
+
+<p>可以看到.class文件里多了一个MethodParameters信息，这就是参数的名字，可以看到默认是不保存的。<br><br>下面看一下在Intelj Idea里运行的这个例子，我们试一下通过反射获取方法名 :</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ByteCodeParameters</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">simpleMethod</span><span class="params">(String canUGetMyName, Object yesICan)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"9527"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> NoSuchMethodException </span>&#123;</span><br><span class="line">        Class&lt;?&gt; clazz = ByteCodeParameters.class;</span><br><span class="line">        Method simple = clazz.getDeclaredMethod(<span class="string">"simpleMethod"</span>, String.class, Object.class);</span><br><span class="line">        Parameter[] parameters = simple.getParameters();</span><br><span class="line">        <span class="keyword">for</span> (Parameter p : parameters) &#123;</span><br><span class="line">            System.out.println(p.getName());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">输出 :</span><br><span class="line">arg0</span><br><span class="line">arg1</span><br></pre></td></tr></table></figure>
+
+<p>？？？说好的方法名呢？？？？别急，哈哈。前面说了，默认是不生成参数名信息的，因此我们需要做一些配置，我们找到IDEA的settings里的Java Compiler选项，在<br>Additional command line parameters:一行加上-parameters(Eclipse 也是找到Java Compiler选中Stoer information about method parameters)，或者自<br>己编译一个.class文件放在IDEA的out下，然后再来运行 :</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输出 :</span><br><span class="line">canUGetMyName</span><br><span class="line">yesICan</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就通过反射获取到参数信息了。想要了解更多的同学可以自己研究一下 [官方文档]<br>(<a href="https://docs.oracle.com/javase/tutorial/reflect/member/methodparameterreflection.html" target="_blank" rel="noopener">https://docs.oracle.com/javase/tutorial/reflect/member/methodparameterreflection.html</a>)<br><br></p>
+<h2 id="总结与补充"><a href="#总结与补充" class="headerlink" title="总结与补充"></a>总结与补充</h2><p>在JDK8之后，可以通过-parameters参数来让编译器生成参数信息然后在运行时通过反射获取方法参数信息，其实在SpringFramework<br>里面也有一个LocalVariableTableParameterNameDiscoverer对象可以获取方法参数名信息，有兴趣的同学可以自行百度(这个类在打印日志时可能会比较有用吧，个人感觉)。</p>
+<!-- --------------------------------------------------- 反射获得方法参数信息结束------------------------------------------------- -->
+<hr>
+<!-- --------------------------------------------------- JDK8流库------------------------------------------------------------- -->
+<p><span id="stream"></span></p>
+<!-- --------------------------------------------------- JDK8流库结束------------------------------------------------- -->
+
+<hr>
+
+    </div>
+
+    
+    
+    
+		<div style="text-align:center;color: #ccc;font-size:14px;">---------------- The End ----------------</div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/uploads/wechat-frank.png" alt="Frank wechat" style="width: 200px; max-width: 100%;">
+  <div>扫描+微信，共同学习.</div>
+</div>
+
+      
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+            
+              <a href="/tags/java8/" rel="tag"><i class="fa fa-tag"></i> java8</a>
+            
+          </div>
+        
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2015/08/26/os-linux-CentOS/" rel="next" title="Centos常用命令">
+                  <i class="fa fa-chevron-left"></i> Centos常用命令
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2016/07/22/subject-network-干货：计算机网络知识总结/" rel="prev" title="干货：计算机网络知识总结">
+                  干货：计算机网络知识总结 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Oracle官方文档-What’s-New-in-JDK8"><span class="nav-number">1.</span> <span class="nav-text">Oracle官方文档:What’s New in JDK8</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lambda表达式"><span class="nav-number">2.</span> <span class="nav-text">　　　　　　　　　　　　　Lambda表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-什么是Lambda表达式"><span class="nav-number">2.1.</span> <span class="nav-text">1.什么是Lambda表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Lambda表达式语法"><span class="nav-number">2.2.</span> <span class="nav-text">2.Lambda表达式语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-函数式接口"><span class="nav-number">2.3.</span> <span class="nav-text">3.函数式接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK8接口规范"><span class="nav-number">3.</span> <span class="nav-text">　　　　　　　　　　　　　JDK8接口规范</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在JDK8中引入了lambda表达式，出现了函数式接口的概念，为了在扩展接口时保持向前兼容性-JDK8之前扩展接口会使得实现了该接口的类必须实现添加的方法，否则会报错。为了保持兼容性而做出妥协的特性还有泛型，泛型也是为了保持兼容性而失去了在一些别的语言泛型拥有的功能-，Java接口规范发生了一些改变。"><span class="nav-number">3.1.</span> <span class="nav-text">在JDK8中引入了lambda表达式，出现了函数式接口的概念，为了在扩展接口时保持向前兼容性(JDK8之前扩展接口会使得实现了该接口的类必须实现添加的方法，否则会报错。为了保持兼容性而做出妥协的特性还有泛型，泛型也是为了保持兼容性而失去了在一些别的语言泛型拥有的功能)，Java接口规范发生了一些改变。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-JDK8以前的接口规范"><span class="nav-number">3.2.</span> <span class="nav-text">1.JDK8以前的接口规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-JDK8之后的接口规范"><span class="nav-number">3.3.</span> <span class="nav-text">2.JDK8之后的接口规范</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改进的类型推断"><span class="nav-number">4.</span> <span class="nav-text">　　　　　　　　　　　　　改进的类型推断</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-什么是类型推断"><span class="nav-number">4.1.</span> <span class="nav-text">1.什么是类型推断</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过反射获得方法的参数信息"><span class="nav-number">5.</span> <span class="nav-text">　　　　　　　　　　　　　通过反射获得方法的参数信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结与补充"><span class="nav-number">6.</span> <span class="nav-text">总结与补充</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/uploads/avatar.gif"
+      alt="Frank">
+  <p class="site-author-name" itemprop="name">Frank</p>
+  <div class="site-description" itemprop="description">优秀是一种习惯</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">150</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/dirsky" title="GitHub &rarr; https://github.com/dirsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:gzxu@vip.qq.com" title="E-Mail &rarr; mailto:gzxu@vip.qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/cccsky" title="Weibo &rarr; https://weibo.com/cccsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://dirsky.github.io/docsify/#/" title="CV &rarr; https://dirsky.github.io/docsify/#/"><i class="fa fa-fw fa-twitter"></i>CV</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2008 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Frank</span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d68acfe0fc14e23" async="async"></script>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+<script src="/js/utils.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 20638,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'zwli8bHgrjbtCiAH23o81imX-gzGzoHsz',
+    appKey: 'v3rufApMsIhhwFOR45jn5abL',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>

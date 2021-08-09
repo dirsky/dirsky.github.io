@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/favicon.ico?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/favicon.ico?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="登录username:rootpassword:安装时设置的密码   其它终端登录 $ ssh root@192.168.0.23   系统配置情况命令系统12345678910cat /etc/redhat-release # CentOS 查看系统信息uname -a                # 查看内核/操作系统/CPU信息head -n 1 /etc/issue    # 查看操作系">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos常用命令">
+<meta property="og:url" content="https://dirsky.github.io/2015/08/26/os-linux-CentOS/index.html">
+<meta property="og:site_name" content="徐先生的技术栈">
+<meta property="og:description" content="登录username:rootpassword:安装时设置的密码   其它终端登录 $ ssh root@192.168.0.23   系统配置情况命令系统12345678910cat /etc/redhat-release # CentOS 查看系统信息uname -a                # 查看内核/操作系统/CPU信息head -n 1 /etc/issue    # 查看操作系">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-08-09T02:00:27.234Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Centos常用命令">
+<meta name="twitter:description" content="登录username:rootpassword:安装时设置的密码   其它终端登录 $ ssh root@192.168.0.23   系统配置情况命令系统12345678910cat /etc/redhat-release # CentOS 查看系统信息uname -a                # 查看内核/操作系统/CPU信息head -n 1 /etc/issue    # 查看操作系">
+  <link rel="canonical" href="https://dirsky.github.io/2015/08/26/os-linux-CentOS/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Centos常用命令 | 徐先生的技术栈</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?2acd2bc9d0bd256dbd6679268f609dbd";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container">
+    <div class="headband"></div>
+
+<a href="https://github.com/dirsky" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">徐先生的技术栈</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">生来为创造价值</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2015/08/26/os-linux-CentOS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Centos常用命令
+
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2015-08-26 00:00:00" itemprop="dateCreated datePublished" datetime="2015-08-26T00:00:00+08:00">2015-08-26</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/os/" itemprop="url" rel="index"><span itemprop="name">os</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2015/08/26/os-linux-CentOS/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2015/08/26/os-linux-CentOS/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>6.4k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>6 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h1><p>username:root<br>password:安装时设置的密码  </p>
+<p>其它终端登录 <code>$ ssh root@192.168.0.23</code>  </p>
+<h1 id="系统配置情况命令"><a href="#系统配置情况命令" class="headerlink" title="系统配置情况命令"></a>系统配置情况命令</h1><h2 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/redhat-release # CentOS 查看系统信息</span><br><span class="line">uname -a                # 查看内核/操作系统/CPU信息</span><br><span class="line">head -n 1 /etc/issue    # 查看操作系统版本</span><br><span class="line">cat /proc/cpuinfo       # 查看CPU信息</span><br><span class="line">hostname                # 查看计算机名</span><br><span class="line">lspci -tv               # 列出所有PCI设备</span><br><span class="line">lsusb -tv               # 列出所有USB设备</span><br><span class="line">lsmod                   # 列出加载的内核模块</span><br><span class="line">env                     # 查看环境变量</span><br><span class="line">dmidecode | grep "Product Nmae"   #查看服务器型号</span><br></pre></td></tr></table></figure>
+
+<h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">free -m                # 查看内存使用量和交换区使用量</span><br><span class="line">df -h                  # 查看各分区使用情况</span><br><span class="line">du -sh &lt;目录名&gt;        # 查看指定目录的大小</span><br><span class="line">grep MemTotal /proc/meminfo   # 查看内存总量</span><br><span class="line">grep MemFree /proc/meminfo    # 查看空闲内存量</span><br><span class="line">uptime                 # 查看系统运行时间、用户数、负载</span><br><span class="line">cat /proc/loadavg      # 查看系统负载</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看内存的插槽数，已经使用多少插槽。每条内存多大，已使用内存多大</span></span><br><span class="line">dmidecode|grep -P -A5 "Memory\s+Device"|grep Size|grep -v Range </span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看内存支持的最大内存容量</span></span><br><span class="line">dmidecode|grep -P 'Maximum\s+Capacity'</span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看内存的频率</span></span><br><span class="line">dmidecode|grep -A16 "Memory Device"</span><br><span class="line">dmidecode|grep -A16 "Memory Device"|grep 'Speed'</span><br></pre></td></tr></table></figure>
+
+<h2 id="磁盘和分区"><a href="#磁盘和分区" class="headerlink" title="磁盘和分区"></a>磁盘和分区</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mount | column -t      # 查看挂接的分区状态</span><br><span class="line">fdisk -l               # 查看所有分区</span><br><span class="line">swapon -s              # 查看所有交换分区</span><br><span class="line">hdparm -i /dev/hda     # 查看磁盘参数(仅适用于IDE设备)</span><br><span class="line">dmesg | grep IDE       # 查看启动时IDE设备检测状况</span><br></pre></td></tr></table></figure>
+
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ifconfig               # 查看所有网络接口的属性</span><br><span class="line">iptables -L            # 查看防火墙设置</span><br><span class="line">route -n               # 查看路由表</span><br><span class="line">netstat -lntp          # 查看所有监听端口</span><br><span class="line">netstat -antp          # 查看所有已经建立的连接</span><br><span class="line">netstat -s             # 查看网络统计信息</span><br></pre></td></tr></table></figure>
+
+<h2 id="进程查看"><a href="#进程查看" class="headerlink" title="进程查看"></a>进程查看</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -ef                 # 查看所有进程</span><br><span class="line">top                    # 实时显示进程状态</span><br></pre></td></tr></table></figure>
+
+<h2 id="系统时间"><a href="#系统时间" class="headerlink" title="系统时间"></a>系统时间</h2><p><strong>UTC</strong>: 整个地球分为二十四时区，每个时区都有自己的本地时间。在国际无线电通信场合，为了统一起见，使用一个统一的时间，称为通用协调时(UTC, Universal Time Coordinated)。<br><strong>GMT</strong>: 格林威治标准时间 (Greenwich Mean Time)指位于英国伦敦郊区的皇家格林尼治天文台的标准时间，因为本初子午线被定义在通过那里的经线。(UTC与GMT时间基本相同)<br><strong>CST</strong>: 中国标准时间 (China Standard Time)。<code>GMT + 8 = UTC + 8 = CST</code><br><strong>DST</strong>: 夏令时(Daylight Saving Time) 指在夏天太阳升起的比较早时，将时钟拨快一小时，以提早日光的使用。(中国不使用)<br><strong>硬件时钟</strong>: RTC(Real-Time Clock)或CMOS时钟，一般在主板上靠电池供电，服务器断电后也会继续运行。仅保存日期时间数值，无法保存时区和夏令时设置。<br><strong>系统时钟</strong>: 一般在服务器启动时复制RTC时间，之后独立运行，保存了时间、时区和夏令时设置。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">timedatectl  <span class="comment"># 等同于 timedatectl status</span></span><br><span class="line">timedatectl <span class="built_in">set</span>-time <span class="string">"YYYY-MM-DD HH:MM:SS"</span>  <span class="comment"># 设置时间</span></span><br><span class="line">timedatectl list-timezones                  <span class="comment"># 列出所有时区</span></span><br><span class="line">timedatectl <span class="built_in">set</span>-timezone Asia/Shanghai      <span class="comment"># 设置时区</span></span><br><span class="line">timedatectl <span class="built_in">set</span>-ntp yes                     <span class="comment"># 是否NTP服务器同步, yes或者no</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将硬件时钟调整为与本地时钟一致</span></span><br><span class="line">timedatectl <span class="built_in">set</span>-local-rtc 1</span><br><span class="line">hwclock --systohc --localtime <span class="comment"># 与上面命令效果一致   </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 硬件时间设置成 UTC</span></span><br><span class="line">timedatectl <span class="built_in">set</span>-local-rtc 1</span><br><span class="line">hwclock --systohc --utc //与上面命令效果一致</span><br></pre></td></tr></table></figure>
+
+<h2 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">w                         # 查看活动用户</span><br><span class="line">id &lt;用户名&gt;                # 查看指定用户信息</span><br><span class="line">last                      # 查看用户登录日志</span><br><span class="line">cut -d: -f1 /etc/passwd   # 查看系统所有用户</span><br><span class="line">cut -d: -f1 /etc/group    # 查看系统所有组</span><br><span class="line">crontab -l                # 查看当前用户的计划任务</span><br></pre></td></tr></table></figure>
+
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看网络接口统计数据的，两种发放  </span></span><br><span class="line">ip link # 或者下面方法</span><br><span class="line">ip -s link </span><br><span class="line"></span><br><span class="line">yum install net-tools # net-tools包提供了ifconfig命令  </span><br><span class="line">ifconfig -a # 查看IP地址  </span><br><span class="line">ip addr # 查看IP地址   </span><br><span class="line">route -n # 使用最快的速度查找主机的路由  </span><br><span class="line"></span><br><span class="line">cat /proc/version # 查看系统信息  </span><br><span class="line">  uname -a # 方法二  </span><br><span class="line">  uname -r #方法三  </span><br><span class="line">getconf LONG_BIT # 查看系统是64位还是32位  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">uname -a  # 查看内核/操作系统/CPU信息  </span><br><span class="line">head -n 1 /etc/issue  #查看操作系统版本  </span><br><span class="line">cat /proc/cpuinfo  #查看CPU信息  </span><br><span class="line">hostname   #查看计算机名  </span><br><span class="line">lspci -tv  #列出所有PCI设备  </span><br><span class="line">lsusb -tv  #列出所有USB设备  </span><br><span class="line">lsmod  #列出加载的内核模块  </span><br><span class="line">env    #查看环境变量  </span><br><span class="line">arch   # 显示机器的处理器架构(1)  </span><br><span class="line">uname -m  # 显示机器的处理器架构(2)  </span><br><span class="line">uname -r  # 显示正在使用的内核版本  </span><br><span class="line">dmidecode -q  # 显示硬件系统部件  </span><br><span class="line">hdparm -i /dev/hda   # 罗列一个磁盘的架构特性  </span><br><span class="line">hdparm -tT /dev/sda  # 在磁盘上执行测试性读取操作  </span><br><span class="line">cat /proc/interrupts # 显示中断  </span><br><span class="line">cat /proc/meminfo  # 校验内存使用  </span><br><span class="line">cat /proc/swaps    # 显示哪些swap被使用  </span><br><span class="line">cat /proc/version  # 显示内核的版本  </span><br><span class="line">cat /proc/net/dev  # 显示网络适配器及统计  </span><br><span class="line">cat /proc/mounts   # 显示已加载的文件系统  </span><br><span class="line">lspci -tv  # 罗列 PCI 设备  </span><br><span class="line">lsusb -tv  # 显示 USB 设备  </span><br><span class="line">date  # 显示系统日期  </span><br><span class="line">date 041217002007.00  # 设置日期和时间 – 月日时分年.秒  </span><br><span class="line">cal 2007  # 显示2007年的日历表  </span><br><span class="line">clock -w  # 将时间修改保存到 BIOS</span><br></pre></td></tr></table></figure>
+
+<h2 id="系统的关机、重启以及登出"><a href="#系统的关机、重启以及登出" class="headerlink" title="系统的关机、重启以及登出"></a>系统的关机、重启以及登出</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">shutdown -h now <span class="comment"># 关闭系统(1)   </span></span><br><span class="line">init 0 <span class="comment"># 关闭系统(2)   </span></span><br><span class="line">telinit 0 <span class="comment"># 关闭系统(3)   </span></span><br><span class="line">shutdown -h hours:minutes &amp;  <span class="comment">#按预定时间关闭系统   </span></span><br><span class="line">shutdown -c  <span class="comment">#取消按预定时间关闭系统   </span></span><br><span class="line">shutdown -r now <span class="comment"># 重启  (1)   </span></span><br><span class="line">reboot  <span class="comment">#重启  (2)   </span></span><br><span class="line"><span class="built_in">logout</span> <span class="comment"># 注销</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看网络配置的命令"><a href="#查看网络配置的命令" class="headerlink" title="查看网络配置的命令"></a>查看网络配置的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ifconfig <span class="comment"># 查看所有网络接口的属性   </span></span><br><span class="line">iptables -L <span class="comment"># 查看防火墙设置   </span></span><br><span class="line">route -n <span class="comment"># 查看路由表   </span></span><br><span class="line">netstat -lntp <span class="comment"># 查看所有监听端口   </span></span><br><span class="line">netstat -antp <span class="comment"># 查看所有已经建立的连接   </span></span><br><span class="line">netstat -s <span class="comment"># 查看网络统计信息</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看linux进程"><a href="#查看linux进程" class="headerlink" title="查看linux进程"></a>查看linux进程</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ps -aux | grep node <span class="comment"># 查看`node`进程  </span></span><br><span class="line">ps -ef <span class="comment"># 查看所有进程   </span></span><br><span class="line">top <span class="comment"># 实时显示进程状态</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="杀进程"><a href="#杀进程" class="headerlink" title="杀进程"></a>杀进程</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">killall -9 websocket <span class="comment"># 干掉`websocket`服务进程  </span></span><br><span class="line">ps aux | grep mysql <span class="comment"># 查看mysql进程  </span></span><br><span class="line"><span class="built_in">kill</span> -9 35562 <span class="comment"># 根据进程号杀</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看用户的命令"><a href="#查看用户的命令" class="headerlink" title="查看用户的命令"></a>查看用户的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">w <span class="comment"># 查看活动用户   </span></span><br><span class="line">id &lt;用户名&gt; <span class="comment"># 查看指定用户信息   </span></span><br><span class="line">last <span class="comment"># 查看用户登录日志   </span></span><br><span class="line">cut -d: -f1 /etc/passwd <span class="comment"># 查看系统所有用户   </span></span><br><span class="line">cut -d: -f1 /etc/group <span class="comment"># 查看系统所有组   </span></span><br><span class="line">crontab -l <span class="comment"># 查看当前用户的计划任务</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="log日志查看"><a href="#log日志查看" class="headerlink" title="log日志查看"></a>log日志查看</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat /var/<span class="built_in">log</span>/messages <span class="comment"># 查询日志的全部内容</span></span><br><span class="line">head -5 /var/<span class="built_in">log</span>/messages <span class="comment"># 查询日志的前5行</span></span><br><span class="line">tail -5 /var/<span class="built_in">log</span>/messages <span class="comment"># 查询日志的最新5行</span></span><br><span class="line">sed -n <span class="string">'5,10p'</span> /var/<span class="built_in">log</span>/messages <span class="comment"># 查询日志的5到10行</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="查看系统服务的命令"><a href="#查看系统服务的命令" class="headerlink" title="查看系统服务的命令"></a>查看系统服务的命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chkconfig –list <span class="comment"># 列出所有系统服务   </span></span><br><span class="line">chkconfig –list | grep on <span class="comment"># 列出所有启动的系统服务</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装程序的命令"><a href="#安装程序的命令" class="headerlink" title="安装程序的命令"></a>安装程序的命令</h2><p><code>rpm -qa</code> 查看所有安装的软件包  </p>
+<h2 id="获取帮助的命令"><a href="#获取帮助的命令" class="headerlink" title="获取帮助的命令"></a>获取帮助的命令</h2><p><code>man &lt;命令&gt;</code> 获得命令帮助  </p>
+<h1 id="安装软件方法"><a href="#安装软件方法" class="headerlink" title="安装软件方法"></a>安装软件方法</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装下载工具wget</span></span><br><span class="line">$ yum install wget</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解压</span></span><br><span class="line">$ wget https://nodejs.org/dist/v4.4.4/node-v4.4.4-linux-x64.tar.xz</span><br><span class="line">       https://nodejs.org/dist/v4.4.5/node-v4.4.5-linux-x64.tar.xz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试安装</span></span><br><span class="line"><span class="comment"># 没有用到`gzip`压缩去掉`z`参数</span></span><br><span class="line">$ sudo tar --strip-components 1 -xzvf node-v* -C /usr/<span class="built_in">local</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="yum错误"><a href="#yum错误" class="headerlink" title="yum错误"></a>yum错误</h1><p>yum错误：Cannot retrieve repository metadata (repomd.xml) for repository解决方法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/yum.repos.d/</span><br><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<p>找到<code>yum.repos.d</code>这个目录，里面有个文件，以<code>.repo</code> 结尾的，例如<code>zl.repo</code>删除<br>然后<code>#yum clean all</code>  </p>
+<h1 id="安装源"><a href="#安装源" class="headerlink" title="安装源"></a>安装源</h1><p><a href="http://dl.fedoraproject.org/pub/" target="_blank" rel="noopener">http://dl.fedoraproject.org/pub/</a><br><a href="http://rpms.remirepo.net/enterprise/" target="_blank" rel="noopener">http://rpms.remirepo.net/enterprise/</a></p>
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p><a href="https://www.centos.org/" target="_blank" rel="noopener">www.centos.org</a></p>
+<p><a href="http://mirror.neu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirror.neu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://centos.ustc.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://centos.ustc.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.163.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.163.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.hust.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.hust.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.zju.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.zju.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.cqu.edu.cn/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.cqu.edu.cn/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.cug.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.cug.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.neusoft.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.neusoft.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.skyshe.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.skyshe.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.aliyun.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.aliyun.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.nwsuaf.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.nwsuaf.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirror.bit.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirror.bit.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirror.lzu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirror.lzu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://ftp.sjtu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://ftp.sjtu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.yun-idc.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.yun-idc.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a><br><a href="http://mirrors.pubyun.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso" target="_blank" rel="noopener">http://mirrors.pubyun.com/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso</a> </p>
+
+    </div>
+
+    
+    
+    
+		<div style="text-align:center;color: #ccc;font-size:14px;">---------------- The End ----------------</div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center;">
+  <img id="wechat_subscriber_qcode" src="/uploads/wechat-frank.png" alt="Frank wechat" style="width: 200px; max-width: 100%;">
+  <div>扫描+微信，共同学习.</div>
+</div>
+
+      
+        
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
+            
+          </div>
+        
+
+        
+  <div class="post-widgets">
+    <div class="wp_rating">
+      <div id="wpac-rating"></div>
+    </div>
+  
+  </div>
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2015/08/26/os-linux-CentOS7安装维护Gitlab/" rel="next" title="CentOS7安装维护Gitlab">
+                  <i class="fa fa-chevron-left"></i> CentOS7安装维护Gitlab
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/2016/03/17/lang-java-What-s-New-in-JDK8-JDK8新特性总结/" rel="prev" title="JDK8新特性总结">
+                  JDK8新特性总结 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#登录"><span class="nav-number">1.</span> <span class="nav-text">登录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#系统配置情况命令"><span class="nav-number">2.</span> <span class="nav-text">系统配置情况命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统"><span class="nav-number">2.1.</span> <span class="nav-text">系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#资源"><span class="nav-number">2.2.</span> <span class="nav-text">资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘和分区"><span class="nav-number">2.3.</span> <span class="nav-text">磁盘和分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">2.4.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程查看"><span class="nav-number">2.5.</span> <span class="nav-text">进程查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统时间"><span class="nav-number">2.6.</span> <span class="nav-text">系统时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户"><span class="nav-number">2.7.</span> <span class="nav-text">用户</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用命令"><span class="nav-number">3.</span> <span class="nav-text">常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统的关机、重启以及登出"><span class="nav-number">3.1.</span> <span class="nav-text">系统的关机、重启以及登出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看网络配置的命令"><span class="nav-number">3.2.</span> <span class="nav-text">查看网络配置的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看linux进程"><span class="nav-number">3.3.</span> <span class="nav-text">查看linux进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#杀进程"><span class="nav-number">3.4.</span> <span class="nav-text">杀进程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看用户的命令"><span class="nav-number">3.5.</span> <span class="nav-text">查看用户的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#log日志查看"><span class="nav-number">3.6.</span> <span class="nav-text">log日志查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看系统服务的命令"><span class="nav-number">3.7.</span> <span class="nav-text">查看系统服务的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装程序的命令"><span class="nav-number">3.8.</span> <span class="nav-text">安装程序的命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取帮助的命令"><span class="nav-number">3.9.</span> <span class="nav-text">获取帮助的命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装软件方法"><span class="nav-number">4.</span> <span class="nav-text">安装软件方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#yum错误"><span class="nav-number">5.</span> <span class="nav-text">yum错误</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装源"><span class="nav-number">6.</span> <span class="nav-text">安装源</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下载"><span class="nav-number">7.</span> <span class="nav-text">下载</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image"
+      src="/uploads/avatar.gif"
+      alt="Frank">
+  <p class="site-author-name" itemprop="name">Frank</p>
+  <div class="site-description" itemprop="description">优秀是一种习惯</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">150</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/dirsky" title="GitHub &rarr; https://github.com/dirsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="mailto:gzxu@vip.qq.com" title="E-Mail &rarr; mailto:gzxu@vip.qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://weibo.com/cccsky" title="Weibo &rarr; https://weibo.com/cccsky" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://dirsky.github.io/docsify/#/" title="CV &rarr; https://dirsky.github.io/docsify/#/"><i class="fa fa-fw fa-twitter"></i>CV</a>
+      </span>
+    
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2008 – <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Frank</span>
+</div>
+  <div class="addthis_inline_share_toolbox">
+    <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d68acfe0fc14e23" async="async"></script>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+<script src="/js/utils.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+  <script>
+  if (CONFIG.page.isPost) {
+    wpac_init = window.wpac_init || [];
+    wpac_init.push({
+      widget: 'Rating',
+      id: 20638,
+      el: 'wpac-rating',
+      color: 'fc6423'
+    });
+    (function() {
+      if ('WIDGETPACK_LOADED' in window) return;
+      WIDGETPACK_LOADED = true;
+      var mc = document.createElement('script');
+      mc.type = 'text/javascript';
+      mc.async = true;
+      mc.src = '//embed.widgetpack.com/widget.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(mc, s.nextSibling);
+    })();
+  }
+  </script>
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'zwli8bHgrjbtCiAH23o81imX-gzGzoHsz',
+    appKey: 'v3rufApMsIhhwFOR45jn5abL',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
