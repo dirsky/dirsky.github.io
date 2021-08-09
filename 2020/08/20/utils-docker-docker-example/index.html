@@ -63,7 +63,7 @@
 <meta property="og:site_name" content="徐先生的技术栈">
 <meta property="og:description" content="1. 数据库部分1.1 docker pull mysql:5.712docker run -d -p 3306:3306  -v /data/docker/mysql/datadir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Gz,.9918xu --name mysql mysql:5.7# 不需要提前创建/data/docker/mysql目录  12345">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-08-09T02:00:27.264Z">
+<meta property="og:updated_time" content="2021-08-09T03:56:26.865Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Docker-Example">
 <meta name="twitter:description" content="1. 数据库部分1.1 docker pull mysql:5.712docker run -d -p 3306:3306  -v /data/docker/mysql/datadir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Gz,.9918xu --name mysql mysql:5.7# 不需要提前创建/data/docker/mysql目录  12345">
@@ -312,7 +312,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+                <time title="修改时间：2021-08-09 11:56:26" itemprop="dateModified" datetime="2021-08-09T11:56:26+08:00">2021-08-09</time>
               </span>
             
           
@@ -384,13 +384,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1-数据库部分"><a href="#1-数据库部分" class="headerlink" title="1. 数据库部分"></a>1. 数据库部分</h2><h3 id="1-1-docker-pull-mysql-5-7"><a href="#1-1-docker-pull-mysql-5-7" class="headerlink" title="1.1 docker pull mysql:5.7"></a>1.1 docker pull mysql:5.7</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3306  -v /data/docker/mysql/datadir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Gz,.9918xu --name mysql mysql:5.7</span><br><span class="line"><span class="meta">#</span><span class="bash"> 不需要提前创建/data/docker/mysql目录</span></span><br></pre></td></tr></table></figure>
+        <h2 id="1-数据库部分"><a href="#1-数据库部分" class="headerlink" title="1. 数据库部分"></a>1. 数据库部分</h2><h3 id="1-1-docker-pull-mysql-5-7"><a href="#1-1-docker-pull-mysql-5-7" class="headerlink" title="1.1 docker pull mysql:5.7"></a>1.1 docker pull mysql:5.7</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3306  -v /data/docker/mysql/datadir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Gz,.9918xu --name mysql mysql:5.7</span><br><span class="line"><span class="meta">#</span> 不需要提前创建/data/docker/mysql目录</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置支持utf-8解决方案（已测试有效）</span></span><br><span class="line">sudo docker exec -it mysql bash</span><br><span class="line">echo "character-set-server=utf8" &gt;&gt; /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">exit</span><br><span class="line">sudo docker restart mysql</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 设置支持utf-8解决方案（已测试有效）</span><br><span class="line">sudo docker exec -it mysql bash</span><br><span class="line">echo "character-set-server=utf8" &gt;&gt; /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">exit</span><br><span class="line">sudo docker restart mysql</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mysql bash</span><br><span class="line">mysql -uroot -p</span><br><span class="line"><span class="meta">#</span><span class="bash"> 给root设置密码</span></span><br><span class="line">ALTER  USER  'root'  IDENTIFIED  WITH  mysql_native_password  BY  '123456';</span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加远程登录用户</span></span><br><span class="line">CREATE USER 'admin'@'%' IDENTIFIED WITH mysql_native_password BY '123456';</span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%';</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mysql bash</span><br><span class="line">mysql -uroot -p</span><br><span class="line"><span class="meta">#</span> 给root设置密码</span><br><span class="line">ALTER  USER  'root'  IDENTIFIED  WITH  mysql_native_password  BY  '123456';</span><br><span class="line"><span class="meta">#</span> 添加远程登录用户</span><br><span class="line">CREATE USER 'admin'@'%' IDENTIFIED WITH mysql_native_password BY '123456';</span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%';</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a --no-trunc # ps列出container -a列出全部, --no-trunc不截断</span><br><span class="line">docker stop mysql</span><br><span class="line">docker restart mysql</span><br><span class="line">docker rm mysql</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
 
 <h3 id="1-2-docker-pull-redis"><a href="#1-2-docker-pull-redis" class="headerlink" title="1.2 docker pull redis"></a>1.2 docker pull redis</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 6379:6379 --name redis redis --requirepass &quot;Gzxu2012&quot;</span><br><span class="line"># 上面的第二个redis是repository或者image id</span><br><span class="line"># 查看redis版本</span><br><span class="line">docker exec -it redis redis-server -v</span><br></pre></td></tr></table></figure>
 
@@ -495,8 +497,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2020/08/20/utils-docker-docker-base/" rel="prev" title="Docker-Base">
-                  Docker-Base <i class="fa fa-chevron-right"></i>
+                <a href="/2020/09/17/utils-docker-docker-base/" rel="prev" title="Docker常用命令">
+                  Docker常用命令 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -567,7 +569,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">150</span>
+          <span class="site-state-item-count">149</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

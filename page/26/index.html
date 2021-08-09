@@ -269,170 +269,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2014/07/28/lang-python-Python-100-Days-03-分支结构/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2014/07/28/lang-python-Python-100-Days-03-分支结构/" class="post-title-link" itemprop="url">03.分支结构</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2014-07-28 00:08:03" itemprop="dateCreated datePublished" datetime="2014-07-28T00:08:03+08:00">2014-07-28</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/lang/" itemprop="url" rel="index"><span itemprop="name">lang</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2014/07/28/lang-python-Python-100-Days-03-分支结构/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2014/07/28/lang-python-Python-100-Days-03-分支结构/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>4.1k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>4 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="分支结构"><a href="#分支结构" class="headerlink" title="分支结构"></a>分支结构</h2><h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>迄今为止，我们写的Python代码都是一条一条语句顺序执行，这种代码结构通常称之为顺序结构。然而仅有顺序结构并不能解决所有的问题，比如我们设计一个游戏，游戏第一关的通关条件是玩家获得1000分，那么在完成本局游戏后，我们要根据玩家得到分数来决定究竟是进入第二关，还是告诉玩家“Game Over”，这里就会产生两个分支，而且这两个分支只有一个会被执行。类似的场景还有很多，我们将这种结构称之为“分支结构”或“选择结构”。给大家一分钟的时间，你应该可以想到至少5个以上这样的例子，赶紧试一试。</p>
-<h3 id="if语句的使用"><a href="#if语句的使用" class="headerlink" title="if语句的使用"></a>if语句的使用</h3><p>在Python中，要构造分支结构可以使用<code>if</code>、<code>elif</code>和<code>else</code>关键字。所谓<strong>关键字</strong>就是有特殊含义的单词，像<code>if</code>和<code>else</code>就是专门用于构造分支结构的关键字，很显然你不能够使用它作为变量名（事实上，用作其他的标识符也是不可以）。下面的例子中演示了如何构造一个分支结构。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">用户身份验证</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 0.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">username = input(<span class="string">'请输入用户名: '</span>)</span><br><span class="line">password = input(<span class="string">'请输入口令: '</span>)</span><br><span class="line"><span class="comment"># 如果希望输入口令时 终端中没有回显 可以使用getpass模块的getpass函数</span></span><br><span class="line"><span class="comment"># import getpass</span></span><br><span class="line"><span class="comment"># password = getpass.getpass('请输入口令: ')</span></span><br><span class="line"><span class="keyword">if</span> username == <span class="string">'admin'</span> <span class="keyword">and</span> password == <span class="string">'123456'</span>:</span><br><span class="line">    print(<span class="string">'身份验证成功!'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'身份验证失败!'</span>)</span><br></pre></td></tr></table></figure>
-
-<p>唯一需要说明的是和C/C++、Java等语言不同，Python中没有用花括号来构造代码块而是使用了缩进的方式来设置代码的层次结构，如果<code>if</code>条件成立的情况下需要执行多条语句，只要保持多条语句具有相同的缩进就可以了，换句话说连续的代码如果又保持了相同的缩进那么它们属于同一个代码块，相当于是一个执行的整体。</p>
-<p>当然如果要构造出更多的分支，可以使用<code>if…elif…else…</code>结构，例如下面的分段函数求值。</p>
-<p><img src="/.io//formula_1.png" alt="$$f(x)=\begin{cases} 3x-5&amp;\text{(x&gt;1)}\\x+2&amp;\text{(-1}\leq\text{x}\leq\text{1)}\\5x+3&amp;\text {(x&lt;-1)}\end{cases}$$"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">分段函数求值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        3x - 5  (x &gt; 1)</span></span><br><span class="line"><span class="string">f(x) =  x + 2   (-1 &lt;= x &lt;= 1)</span></span><br><span class="line"><span class="string">        5x + 3  (x &lt; -1)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 0.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">x = float(input(<span class="string">'x = '</span>))</span><br><span class="line"><span class="keyword">if</span> x &gt; <span class="number">1</span>:</span><br><span class="line">    y = <span class="number">3</span> * x - <span class="number">5</span></span><br><span class="line"><span class="keyword">elif</span> x &gt;= <span class="number">-1</span>:</span><br><span class="line">    y = x + <span class="number">2</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    y = <span class="number">5</span> * x + <span class="number">3</span></span><br><span class="line">print(<span class="string">'f(%.2f) = %.2f'</span> % (x, y))</span><br></pre></td></tr></table></figure>
-
-<p>当然根据实际开发的需要，分支结构是可以嵌套的，例如判断是否通关以后还要根据你获得的宝物或者道具的数量对你的表现给出等级（比如点亮两颗或三颗星星），那么我们就需要在<code>if</code>的内部构造出一个新的分支结构，同理<code>elif</code>和<code>else</code>中也可以再构造新的分支，我们称之为嵌套的分支结构，也就是说上面的代码也可以写成下面的样子。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">分段函数求值</span></span><br><span class="line"><span class="string">		3x - 5	(x &gt; 1)</span></span><br><span class="line"><span class="string">f(x) =	x + 2	(-1 &lt;= x &lt;= 1)</span></span><br><span class="line"><span class="string">		5x + 3	(x &lt; -1)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 0.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">x = float(input(<span class="string">'x = '</span>))</span><br><span class="line"><span class="keyword">if</span> x &gt; <span class="number">1</span>:</span><br><span class="line">    y = <span class="number">3</span> * x - <span class="number">5</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">if</span> x &gt;= <span class="number">-1</span>:</span><br><span class="line">        y = x + <span class="number">2</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        y = <span class="number">5</span> * x + <span class="number">3</span></span><br><span class="line">print(<span class="string">'f(%.2f) = %.2f'</span> % (x, y))</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>说明：</strong> 大家可以自己感受一下这两种写法到底是哪一种更好。在之前我们提到的Python之禅中有这么一句话“Flat is better than nested.”，之所以提倡代码“扁平化”是因为嵌套结构的嵌套层次多了之后会严重的影响代码的可读性，所以能使用扁平化的结构时就不要使用嵌套。</p>
-</blockquote>
-<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><h4 id="练习1：英制单位与公制单位互换"><a href="#练习1：英制单位与公制单位互换" class="headerlink" title="练习1：英制单位与公制单位互换"></a>练习1：英制单位与公制单位互换</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">英制单位英寸和公制单位厘米互换</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 0.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">value = float(input(<span class="string">'请输入长度: '</span>))</span><br><span class="line">unit = input(<span class="string">'请输入单位: '</span>)</span><br><span class="line"><span class="keyword">if</span> unit == <span class="string">'in'</span> <span class="keyword">or</span> unit == <span class="string">'英寸'</span>:</span><br><span class="line">    print(<span class="string">'%f英寸 = %f厘米'</span> % (value, value * <span class="number">2.54</span>))</span><br><span class="line"><span class="keyword">elif</span> unit == <span class="string">'cm'</span> <span class="keyword">or</span> unit == <span class="string">'厘米'</span>:</span><br><span class="line">    print(<span class="string">'%f厘米 = %f英寸'</span> % (value, value / <span class="number">2.54</span>))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'请输入有效的单位'</span>)</span><br></pre></td></tr></table></figure>
-
-<h4 id="练习2：掷骰子决定做什么"><a href="#练习2：掷骰子决定做什么" class="headerlink" title="练习2：掷骰子决定做什么"></a>练习2：掷骰子决定做什么</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">掷骰子决定做什么事情</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 0.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> random <span class="keyword">import</span> randint</span><br><span class="line"></span><br><span class="line">face = randint(<span class="number">1</span>, <span class="number">6</span>)</span><br><span class="line"><span class="keyword">if</span> face == <span class="number">1</span>:</span><br><span class="line">    result = <span class="string">'唱首歌'</span></span><br><span class="line"><span class="keyword">elif</span> face == <span class="number">2</span>:</span><br><span class="line">    result = <span class="string">'跳个舞'</span></span><br><span class="line"><span class="keyword">elif</span> face == <span class="number">3</span>:</span><br><span class="line">    result = <span class="string">'学狗叫'</span></span><br><span class="line"><span class="keyword">elif</span> face == <span class="number">4</span>:</span><br><span class="line">    result = <span class="string">'做俯卧撑'</span></span><br><span class="line"><span class="keyword">elif</span> face == <span class="number">5</span>:</span><br><span class="line">    result = <span class="string">'念绕口令'</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    result = <span class="string">'讲冷笑话'</span></span><br><span class="line">print(result)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>说明：</strong> 上面的代码中使用了random模块的randint函数生成指定范围的随机数来模拟掷骰子。</p>
-</blockquote>
-<h4 id="练习3：百分制成绩转等级制"><a href="#练习3：百分制成绩转等级制" class="headerlink" title="练习3：百分制成绩转等级制"></a>练习3：百分制成绩转等级制</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">百分制成绩转等级制成绩</span></span><br><span class="line"><span class="string">90分以上    --&gt; A</span></span><br><span class="line"><span class="string">80分~89分    --&gt; B</span></span><br><span class="line"><span class="string">70分~79分	   --&gt; C</span></span><br><span class="line"><span class="string">60分~69分    --&gt; D</span></span><br><span class="line"><span class="string">60分以下    --&gt; E</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 0.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">score = float(input(<span class="string">'请输入成绩: '</span>))</span><br><span class="line"><span class="keyword">if</span> score &gt;= <span class="number">90</span>:</span><br><span class="line">    grade = <span class="string">'A'</span></span><br><span class="line"><span class="keyword">elif</span> score &gt;= <span class="number">80</span>:</span><br><span class="line">    grade = <span class="string">'B'</span></span><br><span class="line"><span class="keyword">elif</span> score &gt;= <span class="number">70</span>:</span><br><span class="line">    grade = <span class="string">'C'</span></span><br><span class="line"><span class="keyword">elif</span> score &gt;= <span class="number">60</span>:</span><br><span class="line">    grade = <span class="string">'D'</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    grade = <span class="string">'E'</span></span><br><span class="line">print(<span class="string">'对应的等级是:'</span>, grade)</span><br></pre></td></tr></table></figure>
-
-<h4 id="练习4：输入三条边长如果能构成三角形就计算周长和面积"><a href="#练习4：输入三条边长如果能构成三角形就计算周长和面积" class="headerlink" title="练习4：输入三条边长如果能构成三角形就计算周长和面积"></a>练习4：输入三条边长如果能构成三角形就计算周长和面积</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">判断输入的边长能否构成三角形</span></span><br><span class="line"><span class="string">如果能则计算出三角形的周长和面积</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 0.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">a = float(input(<span class="string">'a = '</span>))</span><br><span class="line">b = float(input(<span class="string">'b = '</span>))</span><br><span class="line">c = float(input(<span class="string">'c = '</span>))</span><br><span class="line"><span class="keyword">if</span> a + b &gt; c <span class="keyword">and</span> a + c &gt; b <span class="keyword">and</span> b + c &gt; a:</span><br><span class="line">    print(<span class="string">'周长: %f'</span> % (a + b + c))</span><br><span class="line">    p = (a + b + c) / <span class="number">2</span></span><br><span class="line">    area = math.sqrt(p * (p - a) * (p - b) * (p - c))</span><br><span class="line">    print(<span class="string">'面积: %f'</span> % (area))</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'不能构成三角形'</span>)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>说明：</strong> 上面的代码中使用了<code>math</code>模块的<code>sqrt</code>函数来计算平方根。用边长计算三角形面积的公式叫做<a href="https://zh.wikipedia.org/zh-hans/海伦公式" target="_blank" rel="noopener">海伦公式</a>。</p>
-</blockquote>
-<h4 id="练习5：个人所得税计算器。"><a href="#练习5：个人所得税计算器。" class="headerlink" title="练习5：个人所得税计算器。"></a>练习5：个人所得税计算器。</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">输入月收入和五险一金计算个人所得税</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Version: 0.1</span></span><br><span class="line"><span class="string">Author: 骆昊</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"></span><br><span class="line">salary = float(input(<span class="string">'本月收入: '</span>))</span><br><span class="line">insurance = float(input(<span class="string">'五险一金: '</span>))</span><br><span class="line">diff = salary - insurance - <span class="number">3500</span></span><br><span class="line"><span class="keyword">if</span> diff &lt;= <span class="number">0</span>:</span><br><span class="line">    rate = <span class="number">0</span></span><br><span class="line">    deduction = <span class="number">0</span></span><br><span class="line"><span class="keyword">elif</span> diff &lt; <span class="number">1500</span>:</span><br><span class="line">    rate = <span class="number">0.03</span></span><br><span class="line">    deduction = <span class="number">0</span></span><br><span class="line"><span class="keyword">elif</span> diff &lt; <span class="number">4500</span>:</span><br><span class="line">    rate = <span class="number">0.1</span></span><br><span class="line">    deduction = <span class="number">105</span></span><br><span class="line"><span class="keyword">elif</span> diff &lt; <span class="number">9000</span>:</span><br><span class="line">    rate = <span class="number">0.2</span></span><br><span class="line">    deduction = <span class="number">555</span></span><br><span class="line"><span class="keyword">elif</span> diff &lt; <span class="number">35000</span>:</span><br><span class="line">    rate = <span class="number">0.25</span></span><br><span class="line">    deduction = <span class="number">1005</span></span><br><span class="line"><span class="keyword">elif</span> diff &lt; <span class="number">55000</span>:</span><br><span class="line">    rate = <span class="number">0.3</span></span><br><span class="line">    deduction = <span class="number">2755</span></span><br><span class="line"><span class="keyword">elif</span> diff &lt; <span class="number">80000</span>:</span><br><span class="line">    rate = <span class="number">0.35</span></span><br><span class="line">    deduction = <span class="number">5505</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    rate = <span class="number">0.45</span></span><br><span class="line">    deduction = <span class="number">13505</span></span><br><span class="line">tax = abs(diff * rate - deduction)</span><br><span class="line">print(<span class="string">'个人所得税: ￥%.2f元'</span> % tax)</span><br><span class="line">print(<span class="string">'实际到手收入: ￥%.2f元'</span> % (diff + <span class="number">3500</span> - tax))</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p><strong>说明：</strong> 上面的代码中使用了Python内置的<code>abs()</code>函数取绝对值来处理<code>-0</code>的问题。</p>
-</blockquote>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2014/07/28/lang-python-Python-100-Days-02-语言元素/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1269,6 +1105,215 @@ is not</code></pre>
   </article>
 
     
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2012/11/28/lang-Javascript-一些正则表达式随记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2012/11/28/lang-Javascript-一些正则表达式随记/" class="post-title-link" itemprop="url">JavaScript正则</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2012-11-28 11:44:00" itemprop="dateCreated datePublished" datetime="2012-11-28T11:44:00+08:00">2012-11-28</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/lang/" itemprop="url" rel="index"><span itemprop="name">lang</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2012/11/28/lang-Javascript-一些正则表达式随记/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2012/11/28/lang-Javascript-一些正则表达式随记/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>7.3k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>7 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一些匹配方法"><a href="#一些匹配方法" class="headerlink" title="一些匹配方法"></a>一些匹配方法</h2><h3 id="去除首尾的"><a href="#去除首尾的" class="headerlink" title="去除首尾的"></a>去除首尾的</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//去除首尾的‘/’</span></span><br><span class="line">input = input.replace(<span class="regexp">/^\/*|\/*$/g</span>,<span class="string">''</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="javascript-、javascript-void-0"><a href="#javascript-、javascript-void-0" class="headerlink" title="javascript:; 、javascript:void(0)"></a>javascript:; 、javascript:void(0)</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'javascript:;'</span>.match(<span class="regexp">/^(javascript\s*\:|#)/</span>);</span><br><span class="line"><span class="comment">//["javascript:", "javascript:", index: 0, input: "javascript:;"]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">"access_token=dcb90862-29fb-4b03-93ff-5f0a8f546250; refresh_token=702f4815-a0ff-456c-82ce-24e4d7d619e6; account_uid=1361177947320160506170322436"</span>;</span><br><span class="line">str.match(<span class="regexp">/account_uid=([^\=]+(\;)|(.*))/ig</span>);</span><br><span class="line"><span class="comment">//=&gt; ["account_uid=1361177947320160506170322436"]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="匹配一些字符"><a href="#匹配一些字符" class="headerlink" title="匹配一些字符"></a>匹配一些字符</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'asdf html-webpack-plugin for "index/index.html" asdfasdf'</span>;</span><br><span class="line">str.match(<span class="regexp">/html-webpack-plugin for \"(.*)\"/ig</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">RegExp</span>.$<span class="number">1</span>) <span class="comment">//=&gt;index/index.html</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="关键字符替换"><a href="#关键字符替换" class="headerlink" title="关键字符替换"></a>关键字符替换</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'css/[hash:8].index-index.css'</span>.replace(<span class="regexp">/\[(?:(\w+):)?(contenthash|hash)(?::([a-z]+\d*))?(?::(\d+))?\]/ig</span>,<span class="string">'(.*)'</span>);</span><br><span class="line"><span class="comment">//=&gt; css/(.*).index-index.css</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="替换参数中的值"><a href="#替换参数中的值" class="headerlink" title="替换参数中的值"></a>替换参数中的值</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str  = <span class="string">'&lt;!DOCTYPE html&gt;&lt;html manifest="../../cache.manifest" lang="en"&gt;&lt;head&gt;&lt;meta charset="UTF-8"&gt;'</span>;</span><br><span class="line">str.replace(<span class="regexp">/&lt;html[^&gt;]*manifest="([^"]*)"[^&gt;]*&gt;/</span>,<span class="function"><span class="keyword">function</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> word.replace(<span class="regexp">/manifest="([^"]*)"/</span>,<span class="string">'manifest="'</span>+url+<span class="string">'"'</span>);</span><br><span class="line">&#125;).replace(<span class="regexp">/&lt;html(\s?[^\&gt;]*\&gt;)/</span>,<span class="function"><span class="keyword">function</span>(<span class="params">word</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(word.indexOf(<span class="string">'manifest'</span>)) <span class="keyword">return</span> word;</span><br><span class="line">    <span class="keyword">return</span> word.replace(<span class="string">'&lt;html'</span>,<span class="string">'&lt;html manifest="'</span>+url+<span class="string">'"'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//原：&lt;!DOCTYPE html&gt;&lt;html manifest="../../cache.manifest" lang="en"&gt;&lt;head&gt;&lt;meta charset="UTF-8"&gt;</span></span><br><span class="line"><span class="comment">//替换成=&gt; &lt;!DOCTYPE html&gt;&lt;html manifest="cache.manifest" lang="en"&gt;&lt;head&gt;&lt;meta charset="UTF-8"&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="匹配括号内容"><a href="#匹配括号内容" class="headerlink" title="匹配括号内容"></a>匹配括号内容</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'max_length(12)'</span>.match(<span class="regexp">/^(.+?)\((.+)\)$/</span>)</span><br><span class="line"><span class="comment">// ["max_length(12)", "max_length", "12", index: 0, input: "max_length(12)"]</span></span><br><span class="line"><span class="string">'hello(world)code(js)javascirpt'</span>.match(<span class="regexp">/\((\w*)+?\)/gmi</span>);</span><br><span class="line"><span class="comment">// =&gt; ["(world)", "(js)"]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="调换"><a href="#调换" class="headerlink" title="调换"></a>调换</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"Doe, John"</span>; </span><br><span class="line">name.replace(<span class="regexp">/(\w+)\s*, \s*(\w+)/</span>, <span class="string">"$2 $1"</span>); </span><br><span class="line"><span class="comment">//=&gt; "John Doe"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="字符串截取"><a href="#字符串截取" class="headerlink" title="字符串截取"></a>字符串截取</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">'asfdf === sdfaf ##'</span></span><br><span class="line">str.match(<span class="regexp">/[^===]+(?=[===])/g</span>) <span class="comment">// 截取 ===之前的内容</span></span><br><span class="line"></span><br><span class="line">str.replace(<span class="regexp">/\n/g</span>,<span class="string">''</span>)  <span class="comment">// 替换字符串中的 \n 换行字符</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="浏览器版本"><a href="#浏览器版本" class="headerlink" title="浏览器版本"></a>浏览器版本</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">navigator.userAgent.match(<span class="regexp">/chrome\/([\d]+)\.([\d]+)\.([\d]+)\.([\d]+)/i</span>);</span><br><span class="line"><span class="comment">//=&gt; ["Chrome/64.0.3282.167", "64", "0", "3282", "167", index: 87, input: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) Ap…L, like Gecko) Chrome/64.0.3282.167 Safari/537.36"]</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><h3 id="小数点后几位验证"><a href="#小数点后几位验证" class="headerlink" title="小数点后几位验证"></a>小数点后几位验证</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 精确到1位小数</span></span><br><span class="line">/^[<span class="number">1</span><span class="number">-9</span>][<span class="number">0</span><span class="number">-9</span>]*$|^[<span class="number">1</span><span class="number">-9</span>][<span class="number">0</span><span class="number">-9</span>]*\.[<span class="number">0</span><span class="number">-9</span>]$|^<span class="number">0</span>\.[<span class="number">0</span><span class="number">-9</span>]$/.test(<span class="number">1.2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 精确到2位小数</span></span><br><span class="line">/^[<span class="number">0</span><span class="number">-9</span>]+(.[<span class="number">0</span><span class="number">-9</span>]&#123;<span class="number">2</span>&#125;)?$/.test(<span class="number">1.221</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="密码强度正则"><a href="#密码强度正则" class="headerlink" title="密码强度正则"></a>密码强度正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 必须是包含大小写字母和数字的组合，不能使用特殊字符，长度在8-10之间。</span></span><br><span class="line">/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).&#123;<span class="number">8</span>,<span class="number">10</span>&#125;$/.test(<span class="string">"weeeeeeeW2"</span>);</span><br><span class="line"><span class="comment">//密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符</span></span><br><span class="line">/^.*(?=.&#123;6,&#125;)(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&amp;*? ]).*$/.test("diaoD123#");</span><br><span class="line"><span class="comment">//输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="校验中文"><a href="#校验中文" class="headerlink" title="校验中文"></a>校验中文</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/^[\u4e00-\u9fa5]&#123;<span class="number">0</span>,&#125;$/.test(<span class="string">"但是d"</span>); <span class="comment">//false</span></span><br><span class="line">/^[\u4e00-\u9fa5]&#123;<span class="number">0</span>,&#125;$/.test(<span class="string">"但是"</span>); <span class="comment">//true</span></span><br><span class="line">/^[\u4e00-\u9fa5]&#123;<span class="number">0</span>,&#125;$/.test(<span class="string">"但是"</span>); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="包含中文正则"><a href="#包含中文正则" class="headerlink" title="包含中文正则"></a>包含中文正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/[\u4E00-\u9FA5]/.test(<span class="string">"但是d"</span>) <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="由数字、26个英文字母或下划线组成的字符串"><a href="#由数字、26个英文字母或下划线组成的字符串" class="headerlink" title="由数字、26个英文字母或下划线组成的字符串"></a>由数字、26个英文字母或下划线组成的字符串</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^\w+$/.test(<span class="string">"ds2_@#"</span>); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="身份证号正则"><a href="#身份证号正则" class="headerlink" title="身份证号正则"></a>身份证号正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//身份证号（18位）正则</span></span><br><span class="line">/^[<span class="number">1</span><span class="number">-9</span>]\d&#123;<span class="number">5</span>&#125;(<span class="number">18</span>|<span class="number">19</span>|([<span class="number">23</span>]\d))\d&#123;<span class="number">2</span>&#125;((<span class="number">0</span>[<span class="number">1</span><span class="number">-9</span>])|(<span class="number">10</span>|<span class="number">11</span>|<span class="number">12</span>))(([<span class="number">0</span><span class="number">-2</span>][<span class="number">1</span><span class="number">-9</span>])|<span class="number">10</span>|<span class="number">20</span>|<span class="number">30</span>|<span class="number">31</span>)\d&#123;<span class="number">3</span>&#125;[<span class="number">0</span><span class="number">-9</span>Xx]$/.test(<span class="string">"42112319870115371X"</span>);</span><br><span class="line"><span class="comment">//输出 false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="校验日期"><a href="#校验日期" class="headerlink" title="校验日期"></a>校验日期</h3><p>“yyyy-mm-dd“ 格式的日期校验，已考虑平闰年。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//日期正则，简单判定,未做月份及日期的判定</span></span><br><span class="line"><span class="keyword">var</span> dP1 = <span class="regexp">/^\d&#123;4&#125;(\-)\d&#123;1,2&#125;\1\d&#123;1,2&#125;$/</span>;</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line"><span class="built_in">console</span>.log(dP1.test(<span class="string">"2017-05-11"</span>));</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line"><span class="built_in">console</span>.log(dP1.test(<span class="string">"2017-15-11"</span>));</span><br><span class="line"><span class="comment">//日期正则，复杂判定</span></span><br><span class="line"><span class="keyword">var</span> dP2 = <span class="regexp">/^(?:(?!0000)[0-9]&#123;4&#125;-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]&#123;2&#125;(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/</span>;</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line"><span class="built_in">console</span>.log(dP2.test(<span class="string">"2017-02-11"</span>));</span><br><span class="line"><span class="comment">//输出 false</span></span><br><span class="line"><span class="built_in">console</span>.log(dP2.test(<span class="string">"2017-15-11"</span>));</span><br><span class="line"><span class="comment">//输出 false</span></span><br><span class="line"><span class="built_in">console</span>.log(dP2.test(<span class="string">"2017-02-29"</span>));</span><br><span class="line"><span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="校验文件后缀"><a href="#校验文件后缀" class="headerlink" title="校验文件后缀"></a>校验文件后缀</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">var</span> strRegex = <span class="string">"(.jpg|.gif|.txt)"</span>;</span><br><span class="line">  <span class="keyword">var</span> re=<span class="keyword">new</span> <span class="built_in">RegExp</span>(strRegex);</span><br><span class="line">  <span class="keyword">if</span> (re.test(str))&#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">/(.jpg|.gif)+(\?|\#|$)/.test('a/b/c.jpgsss'); //=&gt; false</span><br><span class="line">/(.jpg|.gif)+(\?|\#|$)/.test('a/b/c.jpg?'); //=&gt; true</span><br></pre></td></tr></table></figure>
+
+<h3 id="用户名正则"><a href="#用户名正则" class="headerlink" title="用户名正则"></a>用户名正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用户名正则，4到16位（字母，数字，下划线，减号）</span></span><br><span class="line">/^[a-zA-Z0<span class="number">-9</span>_-]&#123;<span class="number">4</span>,<span class="number">16</span>&#125;$/.test(<span class="string">"diaodiao"</span>);</span><br><span class="line"><span class="comment">//输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="整数正则"><a href="#整数正则" class="headerlink" title="整数正则"></a>整数正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/^\d+$/.test(<span class="string">"42"</span>);    <span class="comment">//正整数正则  -&gt; 输出 true</span></span><br><span class="line">/^-\d+$/.test(<span class="string">"-42"</span>);  <span class="comment">//负整数正则  -&gt; 输出 true</span></span><br><span class="line">/^-?\d+$/.test(<span class="string">"-42"</span>); <span class="comment">//整数正则  -&gt; 输出 true</span></span><br><span class="line"></span><br><span class="line">/^[<span class="number">0</span><span class="number">-9</span>]+$/.test(<span class="number">25.5455</span>) <span class="comment">//正整数正则  -&gt; 输出 false</span></span><br><span class="line"><span class="comment">// 浮点数</span></span><br><span class="line">/^(?:[-+])?(?:[<span class="number">0</span><span class="number">-9</span>]+)?(?:\.[<span class="number">0</span><span class="number">-9</span>]*)?(?:[eE][\+\-]?(?:[<span class="number">0</span><span class="number">-9</span>]+))?$/.test(<span class="number">0.2</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="数字正则"><a href="#数字正则" class="headerlink" title="数字正则"></a>数字正则</h3><p>可以是整数也可以是浮点数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/^\d*\.?\d+$/.test(<span class="string">"42.2"</span>);     <span class="comment">//正数正则  -&gt; 输出 true</span></span><br><span class="line">/^-\d*\.?\d+$/.test(<span class="string">"-42.2"</span>);   <span class="comment">//负数正则 -&gt; 输出 true</span></span><br><span class="line">/^-?\d*\.?\d+$/.test(<span class="string">"-42.2"</span>);  <span class="comment">//数字正则 -&gt; 输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Email正则"><a href="#Email正则" class="headerlink" title="Email正则"></a>Email正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Email正则</span></span><br><span class="line">/^([A-Za-z0<span class="number">-9</span>_\-\.])+\@([A-Za-z0<span class="number">-9</span>_\-\.])+\.([A-Za-z]&#123;<span class="number">2</span>,<span class="number">4</span>&#125;)$/.test(<span class="string">"wowohoo@qq.com"</span>);</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 1.邮箱以a-z、A-Z、0-9开头，最小长度为1.</span></span><br><span class="line"><span class="comment">// 2.如果左侧部分包含-、_、.则这些特殊符号的前面必须包一位数字或字母。</span></span><br><span class="line"><span class="comment">// 3.@符号是必填项</span></span><br><span class="line"><span class="comment">// 4.右则部分可分为两部分，第一部分为邮件提供商域名地址，第二部分为域名后缀，现已知的最短为2位。</span></span><br><span class="line"><span class="comment">//   最长的为6为。</span></span><br><span class="line"><span class="comment">// 5.邮件提供商域可以包含特殊字符-、_、.</span></span><br><span class="line">/^[a-z0<span class="number">-9</span>]+([._\\-]*[a-z0<span class="number">-9</span>])*@([a-z0<span class="number">-9</span>]+[-a-z0<span class="number">-9</span>]*[a-z0<span class="number">-9</span>]+.)&#123;<span class="number">1</span>,<span class="number">63</span>&#125;[a-z0<span class="number">-9</span>]+$/.test(<span class="string">"wowohoo@qq.com"</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="传真号码"><a href="#传真号码" class="headerlink" title="传真号码"></a>传真号码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 国家代码(2到3位)-区号(2到3位)-电话号码(7到8位)-分机号(3位)</span></span><br><span class="line">/^(([<span class="number">0</span>\+]\d&#123;<span class="number">2</span>,<span class="number">3</span>&#125;-)?(<span class="number">0</span>\d&#123;<span class="number">2</span>,<span class="number">3</span>&#125;)-)(\d&#123;<span class="number">7</span>,<span class="number">8</span>&#125;)(-(\d&#123;<span class="number">3</span>,&#125;))?$/.test(<span class="string">'021-5055455'</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="手机号码正则"><a href="#手机号码正则" class="headerlink" title="手机号码正则"></a>手机号码正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//手机号正则</span></span><br><span class="line">/^<span class="number">1</span>[<span class="number">34578</span>]\d&#123;<span class="number">9</span>&#125;$/.test(<span class="string">"13611778887"</span>);</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//* 13段：130、131、132、133、134、135、136、137、138、139</span></span><br><span class="line"><span class="comment">//* 14段：145、147</span></span><br><span class="line"><span class="comment">//* 15段：150、151、152、153、155、156、157、158、159</span></span><br><span class="line"><span class="comment">//* 17段：170、176、177、178</span></span><br><span class="line"><span class="comment">//* 18段：180、181、182、183、184、185、186、187、188、189</span></span><br><span class="line"><span class="comment">//* 国际码 如：中国(+86)</span></span><br><span class="line">/^((\+?[<span class="number">0</span><span class="number">-9</span>]&#123;<span class="number">1</span>,<span class="number">4</span>&#125;)|(\(\+<span class="number">86</span>\)))?(<span class="number">13</span>[<span class="number">0</span><span class="number">-9</span>]|<span class="number">14</span>[<span class="number">57</span>]|<span class="number">15</span>[<span class="number">012356789</span>]|<span class="number">17</span>[<span class="number">03678</span>]|<span class="number">18</span>[<span class="number">0</span><span class="number">-9</span>])\d&#123;<span class="number">8</span>&#125;$/.test(<span class="string">"13611778887"</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="URL正则"><a href="#URL正则" class="headerlink" title="URL正则"></a>URL正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//URL正则</span></span><br><span class="line">/^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]&#123;<span class="number">2</span>,<span class="number">6</span>&#125;)([\/\w \.-]*)*\/?$/.test(<span class="string">"http://wangchujiang.com"</span>);</span><br><span class="line"><span class="comment">//输出 true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取url中域名、协议正则 'http://xxx.xx/xxx','https://xxx.xx/xxx','//xxx.xx/xxx'</span></span><br><span class="line">/^(http(?:|s)\:)*\/\/([^\/]+)/.test(<span class="string">"http://www.baidu.com"</span>);</span><br><span class="line"></span><br><span class="line">/^((http|https):\/\/(\w+:&#123;<span class="number">0</span>,<span class="number">1</span>&#125;\w*@)?(\S+)|)(:[<span class="number">0</span><span class="number">-9</span>]+)?(\/|\/([\w#!:.?+=&amp;%@!\-\/]))?$/.test(<span class="string">'https://www.baidu.com/s?wd=@#%$^&amp;%$#'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 必须有协议 </span></span><br><span class="line">/^[a-zA-Z]+:\/\<span class="comment">//.test("http://www.baidu.com");</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="域名正则表达式"><a href="#域名正则表达式" class="headerlink" title="域名正则表达式"></a>域名正则表达式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/^([a-zA-Z0<span class="number">-9</span>]([a-zA-Z0<span class="number">-9</span>\-]&#123;<span class="number">0</span>,<span class="number">61</span>&#125;[a-zA-Z0<span class="number">-9</span>])?\.)+[a-zA-Z]&#123;<span class="number">2</span>,<span class="number">6</span>&#125;$/.test(<span class="string">'blog.csdn.net'</span>);</span><br><span class="line"><span class="comment">// 输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Mac地址匹配"><a href="#Mac地址匹配" class="headerlink" title="Mac地址匹配"></a>Mac地址匹配</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/^([<span class="number">0</span><span class="number">-9</span>a-fA-F][<span class="number">0</span><span class="number">-9</span>a-fA-F]:)&#123;<span class="number">5</span>&#125;([<span class="number">0</span><span class="number">-9</span>a-fA-F][<span class="number">0</span><span class="number">-9</span>a-fA-F])$/.test(<span class="string">'dc:a9:04:77:37:20'</span>);</span><br><span class="line"><span class="comment">// 输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="浮点数正则表达式"><a href="#浮点数正则表达式" class="headerlink" title="浮点数正则表达式"></a>浮点数正则表达式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/[-+]?(?:\b[<span class="number">0</span><span class="number">-9</span>]+(?:\.[<span class="number">0</span><span class="number">-9</span>]*)?|\.[<span class="number">0</span><span class="number">-9</span>]+\b)(?:[eE][-+]?[<span class="number">0</span><span class="number">-9</span>]+\b)?<span class="regexp">/.test(+334.4443434343e3);</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="IPv4地址正则"><a href="#IPv4地址正则" class="headerlink" title="IPv4地址正则"></a>IPv4地址正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ipv4地址正则</span></span><br><span class="line">/^(?:(?:<span class="number">25</span>[<span class="number">0</span><span class="number">-5</span>]|<span class="number">2</span>[<span class="number">0</span><span class="number">-4</span>][<span class="number">0</span><span class="number">-9</span>]|[<span class="number">01</span>]?[<span class="number">0</span><span class="number">-9</span>][<span class="number">0</span><span class="number">-9</span>]?)\.)&#123;<span class="number">3</span>&#125;(?:<span class="number">25</span>[<span class="number">0</span><span class="number">-5</span>]|<span class="number">2</span>[<span class="number">0</span><span class="number">-4</span>][<span class="number">0</span><span class="number">-9</span>]|[<span class="number">01</span>]?[<span class="number">0</span><span class="number">-9</span>][<span class="number">0</span><span class="number">-9</span>]?)$/.test(<span class="string">"192.168.130.199"</span>);</span><br><span class="line"><span class="comment">//输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="日期格式化yyyy-MM-dd正则"><a href="#日期格式化yyyy-MM-dd正则" class="headerlink" title="日期格式化yyyy-MM-dd正则"></a>日期格式化yyyy-MM-dd正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/(<span class="number">19</span>|<span class="number">20</span>)\d\d([- <span class="regexp">/.])(0[1-9]|1[012])\2(0[1-9]|[12][0-9]|3[01])/</span>.test(<span class="string">'2019-09-12'</span>)</span><br><span class="line"><span class="comment">//输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="十六进制颜色正则"><a href="#十六进制颜色正则" class="headerlink" title="十六进制颜色正则"></a>十六进制颜色正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//RGB Hex颜色正则</span></span><br><span class="line">/^#?([a-fA-F0-9]&#123;6&#125;|[a-fA-F0-9]&#123;3&#125;)$/.test("#b8b8b8");</span><br><span class="line"><span class="comment">//输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="QQ号码正则"><a href="#QQ号码正则" class="headerlink" title="QQ号码正则"></a>QQ号码正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//QQ号正则，5至11位</span></span><br><span class="line">/^[<span class="number">1</span><span class="number">-9</span>][<span class="number">0</span><span class="number">-9</span>]&#123;<span class="number">4</span>,<span class="number">10</span>&#125;$/.test(<span class="string">"398188661"</span>);<span class="comment">//输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="微信号正则"><a href="#微信号正则" class="headerlink" title="微信号正则"></a>微信号正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//微信号正则，6至20位，以字母开头，字母，数字，减号，下划线</span></span><br><span class="line">/^[a-zA-Z]([-_a-zA-Z0<span class="number">-9</span>]&#123;<span class="number">5</span>,<span class="number">19</span>&#125;)+$/.test(<span class="string">"jslite"</span>); <span class="comment">//输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="车牌号正则"><a href="#车牌号正则" class="headerlink" title="车牌号正则"></a>车牌号正则</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//车牌号正则</span></span><br><span class="line">/^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]&#123;<span class="number">1</span>&#125;[A-Z]&#123;<span class="number">1</span>&#125;[A-Z0<span class="number">-9</span>]&#123;<span class="number">4</span>&#125;[A-Z0<span class="number">-9</span>挂学警港澳]&#123;<span class="number">1</span>&#125;$/.test(<span class="string">"沪B99116"</span>) <span class="comment">//输出 true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="颜色值校验"><a href="#颜色值校验" class="headerlink" title="颜色值校验"></a>颜色值校验</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// HEX 颜色正则</span></span><br><span class="line">/^#?([0-9a-fA-F]&#123;3&#125;|[0-9a-fA-F]&#123;6&#125;)$/.test("#ccb2b2")</span><br></pre></td></tr></table></figure>
+
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><ul>
+<li><a href="http://regexlib.com/" target="_blank" rel="noopener">Regular Expression Library</a></li>
+<li><a href="https://regexper.com/" target="_blank" rel="noopener">Regular expression visualizer using railroad diagrams</a></li>
+<li><a href="http://myregexp.com/" target="_blank" rel="noopener">Online regex tester. Full highlighting of regex syntax. Very useful. Javascript regex used.</a></li>
+<li><a href="http://regex.zjmainstay.cn/" target="_blank" rel="noopener">正则表达式在线测试工具</a></li>
+<li><a href="https://jex.im/regulex/" target="_blank" rel="noopener">Regulex：JavaScript正则表达式展示器</a></li>
+</ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
   </div>
 
   
@@ -1321,7 +1366,7 @@ is not</code></pre>
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">150</span>
+          <span class="site-state-item-count">149</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
