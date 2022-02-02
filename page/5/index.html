@@ -269,426 +269,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2019/04/05/db-mysql-MySQL高性能优化规范建议/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/04/05/db-mysql-MySQL高性能优化规范建议/" class="post-title-link" itemprop="url">MySQL高性能优化规范建议</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-05 00:00:00" itemprop="dateCreated datePublished" datetime="2019-04-05T00:00:00+08:00">2019-04-05</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/db/" itemprop="url" rel="index"><span itemprop="name">db</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/04/05/db-mysql-MySQL高性能优化规范建议/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/04/05/db-mysql-MySQL高性能优化规范建议/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>7.1k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>6 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="数据库命令规范"><a href="#数据库命令规范" class="headerlink" title="数据库命令规范"></a>数据库命令规范</h2><ul>
-<li>所有数据库对象名称必须使用小写字母并用下划线分割</li>
-<li>所有数据库对象名称禁止使用 MySQL 保留关键字（如果表名中包含关键字查询时，需要将其用单引号括起来）</li>
-<li>数据库对象的命名要能做到见名识意，并且最后不要超过 32 个字符</li>
-<li>临时库表必须以 tmp_为前缀并以日期为后缀，备份表必须以 bak_为前缀并以日期 (时间戳) 为后缀</li>
-<li>所有存储相同数据的列名和列类型必须一致（一般作为关联列，如果查询时关联列类型不一致会自动进行数据类型隐式转换，会造成列上的索引失效，导致查询效率降低）</li></ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/05/db-mysql-MySQL高性能优化规范建议/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2019/01/25/diary-2019-01-25-new-position/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/01/25/diary-2019-01-25-new-position/" class="post-title-link" itemprop="url">new-position</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-25 13:27:00" itemprop="dateCreated datePublished" datetime="2019-01-25T13:27:00+08:00">2019-01-25</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2019/01/25/diary-2019-01-25-new-position/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2019/01/25/diary-2019-01-25-new-position/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>38</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>1 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="new-position"><a href="#new-position" class="headerlink" title="new-position"></a>new-position</h1><h2 id="2018年01月25日"><a href="#2018年01月25日" class="headerlink" title="2018年01月25日"></a>2018年01月25日</h2><p>公司安排了新的title给我。</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/12/03/subject-high-concurrency-mq-time-delay-and-expired-failure/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/12/03/subject-high-concurrency-mq-time-delay-and-expired-failure/" class="post-title-link" itemprop="url">如何解决消息队列的延时以及过期失效问题？</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-03 00:11:06" itemprop="dateCreated datePublished" datetime="2018-12-03T00:11:06+08:00">2018-12-03</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/high-concurrency/" itemprop="url" rel="index"><span itemprop="name">high-concurrency</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2018/12/03/subject-high-concurrency-mq-time-delay-and-expired-failure/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/12/03/subject-high-concurrency-mq-time-delay-and-expired-failure/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>1.3k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>1 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="剖析"><a href="#剖析" class="headerlink" title="剖析"></a>剖析</h2><p>关于这个事儿，我们一个一个来梳理吧，先假设一个场景，我们现在消费端出故障了，然后大量消息在 mq 里积压，现在出事故了，慌了。</p>
-<h3 id="大量消息在-mq-里积压了几个小时了还没解决"><a href="#大量消息在-mq-里积压了几个小时了还没解决" class="headerlink" title="大量消息在 mq 里积压了几个小时了还没解决"></a>大量消息在 mq 里积压了几个小时了还没解决</h3><p>几千万条数据在 MQ 里积压了七八个小时，从下午 4 点多，积压到了晚上 11 点多。这个是我们真实遇到过的一个场景，确实是线上故障了，这个时候要不然就是修复 consumer 的问题，让它恢复消费速度，然后傻傻的等待几个小时消费完毕。这个肯定不能在面试的时候说吧。</p>
-<p>一个消费者一秒是 1000 条，一秒 3 个消费者是 3000 条，一分钟就是 18 万条。所以如果你积压了几百万到上千万的数据，即使消费者恢复了，也需要大概 1 小时的时间才能恢复过来。</p>
-<p>一般这个时候，只能临时紧急扩容了，具体操作步骤和思路如下：</p>
-<ul>
-<li>先修复 consumer 的问题，确保其恢复消费速度，然后将现有 consumer 都停掉。</li>
-<li>新建一个 topic，partition 是原来的 10 倍，临时建立好原先 10 倍的 queue 数量。</li>
-<li>然后写一个临时的分发数据的 consumer 程序，这个程序部署上去消费积压的数据，<strong>消费之后不做耗时的处理</strong>，直接均匀轮询写入临时建立好的 10 倍数量的 queue。</li>
-<li>接着临时征用 10 倍的机器来部署 consumer，每一批 consumer 消费一个临时 queue 的数据。这种做法相当于是临时将 queue 资源和 consumer 资源扩大 10 倍，以正常的 10 倍速度来消费数据。</li>
-<li>等快速消费完积压数据之后，<strong>得恢复原先部署的架构</strong>，<strong>重新</strong>用原先的 consumer 机器来消费消息。</li>
-</ul>
-<h3 id="mq-中的消息过期失效了"><a href="#mq-中的消息过期失效了" class="headerlink" title="mq 中的消息过期失效了"></a>mq 中的消息过期失效了</h3><p>假设你用的是 RabbitMQ，RabbtiMQ 是可以设置过期时间的，也就是 TTL。如果消息在 queue 中积压超过一定的时间就会被 RabbitMQ 给清理掉，这个数据就没了。那这就是第二个坑了。这就不是说数据会大量积压在 mq 里，而是<strong>大量的数据会直接搞丢</strong>。</p>
-<p>这个情况下，就不是说要增加 consumer 消费积压的消息，因为实际上没啥积压，而是丢了大量的消息。我们可以采取一个方案，就是<strong>批量重导</strong>，这个我们之前线上也有类似的场景干过。就是大量积压的时候，我们当时就直接丢弃数据了，然后等过了高峰期以后，比如大家一起喝咖啡熬夜到晚上12点以后，用户都睡觉了。这个时候我们就开始写程序，将丢失的那批数据，写个临时程序，一点一点的查出来，然后重新灌入 mq 里面去，把白天丢的数据给他补回来。也只能是这样了。</p>
-<p>假设 1 万个订单积压在 mq 里面，没有处理，其中 1000 个订单都丢了，你只能手动写程序把那 1000 个订单给查出来，手动发到 mq 里去再补一次。</p>
-<h3 id="mq-都快写满了"><a href="#mq-都快写满了" class="headerlink" title="mq 都快写满了"></a>mq 都快写满了</h3><p>如果消息积压在 mq 里，你很长时间都没有处理掉，此时导致 mq 都快写满了，咋办？这个还有别的办法吗？没有，谁让你第一个方案执行的太慢了，你临时写程序，接入数据来消费，<strong>消费一个丢弃一个，都不要了</strong>，快速消费掉所有的消息。然后走第二个方案，到了晚上再补数据吧。</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/12/03/subject-high-concurrency-mq-design/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -987,11 +567,531 @@
   </article>
 
     
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/11/09/mgr-Github-Oraganizations/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/09/mgr-Github-Oraganizations/" class="post-title-link" itemprop="url">国内互联网公司的开源项目及Github地址汇总</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2018-11-09T00:00:00+08:00">2018-11-09</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/mgr/" itemprop="url" rel="index"><span itemprop="name">mgr</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/11/09/mgr-Github-Oraganizations/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/09/mgr-Github-Oraganizations/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>677</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul>
+<li><p><a href="https://github.com/alibaba" target="_blank" rel="noopener">Alibaba</a> 阿里巴巴 <img src="https://avatars1.githubusercontent.com/u/1961952?v=3&s=14" alt></p>
+<ul>
+<li><a href="https://github.com/ant-design" target="_blank" rel="noopener">Ant Design</a> Ant Design <img src="https://avatars1.githubusercontent.com/u/12101536?v=4&s=14" alt></li>
+<li><a href="https://github.com/antvis" target="_blank" rel="noopener">Ant DataVis Team</a> 蚂蚁金服 - 体验技术部 - 数据图形组 <img src="https://avatars3.githubusercontent.com/u/19199542?v=4&s=14" alt></li>
+<li><a href="https://github.com/NG-ZORRO" target="_blank" rel="noopener">NG-ZORRO</a> Angular Developers <img src="https://avatars2.githubusercontent.com/u/30223759?v=4&s=14" alt></li>
+<li><a href="https://github.com/aliceui" target="_blank" rel="noopener">aliceui</a> 支付宝 <img src="https://avatars3.githubusercontent.com/u/3404882?v=3&s=14" alt></li>
+<li><a href="https://github.com/kissyteam" target="_blank" rel="noopener">issyteam</a> kissyteam <img src="https://avatars1.githubusercontent.com/u/328318?v=3&s=14" alt></li>
+<li><a href="https://github.com/taobao" target="_blank" rel="noopener">Taobao, Inc.</a> 淘宝 <img src="https://avatars0.githubusercontent.com/u/1560507?v=3&s=14" alt></li>
+<li><a href="https://github.com/tmallfe" target="_blank" rel="noopener">天猫前端</a> 天猫 <img src="https://avatars0.githubusercontent.com/u/7637440?v=3&s=14" alt></li>
+<li><a href="https://github.com/seajs" target="_blank" rel="noopener">seajs</a> Web的模块加载程序 <img src="https://avatars1.githubusercontent.com/u/12101536?v=4&s=14" alt></li>
+<li><a href="https://github.com/kissyteam" target="_blank" rel="noopener">kissyteam</a> 强大的模块集合 <img src="https://avatars3.githubusercontent.com/u/328318?v=4&s=14" alt></li>
+<li><a href="https://github.com/eggjs" target="_blank" rel="noopener">egg</a> Node.js的Web框架框架 <img src="https://avatars2.githubusercontent.com/u/15833670?v=4&s=14" alt></li>
+</ul>
+</li>
+<li><p><a href="https://github.com/Huawei-Hadoop" target="_blank" rel="noopener">Huawei</a> 华为 <img src="https://avatars2.githubusercontent.com/u/539149?v=4&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/tencent" target="_blank" rel="noopener">Tencent</a> 腾讯 Github <img src="https://avatars0.githubusercontent.com/u/18461506?v=4&s=14" alt></p>
+<ul>
+<li><a href="https://code.csdn.net/tencent" target="_blank" rel="noopener">Tencent</a> 腾讯 csdn</li>
+<li><a href="https://github.com/AlloyTeam" target="_blank" rel="noopener">腾讯 AlloyTeam</a> 腾讯 <img src="https://avatars2.githubusercontent.com/u/1503033?v=3&s=14" alt></li>
+</ul>
+</li>
+<li><p><a href="https://github.com/baidu" target="_blank" rel="noopener">Baidu</a> 百度 <img src="https://avatars3.githubusercontent.com/u/13245940?v=4&s=14" alt></p>
+<ul>
+<li><a href="https://github.com/fex-team" target="_blank" rel="noopener">Baidu FEX team</a> 百度  <img src="https://avatars0.githubusercontent.com/u/6668906?v=4&s=14" alt></li>
+<li><a href="https://github.com/ecomfe" target="_blank" rel="noopener">Baidu EFE team</a> 百度  <img src="https://avatars3.githubusercontent.com/u/2268460?v=3&s=14" alt></li>
+<li><a href="https://github.com/be-fe" target="_blank" rel="noopener">Baidu BEFE</a> 百度企业产品前端研发团队  <img src="https://avatars3.githubusercontent.com/u/8372490?v=4&s=14" alt></li>
+</ul>
+</li>
+<li><p><a href="https://github.com/eleme" target="_blank" rel="noopener">eleme</a> 饿了么 <img src="https://avatars2.githubusercontent.com/u/1201438?v=4&s=14" alt></p>
+<ul>
+<li><a href="https://github.com/elemefe" target="_blank" rel="noopener">饿了么前端</a> 饿了么 <img src="https://avatars2.githubusercontent.com/u/12810740?v=4&s=14" alt></li>
+</ul>
+</li>
+<li><p><a href="https://github.com/netease" target="_blank" rel="noopener">NetEase</a> 网易 <img src="https://avatars2.githubusercontent.com/u/1460597?v=3&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/SOHUDBA" target="_blank" rel="noopener">SOHUDBA</a> 搜狐 <img src="https://avatars2.githubusercontent.com/u/4919525?v=3&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/Qihoo360" target="_blank" rel="noopener">Qihoo360</a> 奇虎360 <img src="https://avatars2.githubusercontent.com/u/4082929?v=3&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/360EntSecGroup-Skylar" target="_blank" rel="noopener">360EntSecGroup-Skylar</a> 360企业安全集团终端安全子公司 <img src="https://avatars2.githubusercontent.com/u/29733149?v=3&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/vipshop" target="_blank" rel="noopener">唯品会</a> 唯品会 <img src="https://avatars3.githubusercontent.com/u/7145544?v=3&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/douban" target="_blank" rel="noopener">Douban Inc.</a> 豆瓣 <img src="https://avatars3.githubusercontent.com/u/1220164?v=3&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/dianping" target="_blank" rel="noopener">大众点评网</a> 大众点评网 <img src="https://avatars0.githubusercontent.com/u/1539555?v=3&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/Meituan-Dianping" target="_blank" rel="noopener">美团点评</a> 美团点评 <img src="https://avatars0.githubusercontent.com/u/1539555?v=3&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/xiaomi" target="_blank" rel="noopener">Xiaomi Open Source.</a> 小米 </p>
+</li>
+<li><p><a href="https://github.com/meituan" target="_blank" rel="noopener">meituan.com</a> 美团 <img src="https://avatars1.githubusercontent.com/u/977371?v=3&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/mogujie" target="_blank" rel="noopener">蘑菇街</a> 蘑菇街 <img src="https://avatars1.githubusercontent.com/u/10172799?v=3&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/CodisLabs" target="_blank" rel="noopener">CodisLabs</a> 豌豆荚 <img src="https://avatars1.githubusercontent.com/u/16700854?v=3&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/dangdangdotcom" target="_blank" rel="noopener">当当</a> 当当 <img src="https://avatars1.githubusercontent.com/u/10172799?v=3&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/youzan" target="_blank" rel="noopener">有赞</a> 有赞 <img src="https://avatars0.githubusercontent.com/u/11404085?v=3&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/TeamStuQ" target="_blank" rel="noopener">TeamStuQ</a> TeamStuQ <img src="https://avatars2.githubusercontent.com/u/15888474?v=3&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/xitu" target="_blank" rel="noopener">稀土</a> 稀土 <img src="https://avatars1.githubusercontent.com/u/10482599?v=3&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/jobbole" target="_blank" rel="noopener">伯乐在线</a> 伯乐在线 <img src="https://avatars1.githubusercontent.com/u/8531823?v=3&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/linuxdeepin" target="_blank" rel="noopener">深度</a> Wuhan Deepin Technology Co.,Ltd. <img src="https://avatars3.githubusercontent.com/u/1592697?v=4&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/DNSPod" target="_blank" rel="noopener">DNSPod</a> DNSPod <img src="https://avatars3.githubusercontent.com/u/672779?v=4&s=14" alt></p>
+</li>
+<li><p><a href="https://github.com/weibocom" target="_blank" rel="noopener">Weibo R&amp;D Open Source Projects</a> 新浪 <img src="https://avatars3.githubusercontent.com/u/672779?v=4&s=14" alt></p>
+</li>
+</ul>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/11/03/subject-high-concurrency-how-to-ensure-the-order-of-messages/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/03/subject-high-concurrency-how-to-ensure-the-order-of-messages/" class="post-title-link" itemprop="url">如何保证消息的顺序性？</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-03 00:11:04" itemprop="dateCreated datePublished" datetime="2018-11-03T00:11:04+08:00">2018-11-03</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/high-concurrency/" itemprop="url" rel="index"><span itemprop="name">high-concurrency</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/11/03/subject-high-concurrency-how-to-ensure-the-order-of-messages/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/03/subject-high-concurrency-how-to-ensure-the-order-of-messages/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>1.1k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="剖析"><a href="#剖析" class="headerlink" title="剖析"></a>剖析</h2><p>我举个例子，我们以前做过一个 mysql <code>binlog</code> 同步的系统，压力还是非常大的，日同步数据要达到上亿，就是说数据从一个 mysql 库原封不动地同步到另一个 mysql 库里面去（mysql -&gt; mysql）。常见的一点在于说比如大数据 team，就需要同步一个 mysql 库过来，对公司的业务系统的数据做各种复杂的操作。</p>
+<p>你在 mysql 里增删改一条数据，对应出来了增删改 3 条 <code>binlog</code> 日志，接着这三条 <code>binlog</code> 发送到 MQ 里面，再消费出来依次执行，起码得保证人家是按照顺序来的吧？不然本来是：增加、修改、删除；你楞是换了顺序给执行成删除、修改、增加，不全错了么。</p>
+<p>本来这个数据同步过来，应该最后这个数据被删除了；结果你搞错了这个顺序，最后这个数据保留下来了，数据同步就出错了。</p>
+<p>先看看顺序会错乱的俩场景：</p>
+<ul>
+<li><strong>RabbitMQ</strong>：一个 queue，多个 consumer。比如，生产者向 RabbitMQ 里发送了三条数据，顺序依次是 data1/data2/data3，压入的是 RabbitMQ 的一个内存队列。有三个消费者分别从 MQ 中消费这三条数据中的一条，结果消费者2先执行完操作，把 data2 存入数据库，然后是 data1/data3。这不明显乱了。</li>
+</ul>
+<p><img src="/images/high-concurrency/rabbitmq-order-01.png" alt="rabbitmq-order-01"></p>
+<ul>
+<li><strong>Kafka</strong>：比如说我们建了一个 topic，有三个 partition。生产者在写的时候，其实可以指定一个 key，比如说我们指定了某个订单 id 作为 key，那么这个订单相关的数据，一定会被分发到同一个 partition 中去，而且这个 partition 中的数据一定是有顺序的。<br>消费者从 partition 中取出来数据的时候，也一定是有顺序的。到这里，顺序还是 ok 的，没有错乱。接着，我们在消费者里可能会搞<strong>多个线程来并发处理消息</strong>。因为如果消费者是单线程消费处理，而处理比较耗时的话，比如处理一条消息耗时几十 ms，那么 1 秒钟只能处理几十条消息，这吞吐量太低了。而多个线程并发跑的话，顺序可能就乱掉了。</li>
+</ul>
+<p><img src="/images/high-concurrency/kafka-order-01.png" alt="kafka-order-01"></p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h4><p>拆分多个 queue，每个 queue 一个 consumer，就是多一些 queue 而已，确实是麻烦点；或者就一个 queue 但是对应一个 consumer，然后这个 consumer 内部用内存队列做排队，然后分发给底层不同的 worker 来处理。<br><img src="/images/high-concurrency/rabbitmq-order-02.png" alt="rabbitmq-order-02"></p>
+<h4 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h4><ul>
+<li>一个 topic，一个 partition，一个 consumer，内部单线程消费，单线程吞吐量太低，一般不会用这个。</li>
+<li>写 N 个内存 queue，具有相同 key 的数据都到同一个内存 queue；然后对于 N 个线程，每个线程分别消费一个内存 queue 即可，这样就能保证顺序性。</li>
+</ul>
+<p><img src="/images/high-concurrency/kafka-order-02.png" alt="kafka-order-02"></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/11/03/subject-high-concurrency-how-to-ensure-the-reliable-transmission-of-messages/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/11/03/subject-high-concurrency-how-to-ensure-the-reliable-transmission-of-messages/" class="post-title-link" itemprop="url">如何保证消息的可靠性传输？</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-03 00:11:04" itemprop="dateCreated datePublished" datetime="2018-11-03T00:11:04+08:00">2018-11-03</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/high-concurrency/" itemprop="url" rel="index"><span itemprop="name">high-concurrency</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/11/03/subject-high-concurrency-how-to-ensure-the-reliable-transmission-of-messages/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/11/03/subject-high-concurrency-how-to-ensure-the-reliable-transmission-of-messages/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>3.1k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>3 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="剖析"><a href="#剖析" class="headerlink" title="剖析"></a>剖析</h2><p>数据的丢失问题，可能出现在生产者、MQ、消费者中，咱们从 RabbitMQ 和 Kafka 分别来分析一下吧。</p>
+<h3 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h3><p><img src="/images/high-concurrency/rabbitmq-message-lose.png" alt="rabbitmq-message-lose"></p>
+<h4 id="生产者弄丢了数据"><a href="#生产者弄丢了数据" class="headerlink" title="生产者弄丢了数据"></a>生产者弄丢了数据</h4><p>生产者将数据发送到 RabbitMQ 的时候，可能数据就在半路给搞丢了，因为网络问题啥的，都有可能。</p>
+<p>此时可以选择用 RabbitMQ 提供的事务功能，就是生产者<strong>发送数据之前</strong>开启 RabbitMQ 事务<code>channel.txSelect</code>，然后发送消息，如果消息没有成功被 RabbitMQ 接收到，那么生产者会收到异常报错，此时就可以回滚事务<code>channel.txRollback</code>，然后重试发送消息；如果收到了消息，那么可以提交事务<code>channel.txCommit</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 开启事务</span></span><br><span class="line">channel.txSelect</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 这里发送消息</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    channel.txRollback</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里再次重发这条消息</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提交事务</span></span><br><span class="line">channel.txCommit</span><br></pre></td></tr></table></figure>
+
+<p>但是问题是，RabbitMQ 事务机制（同步）一搞，基本上<strong>吞吐量会下来，因为太耗性能</strong>。</p>
+<p>所以一般来说，如果你要确保说写 RabbitMQ 的消息别丢，可以开启 <code>confirm</code> 模式，在生产者那里设置开启 <code>confirm</code> 模式之后，你每次写的消息都会分配一个唯一的 id，然后如果写入了 RabbitMQ 中，RabbitMQ 会给你回传一个 <code>ack</code> 消息，告诉你说这个消息 ok 了。如果 RabbitMQ 没能处理这个消息，会回调你的一个 <code>nack</code> 接口，告诉你这个消息接收失败，你可以重试。而且你可以结合这个机制自己在内存里维护每个消息 id 的状态，如果超过一定时间还没接收到这个消息的回调，那么你可以重发。</p>
+<p>事务机制和 <code>confirm</code> 机制最大的不同在于，<strong>事务机制是同步的</strong>，你提交一个事务之后会<strong>阻塞</strong>在那儿，但是 <code>confirm</code> 机制是<strong>异步</strong>的，你发送个消息之后就可以发送下一个消息，然后那个消息 RabbitMQ 接收了之后会异步回调你的一个接口通知你这个消息接收到了。</p>
+<p>所以一般在生产者这块<strong>避免数据丢失</strong>，都是用 <code>confirm</code> 机制的。</p>
+<h4 id="RabbitMQ-弄丢了数据"><a href="#RabbitMQ-弄丢了数据" class="headerlink" title="RabbitMQ 弄丢了数据"></a>RabbitMQ 弄丢了数据</h4><p>就是 RabbitMQ 自己弄丢了数据，这个你必须<strong>开启 RabbitMQ 的持久化</strong>，就是消息写入之后会持久化到磁盘，哪怕是 RabbitMQ 自己挂了，<strong>恢复之后会自动读取之前存储的数据</strong>，一般数据不会丢。除非极其罕见的是，RabbitMQ 还没持久化，自己就挂了，<strong>可能导致少量数据丢失</strong>，但是这个概率较小。</p>
+<p>设置持久化有<strong>两个步骤</strong>：</p>
+<ul>
+<li>创建 queue 的时候将其设置为持久化<br><br>这样就可以保证 RabbitMQ 持久化 queue 的元数据，但是它是不会持久化 queue 里的数据的。</li>
+<li>第二个是发送消息的时候将消息的 <code>deliveryMode</code> 设置为 2<br><br>就是将消息设置为持久化的，此时 RabbitMQ 就会将消息持久化到磁盘上去。</li>
+</ul>
+<p>必须要同时设置这两个持久化才行，RabbitMQ 哪怕是挂了，再次重启，也会从磁盘上重启恢复 queue，恢复这个 queue 里的数据。</p>
+<p>注意，哪怕是你给 RabbitMQ 开启了持久化机制，也有一种可能，就是这个消息写到了 RabbitMQ 中，但是还没来得及持久化到磁盘上，结果不巧，此时 RabbitMQ 挂了，就会导致内存里的一点点数据丢失。</p>
+<p>所以，持久化可以跟生产者那边的 <code>confirm</code> 机制配合起来，只有消息被持久化到磁盘之后，才会通知生产者 <code>ack</code> 了，所以哪怕是在持久化到磁盘之前，RabbitMQ 挂了，数据丢了，生产者收不到 <code>ack</code>，你也是可以自己重发的。</p>
+<h4 id="消费端弄丢了数据"><a href="#消费端弄丢了数据" class="headerlink" title="消费端弄丢了数据"></a>消费端弄丢了数据</h4><p>RabbitMQ 如果丢失了数据，主要是因为你消费的时候，<strong>刚消费到，还没处理，结果进程挂了</strong>，比如重启了，那么就尴尬了，RabbitMQ 认为你都消费了，这数据就丢了。</p>
+<p>这个时候得用 RabbitMQ 提供的 <code>ack</code> 机制，简单来说，就是你必须关闭 RabbitMQ 的自动 <code>ack</code>，可以通过一个 api 来调用就行，然后每次你自己代码里确保处理完的时候，再在程序里 <code>ack</code> 一把。这样的话，如果你还没处理完，不就没有 <code>ack</code> 了？那 RabbitMQ 就认为你还没处理完，这个时候 RabbitMQ 会把这个消费分配给别的 consumer 去处理，消息是不会丢的。</p>
+<p><img src="/images/high-concurrency/rabbitmq-message-lose-solution.png" alt="rabbitmq-message-lose-solution"></p>
+<h3 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h3><h4 id="消费端弄丢了数据-1"><a href="#消费端弄丢了数据-1" class="headerlink" title="消费端弄丢了数据"></a>消费端弄丢了数据</h4><p>唯一可能导致消费者弄丢数据的情况，就是说，你消费到了这个消息，然后消费者那边<strong>自动提交了 offset</strong>，让 Kafka 以为你已经消费好了这个消息，但其实你才刚准备处理这个消息，你还没处理，你自己就挂了，此时这条消息就丢咯。</p>
+<p>这不是跟 RabbitMQ 差不多吗，大家都知道 Kafka 会自动提交 offset，那么只要<strong>关闭自动提交</strong> offset，在处理完之后自己手动提交 offset，就可以保证数据不会丢。但是此时确实还是<strong>可能会有重复消费</strong>，比如你刚处理完，还没提交 offset，结果自己挂了，此时肯定会重复消费一次，自己保证幂等性就好了。</p>
+<p>生产环境碰到的一个问题，就是说我们的 Kafka 消费者消费到了数据之后是写到一个内存的 queue 里先缓冲一下，结果有的时候，你刚把消息写入内存 queue，然后消费者会自动提交 offset。然后此时我们重启了系统，就会导致内存 queue 里还没来得及处理的数据就丢失了。</p>
+<h4 id="Kafka-弄丢了数据"><a href="#Kafka-弄丢了数据" class="headerlink" title="Kafka 弄丢了数据"></a>Kafka 弄丢了数据</h4><p>这块比较常见的一个场景，就是 Kafka 某个 broker 宕机，然后重新选举 partition 的 leader。大家想想，要是此时其他的 follower 刚好还有些数据没有同步，结果此时 leader 挂了，然后选举某个 follower 成 leader 之后，不就少了一些数据？这就丢了一些数据啊。</p>
+<p>生产环境也遇到过，我们也是，之前 Kafka 的 leader 机器宕机了，将 follower 切换为 leader 之后，就会发现说这个数据就丢了。</p>
+<p>所以此时一般是要求起码设置如下 4 个参数：</p>
+<ul>
+<li>给 topic 设置 <code>replication.factor</code> 参数：这个值必须大于 1，要求每个 partition 必须有至少 2 个副本。</li>
+<li>在 Kafka 服务端设置 <code>min.insync.replicas</code> 参数：这个值必须大于 1，这个是要求一个 leader 至少感知到有至少一个 follower 还跟自己保持联系，没掉队，这样才能确保 leader 挂了还有一个 follower 吧。</li>
+<li>在 producer 端设置 <code>acks=all</code>：这个是要求每条数据，必须是<strong>写入所有 replica 之后，才能认为是写成功了</strong>。</li>
+<li>在 producer 端设置 <code>retries=MAX</code>（很大很大很大的一个值，无限次重试的意思）：这个是<strong>要求一旦写入失败，就无限重试</strong>，卡在这里了。</li>
+</ul>
+<p>我们生产环境就是按照上述要求配置的，这样配置之后，至少在 Kafka broker 端就可以保证在 leader 所在 broker 发生故障，进行 leader 切换时，数据不会丢失。</p>
+<h4 id="生产者会不会弄丢数据？"><a href="#生产者会不会弄丢数据？" class="headerlink" title="生产者会不会弄丢数据？"></a>生产者会不会弄丢数据？</h4><p>如果按照上述的思路设置了 <code>acks=all</code>，一定不会丢，要求是，你的 leader 接收到消息，所有的 follower 都同步到了消息之后，才认为本次写成功了。如果没满足这个条件，生产者会自动不断的重试，重试无限次。</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1039,7 +1139,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-count">143</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1080,9 +1180,7 @@
         
           
         
-          
-        
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1153,11 +1251,7 @@
         
           
         
-          
-        
-          
-        
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1224,7 +1318,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2008 – <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2008 – <span itemprop="copyrightYear">2022</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

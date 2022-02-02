@@ -269,705 +269,6 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/07/11/subject-high-concurrency-redis-data-types/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/07/11/subject-high-concurrency-redis-data-types/" class="post-title-link" itemprop="url">redis 都有哪些数据类型？分别在哪些场景下使用比较合适？</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2018-07-11 00:14:01" itemprop="dateCreated datePublished" datetime="2018-07-11T00:14:01+08:00">2018-07-11</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/high-concurrency/" itemprop="url" rel="index"><span itemprop="name">high-concurrency</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2018/07/11/subject-high-concurrency-redis-data-types/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/07/11/subject-high-concurrency-redis-data-types/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>1.8k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>2 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>除非是面试官感觉看你简历，是工作 3 年以内的比较初级的同学，可能对技术没有很深入的研究，面试官才会问这类问题。否则，在宝贵的面试时间里，面试官实在不想多问。</p>
-<p>其实问这个问题，主要有两个原因：</p>
-<ul>
-<li>看看你到底有没有全面的了解 redis 有哪些功能，一般怎么来用，啥场景用什么，就怕你别就会最简单的 KV 操作；</li>
-<li>看看你在实际项目里都怎么玩儿过 redis。</li>
-</ul>
-<p>要是你回答的不好，没说出几种数据类型，也没说什么场景，你完了，面试官对你印象肯定不好，觉得你平时就是做个简单的 set 和 get。</p>
-<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>redis 主要有以下几种数据类型：</p>
-<ul>
-<li>string</li>
-<li>hash</li>
-<li>list</li>
-<li>set</li>
-<li>sorted set</li>
-</ul>
-<h3 id="string"><a href="#string" class="headerlink" title="string"></a>string</h3><p>这是最简单的类型，就是普通的 set 和 get，做简单的 KV 缓存。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> college szu</span><br></pre></td></tr></table></figure>
-
-<h3 id="hash"><a href="#hash" class="headerlink" title="hash"></a>hash</h3><p>这个是类似 map 的一种结构，这个一般就是可以将结构化的数据，比如一个对象（前提是<strong>这个对象没嵌套其他的对象</strong>）给缓存在 redis 里，然后每次读写缓存的时候，可以就操作 hash 里的<strong>某个字段</strong>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hset person name bingo</span><br><span class="line">hset person age 20</span><br><span class="line">hset person id 1</span><br><span class="line">hget person name</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">person = &#123;</span><br><span class="line">    "name": "bingo",</span><br><span class="line">    "age": 20,</span><br><span class="line">    "id": 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="list"><a href="#list" class="headerlink" title="list"></a>list</h3><p>list 是有序列表，这个可以玩儿出很多花样。</p>
-<p>比如可以通过 list 存储一些列表型的数据结构，类似粉丝列表、文章的评论列表之类的东西。</p>
-<p>比如可以通过 lrange 命令，读取某个闭区间内的元素，可以基于 list 实现分页查询，这个是很棒的一个功能，基于 redis 实现简单的高性能分页，可以做类似微博那种下拉不断分页的东西，性能高，就一页一页走。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 0开始位置，-1结束位置，结束位置为-1时，表示列表的最后一个位置，即查看所有。</span></span><br><span class="line">lrange mylist 0 -1</span><br></pre></td></tr></table></figure>
-
-<p>比如可以搞个简单的消息队列，从 list 头怼进去，从 list 尾巴那里弄出来。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">lpush mylist 1</span><br><span class="line">lpush mylist 2</span><br><span class="line">lpush mylist 3 4 5</span><br><span class="line"></span><br><span class="line"><span class="comment"># 1</span></span><br><span class="line">rpop mylist</span><br></pre></td></tr></table></figure>
-
-<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p>set 是无序集合，自动去重。</p>
-<p>直接基于 set 将系统里需要去重的数据扔进去，自动就给去重了，如果你需要对一些数据进行快速的全局去重，你当然也可以基于 jvm 内存里的 HashSet 进行去重，但是如果你的某个系统部署在多台机器上呢？得基于 redis 进行全局的 set 去重。</p>
-<p>可以基于 set 玩儿交集、并集、差集的操作，比如交集吧，可以把两个人的粉丝列表整一个交集，看看俩人的共同好友是谁？对吧。</p>
-<p>把两个大 V 的粉丝都放在两个 set 中，对两个 set 做交集。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-------操作一个set-------</span></span><br><span class="line"><span class="comment"># 添加元素</span></span><br><span class="line">sadd mySet 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看全部元素</span></span><br><span class="line">smembers mySet</span><br><span class="line"></span><br><span class="line"><span class="comment"># 判断是否包含某个值</span></span><br><span class="line">sismember mySet 3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除某个/些元素</span></span><br><span class="line">srem mySet 1</span><br><span class="line">srem mySet 2 4</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看元素个数</span></span><br><span class="line">scard mySet</span><br><span class="line"></span><br><span class="line"><span class="comment"># 随机删除一个元素</span></span><br><span class="line">spop mySet</span><br><span class="line"></span><br><span class="line"><span class="comment">#-------操作多个set-------</span></span><br><span class="line"><span class="comment"># 将一个set的元素移动到另外一个set</span></span><br><span class="line">smove yourSet mySet 2</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求两set的交集</span></span><br><span class="line">sinter yourSet mySet</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求两set的并集</span></span><br><span class="line">sunion yourSet mySet</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求在yourSet中而不在mySet中的元素</span></span><br><span class="line">sdiff yourSet mySet</span><br></pre></td></tr></table></figure>
-
-<h3 id="sorted-set"><a href="#sorted-set" class="headerlink" title="sorted set"></a>sorted set</h3><p>sorted set 是排序的 set，去重但可以排序，写进去的时候给一个分数，自动根据分数排序。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">zadd board 85 zhangsan</span><br><span class="line">zadd board 72 lisi</span><br><span class="line">zadd board 96 wangwu</span><br><span class="line">zadd board 63 zhaoliu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取排名前三的用户（默认是升序，所以需要 rev 改为降序）</span></span><br><span class="line">zrevrange board 0 3</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取某用户的排名</span></span><br><span class="line">zrank board zhaoliu</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/07/11/subject-high-concurrency-redis-consistence/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/07/11/subject-high-concurrency-redis-consistence/" class="post-title-link" itemprop="url">如何保证缓存与数据库的双写一致性？</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2018-07-11 00:13:01" itemprop="dateCreated datePublished" datetime="2018-07-11T00:13:01+08:00">2018-07-11</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/high-concurrency/" itemprop="url" rel="index"><span itemprop="name">high-concurrency</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2018/07/11/subject-high-concurrency-redis-consistence/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/07/11/subject-high-concurrency-redis-consistence/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>3.4k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>3 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="剖析"><a href="#剖析" class="headerlink" title="剖析"></a>剖析</h2><p>一般来说，如果允许缓存可以稍微的跟数据库偶尔有不一致的情况，也就是说如果你的系统<strong>不是严格要求</strong> “缓存+数据库” 必须保持一致性的话，最好不要做这个方案，即：<strong>读请求和写请求串行化</strong>，串到一个<strong>内存队列</strong>里去。</p>
-<p>串行化可以保证一定不会出现不一致的情况，但是它也会导致系统的吞吐量大幅度降低，用比正常情况下多几倍的机器去支撑线上的一个请求。</p>
-<h3 id="Cache-Aside-Pattern"><a href="#Cache-Aside-Pattern" class="headerlink" title="Cache Aside Pattern"></a>Cache Aside Pattern</h3><p>最经典的缓存+数据库读写的模式，就是 Cache Aside Pattern。</p>
-<ul>
-<li>读的时候，先读缓存，缓存没有的话，就读数据库，然后取出数据后放入缓存，同时返回响应。</li>
-<li>更新的时候，<strong>先更新数据库，然后再删除缓存</strong>。</li>
-</ul>
-<p><strong>为什么是删除缓存，而不是更新缓存？</strong></p>
-<p>原因很简单，很多时候，在复杂点的缓存场景，缓存不单单是数据库中直接取出来的值。</p>
-<p>比如可能更新了某个表的一个字段，然后其对应的缓存，是需要查询另外两个表的数据并进行运算，才能计算出缓存最新的值的。</p>
-<p>另外更新缓存的代价有时候是很高的。是不是说，每次修改数据库的时候，都一定要将其对应的缓存更新一份？也许有的场景是这样，但是对于<strong>比较复杂的缓存数据计算的场景</strong>，就不是这样了。如果你频繁修改一个缓存涉及的多个表，缓存也频繁更新。但是问题在于，<strong>这个缓存到底会不会被频繁访问到？</strong></p>
-<p>举个栗子，一个缓存涉及的表的字段，在 1 分钟内就修改了 20 次，或者是 100 次，那么缓存更新 20 次、100 次；但是这个缓存在 1 分钟内只被读取了 1 次，有<strong>大量的冷数据</strong>。实际上，如果你只是删除缓存的话，那么在 1 分钟内，这个缓存不过就重新计算一次而已，开销大幅度降低。<strong>用到缓存才去算缓存。</strong></p>
-<p>其实删除缓存，而不是更新缓存，就是一个 lazy 计算的思想，不要每次都重新做复杂的计算，不管它会不会用到，而是让它到需要被使用的时候再重新计算。像 mybatis，hibernate，都有懒加载思想。查询一个部门，部门带了一个员工的 list，没有必要说每次查询部门，都里面的 1000 个员工的数据也同时查出来啊。80% 的情况，查这个部门，就只是要访问这个部门的信息就可以了。先查部门，同时要访问里面的员工，那么这个时候只有在你要访问里面的员工的时候，才会去数据库里面查询 1000 个员工。</p>
-<h3 id="最初级的缓存不一致问题及解决方案"><a href="#最初级的缓存不一致问题及解决方案" class="headerlink" title="最初级的缓存不一致问题及解决方案"></a>最初级的缓存不一致问题及解决方案</h3><p>问题：先更新数据库，再删除缓存。如果删除缓存失败了，那么会导致数据库中是新数据，缓存中是旧数据，数据就出现了不一致。</p>
-<p><img src="/images/high-concurrency/redis-junior-inconsistent.png" alt="redis-junior-inconsistent"></p>
-<p>解决思路：先删除缓存，再更新数据库。如果数据库更新失败了，那么数据库中是旧数据，缓存中是空的，那么数据不会不一致。因为读的时候缓存没有，所以去读了数据库中的旧数据，然后更新到缓存中。</p>
-<h3 id="比较复杂的数据不一致问题分析"><a href="#比较复杂的数据不一致问题分析" class="headerlink" title="比较复杂的数据不一致问题分析"></a>比较复杂的数据不一致问题分析</h3><p>数据发生了变更，先删除了缓存，然后要去修改数据库，此时还没修改。一个请求过来，去读缓存，发现缓存空了，去查询数据库，<strong>查到了修改前的旧数据</strong>，放到了缓存中。随后数据变更的程序完成了数据库的修改。完了，数据库和缓存中的数据不一样了…</p>
-<p><strong>为什么上亿流量高并发场景下，缓存会出现这个问题？</strong></p>
-<p>只有在对一个数据在并发的进行读写的时候，才可能会出现这种问题。其实如果说你的并发量很低的话，特别是读并发很低，每天访问量就 1 万次，那么很少的情况下，会出现刚才描述的那种不一致的场景。但是问题是，如果每天的是上亿的流量，每秒并发读是几万，每秒只要有数据更新的请求，就<strong>可能会出现上述的数据库+缓存不一致的情况</strong>。</p>
-<p><strong>解决方案如下：</strong></p>
-<p>更新数据的时候，根据<strong>数据的唯一标识</strong>，将操作路由之后，发送到一个 jvm 内部队列中。读取数据的时候，如果发现数据不在缓存中，那么将重新读取数据+更新缓存的操作，根据唯一标识路由之后，也发送同一个 jvm 内部队列中。</p>
-<p>一个队列对应一个工作线程，每个工作线程<strong>串行</strong>拿到对应的操作，然后一条一条的执行。这样的话，一个数据变更的操作，先删除缓存，然后再去更新数据库，但是还没完成更新。此时如果一个读请求过来，没有读到缓存，那么可以先将缓存更新的请求发送到队列中，此时会在队列中积压，然后同步等待缓存更新完成。</p>
-<p>这里有一个<strong>优化点</strong>，一个队列中，其实<strong>多个更新缓存请求串在一起是没意义的</strong>，因此可以做过滤，如果发现队列中已经有一个更新缓存的请求了，那么就不用再放个更新请求操作进去了，直接等待前面的更新操作请求完成即可。</p>
-<p>待那个队列对应的工作线程完成了上一个操作的数据库的修改之后，才会去执行下一个操作，也就是缓存更新的操作，此时会从数据库中读取最新的值，然后写入缓存中。</p>
-<p>如果请求还在等待时间范围内，不断轮询发现可以取到值了，那么就直接返回；如果请求等待的时间超过一定时长，那么这一次直接从数据库中读取当前的旧值。</p>
-<p>高并发的场景下，该解决方案要注意的问题：</p>
-<ul>
-<li>读请求长时阻塞</li>
-</ul>
-<p>由于读请求进行了非常轻度的异步化，所以一定要注意读超时的问题，每个读请求必须在超时时间范围内返回。</p>
-<p>该解决方案，最大的风险点在于说，<strong>可能数据更新很频繁</strong>，导致队列中积压了大量更新操作在里面，然后<strong>读请求会发生大量的超时</strong>，最后导致大量的请求直接走数据库。务必通过一些模拟真实的测试，看看更新数据的频率是怎样的。</p>
-<p>另外一点，因为一个队列中，可能会积压针对多个数据项的更新操作，因此需要根据自己的业务情况进行测试，可能需要<strong>部署多个服务</strong>，每个服务分摊一些数据的更新操作。如果一个内存队列里居然会挤压 100 个商品的库存修改操作，每隔库存修改操作要耗费 10ms 去完成，那么最后一个商品的读请求，可能等待 10 * 100 = 1000ms = 1s 后，才能得到数据，这个时候就导致<strong>读请求的长时阻塞</strong>。</p>
-<p>一定要做根据实际业务系统的运行情况，去进行一些压力测试，和模拟线上环境，去看看最繁忙的时候，内存队列可能会挤压多少更新操作，可能会导致最后一个更新操作对应的读请求，会 hang 多少时间，如果读请求在 200ms 返回，如果你计算过后，哪怕是最繁忙的时候，积压 10 个更新操作，最多等待 200ms，那还可以的。</p>
-<p><strong>如果一个内存队列中可能积压的更新操作特别多</strong>，那么你就要<strong>加机器</strong>，让每个机器上部署的服务实例处理更少的数据，那么每个内存队列中积压的更新操作就会越少。</p>
-<p>其实根据之前的项目经验，一般来说，数据的写频率是很低的，因此实际上正常来说，在队列中积压的更新操作应该是很少的。像这种针对读高并发、读缓存架构的项目，一般来说写请求是非常少的，每秒的 QPS 能到几百就不错了。</p>
-<p>我们来<strong>实际粗略测算一下</strong>。</p>
-<p>如果一秒有 500 的写操作，如果分成 5 个时间片，每 200ms 就 100 个写操作，放到 20 个内存队列中，每个内存队列，可能就积压 5 个写操作。每个写操作性能测试后，一般是在 20ms 左右就完成，那么针对每个内存队列的数据的读请求，也就最多 hang 一会儿，200ms 以内肯定能返回了。</p>
-<p>经过刚才简单的测算，我们知道，单机支撑的写 QPS 在几百是没问题的，如果写 QPS 扩大了 10 倍，那么就扩容机器，扩容 10 倍的机器，每个机器 20 个队列。</p>
-<ul>
-<li>读请求并发量过高</li>
-</ul>
-<p>这里还必须做好压力测试，确保恰巧碰上上述情况的时候，还有一个风险，就是突然间大量读请求会在几十毫秒的延时 hang 在服务上，看服务能不能扛的住，需要多少机器才能扛住最大的极限情况的峰值。</p>
-<p>但是因为并不是所有的数据都在同一时间更新，缓存也不会同一时间失效，所以每次可能也就是少数数据的缓存失效了，然后那些数据对应的读请求过来，并发量应该也不会特别大。</p>
-<ul>
-<li>多服务实例部署的请求路由</li>
-</ul>
-<p>可能这个服务部署了多个实例，那么必须<strong>保证</strong>说，执行数据更新操作，以及执行缓存更新操作的请求，都通过 Nginx 服务器<strong>路由到相同的服务实例上</strong>。</p>
-<p>比如说，对同一个商品的读写请求，全部路由到同一台机器上。可以自己去做服务间的按照某个请求参数的 hash 路由，也可以用 Nginx 的 hash 路由功能等等。</p>
-<ul>
-<li>热点商品的路由问题，导致请求的倾斜</li>
-</ul>
-<p>万一某个商品的读写请求特别高，全部打到相同的机器的相同的队列里面去了，可能会造成某台机器的压力过大。就是说，因为只有在商品数据更新的时候才会清空缓存，然后才会导致读写并发，所以其实要根据业务系统去看，如果更新频率不是太高的话，这个问题的影响并不是特别大，但是的确可能某些机器的负载会高一些。</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/07/09/subject-high-concurrency-redis-expiration-policies-and-lru/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/07/09/subject-high-concurrency-redis-expiration-policies-and-lru/" class="post-title-link" itemprop="url">redis 的过期策略都有哪些？内存淘汰机制都有哪些？</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2018-07-09 00:00:00" itemprop="dateCreated datePublished" datetime="2018-07-09T00:00:00+08:00">2018-07-09</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/high-concurrency/" itemprop="url" rel="index"><span itemprop="name">high-concurrency</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2018/07/09/subject-high-concurrency-redis-expiration-policies-and-lru/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/07/09/subject-high-concurrency-redis-expiration-policies-and-lru/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>2.1k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>2 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>如果你连这个问题都不知道，上来就懵了，回答不出来，那线上你写代码的时候，想当然的认为写进 redis 的数据就一定会存在，后面导致系统各种 bug，谁来负责？</p>
-<p>常见的有两个问题：</p>
-<ul>
-<li>往 redis 写入的数据怎么没了？</li>
-</ul>
-<p>可能有同学会遇到，在生产环境的 redis 经常会丢掉一些数据，写进去了，过一会儿可能就没了。我的天，同学，你问这个问题就说明 redis 你就没用对啊。redis 是缓存，你给当存储了是吧？</p>
-<p>啥叫缓存？用内存当缓存。内存是无限的吗，内存是很宝贵而且是有限的，磁盘是廉价而且是大量的。可能一台机器就几十个 G 的内存，但是可以有几个 T 的硬盘空间。redis 主要是基于内存来进行高性能、高并发的读写操作的。</p>
-<p>那既然内存是有限的，比如 redis 就只能用 10G，你要是往里面写了 20G 的数据，会咋办？当然会干掉 10G 的数据，然后就保留 10G 的数据了。那干掉哪些数据？保留哪些数据？当然是干掉不常用的数据，保留常用的数据了。</p>
-<ul>
-<li>数据明明过期了，怎么还占用着内存？</li>
-</ul>
-<p>这是由 redis 的过期策略来决定。</p>
-<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><h3 id="redis-过期策略"><a href="#redis-过期策略" class="headerlink" title="redis 过期策略"></a>redis 过期策略</h3><p>redis 过期策略是：<strong>定期删除+惰性删除</strong>。</p>
-<p>所谓<strong>定期删除</strong>，指的是 redis 默认是每隔 100ms 就随机抽取一些设置了过期时间的 key，检查其是否过期，如果过期就删除。</p>
-<p>假设 redis 里放了 10w 个 key，都设置了过期时间，你每隔几百毫秒，就检查 10w 个 key，那 redis 基本上就死了，cpu 负载会很高的，消耗在你的检查过期 key 上了。注意，这里可不是每隔 100ms 就遍历所有的设置过期时间的 key，那样就是一场性能上的<strong>灾难</strong>。实际上 redis 是每隔 100ms <strong>随机抽取</strong>一些 key 来检查和删除的。</p>
-<p>但是问题是，定期删除可能会导致很多过期 key 到了时间并没有被删除掉，那咋整呢？所以就是惰性删除了。这就是说，在你获取某个 key 的时候，redis 会检查一下 ，这个 key 如果设置了过期时间那么是否过期了？如果过期了此时就会删除，不会给你返回任何东西。</p>
-<blockquote>
-<p>获取 key 的时候，如果此时 key 已经过期，就删除，不会返回任何东西。</p>
-</blockquote>
-<p>但是实际上这还是有问题的，如果定期删除漏掉了很多过期 key，然后你也没及时去查，也就没走惰性删除，此时会怎么样？如果大量过期 key 堆积在内存里，导致 redis 内存块耗尽了，咋整？</p>
-<p>答案是：<strong>走内存淘汰机制</strong>。</p>
-<h3 id="内存淘汰机制"><a href="#内存淘汰机制" class="headerlink" title="内存淘汰机制"></a>内存淘汰机制</h3><p>redis 内存淘汰机制有以下几个：</p>
-<ul>
-<li>noeviction: 当内存不足以容纳新写入数据时，新写入操作会报错，这个一般没人用吧，实在是太恶心了。</li>
-<li><strong>allkeys-lru</strong>：当内存不足以容纳新写入数据时，在<strong>键空间</strong>中，移除最近最少使用的 key（这个是<strong>最常用</strong>的）。</li>
-<li>allkeys-random：当内存不足以容纳新写入数据时，在<strong>键空间</strong>中，随机移除某个 key，这个一般没人用吧，为啥要随机，肯定是把最近最少使用的 key 给干掉啊。</li>
-<li>volatile-lru：当内存不足以容纳新写入数据时，在<strong>设置了过期时间的键空间</strong>中，移除最近最少使用的 key（这个一般不太合适）。</li>
-<li>volatile-random：当内存不足以容纳新写入数据时，在<strong>设置了过期时间的键空间</strong>中，<strong>随机移除</strong>某个 key。</li>
-<li>volatile-ttl：当内存不足以容纳新写入数据时，在<strong>设置了过期时间的键空间</strong>中，有<strong>更早过期时间</strong>的 key 优先移除。</li>
-</ul>
-<h3 id="手写一个-LRU-算法"><a href="#手写一个-LRU-算法" class="headerlink" title="手写一个 LRU 算法"></a>手写一个 LRU 算法</h3><p>你可以现场手写最原始的 LRU 算法，那个代码量太大了，似乎不太现实。</p>
-<p>不求自己纯手工从底层开始打造出自己的 LRU，但是起码要知道如何利用已有的 JDK 数据结构实现一个 Java 版的 LRU。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">LinkedHashMap</span>&lt;<span class="title">K</span>, <span class="title">V</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> CACHE_SIZE;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 传递进来最多能缓存多少数据</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> cacheSize 缓存大小</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> cacheSize)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// true 表示让 linkedHashMap 按照访问顺序来进行排序，最近访问的放在头部，最老访问的放在尾部。</span></span><br><span class="line">        <span class="keyword">super</span>((<span class="keyword">int</span>) Math.ceil(cacheSize / <span class="number">0.75</span>) + <span class="number">1</span>, <span class="number">0.75f</span>, <span class="keyword">true</span>);</span><br><span class="line">        CACHE_SIZE = cacheSize;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">removeEldestEntry</span><span class="params">(Map.Entry&lt;K, V&gt; eldest)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 当 map中的数据量大于指定的缓存个数的时候，就自动删除最老的数据。</span></span><br><span class="line">        <span class="keyword">return</span> size() &gt; CACHE_SIZE;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/07/04/subject-high-concurrency-redis-master-slave/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/07/04/subject-high-concurrency-redis-master-slave/" class="post-title-link" itemprop="url">Redis 主从架构</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2018-07-04 00:14:01" itemprop="dateCreated datePublished" datetime="2018-07-04T00:14:01+08:00">2018-07-04</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/high-concurrency/" itemprop="url" rel="index"><span itemprop="name">high-concurrency</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2018/07/04/subject-high-concurrency-redis-master-slave/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/07/04/subject-high-concurrency-redis-master-slave/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>3.6k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>3 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Redis-主从架构"><a href="#Redis-主从架构" class="headerlink" title="Redis 主从架构"></a>Redis 主从架构</h1><p>单机的 redis，能够承载的 QPS 大概就在上万到几万不等。对于缓存来说，一般都是用来支撑<strong>读高并发</strong>的。因此架构做成主从(master-slave)架构，一主多从，主负责写，并且将数据复制到其它的 slave 节点，从节点负责读。所有的<strong>读请求全部走从节点</strong>。这样也可以很轻松实现水平扩容，<strong>支撑读高并发</strong>。</p>
-<p><img src="/images/high-concurrency/redis-master-slave.png" alt="redis-master-slave"></p>
-<p>redis replication -&gt; 主从架构 -&gt; 读写分离 -&gt; 水平扩容支撑读高并发</p>
-<h2 id="redis-replication-的核心机制"><a href="#redis-replication-的核心机制" class="headerlink" title="redis replication 的核心机制"></a>redis replication 的核心机制</h2><ul>
-<li>redis 采用<strong>异步方式</strong>复制数据到 slave 节点，不过 redis2.8 开始，slave node 会周期性地确认自己每次复制的数据量；</li>
-<li>一个 master node 是可以配置多个 slave node 的；</li>
-<li>slave node 也可以连接其他的 slave node；</li>
-<li>slave node 做复制的时候，不会 block master node 的正常工作；</li>
-<li>slave node 在做复制的时候，也不会 block 对自己的查询操作，它会用旧的数据集来提供服务；但是复制完成的时候，需要删除旧数据集，加载新数据集，这个时候就会暂停对外服务了；</li>
-<li>slave node 主要用来进行横向扩容，做读写分离，扩容的 slave node 可以提高读的吞吐量。</li>
-</ul>
-<p>注意，如果采用了主从架构，那么建议必须<strong>开启</strong> master node 的<a href="/docs/high-concurrency/redis-persistence.md">持久化</a>，不建议用 slave node 作为 master node 的数据热备，因为那样的话，如果你关掉 master 的持久化，可能在 master 宕机重启的时候数据是空的，然后可能一经过复制， slave node 的数据也丢了。</p>
-<p>另外，master 的各种备份方案，也需要做。万一本地的所有文件丢失了，从备份中挑选一份 rdb 去恢复 master，这样才能<strong>确保启动的时候，是有数据的</strong>，即使采用了后续讲解的<a href="/docs/high-concurrency/redis-sentinel.md">高可用机制</a>，slave node 可以自动接管 master node，但也可能 sentinel 还没检测到 master failure，master node 就自动重启了，还是可能导致上面所有的 slave node 数据被清空。</p>
-<h2 id="redis-主从复制的核心原理"><a href="#redis-主从复制的核心原理" class="headerlink" title="redis 主从复制的核心原理"></a>redis 主从复制的核心原理</h2><p>当启动一个 slave node 的时候，它会发送一个 <code>PSYNC</code> 命令给 master node。</p>
-<p>如果这是 slave node 初次连接到 master node，那么会触发一次 <code>full resynchronization</code> 全量复制。此时 master 会启动一个后台线程，开始生成一份 <code>RDB</code> 快照文件，同时还会将从客户端 client 新收到的所有写命令缓存在内存中。<code>RDB</code> 文件生成完毕后， master 会将这个 <code>RDB</code> 发送给 slave，slave 会先<strong>写入本地磁盘，然后再从本地磁盘加载到内存</strong>中，接着 master 会将内存中缓存的写命令发送到 slave，slave 也会同步这些数据。slave node 如果跟 master node 有网络故障，断开了连接，会自动重连，连接之后 master node 仅会复制给 slave 部分缺少的数据。</p>
-<p><img src="/images/high-concurrency/redis-master-slave-replication.png" alt="redis-master-slave-replication"></p>
-<h3 id="主从复制的断点续传"><a href="#主从复制的断点续传" class="headerlink" title="主从复制的断点续传"></a>主从复制的断点续传</h3><p>从 redis2.8 开始，就支持主从复制的断点续传，如果主从复制过程中，网络连接断掉了，那么可以接着上次复制的地方，继续复制下去，而不是从头开始复制一份。</p>
-<p>master node 会在内存中维护一个 backlog，master 和 slave 都会保存一个 replica offset 还有一个 master run id，offset 就是保存在 backlog 中的。如果 master 和 slave 网络连接断掉了，slave 会让 master 从上次 replica offset 开始继续复制，如果没有找到对应的 offset，那么就会执行一次 <code>resynchronization</code>。</p>
-<blockquote>
-<p>如果根据 host+ip 定位 master node，是不靠谱的，如果 master node 重启或者数据出现了变化，那么 slave node 应该根据不同的 run id 区分。</p>
-</blockquote>
-<h3 id="无磁盘化复制"><a href="#无磁盘化复制" class="headerlink" title="无磁盘化复制"></a>无磁盘化复制</h3><p>master 在内存中直接创建 <code>RDB</code>，然后发送给 slave，不会在自己本地落地磁盘了。只需要在配置文件中开启 <code>repl-diskless-sync yes</code> 即可。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">repl-diskless-sync yes</span><br><span class="line"></span><br><span class="line"><span class="comment"># 等待 5s 后再开始复制，因为要等更多 slave 重新连接过来</span></span><br><span class="line">repl-diskless-sync-delay 5</span><br></pre></td></tr></table></figure>
-
-<h3 id="过期-key-处理"><a href="#过期-key-处理" class="headerlink" title="过期 key 处理"></a>过期 key 处理</h3><p>slave 不会过期 key，只会等待 master 过期 key。如果 master 过期了一个 key，或者通过 LRU 淘汰了一个 key，那么会模拟一条 del 命令发送给 slave。</p>
-<h2 id="复制的完整流程"><a href="#复制的完整流程" class="headerlink" title="复制的完整流程"></a>复制的完整流程</h2><p>slave node 启动时，会在自己本地保存 master node 的信息，包括 master node 的<code>host</code>和<code>ip</code>，但是复制流程没开始。</p>
-<p>slave node 内部有个定时任务，每秒检查是否有新的 master node 要连接和复制，如果发现，就跟 master node 建立 socket 网络连接。然后 slave node 发送 <code>ping</code> 命令给 master node。如果 master 设置了 requirepass，那么 slave node 必须发送 masterauth 的口令过去进行认证。master node <strong>第一次执行全量复制</strong>，将所有数据发给 slave node。而在后续，master node 持续将写命令，异步复制给 slave node。</p>
-<p><img src="/images/high-concurrency/redis-master-slave-replication-detail.png" alt="redis-master-slave-replication-detail"></p>
-<h3 id="全量复制"><a href="#全量复制" class="headerlink" title="全量复制"></a>全量复制</h3><ul>
-<li><p>master 执行 bgsave ，在本地生成一份 rdb 快照文件。</p>
-</li>
-<li><p>master node 将 rdb 快照文件发送给 slave node，如果 rdb 复制时间超过 60秒（repl-timeout），那么 slave node 就会认为复制失败，可以适当调大这个参数(对于千兆网卡的机器，一般每秒传输 100MB，6G 文件，很可能超过 60s)</p>
-</li>
-<li><p>master node 在生成 rdb 时，会将所有新的写命令缓存在内存中，在 slave node 保存了 rdb 之后，再将新的写命令复制给 slave node。</p>
-</li>
-<li><p>如果在复制期间，内存缓冲区持续消耗超过 64MB，或者一次性超过 256MB，那么停止复制，复制失败。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client-output-buffer-limit slave 256MB 64MB 60</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>slave node 接收到 rdb 之后，清空自己的旧数据，然后重新加载 rdb 到自己的内存中，同时<strong>基于旧的数据版本</strong>对外提供服务。</p>
-</li>
-<li><p>如果 slave node 开启了 AOF，那么会立即执行 BGREWRITEAOF，重写 AOF。</p>
-</li>
-</ul>
-<h3 id="增量复制"><a href="#增量复制" class="headerlink" title="增量复制"></a>增量复制</h3><ul>
-<li>如果全量复制过程中，master-slave 网络连接断掉，那么 slave 重新连接 master 时，会触发增量复制。</li>
-<li>master 直接从自己的 backlog 中获取部分丢失的数据，发送给 slave node，默认 backlog 就是 1MB。</li>
-<li>master 就是根据 slave 发送的 psync 中的 offset 来从 backlog 中获取数据的。</li>
-</ul>
-<h3 id="heartbeat"><a href="#heartbeat" class="headerlink" title="heartbeat"></a>heartbeat</h3><p>主从节点互相都会发送 heartbeat 信息。</p>
-<p>master 默认每隔 10秒 发送一次 heartbeat，slave node 每隔 1秒 发送一个 heartbeat。</p>
-<h3 id="异步复制"><a href="#异步复制" class="headerlink" title="异步复制"></a>异步复制</h3><p>master 每次接收到写命令之后，先在内部写入数据，然后异步发送给 slave node。</p>
-<h2 id="redis-如何才能做到高可用"><a href="#redis-如何才能做到高可用" class="headerlink" title="redis 如何才能做到高可用"></a>redis 如何才能做到高可用</h2><p>如果系统在 365 天内，有 99.99% 的时间，都是可以哗哗对外提供服务的，那么就说系统是高可用的。</p>
-<p>一个 slave 挂掉了，是不会影响可用性的，还有其它的 slave 在提供相同数据下的相同的对外的查询服务。</p>
-<p>但是，如果 master node 死掉了，会怎么样？没法写数据了，写缓存的时候，全部失效了。slave node 还有什么用呢，没有 master 给它们复制数据了，系统相当于不可用了。</p>
-<p>redis 的高可用架构，叫做 <code>failover</code> <strong>故障转移</strong>，也可以叫做主备切换。</p>
-<p>master node 在故障时，自动检测，并且将某个 slave node 自动切换为 master node 的过程，叫做主备切换。这个过程，实现了 redis 的主从架构下的高可用。</p>
-<p>后面会详细说明 redis <a href="/docs/high-concurrency/redis-sentinel.md">基于哨兵的高可用性</a>。</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
     <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/07/04/subject-high-concurrency-redis-single-thread-model/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1118,11 +419,667 @@
   </article>
 
     
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/07/04/subject-high-concurrency-redis-caching-avalanche-and-caching-penetration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/07/04/subject-high-concurrency-redis-caching-avalanche-and-caching-penetration/" class="post-title-link" itemprop="url">redis 的雪崩、穿透和击穿？</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-04 00:13:01" itemprop="dateCreated datePublished" datetime="2018-07-04T00:13:01+08:00">2018-07-04</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/high-concurrency/" itemprop="url" rel="index"><span itemprop="name">high-concurrency</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/07/04/subject-high-concurrency-redis-caching-avalanche-and-caching-penetration/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/07/04/subject-high-concurrency-redis-caching-avalanche-and-caching-penetration/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>1.2k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h3><p>对于系统 A，假设每天高峰期每秒 5000 个请求，本来缓存在高峰期可以扛住每秒 4000 个请求，但是缓存机器意外发生了全盘宕机。缓存挂了，此时 1 秒 5000 个请求全部落数据库，数据库必然扛不住，它会报一下警，然后就挂了。此时，如果没有采用什么特别的方案来处理这个故障，DBA 很着急，重启数据库，但是数据库立马又被新的流量给打死了。</p>
+<p>这就是缓存雪崩。</p>
+<p><img src="/images/high-concurrency/redis-caching-avalanche.png" alt="redis-caching-avalanche"></p>
+<p>大约在 3 年前，国内比较知名的一个互联网公司，曾因为缓存事故，导致雪崩，后台系统全部崩溃，事故从当天下午持续到晚上凌晨 3~4 点，公司损失了几千万。</p>
+<p>缓存雪崩的事前事中事后的解决方案如下。</p>
+<ul>
+<li>事前：redis 高可用，主从+哨兵，redis cluster，避免全盘崩溃。</li>
+<li>事中：本地 ehcache 缓存 + hystrix 限流&amp;降级，避免 MySQL 被打死。</li>
+<li>事后：redis 持久化，一旦重启，自动从磁盘上加载数据，快速恢复缓存数据。</li>
+</ul>
+<p><img src="/images/high-concurrency/redis-caching-avalanche-solution.png" alt="redis-caching-avalanche-solution"></p>
+<p>用户发送一个请求，系统 A 收到请求后，先查本地 ehcache 缓存，如果没查到再查 redis。如果 ehcache 和 redis 都没有，再查数据库，将数据库中的结果，写入 ehcache 和 redis 中。</p>
+<p>限流组件，可以设置每秒的请求，有多少能通过组件，剩余的未通过的请求，怎么办？<strong>走降级</strong>！可以返回一些默认的值，或者友情提示，或者空白的值。</p>
+<p>好处：</p>
+<ul>
+<li>数据库绝对不会死，限流组件确保了每秒只有多少个请求能通过。</li>
+<li>只要数据库不死，就是说，对用户来说，2/5 的请求都是可以被处理的。</li>
+<li>只要有 2/5 的请求可以被处理，就意味着你的系统没死，对用户来说，可能就是点击几次刷不出来页面，但是多点几次，就可以刷出来一次。</li>
+</ul>
+<h3 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h3><p>对于系统A，假设一秒 5000 个请求，结果其中 4000 个请求是黑客发出的恶意攻击。</p>
+<p>黑客发出的那 4000 个攻击，缓存中查不到，每次你去数据库里查，也查不到。</p>
+<p>举个栗子。数据库 id 是从 1 开始的，结果黑客发过来的请求 id 全部都是负数。这样的话，缓存中不会有，请求每次都“视缓存于无物”，直接查询数据库。这种恶意攻击场景的缓存穿透就会直接把数据库给打死。</p>
+<p><img src="/images/high-concurrency/redis-caching-penetration.png" alt="redis-caching-penetration"></p>
+<p>解决方式很简单，每次系统 A 从数据库中只要没查到，就写一个空值到缓存里去，比如 <code>set -999 UNKNOWN</code>。然后设置一个过期时间，这样的话，下次有相同的 key 来访问的时候，在缓存失效之前，都可以直接从缓存中取数据。</p>
+<h3 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h3><p>缓存击穿，就是说某个 key 非常热点，访问非常频繁，处于集中式高并发访问的情况，当这个 key 在失效的瞬间，大量的请求就击穿了缓存，直接请求数据库，就像是在一道屏障上凿开了一个洞。</p>
+<p>解决方式也很简单，可以将热点数据设置为永远不过期；或者基于 redis or zookeeper 实现互斥锁，等待第一个请求构建完缓存之后，再释放锁，进而其它请求才能通过该 key 访问数据。</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/07/03/subject-high-concurrency-database-shard-method/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/07/03/subject-high-concurrency-database-shard-method/" class="post-title-link" itemprop="url">如何设计才可以让系统从未分库分表**动态切换**到分库分表上？</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-03 00:08:04" itemprop="dateCreated datePublished" datetime="2018-07-03T00:08:04+08:00">2018-07-03</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/high-concurrency/" itemprop="url" rel="index"><span itemprop="name">high-concurrency</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/07/03/subject-high-concurrency-database-shard-method/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/07/03/subject-high-concurrency-database-shard-method/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>803</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>这个其实从 low 到高大上有好几种方案，我们都玩儿过，我都给你说一下。</p>
+<h3 id="停机迁移方案"><a href="#停机迁移方案" class="headerlink" title="停机迁移方案"></a>停机迁移方案</h3><p>我先给你说一个最 low 的方案，就是很简单，大家伙儿凌晨 12 点开始运维，网站或者 app 挂个公告，说 0 点到早上 6 点进行运维，无法访问。</p>
+<p>接着到 0 点停机，系统停掉，没有流量写入了，此时老的单库单表数据库静止了。然后你之前得写好一个<strong>导数的一次性工具</strong>，此时直接跑起来，然后将单库单表的数据哗哗哗读出来，写到分库分表里面去。</p>
+<p>导数完了之后，就 ok 了，修改系统的数据库连接配置啥的，包括可能代码和 SQL 也许有修改，那你就用最新的代码，然后直接启动连到新的分库分表上去。</p>
+<p>验证一下，ok了，完美，大家伸个懒腰，看看看凌晨 4 点钟的北京夜景，打个滴滴回家吧。</p>
+<p>但是这个方案比较 low，谁都能干，我们来看看高大上一点的方案。</p>
+<p><img src="/images/high-concurrency/database-shard-method-1.png" alt="database-shard-method-1"></p>
+<h3 id="双写迁移方案"><a href="#双写迁移方案" class="headerlink" title="双写迁移方案"></a>双写迁移方案</h3><p>这个是我们常用的一种迁移方案，比较靠谱一些，不用停机，不用看北京凌晨 4 点的风景。</p>
+<p>简单来说，就是在线上系统里面，之前所有写库的地方，增删改操作，<strong>除了对老库增删改，都加上对新库的增删改</strong>，这就是所谓的<strong>双写</strong>，同时写俩库，老库和新库。</p>
+<p>然后<strong>系统部署</strong>之后，新库数据差太远，用之前说的导数工具，跑起来读老库数据写新库，写的时候要根据 gmt_modified 这类字段判断这条数据最后修改的时间，除非是读出来的数据在新库里没有，或者是比新库的数据新才会写。简单来说，就是不允许用老数据覆盖新数据。</p>
+<p>导完一轮之后，有可能数据还是存在不一致，那么就程序自动做一轮校验，比对新老库每个表的每条数据，接着如果有不一样的，就针对那些不一样的，从老库读数据再次写。反复循环，直到两个库每个表的数据都完全一致为止。</p>
+<p>接着当数据完全一致了，就 ok 了，基于仅仅使用分库分表的最新代码，重新部署一次，不就仅仅基于分库分表在操作了么，还没有几个小时的停机时间，很稳。所以现在基本玩儿数据迁移之类的，都是这么干的。</p>
+<p><img src="/images/high-concurrency/database-shard-method-2.png" alt="database-shard-method-2"></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/07/03/subject-high-concurrency-database-shard-global-id-generate/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/07/03/subject-high-concurrency-database-shard-global-id-generate/" class="post-title-link" itemprop="url">分库分表之后，id 主键如何处理？</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-03 00:08:03" itemprop="dateCreated datePublished" datetime="2018-07-03T00:08:03+08:00">2018-07-03</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/high-concurrency/" itemprop="url" rel="index"><span itemprop="name">high-concurrency</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/07/03/subject-high-concurrency-database-shard-global-id-generate/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/07/03/subject-high-concurrency-database-shard-global-id-generate/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>6.3k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>6 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="基于数据库的实现方案"><a href="#基于数据库的实现方案" class="headerlink" title="基于数据库的实现方案"></a>基于数据库的实现方案</h3><h4 id="数据库自增-id"><a href="#数据库自增-id" class="headerlink" title="数据库自增 id"></a>数据库自增 id</h4><p>这个就是说你的系统里每次得到一个 id，都是往一个库的一个表里插入一条没什么业务含义的数据，然后获取一个数据库自增的一个 id。拿到这个 id 之后再往对应的分库分表里去写入。</p>
+<p>这个方案的好处就是方便简单，谁都会用；<strong>缺点就是单库生成</strong>自增 id，要是高并发的话，就会有瓶颈的；如果你硬是要改进一下，那么就专门开一个服务出来，这个服务每次就拿到当前 id 最大值，然后自己递增几个 id，一次性返回一批 id，然后再把当前最大 id 值修改成递增几个 id 之后的一个值；但是<strong>无论如何都是基于单个数据库</strong>。</p>
+<p><strong>适合的场景</strong>：你分库分表就俩原因，要不就是单库并发太高，要不就是单库数据量太大；除非是你<strong>并发不高，但是数据量太大</strong>导致的分库分表扩容，你可以用这个方案，因为可能每秒最高并发最多就几百，那么就走单独的一个库和表生成自增主键即可。</p>
+<h4 id="设置数据库-sequence-或者表自增字段步长"><a href="#设置数据库-sequence-或者表自增字段步长" class="headerlink" title="设置数据库 sequence 或者表自增字段步长"></a>设置数据库 sequence 或者表自增字段步长</h4><p>可以通过设置数据库 sequence 或者表的自增字段步长来进行水平伸缩。</p>
+<p>比如说，现在有 8 个服务节点，每个服务节点使用一个 sequence 功能来产生 ID，每个 sequence 的起始 ID 不同，并且依次递增，步长都是 8。</p>
+<p><img src="/images/high-concurrency/database-id-sequence-step.png" alt="database-id-sequence-step"></p>
+<p><strong>适合的场景</strong>：在用户防止产生的 ID 重复时，这种方案实现起来比较简单，也能达到性能目标。但是服务节点固定，步长也固定，将来如果还要增加服务节点，就不好搞了。</p>
+<h3 id="UUID"><a href="#UUID" class="headerlink" title="UUID"></a>UUID</h3><p>好处就是本地生成，不要基于数据库来了；不好之处就是，UUID 太长了、占用空间大，<strong>作为主键性能太差</strong>了；更重要的是，UUID 不具有有序性，会导致 B+ 树索引在写的时候有过多的随机写操作（连续的 ID 可以产生部分顺序写），还有，由于在写的时候不能产生有顺序的 append 操作，而需要进行 insert 操作，将会读取整个 B+ 树节点到内存，在插入这条记录后会将整个节点写回磁盘，这种操作在记录占用空间比较大的情况下，性能下降明显。</p>
+<p>适合的场景：如果你是要随机生成个什么文件名、编号之类的，你可以用 UUID，但是作为主键是不能用 UUID 的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UUID.randomUUID().toString().replace(“-”, “”) -&gt; sfsdf23423rr234sfdaf</span><br></pre></td></tr></table></figure>
+
+<h3 id="获取系统当前时间"><a href="#获取系统当前时间" class="headerlink" title="获取系统当前时间"></a>获取系统当前时间</h3><p>这个就是获取当前时间即可，但是问题是，<strong>并发很高的时候</strong>，比如一秒并发几千，<strong>会有重复的情况</strong>，这个是肯定不合适的。基本就不用考虑了。</p>
+<p>适合的场景：一般如果用这个方案，是将当前时间跟很多其他的业务字段拼接起来，作为一个 id，如果业务上你觉得可以接受，那么也是可以的。你可以将别的业务字段值跟当前时间拼接起来，组成一个全局唯一的编号。</p>
+<h3 id="snowflake-算法"><a href="#snowflake-算法" class="headerlink" title="snowflake 算法"></a>snowflake 算法</h3><p>snowflake 算法是 twitter 开源的分布式 id 生成算法，采用 Scala 语言实现，是把一个 64 位的 long 型的 id，1 个 bit 是不用的，用其中的 41 bit 作为毫秒数，用 10 bit 作为工作机器 id，12 bit 作为序列号。</p>
+<ul>
+<li>1 bit：不用，为啥呢？因为二进制里第一个 bit 为如果是 1，那么都是负数，但是我们生成的 id 都是正数，所以第一个 bit 统一都是 0。</li>
+<li>41 bit：表示的是时间戳，单位是毫秒。41 bit 可以表示的数字多达 <code>2^41 - 1</code>，也就是可以标识 <code>2^41 - 1</code> 个毫秒值，换算成年就是表示69年的时间。</li>
+<li>10 bit：记录工作机器 id，代表的是这个服务最多可以部署在 2^10台机器上哪，也就是1024台机器。但是 10 bit 里 5 个 bit 代表机房 id，5 个 bit 代表机器 id。意思就是最多代表 <code>2^5</code>个机房（32个机房），每个机房里可以代表 <code>2^5</code> 个机器（32台机器）。</li>
+<li>12 bit：这个是用来记录同一个毫秒内产生的不同 id，12 bit 可以代表的最大正整数是 <code>2^12 - 1 = 4096</code>，也就是说可以用这个 12 bit 代表的数字来区分<strong>同一个毫秒内</strong>的 4096 个不同的 id。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 | 0001100 10100010 10111110 10001001 01011100 00 | 10001 | 1 1001 | 0000 00000000</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IdWorker</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterId;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequence;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IdWorker</span><span class="params">(<span class="keyword">long</span> workerId, <span class="keyword">long</span> datacenterId, <span class="keyword">long</span> sequence)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// sanity check for workerId</span></span><br><span class="line">        <span class="comment">// 这儿不就检查了一下，要求就是你传递进来的机房id和机器id不能超过32，不能小于0</span></span><br><span class="line">        <span class="keyword">if</span> (workerId &gt; maxWorkerId || workerId &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(</span><br><span class="line">                    String.format(<span class="string">"worker Id can't be greater than %d or less than 0"</span>, maxWorkerId));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (datacenterId &gt; maxDatacenterId || datacenterId &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(</span><br><span class="line">                    String.format(<span class="string">"datacenter Id can't be greater than %d or less than 0"</span>, maxDatacenterId));</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.printf(</span><br><span class="line">                <span class="string">"worker starting. timestamp left shift %d, datacenter id bits %d, worker id bits %d, sequence bits %d, workerid %d"</span>,</span><br><span class="line">                timestampLeftShift, datacenterIdBits, workerIdBits, sequenceBits, workerId);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.workerId = workerId;</span><br><span class="line">        <span class="keyword">this</span>.datacenterId = datacenterId;</span><br><span class="line">        <span class="keyword">this</span>.sequence = sequence;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> twepoch = <span class="number">1288834974657L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerIdBits = <span class="number">5L</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterIdBits = <span class="number">5L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这个是二进制运算，就是 5 bit最多只能有31个数字，也就是说机器id最多只能是32以内</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> maxWorkerId = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; workerIdBits);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这个是一个意思，就是 5 bit最多只能有31个数字，机房id最多只能是32以内</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> maxDatacenterId = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; datacenterIdBits);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequenceBits = <span class="number">12L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> workerIdShift = sequenceBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> datacenterIdShift = sequenceBits + workerIdBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> sequenceMask = -<span class="number">1L</span> ^ (-<span class="number">1L</span> &lt;&lt; sequenceBits);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> lastTimestamp = -<span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getWorkerId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> workerId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getDatacenterId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> datacenterId;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getTimestamp</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> System.currentTimeMillis();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">long</span> <span class="title">nextId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 这儿就是获取当前时间戳，单位是毫秒</span></span><br><span class="line">        <span class="keyword">long</span> timestamp = timeGen();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (timestamp &lt; lastTimestamp) &#123;</span><br><span class="line">            System.err.printf(<span class="string">"clock is moving backwards.  Rejecting requests until %d."</span>, lastTimestamp);</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(String.format(</span><br><span class="line">                    <span class="string">"Clock moved backwards.  Refusing to generate id for %d milliseconds"</span>, lastTimestamp - timestamp));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (lastTimestamp == timestamp) &#123;</span><br><span class="line">            <span class="comment">// 这个意思是说一个毫秒内最多只能有4096个数字</span></span><br><span class="line">            <span class="comment">// 无论你传递多少进来，这个位运算保证始终就是在4096这个范围内，避免你自己传递个sequence超过了4096这个范围</span></span><br><span class="line">            sequence = (sequence + <span class="number">1</span>) &amp; sequenceMask;</span><br><span class="line">            <span class="keyword">if</span> (sequence == <span class="number">0</span>) &#123;</span><br><span class="line">                timestamp = tilNextMillis(lastTimestamp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sequence = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 这儿记录一下最近一次生成id的时间戳，单位是毫秒</span></span><br><span class="line">        lastTimestamp = timestamp;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 这儿就是将时间戳左移，放到 41 bit那儿；</span></span><br><span class="line">        <span class="comment">// 将机房 id左移放到 5 bit那儿；</span></span><br><span class="line">        <span class="comment">// 将机器id左移放到5 bit那儿；将序号放最后12 bit；</span></span><br><span class="line">        <span class="comment">// 最后拼接起来成一个 64 bit的二进制数字，转换成 10 进制就是个 long 型</span></span><br><span class="line">        <span class="keyword">return</span> ((timestamp - twepoch) &lt;&lt; timestampLeftShift) | (datacenterId &lt;&lt; datacenterIdShift)</span><br><span class="line">                | (workerId &lt;&lt; workerIdShift) | sequence;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">tilNextMillis</span><span class="params">(<span class="keyword">long</span> lastTimestamp)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> timestamp = timeGen();</span><br><span class="line">        <span class="keyword">while</span> (timestamp &lt;= lastTimestamp) &#123;</span><br><span class="line">            timestamp = timeGen();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> timestamp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">long</span> <span class="title">timeGen</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> System.currentTimeMillis();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ---------------测试---------------</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        IdWorker worker = <span class="keyword">new</span> IdWorker(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">30</span>; i++) &#123;</span><br><span class="line">            System.out.println(worker.nextId());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>怎么说呢，大概这个意思吧，就是说 41 bit 是当前毫秒单位的一个时间戳，就这意思；然后 5 bit 是你传递进来的一个<strong>机房</strong> id（但是最大只能是 32 以内），另外 5 bit 是你传递进来的<strong>机器</strong> id（但是最大只能是 32 以内），剩下的那个 12 bit序列号，就是如果跟你上次生成 id 的时间还在一个毫秒内，那么会把顺序给你累加，最多在 4096 个序号以内。</p>
+<p>所以你自己利用这个工具类，自己搞一个服务，然后对每个机房的每个机器都初始化这么一个东西，刚开始这个机房的这个机器的序号就是 0。然后每次接收到一个请求，说这个机房的这个机器要生成一个 id，你就找到对应的 Worker 生成。</p>
+<p>利用这个 snowflake 算法，你可以开发自己公司的服务，甚至对于机房 id 和机器 id，反正给你预留了 5 bit + 5 bit，你换成别的有业务含义的东西也可以的。</p>
+<p>这个 snowflake 算法相对来说还是比较靠谱的，所以你要真是搞分布式 id 生成，如果是高并发啥的，那么用这个应该性能比较好，一般每秒几万并发的场景，也足够你用了。</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/07/03/subject-high-concurrency-database-shard/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2018/07/03/subject-high-concurrency-database-shard/" class="post-title-link" itemprop="url">为什么要分库分表？</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-03 00:08:01" itemprop="dateCreated datePublished" datetime="2018-07-03T00:08:01+08:00">2018-07-03</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/high-concurrency/" itemprop="url" rel="index"><span itemprop="name">high-concurrency</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/07/03/subject-high-concurrency-database-shard/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/07/03/subject-high-concurrency-database-shard/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>3.9k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>4 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="为什么要分库分表？（设计高并发系统的时候，数据库层面该如何设计？）"><a href="#为什么要分库分表？（设计高并发系统的时候，数据库层面该如何设计？）" class="headerlink" title="为什么要分库分表？（设计高并发系统的时候，数据库层面该如何设计？）"></a>为什么要分库分表？（设计高并发系统的时候，数据库层面该如何设计？）</h3><p>说白了，分库分表是两回事儿，大家可别搞混了，可能是光分库不分表，也可能是光分表不分库，都有可能。</p>
+<p>我先给大家抛出来一个场景。</p>
+<p>假如我们现在是一个小创业公司（或者是一个 BAT 公司刚兴起的一个新部门），现在注册用户就 20 万，每天活跃用户就 1 万，每天单表数据量就 1000，然后高峰期每秒钟并发请求最多就 10。天，就这种系统，随便找一个有几年工作经验的，然后带几个刚培训出来的，随便干干都可以。</p>
+<p>结果没想到我们运气居然这么好，碰上个 CEO 带着我们走上了康庄大道，业务发展迅猛，过了几个月，注册用户数达到了 2000 万！每天活跃用户数 100 万！每天单表数据量 10 万条！高峰期每秒最大请求达到 1000！同时公司还顺带着融资了两轮，进账了几个亿人民币啊！公司估值达到了惊人的几亿美金！这是小独角兽的节奏！</p>
+<p>好吧，没事，现在大家感觉压力已经有点大了，为啥呢？因为每天多 10 万条数据，一个月就多 300 万条数据，现在咱们单表已经几百万数据了，马上就破千万了。但是勉强还能撑着。高峰期请求现在是 1000，咱们线上部署了几台机器，负载均衡搞了一下，数据库撑 1000QPS 也还凑合。但是大家现在开始感觉有点担心了，接下来咋整呢……</p>
+<p>再接下来几个月，我的天，CEO 太牛逼了，公司用户数已经达到 1 亿，公司继续融资几十亿人民币啊！公司估值达到了惊人的几十亿美金，成为了国内今年最牛逼的明星创业公司！天，我们太幸运了。</p>
+<p>但是我们同时也是不幸的，因为此时每天活跃用户数上千万，每天单表新增数据多达 50 万，目前一个表总数据量都已经达到了两三千万了！扛不住啊！数据库磁盘容量不断消耗掉！高峰期并发达到惊人的 <code>5000~8000</code>！别开玩笑了，哥。我跟你保证，你的系统支撑不到现在，已经挂掉了！</p>
+<p>好吧，所以你看到这里差不多就理解分库分表是怎么回事儿了，实际上这是跟着你的公司业务发展走的，你公司业务发展越好，用户就越多，数据量越大，请求量越大，那你单个数据库一定扛不住。</p>
+<h4 id="分表"><a href="#分表" class="headerlink" title="分表"></a>分表</h4><p>比如你单表都几千万数据了，你确定你能扛住么？绝对不行，<strong>单表数据量太大</strong>，会极大影响你的 sql <strong>执行的性能</strong>，到了后面你的 sql 可能就跑的很慢了。一般来说，就以我的经验来看，单表到几百万的时候，性能就会相对差一些了，你就得分表了。</p>
+<p>分表是啥意思？就是把一个表的数据放到多个表中，然后查询的时候你就查一个表。比如按照用户 id 来分表，将一个用户的数据就放在一个表中。然后操作的时候你对一个用户就操作那个表就好了。这样可以控制每个表的数据量在可控的范围内，比如每个表就固定在 200 万以内。</p>
+<h4 id="分库"><a href="#分库" class="headerlink" title="分库"></a>分库</h4><p>分库是啥意思？就是你一个库一般我们经验而言，最多支撑到并发 2000，一定要扩容了，而且一个健康的单库并发值你最好保持在每秒 1000 左右，不要太大。那么你可以将一个库的数据拆分到多个库中，访问的时候就访问一个库好了。</p>
+<p>这就是所谓的<strong>分库分表</strong>，为啥要分库分表？你明白了吧。</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>分库分表前</th>
+<th>分库分表后</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>并发支撑情况</td>
+<td>MySQL 单机部署，扛不住高并发</td>
+<td>MySQL从单机到多机，能承受的并发增加了多倍</td>
+</tr>
+<tr>
+<td>磁盘使用情况</td>
+<td>MySQL 单机磁盘容量几乎撑满</td>
+<td>拆分为多个库，数据库服务器磁盘使用率大大降低</td>
+</tr>
+<tr>
+<td>SQL 执行性能</td>
+<td>单表数据量太大，SQL 越跑越慢</td>
+<td>单表数据量减少，SQL 执行效率明显提升</td>
+</tr>
+</tbody></table>
+<h3 id="用过哪些分库分表中间件？不同的分库分表中间件都有什么优点和缺点？"><a href="#用过哪些分库分表中间件？不同的分库分表中间件都有什么优点和缺点？" class="headerlink" title="用过哪些分库分表中间件？不同的分库分表中间件都有什么优点和缺点？"></a>用过哪些分库分表中间件？不同的分库分表中间件都有什么优点和缺点？</h3><p>这个其实就是看看你了解哪些分库分表的中间件，各个中间件的优缺点是啥？然后你用过哪些分库分表的中间件。</p>
+<p>比较常见的包括：</p>
+<ul>
+<li>cobar</li>
+<li>TDDL</li>
+<li>atlas</li>
+<li>sharding-jdbc</li>
+<li>mycat</li>
+</ul>
+<h4 id="cobar"><a href="#cobar" class="headerlink" title="cobar"></a>cobar</h4><p>阿里 b2b 团队开发和开源的，属于 proxy 层方案，就是介于应用服务器和数据库服务器之间。应用程序通过 JDBC 驱动访问 cobar 集群，cobar 根据 SQL 和分库规则对 SQL 做分解，然后分发到 MySQL 集群不同的数据库实例上执行。早些年还可以用，但是最近几年都没更新了，基本没啥人用，差不多算是被抛弃的状态吧。而且不支持读写分离、存储过程、跨库 join 和分页等操作。</p>
+<h4 id="TDDL"><a href="#TDDL" class="headerlink" title="TDDL"></a>TDDL</h4><p>淘宝团队开发的，属于 client 层方案。支持基本的 crud 语法和读写分离，但不支持 join、多表查询等语法。目前使用的也不多，因为还依赖淘宝的 diamond 配置管理系统。</p>
+<h4 id="atlas"><a href="#atlas" class="headerlink" title="atlas"></a>atlas</h4><p>360 开源的，属于 proxy 层方案，以前是有一些公司在用的，但是确实有一个很大的问题就是社区最新的维护都在 5 年前了。所以，现在用的公司基本也很少了。</p>
+<h4 id="sharding-jdbc"><a href="#sharding-jdbc" class="headerlink" title="sharding-jdbc"></a>sharding-jdbc</h4><p>当当开源的，属于 client 层方案。确实之前用的还比较多一些，因为 SQL 语法支持也比较多，没有太多限制，而且目前推出到了 2.0 版本，支持分库分表、读写分离、分布式 id 生成、柔性事务（最大努力送达型事务、TCC 事务）。而且确实之前使用的公司会比较多一些（这个在官网有登记使用的公司，可以看到从 2017 年一直到现在，是有不少公司在用的），目前社区也还一直在开发和维护，还算是比较活跃，个人认为算是一个现在也<strong>可以选择的方案</strong>。</p>
+<h4 id="mycat"><a href="#mycat" class="headerlink" title="mycat"></a>mycat</h4><p>基于 cobar 改造的，属于 proxy 层方案，支持的功能非常完善，而且目前应该是非常火的而且不断流行的数据库中间件，社区很活跃，也有一些公司开始在用了。但是确实相比于 sharding jdbc 来说，年轻一些，经历的锤炼少一些。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>综上，现在其实建议考量的，就是 sharding-jdbc 和 mycat，这两个都可以去考虑使用。</p>
+<p>sharding-jdbc 这种 client 层方案的<strong>优点在于不用部署，运维成本低，不需要代理层的二次转发请求，性能很高</strong>，但是如果遇到升级啥的需要各个系统都重新升级版本再发布，各个系统都需要<strong>耦合</strong> sharding-jdbc 的依赖；</p>
+<p>mycat 这种 proxy 层方案的<strong>缺点在于需要部署</strong>，自己运维一套中间件，运维成本高，但是<strong>好处在于对于各个项目是透明的</strong>，如果遇到升级之类的都是自己中间件那里搞就行了。</p>
+<p>通常来说，这两个方案其实都可以选用，但是我个人建议中小型公司选用 sharding-jdbc，client 层方案轻便，而且维护成本低，不需要额外增派人手，而且中小型公司系统复杂度会低一些，项目也没那么多；但是中大型公司最好还是选用 mycat 这类 proxy 层方案，因为可能大公司系统和项目非常多，团队很大，人员充足，那么最好是专门弄个人来研究和维护 mycat，然后大量项目直接透明使用即可。</p>
+<h3 id="你们具体是如何对数据库如何进行垂直拆分或水平拆分的？"><a href="#你们具体是如何对数据库如何进行垂直拆分或水平拆分的？" class="headerlink" title="你们具体是如何对数据库如何进行垂直拆分或水平拆分的？"></a>你们具体是如何对数据库如何进行垂直拆分或水平拆分的？</h3><p><strong>水平拆分</strong>的意思，就是把一个表的数据给弄到多个库的多个表里去，但是每个库的表结构都一样，只不过每个库表放的数据是不同的，所有库表的数据加起来就是全部数据。水平拆分的意义，就是将数据均匀放更多的库里，然后用多个库来扛更高的并发，还有就是用多个库的存储容量来进行扩容。</p>
+<p><img src="/images/high-concurrency/database-split-horizon.png" alt="database-split-horizon"></p>
+<p><strong>垂直拆分</strong>的意思，就是<strong>把一个有很多字段的表给拆分成多个表</strong>，<strong>或者是多个库上去</strong>。每个库表的结构都不一样，每个库表都包含部分字段。一般来说，会<strong>将较少的访问频率很高的字段放到一个表里去</strong>，然后<strong>将较多的访问频率很低的字段放到另外一个表里去</strong>。因为数据库是有缓存的，你访问频率高的行字段越少，就可以在缓存里缓存更多的行，性能就越好。这个一般在表层面做的较多一些。</p>
+<p><img src="/images/high-concurrency/database-split-vertically.png" alt="database-split-vertically"></p>
+<p>这个其实挺常见的，不一定我说，大家很多同学可能自己都做过，把一个大表拆开，订单表、订单支付表、订单商品表。</p>
+<p>还有<strong>表层面的拆分</strong>，就是分表，将一个表变成 N 个表，就是<strong>让每个表的数据量控制在一定范围内</strong>，保证 SQL 的性能。否则单表数据量越大，SQL 性能就越差。一般是 200 万行左右，不要太多，但是也得看具体你怎么操作，也可能是 500 万，或者是 100 万。你的SQL越复杂，就最好让单表行数越少。</p>
+<p>好了，无论分库还是分表，上面说的那些数据库中间件都是可以支持的。就是基本上那些中间件可以做到你分库分表之后，<strong>中间件可以根据你指定的某个字段值</strong>，比如说 userid，<strong>自动路由到对应的库上去，然后再自动路由到对应的表里去</strong>。</p>
+<p>你就得考虑一下，你的项目里该如何分库分表？一般来说，垂直拆分，你可以在表层面来做，对一些字段特别多的表做一下拆分；水平拆分，你可以说是并发承载不了，或者是数据量太大，容量承载不了，你给拆了，按什么字段来拆，你自己想好；分表，你考虑一下，你如果哪怕是拆到每个库里去，并发和容量都ok了，但是每个库的表还是太大了，那么你就分表，将这个表分开，保证每个表的数据量并不是很大。</p>
+<p>而且这儿还有两种<strong>分库分表的方式</strong>：</p>
+<ul>
+<li>一种是按照 range 来分，就是每个库一段连续的数据，这个一般是按比如<strong>时间范围</strong>来的，但是这种一般较少用，因为很容易产生热点问题，大量的流量都打在最新的数据上了。</li>
+<li>或者是按照某个字段 hash 一下均匀分散，这个较为常用。</li>
+</ul>
+<p>range 来分，好处在于说，扩容的时候很简单，因为你只要预备好，给每个月都准备一个库就可以了，到了一个新的月份的时候，自然而然，就会写新的库了；缺点，但是大部分的请求，都是访问最新的数据。实际生产用 range，要看场景。</p>
+<p>hash 分发，好处在于说，可以平均分配每个库的数据量和请求压力；坏处在于说扩容起来比较麻烦，会有一个数据迁移的过程，之前的数据需要重新计算 hash 值重新分配到不同的库或表。</p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1170,7 +1127,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-count">143</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1211,9 +1168,7 @@
         
           
         
-          
-        
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1284,11 +1239,7 @@
         
           
         
-          
-        
-          
-        
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1355,7 +1306,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2008 – <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2008 – <span itemprop="copyrightYear">2022</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

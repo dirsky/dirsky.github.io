@@ -269,7 +269,7 @@
   
   
   <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/03/03/db-redis-Redis-2/">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2017/12/16/lang-bootstrap-2017-12-16-bootstrap-3-cj/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Frank">
@@ -283,619 +283,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
             
-            <a href="/2018/03/03/db-redis-Redis-2/" class="post-title-link" itemprop="url">Redis</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2018-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2018-03-03T00:00:00+08:00">2018-03-03</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/db/" itemprop="url" rel="index"><span itemprop="name">db</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2018/03/03/db-redis-Redis-2/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/03/03/db-redis-Redis-2/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>7.1k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>6 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="redis-简介"><a href="#redis-简介" class="headerlink" title="redis 简介"></a>redis 简介</h3><p>简单来说 redis 就是一个数据库，不过与传统数据库不同的是 redis 的数据是存在内存中的，所以读写速度非常快，因此 redis 被广泛应用于缓存方向。另外，redis 也经常用来做分布式锁。redis 提供了多种数据类型来支持不同的业务场景。除此之外，redis 支持事务 、持久化、LUA脚本、LRU驱动事件、多种集群方案。 </p>
-<h3 id="为什么要用-redis-为什么要用缓存"><a href="#为什么要用-redis-为什么要用缓存" class="headerlink" title="为什么要用 redis/为什么要用缓存"></a>为什么要用 redis/为什么要用缓存</h3><p>主要从“高性能”和“高并发”这两点来看待这个问题。</p>
-<p><strong>高性能：</strong></p>
-<p>假如用户第一次访问数据库中的某些数据。这个过程会比较慢，因为是从硬盘上读取的。将该用户访问的数据存在数缓存中，这样下一次再访问这些数据的时候就可以直接从缓存中获取了。操作缓存就是直接操作内存，所以速度相当快。如果数据库中的对应数据改变的之后，同步改变缓存中相应的数据即可！</p>
-<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-24/54316596.jpg" alt></p>
-<p><strong>高并发：</strong></p>
-<p>直接操作缓存能够承受的请求是远远大于直接访问数据库的，所以我们可以考虑把数据库中的部分数据转移到缓存中去，这样用户的一部分请求会直接到缓存这里而不用经过数据库。</p>
-<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-24/85146760.jpg" alt></p>
-<h3 id="为什么要用-redis-而不用-map-guava-做缓存"><a href="#为什么要用-redis-而不用-map-guava-做缓存" class="headerlink" title="为什么要用 redis 而不用 map/guava 做缓存?"></a>为什么要用 redis 而不用 map/guava 做缓存?</h3><blockquote>
-<p>下面的内容来自 segmentfault 一位网友的提问，地址：<a href="https://segmentfault.com/q/1010000009106416" target="_blank" rel="noopener">https://segmentfault.com/q/1010000009106416</a></p>
-</blockquote>
-<p>缓存分为本地缓存和分布式缓存。以 Java 为例，使用自带的 map 或者 guava 实现的是本地缓存，最主要的特点是轻量以及快速，生命周期随着 jvm 的销毁而结束，并且在多实例的情况下，每个实例都需要各自保存一份缓存，缓存不具有一致性。</p>
-<p>使用 redis 或 memcached 之类的称为分布式缓存，在多实例的情况下，各实例共用一份缓存数据，缓存具有一致性。缺点是需要保持 redis 或  memcached服务的高可用，整个程序架构上较为复杂。</p>
-<h3 id="redis-和-memcached-的区别"><a href="#redis-和-memcached-的区别" class="headerlink" title="redis 和 memcached 的区别"></a>redis 和 memcached 的区别</h3><p>对于 redis 和 memcached 我总结了下面四点。现在公司一般都是用 redis 来实现缓存，而且 redis 自身也越来越强大了！</p>
-<ol>
-<li><strong>redis支持更丰富的数据类型（支持更复杂的应用场景）</strong>：Redis不仅仅支持简单的k/v类型的数据，同时还提供list，set，zset，hash等数据结构的存储。memcache支持简单的数据类型，String。</li>
-<li><strong>Redis支持数据的持久化，可以将内存中的数据保持在磁盘中，重启的时候可以再次加载进行使用,而Memecache把数据全部存在内存之中。</strong></li>
-<li><strong>集群模式</strong>：memcached没有原生的集群模式，需要依靠客户端来实现往集群中分片写入数据；但是 redis 目前是原生支持 cluster 模式的.</li>
-<li><strong>Memcached是多线程，非阻塞IO复用的网络模型；Redis使用单线程的多路 IO 复用模型。</strong></li>
-</ol>
-<blockquote>
-<p>来自网络上的一张图，这里分享给大家！</p>
-</blockquote>
-<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-24/61603179.jpg" alt="redis 和 memcached 的区别"></p>
-<h3 id="redis-常见数据结构以及使用场景分析"><a href="#redis-常见数据结构以及使用场景分析" class="headerlink" title="redis 常见数据结构以及使用场景分析"></a>redis 常见数据结构以及使用场景分析</h3><h4 id="1-String"><a href="#1-String" class="headerlink" title="1.String"></a>1.String</h4><blockquote>
-<p><strong>常用命令:</strong>  set,get,decr,incr,mget 等。</p>
-</blockquote>
-<p>String数据结构是简单的key-value类型，value其实不仅可以是String，也可以是数字。<br>常规key-value缓存应用；<br>常规计数：微博数，粉丝数等。</p>
-<h4 id="2-Hash"><a href="#2-Hash" class="headerlink" title="2.Hash"></a>2.Hash</h4><blockquote>
-<p><strong>常用命令：</strong> hget,hset,hgetall 等。</p>
-</blockquote>
-<p>hash 是一个 string 类型的 field 和 value 的映射表，hash 特别适合用于存储对象，后续操作的时候，你可以直接仅仅修改这个对象中的某个字段的值。 比如我们可以 hash 数据结构来存储用户信息，商品信息等等。比如下面我就用 hash 类型存放了我本人的一些信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">key=JavaUser293847</span><br><span class="line">value=&#123;</span><br><span class="line">  “id”: 1,</span><br><span class="line">  “name”: “SnailClimb”,</span><br><span class="line">  “age”: 22,</span><br><span class="line">  “location”: “Wuhan, Hubei”</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="3-List"><a href="#3-List" class="headerlink" title="3.List"></a>3.List</h4><blockquote>
-<p><strong>常用命令:</strong> lpush,rpush,lpop,rpop,lrange等</p>
-</blockquote>
-<p>list 就是链表，Redis list 的应用场景非常多，也是Redis最重要的数据结构之一，比如微博的关注列表，粉丝列表，消息列表等功能都可以用Redis的 list 结构来实现。</p>
-<p>Redis list 的实现为一个双向链表，即可以支持反向查找和遍历，更方便操作，不过带来了部分额外的内存开销。</p>
-<p>另外可以通过 lrange 命令，就是从某个元素开始读取多少个元素，可以基于 list 实现分页查询，这个很棒的一个功能，基于 redis 实现简单的高性能分页，可以做类似微博那种下拉不断分页的东西（一页一页的往下走），性能高。</p>
-<h4 id="4-Set"><a href="#4-Set" class="headerlink" title="4.Set"></a>4.Set</h4><blockquote>
-<p><strong>常用命令：</strong><br>sadd,spop,smembers,sunion 等</p>
-</blockquote>
-<p>set 对外提供的功能与list类似是一个列表的功能，特殊之处在于 set 是可以自动排重的。</p>
-<p>当你需要存储一个列表数据，又不希望出现重复数据时，set是一个很好的选择，并且set提供了判断某个成员是否在一个set集合内的重要接口，这个也是list所不能提供的。可以基于 set 轻易实现交集、并集、差集的操作。</p>
-<p>比如：在微博应用中，可以将一个用户所有的关注人存在一个集合中，将其所有粉丝存在一个集合。Redis可以非常方便的实现如共同关注、共同粉丝、共同喜好等功能。这个过程也就是求交集的过程，具体命令如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sinterstore key1 key2 key3     将交集存在key1内</span><br></pre></td></tr></table></figure>
-
-<h4 id="5-Sorted-Set"><a href="#5-Sorted-Set" class="headerlink" title="5.Sorted Set"></a>5.Sorted Set</h4><blockquote>
-<p><strong>常用命令：</strong> zadd,zrange,zrem,zcard等</p>
-</blockquote>
-<p>和set相比，sorted set增加了一个权重参数score，使得集合中的元素能够按score进行有序排列。</p>
-<p><strong>举例：</strong> 在直播系统中，实时排行信息包含直播间在线用户列表，各种礼物排行榜，弹幕消息（可以理解为按消息维度的消息排行榜）等信息，适合使用 Redis 中的 Sorted Set 结构进行存储。</p>
-<h3 id="redis-设置过期时间"><a href="#redis-设置过期时间" class="headerlink" title="redis 设置过期时间"></a>redis 设置过期时间</h3><p>Redis中有个设置时间过期的功能，即对存储在 redis 数据库中的值可以设置一个过期时间。作为一个缓存数据库，这是非常实用的。如我们一般项目中的 token 或者一些登录信息，尤其是短信验证码都是有时间限制的，按照传统的数据库处理方式，一般都是自己判断过期，这样无疑会严重影响项目性能。</p>
-<p>我们 set key 的时候，都可以给一个 expire time，就是过期时间，通过过期时间我们可以指定这个 key 可以存活的时间。</p>
-<p>如果假设你设置了一批 key 只能存活1个小时，那么接下来1小时后，redis是怎么对这批key进行删除的？</p>
-<p><strong>定期删除+惰性删除。</strong></p>
-<p>通过名字大概就能猜出这两个删除方式的意思了。</p>
-<ul>
-<li><strong>定期删除</strong>：redis默认是每隔 100ms 就<strong>随机抽取</strong>一些设置了过期时间的key，检查其是否过期，如果过期就删除。注意这里是随机抽取的。为什么要随机呢？你想一想假如 redis 存了几十万个 key ，每隔100ms就遍历所有的设置过期时间的 key 的话，就会给 CPU 带来很大的负载！</li>
-<li><strong>惰性删除</strong> ：定期删除可能会导致很多过期 key 到了时间并没有被删除掉。所以就有了惰性删除。假如你的过期 key，靠定期删除没有被删除掉，还停留在内存里，除非你的系统去查一下那个 key，才会被redis给删除掉。这就是所谓的惰性删除，也是够懒的哈！</li>
-</ul>
-<p>但是仅仅通过设置过期时间还是有问题的。我们想一下：如果定期删除漏掉了很多过期 key，然后你也没及时去查，也就没走惰性删除，此时会怎么样？如果大量过期key堆积在内存里，导致redis内存块耗尽了。怎么解决这个问题呢？</p>
-<p><strong>redis 内存淘汰机制。</strong></p>
-<h3 id="redis-内存淘汰机制-MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据"><a href="#redis-内存淘汰机制-MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据" class="headerlink" title="redis 内存淘汰机制(MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据?)"></a>redis 内存淘汰机制(MySQL里有2000w数据，Redis中只存20w的数据，如何保证Redis中的数据都是热点数据?)</h3><p>redis 配置文件 redis.conf 中有相关注释，我这里就不贴了，大家可以自行查阅或者通过这个网址查看： <a href="http://download.redis.io/redis-stable/redis.conf" target="_blank" rel="noopener">http://download.redis.io/redis-stable/redis.conf</a></p>
-<p><strong>redis 提供 6种数据淘汰策略：</strong></p>
-<ol>
-<li><strong>volatile-lru</strong>：从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰</li>
-<li><strong>volatile-ttl</strong>：从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰</li>
-<li><strong>volatile-random</strong>：从已设置过期时间的数据集（server.db[i].expires）中任意选择数据淘汰</li>
-<li><strong>allkeys-lru</strong>：当内存不足以容纳新写入数据时，在键空间中，移除最近最少使用的key（这个是最常用的）</li>
-<li><strong>allkeys-random</strong>：从数据集（server.db[i].dict）中任意选择数据淘汰</li>
-<li><strong>no-eviction</strong>：禁止驱逐数据，也就是说当内存不足以容纳新写入数据时，新写入操作会报错。这个应该没人使用吧！</li>
-</ol>
-<p><strong>备注： 关于 redis 设置过期时间以及内存淘汰机制，我这里只是简单的总结一下，后面会专门写一篇文章来总结！</strong></p>
-<h3 id="redis-持久化机制-怎么保证-redis-挂掉之后再重启数据可以进行恢复"><a href="#redis-持久化机制-怎么保证-redis-挂掉之后再重启数据可以进行恢复" class="headerlink" title="redis 持久化机制(怎么保证 redis 挂掉之后再重启数据可以进行恢复)"></a>redis 持久化机制(怎么保证 redis 挂掉之后再重启数据可以进行恢复)</h3><p>很多时候我们需要持久化数据也就是将内存中的数据写入到硬盘里面，大部分原因是为了之后重用数据（比如重启机器、机器故障之后恢复数据），或者是为了防止系统故障而将数据备份到一个远程位置。</p>
-<p>Redis不同于Memcached的很重一点就是，Redis支持持久化，而且支持两种不同的持久化操作。<strong>Redis的一种持久化方式叫快照（snapshotting，RDB），另一种方式是只追加文件（append-only file,AOF）</strong>。这两种方法各有千秋，下面我会详细这两种持久化方法是什么，怎么用，如何选择适合自己的持久化方法。</p>
-<p><strong>快照（snapshotting）持久化（RDB）</strong></p>
-<p>Redis可以通过创建快照来获得存储在内存里面的数据在某个时间点上的副本。Redis创建快照之后，可以对快照进行备份，可以将快照复制到其他服务器从而创建具有相同数据的服务器副本（Redis主从结构，主要用来提高Redis性能），还可以将快照留在原地以便重启服务器的时候使用。</p>
-<p>快照持久化是Redis默认采用的持久化方式，在redis.conf配置文件中默认有此下配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">save 900 1           #在900秒(15分钟)之后，如果至少有1个key发生变化，Redis就会自动触发BGSAVE命令创建快照。</span><br><span class="line"></span><br><span class="line">save 300 10          #在300秒(5分钟)之后，如果至少有10个key发生变化，Redis就会自动触发BGSAVE命令创建快照。</span><br><span class="line"></span><br><span class="line">save 60 10000        #在60秒(1分钟)之后，如果至少有10000个key发生变化，Redis就会自动触发BGSAVE命令创建快照。</span><br></pre></td></tr></table></figure>
-
-<p><strong>AOF（append-only file）持久化</strong></p>
-<p>与快照持久化相比，AOF持久化 的实时性更好，因此已成为主流的持久化方案。默认情况下Redis没有开启AOF（append only file）方式的持久化，可以通过appendonly参数开启：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appendonly yes</span><br></pre></td></tr></table></figure>
-
-<p>开启AOF持久化后每执行一条会更改Redis中的数据的命令，Redis就会将该命令写入硬盘中的AOF文件。AOF文件的保存位置和RDB文件的位置相同，都是通过dir参数设置的，默认的文件名是appendonly.aof。</p>
-<p>在Redis的配置文件中存在三种不同的 AOF 持久化方式，它们分别是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">appendfsync always    #每次有数据修改发生时都会写入AOF文件,这样会严重降低Redis的速度</span><br><span class="line">appendfsync everysec  #每秒钟同步一次，显示地将多个写命令同步到硬盘</span><br><span class="line">appendfsync no        #让操作系统决定何时进行同步</span><br></pre></td></tr></table></figure>
-
-<p>为了兼顾数据和写入性能，用户可以考虑 appendfsync everysec选项 ，让Redis每秒同步一次AOF文件，Redis性能几乎没受到任何影响。而且这样即使出现系统崩溃，用户最多只会丢失一秒之内产生的数据。当硬盘忙于执行写入操作的时候，Redis还会优雅的放慢自己的速度以便适应硬盘的最大写入速度。</p>
-<p><strong>Redis 4.0 对于持久化机制的优化</strong></p>
-<p>Redis 4.0 开始支持 RDB 和 AOF 的混合持久化（默认关闭，可以通过配置项 <code>aof-use-rdb-preamble</code> 开启）。</p>
-<p>如果把混合持久化打开，AOF 重写的时候就直接把 RDB 的内容写到 AOF 文件开头。这样做的好处是可以结合 RDB 和 AOF 的优点, 快速加载同时避免丢失过多的数据。当然缺点也是有的， AOF 里面的 RDB 部分是压缩格式不再是 AOF 格式，可读性较差。</p>
-<p><strong>补充内容：AOF 重写</strong></p>
-<p>AOF重写可以产生一个新的AOF文件，这个新的AOF文件和原有的AOF文件所保存的数据库状态一样，但体积更小。</p>
-<p>AOF重写是一个有歧义的名字，该功能是通过读取数据库中的键值对来实现的，程序无须对现有AOF文件进行任何读入、分析或者写入操作。</p>
-<p>在执行 BGREWRITEAOF 命令时，Redis 服务器会维护一个 AOF 重写缓冲区，该缓冲区会在子进程创建新AOF文件期间，记录服务器执行的所有写命令。当子进程完成创建新AOF文件的工作之后，服务器会将重写缓冲区中的所有内容追加到新AOF文件的末尾，使得新旧两个AOF文件所保存的数据库状态一致。最后，服务器用新的AOF文件替换旧的AOF文件，以此来完成AOF文件重写操作</p>
-<p><strong>更多内容可以查看我的这篇文章：</strong></p>
-<ul>
-<li><a href="Redis持久化.md">Redis持久化</a></li>
-</ul>
-<h3 id="redis-事务"><a href="#redis-事务" class="headerlink" title="redis 事务"></a>redis 事务</h3><p>Redis 通过 MULTI、EXEC、WATCH 等命令来实现事务(transaction)功能。事务提供了一种将多个命令请求打包，然后一次性、按顺序地执行多个命令的机制，并且在事务执行期间，服务器不会中断事务而改去执行其他客户端的命令请求，它会将事务中的所有命令都执行完毕，然后才去处理其他客户端的命令请求。</p>
-<p>在传统的关系式数据库中，常常用 ACID 性质来检验事务功能的可靠性和安全性。在 Redis 中，事务总是具有原子性（Atomicity）、一致性（Consistency）和隔离性（Isolation），并且当 Redis 运行在某种特定的持久化模式下时，事务也具有持久性（Durability）。</p>
-<h3 id="缓存雪崩和缓存穿透问题解决方案"><a href="#缓存雪崩和缓存穿透问题解决方案" class="headerlink" title="缓存雪崩和缓存穿透问题解决方案"></a>缓存雪崩和缓存穿透问题解决方案</h3><p><strong>缓存雪崩</strong> </p>
-<p>简介：缓存同一时间大面积的失效，所以，后面的请求都会落到数据库上，造成数据库短时间内承受大量请求而崩掉。</p>
-<p>解决办法（中华石杉老师在他的视频中提到过，视频地址在最后一个问题中有提到）：</p>
-<ul>
-<li>事前：尽量保证整个 redis 集群的高可用性，发现机器宕机尽快补上。选择合适的内存淘汰策略。</li>
-<li>事中：本地ehcache缓存 + hystrix限流&amp;降级，避免MySQL崩掉</li>
-<li>事后：利用 redis 持久化机制保存的数据尽快恢复缓存</li>
-</ul>
-<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-25/6078367.jpg" alt></p>
-<p><strong>缓存穿透</strong> </p>
-<p>简介：一般是黑客故意去请求缓存中不存在的数据，导致所有的请求都落到数据库上，造成数据库短时间内承受大量请求而崩掉。</p>
-<p>解决办法： 有很多种方法可以有效地解决缓存穿透问题，最常见的则是采用布隆过滤器，将所有可能存在的数据哈希到一个足够大的bitmap中，一个一定不存在的数据会被 这个bitmap拦截掉，从而避免了对底层存储系统的查询压力。另外也有一个更为简单粗暴的方法（我们采用的就是这种），如果一个查询返回的数据为空（不管是数 据不存在，还是系统故障），我们仍然把这个空结果进行缓存，但它的过期时间会很短，最长不超过五分钟。</p>
-<p>参考：</p>
-<ul>
-<li><a href="https://blog.csdn.net/zeb_perfect/article/details/54135506" target="_blank" rel="noopener">https://blog.csdn.net/zeb_perfect/article/details/54135506</a></li>
-</ul>
-<h3 id="如何解决-Redis-的并发竞争-Key-问题"><a href="#如何解决-Redis-的并发竞争-Key-问题" class="headerlink" title="如何解决 Redis 的并发竞争 Key 问题"></a>如何解决 Redis 的并发竞争 Key 问题</h3><p>所谓 Redis 的并发竞争 Key 的问题也就是多个系统同时对一个 key 进行操作，但是最后执行的顺序和我们期望的顺序不同，这样也就导致了结果的不同！</p>
-<p>推荐一种方案：分布式锁（zookeeper 和 redis 都可以实现分布式锁）。（如果不存在 Redis 的并发竞争 Key 问题，不要使用分布式锁，这样会影响性能）</p>
-<p>基于zookeeper临时有序节点可以实现的分布式锁。大致思想为：每个客户端对某个方法加锁时，在zookeeper上的与该方法对应的指定节点的目录下，生成一个唯一的瞬时有序节点。 判断是否获取锁的方式很简单，只需要判断有序节点中序号最小的一个。 当释放锁的时候，只需将这个瞬时节点删除即可。同时，其可以避免服务宕机导致的锁无法释放，而产生的死锁问题。完成业务流程后，删除对应的子节点释放锁。</p>
-<p>在实践中，当然是从以可靠性为主。所以首推Zookeeper。</p>
-<h3 id="如何保证缓存与数据库双写时的数据一致性"><a href="#如何保证缓存与数据库双写时的数据一致性" class="headerlink" title="如何保证缓存与数据库双写时的数据一致性?"></a>如何保证缓存与数据库双写时的数据一致性?</h3><p>你只要用缓存，就可能会涉及到缓存与数据库双存储双写，你只要是双写，就一定会有数据一致性的问题，那么你如何解决一致性问题？</p>
-<p>一般来说，就是如果你的系统不是严格要求缓存+数据库必须一致性的话，缓存可以稍微的跟数据库偶尔有不一致的情况，最好不要做这个方案，读请求和写请求串行化，串到一个内存队列里去，这样就可以保证一定不会出现不一致的情况</p>
-<p>串行化之后，就会导致系统的吞吐量会大幅度的降低，用比正常情况下多几倍的机器去支撑线上的一个请求。</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/03/02/db-redis-Redis持久化/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/03/02/db-redis-Redis持久化/" class="post-title-link" itemprop="url">Redis持久化</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2018-03-02 00:00:00" itemprop="dateCreated datePublished" datetime="2018-03-02T00:00:00+08:00">2018-03-02</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/db/" itemprop="url" rel="index"><span itemprop="name">db</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2018/03/02/db-redis-Redis持久化/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/03/02/db-redis-Redis持久化/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>3.8k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>3 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>非常感谢《redis实战》真本书，本文大多内容也参考了书中的内容。非常推荐大家看一下《redis实战》这本书，感觉书中的很多理论性东西还是很不错的。</p>
-<p>为什么本文的名字要加上春夏秋冬又一春，哈哈 ，这是一部韩国的电影，我感觉电影不错，所以就用在文章名字上了，没有什么特别的含义，然后下面的有些配图也是电影相关镜头。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2018/6/13/163f97071d71f6de?w=1280&h=720&f=jpeg&s=205252" alt="春夏秋冬又一春"></p>
-<p><strong>很多时候我们需要持久化数据也就是将内存中的数据写入到硬盘里面，大部分原因是为了之后重用数据（比如重启机器、机器故障之后回复数据），或者是为了防止系统故障而将数据备份到一个远程位置。</strong></p>
-<p>Redis不同于Memcached的很重一点就是，<strong>Redis支持持久化</strong>，而且支持两种不同的持久化操作。Redis的一种持久化方式叫<strong>快照（snapshotting，RDB）</strong>,另一种方式是<strong>只追加文件（append-only file,AOF）</strong>.这两种方法各有千秋，下面我会详细这两种持久化方法是什么，怎么用，如何选择适合自己的持久化方法。</p>
-<h2 id="快照（snapshotting）持久化"><a href="#快照（snapshotting）持久化" class="headerlink" title="快照（snapshotting）持久化"></a>快照（snapshotting）持久化</h2><p>Redis可以通过创建快照来获得存储在内存里面的数据在某个时间点上的副本。Redis创建快照之后，可以对快照进行备份，可以将快照复制到其他服务器从而创建具有相同数据的服务器副本（Redis主从结构，主要用来提高Redis性能），还可以将快照留在原地以便重启服务器的时候使用。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2018/6/13/163f97568281782a?w=600&h=329&f=jpeg&s=88616" alt="春夏秋冬又一春"></p>
-<p><strong>快照持久化是Redis默认采用的持久化方式</strong>，在redis.conf配置文件中默认有此下配置：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">save 900 1              #在900秒(15分钟)之后，如果至少有1个key发生变化，Redis就会自动触发BGSAVE命令创建快照。</span><br><span class="line"></span><br><span class="line">save 300 10            #在300秒(5分钟)之后，如果至少有10个key发生变化，Redis就会自动触发BGSAVE命令创建快照。</span><br><span class="line"></span><br><span class="line">save 60 10000        #在60秒(1分钟)之后，如果至少有10000个key发生变化，Redis就会自动触发BGSAVE命令创建快照。</span><br></pre></td></tr></table></figure>
-
-<p>根据配置，快照将被写入dbfilename选项指定的文件里面，并存储在dir选项指定的路径上面。如果在新的快照文件创建完毕之前，Redis、系统或者硬件这三者中的任意一个崩溃了，那么Redis将丢失最近一次创建快照写入的所有数据。</p>
-<p>举个例子：假设Redis的上一个快照是2：35开始创建的，并且已经创建成功。下午3：06时，Redis又开始创建新的快照，并且在下午3：08快照创建完毕之前，有35个键进行了更新。如果在下午3：06到3：08期间，系统发生了崩溃，导致Redis无法完成新快照的创建工作，那么Redis将丢失下午2：35之后写入的所有数据。另一方面，如果系统恰好在新的快照文件创建完毕之后崩溃，那么Redis将丢失35个键的更新数据。</p>
-<p><strong>创建快照的办法有如下几种：</strong></p>
-<ul>
-<li><strong>BGSAVE命令：</strong> 客户端向Redis发送 <strong>BGSAVE命令</strong> 来创建一个快照。对于支持BGSAVE命令的平台来说（基本上所有平台支持，除了Windows平台），Redis会调用fork来创建一个子进程，然后子进程负责将快照写入硬盘，而父进程则继续处理命令请求。</li>
-<li><strong>SAVE命令：</strong> 客户端还可以向Redis发送 <strong>SAVE命令</strong> 来创建一个快照，接到SAVE命令的Redis服务器在快照创建完毕之前不会再响应任何其他命令。SAVE命令不常用，我们通常只会在没有足够内存去执行BGSAVE命令的情况下，又或者即使等待持久化操作执行完毕也无所谓的情况下，才会使用这个命令。</li>
-<li><strong>save选项：</strong> 如果用户设置了save选项（一般会默认设置），比如 <strong>save 60 10000</strong>，那么从Redis最近一次创建快照之后开始算起，当“60秒之内有10000次写入”这个条件被满足时，Redis就会自动触发BGSAVE命令。</li>
-<li><strong>SHUTDOWN命令：</strong>  当Redis通过SHUTDOWN命令接收到关闭服务器的请求时，或者接收到标准TERM信号时，会执行一个SAVE命令，阻塞所有客户端，不再执行客户端发送的任何命令，并在SAVE命令执行完毕之后关闭服务器。</li>
-<li><strong>一个Redis服务器连接到另一个Redis服务器：</strong> 当一个Redis服务器连接到另一个Redis服务器，并向对方发送SYNC命令来开始一次复制操作的时候，如果主服务器目前没有执行BGSAVE操作，或者主服务器并非刚刚执行完BGSAVE操作，那么主服务器就会执行BGSAVE命令</li>
-</ul>
-<p>如果系统真的发生崩溃，用户将丢失最近一次生成快照之后更改的所有数据。因此，快照持久化只适用于即使丢失一部分数据也不会造成一些大问题的应用程序。不能接受这个缺点的话，可以考虑AOF持久化。</p>
-<h2 id="AOF（append-only-file）持久化"><a href="#AOF（append-only-file）持久化" class="headerlink" title="AOF（append-only file）持久化"></a><strong>AOF（append-only file）持久化</strong></h2><p>与快照持久化相比，AOF持久化 的实时性更好，因此已成为主流的持久化方案。默认情况下Redis没有开启AOF（append only file）方式的持久化，可以通过appendonly参数开启：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">appendonly yes</span><br></pre></td></tr></table></figure>
-
-<p>开启AOF持久化后每执行一条会更改Redis中的数据的命令，Redis就会将该命令写入硬盘中的AOF文件。AOF文件的保存位置和RDB文件的位置相同，都是通过dir参数设置的，默认的文件名是appendonly.aof。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2018/6/13/163f976818876166?w=400&h=219&f=jpeg&s=91022" alt="春夏秋冬又一春"></p>
-<p><strong>在Redis的配置文件中存在三种同步方式，它们分别是：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">appendfsync always     #每次有数据修改发生时都会写入AOF文件,这样会严重降低Redis的速度</span><br><span class="line">appendfsync everysec  #每秒钟同步一次，显示地将多个写命令同步到硬盘</span><br><span class="line">appendfsync no      #让操作系统决定何时进行同步</span><br></pre></td></tr></table></figure>
-
-<p><strong>appendfsync always</strong> 可以实现将数据丢失减到最少，不过这种方式需要对硬盘进行大量的写入而且每次只写入一个命令，十分影响Redis的速度。另外使用固态硬盘的用户谨慎使用appendfsync always选项，因为这会明显降低固态硬盘的使用寿命。</p>
-<p>为了兼顾数据和写入性能，用户可以考虑 <strong>appendfsync everysec选项</strong> ，让Redis每秒同步一次AOF文件，Redis性能几乎没受到任何影响。而且这样即使出现系统崩溃，用户最多只会丢失一秒之内产生的数据。当硬盘忙于执行写入操作的时候，Redis还会优雅的放慢自己的速度以便适应硬盘的最大写入速度。</p>
-<p><strong>appendfsync no</strong>  选项一般不推荐，这种方案会使Redis丢失不定量的数据而且如果用户的硬盘处理写入操作的速度不够的话，那么当缓冲区被等待写入的数据填满时，Redis的写入操作将被阻塞，这会导致Redis的请求速度变慢。</p>
-<p><strong>虽然AOF持久化非常灵活地提供了多种不同的选项来满足不同应用程序对数据安全的不同要求，但AOF持久化也有缺陷——AOF文件的体积太大。</strong></p>
-<h2 id="重写-压缩AOF"><a href="#重写-压缩AOF" class="headerlink" title="重写/压缩AOF"></a>重写/压缩AOF</h2><p>AOF虽然在某个角度可以将数据丢失降低到最小而且对性能影响也很小，但是极端的情况下，体积不断增大的AOF文件很可能会用完硬盘空间。另外，如果AOF体积过大，那么还原操作执行时间就可能会非常长。</p>
-<p>为了解决AOF体积过大的问题，用户可以向Redis发送 <strong>BGREWRITEAOF命令</strong> ，这个命令会通过移除AOF文件中的冗余命令来重写（rewrite）AOF文件来减小AOF文件的体积。BGREWRITEAOF命令和BGSAVE创建快照原理十分相似，所以AOF文件重写也需要用到子进程，这样会导致性能问题和内存占用问题，和快照持久化一样。更糟糕的是，如果不加以控制的话，AOF文件的体积可能会比快照文件大好几倍。</p>
-<p><strong>文件重写流程：</strong></p>
-<p><img src="https://user-gold-cdn.xitu.io/2018/6/13/163f97f9bd0eea50?w=380&h=345&f=jpeg&s=14501" alt="文件重写流程"><br>和快照持久化可以通过设置save选项来自动执行BGSAVE一样，AOF持久化也可以通过设置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auto-aof-rewrite-percentage</span><br></pre></td></tr></table></figure>
-
-<p>选项和</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auto-aof-rewrite-min-size</span><br></pre></td></tr></table></figure>
-
-<p>选项自动执行BGREWRITEAOF命令。举例：假设用户对Redis设置了如下配置选项并且启用了AOF持久化。那么当AOF文件体积大于64mb，并且AOF的体积比上一次重写之后的体积大了至少一倍（100%）的时候，Redis将执行BGREWRITEAOF命令。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">auto-aof-rewrite-percentage 100  </span><br><span class="line">auto-aof-rewrite-min-size 64mb</span><br></pre></td></tr></table></figure>
-
-<p>无论是AOF持久化还是快照持久化，将数据持久化到硬盘上都是非常有必要的，但除了进行持久化外，用户还必须对持久化得到的文件进行备份（最好是备份到不同的地方），这样才能尽量避免数据丢失事故发生。如果条件允许的话，最好能将快照文件和重新重写的AOF文件备份到不同的服务器上面。</p>
-<p>随着负载量的上升，或者数据的完整性变得 越来越重要时，用户可能需要使用到复制特性。</p>
-<h2 id="Redis-4-0-对于持久化机制的优化"><a href="#Redis-4-0-对于持久化机制的优化" class="headerlink" title="Redis 4.0 对于持久化机制的优化"></a>Redis 4.0 对于持久化机制的优化</h2><p>Redis 4.0 开始支持 RDB 和 AOF 的混合持久化（默认关闭，可以通过配置项 <code>aof-use-rdb-preamble</code> 开启）。</p>
-<p>如果把混合持久化打开，AOF 重写的时候就直接把 RDB 的内容写到 AOF 文件开头。这样做的好处是可以结合 RDB 和 AOF 的优点, 快速加载同时避免丢失过多的数据。当然缺点也是有的， AOF 里面的 RDB 部分就是压缩格式不再是 AOF 格式，可读性较差。</p>
-<p>参考：</p>
-<p>《Redis实战》</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2018/03/01/subject-high-concurrency-es-introduction/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2018/03/01/subject-high-concurrency-es-introduction/" class="post-title-link" itemprop="url">lucene 和 es 的前世今生</a>
-          
-        </h1>
-
-        <div class="post-meta">
-
-		  
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2018-03-01 00:09:01" itemprop="dateCreated datePublished" datetime="2018-03-01T00:09:01+08:00">2018-03-01</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/high-concurrency/" itemprop="url" rel="index"><span itemprop="name">high-concurrency</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2018/03/01/subject-high-concurrency-es-introduction/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2018/03/01/subject-high-concurrency-es-introduction/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>1.6k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>1 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="lucene-和-es-的前世今生"><a href="#lucene-和-es-的前世今生" class="headerlink" title="lucene 和 es 的前世今生"></a>lucene 和 es 的前世今生</h2><p>lucene 是最先进、功能最强大的搜索库。如果直接基于 lucene 开发，非常复杂，即便写一些简单的功能，也要写大量的 Java 代码，需要深入理解原理。</p>
-<p>elasticsearch 基于 lucene，隐藏了 lucene 的复杂性，提供了简单易用的 restful api / Java api 接口（另外还有其他语言的 api 接口）。</p>
-<ul>
-<li>分布式的文档存储引擎</li>
-<li>分布式的搜索引擎和分析引擎</li>
-<li>分布式，支持 PB 级数据</li>
-</ul>
-<h2 id="es-的核心概念"><a href="#es-的核心概念" class="headerlink" title="es 的核心概念"></a>es 的核心概念</h2><h3 id="Near-Realtime"><a href="#Near-Realtime" class="headerlink" title="Near Realtime"></a>Near Realtime</h3><p>近实时，有两层意思：</p>
-<ul>
-<li>从写入数据到数据可以被搜索到有一个小延迟（大概是 1s）</li>
-<li>基于 es 执行搜索和分析可以达到秒级</li>
-</ul>
-<h3 id="Cluster-集群"><a href="#Cluster-集群" class="headerlink" title="Cluster 集群"></a>Cluster 集群</h3><p>集群包含多个节点，每个节点属于哪个集群都是通过一个配置来决定的，对于中小型应用来说，刚开始一个集群就一个节点很正常。</p>
-<h3 id="Node-节点"><a href="#Node-节点" class="headerlink" title="Node 节点"></a>Node 节点</h3><p>Node 是集群中的一个节点，节点也有一个名称，默认是随机分配的。默认节点会去加入一个名称为 <code>elasticsearch</code> 的集群。如果直接启动一堆节点，那么它们会自动组成一个 elasticsearch 集群，当然一个节点也可以组成 elasticsearch 集群。</p>
-<h3 id="Document-amp-field"><a href="#Document-amp-field" class="headerlink" title="Document &amp; field"></a>Document &amp; field</h3><p>文档是 es 中最小的数据单元，一个 document 可以是一条客户数据、一条商品分类数据、一条订单数据，通常用 json 数据结构来表示。每个 index 下的 type，都可以存储多条 document。一个 document 里面有多个 field，每个 field 就是一个数据字段。</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"product_id"</span>: <span class="string">"1"</span>,</span><br><span class="line">    <span class="attr">"product_name"</span>: <span class="string">"iPhone X"</span>,</span><br><span class="line">    <span class="attr">"product_desc"</span>: <span class="string">"苹果手机"</span>,</span><br><span class="line">    <span class="attr">"category_id"</span>: <span class="string">"2"</span>,</span><br><span class="line">    <span class="attr">"category_name"</span>: <span class="string">"电子产品"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Index"><a href="#Index" class="headerlink" title="Index"></a>Index</h3><p>索引包含了一堆有相似结构的文档数据，比如商品索引。一个索引包含很多 document，一个索引就代表了一类相似或者相同的 ducument。</p>
-<h3 id="Type"><a href="#Type" class="headerlink" title="Type"></a>Type</h3><p>类型，每个索引里可以有一个或者多个 type，type 是 index 的一个逻辑分类，比如商品 index 下有多个 type：日化商品 type、电器商品 type、生鲜商品 type。每个 type 下的 document 的 field 可能不太一样。</p>
-<h3 id="shard"><a href="#shard" class="headerlink" title="shard"></a>shard</h3><p>单台机器无法存储大量数据，es 可以将一个索引中的数据切分为多个 shard，分布在多台服务器上存储。有了 shard 就可以横向扩展，存储更多数据，让搜索和分析等操作分布到多台服务器上去执行，提升吞吐量和性能。每个 shard 都是一个 lucene index。</p>
-<h3 id="replica"><a href="#replica" class="headerlink" title="replica"></a>replica</h3><p>任何一个服务器随时可能故障或宕机，此时 shard 可能就会丢失，因此可以为每个 shard 创建多个 replica 副本。replica 可以在 shard 故障时提供备用服务，保证数据不丢失，多个 replica 还可以提升搜索操作的吞吐量和性能。primary shard（建立索引时一次设置，不能修改，默认 5 个），replica shard（随时修改数量，默认 1 个），默认每个索引 10 个 shard，5 个 primary shard，5个 replica shard，最小的高可用配置，是 2 台服务器。</p>
-<p>这么说吧，shard 分为 primary shard 和 replica shard。而 primary shard 一般简称为 shard，而 replica shard 一般简称为 replica。</p>
-<p><img src="/images/high-concurrency/es-cluster-0.png" alt="es-cluster-0"></p>
-<h2 id="es-核心概念-vs-db-核心概念"><a href="#es-核心概念-vs-db-核心概念" class="headerlink" title="es 核心概念 vs. db 核心概念"></a>es 核心概念 vs. db 核心概念</h2><table>
-<thead>
-<tr>
-<th>es</th>
-<th>db</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>index</td>
-<td>数据库</td>
-</tr>
-<tr>
-<td>type</td>
-<td>数据表</td>
-</tr>
-<tr>
-<td>docuemnt</td>
-<td>一行数据</td>
-</tr>
-</tbody></table>
-<p>以上是一个简单的类比。</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2017/12/16/lang-bootstrap-2017-12-16-bootstrap-0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Frank">
-      <meta itemprop="description" content="优秀是一种习惯">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="徐先生的技术栈">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2017/12/16/lang-bootstrap-2017-12-16-bootstrap-0/" class="post-title-link" itemprop="url">Bootstrap-全局 CSS 样式</a>
+            <a href="/2017/12/16/lang-bootstrap-2017-12-16-bootstrap-3-cj/" class="post-title-link" itemprop="url">bootstrap-插件</a>
           
         </h1>
 
@@ -952,7 +340,7 @@
       
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2017/12/16/lang-bootstrap-2017-12-16-bootstrap-0/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2017/12/16/lang-bootstrap-2017-12-16-bootstrap-0/" itemprop="commentCount"></span></a>
+    <a title="valine" href="/2017/12/16/lang-bootstrap-2017-12-16-bootstrap-3-cj/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2017/12/16/lang-bootstrap-2017-12-16-bootstrap-3-cj/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -964,7 +352,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>955</span>
+              <span>431</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -987,77 +375,585 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><blockquote>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-  <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
-</blockquote>
+          <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  弹出框
+</button>
 
-<blockquote class="blockquote-reverse">
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-  <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
-</blockquote>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">标题</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><h1>h1. Bootstrap heading <small>Secondary text</small></h1>
-<h2><del>h2. Bootstrap heading</del> <small>Secondary text</small></h2>
-<h3><u>h3. Bootstrap heading</u> <small>Secondary text</small></h3>
-<h4>h4. Bootstrap heading <small>Secondary text</small></h4>
-<h5>h5. Bootstrap heading <small>Secondary text</small></h5>
-<h6>h6. Bootstrap heading <small>Secondary text</small></h6>
----
+<div class="alert alert-warning alert-dismissible fade in" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+  <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good.
+</div>
 
-<h2 id="小格式"><a href="#小格式" class="headerlink" title="小格式"></a>小格式</h2><h2 id="文字强调-文字加粗-attr文字缩略"><a href="#文字强调-文字加粗-attr文字缩略" class="headerlink" title="文字强调 文字加粗 attr文字缩略"></a><strong>文字强调</strong> <b>文字加粗</b> <abbr title="缩略后指向显示的文字">attr文字缩略</abbr></h2><h2 id="对齐"><a href="#对齐" class="headerlink" title="对齐"></a>对齐</h2><p class="text-left">左对齐</p>
-<p class="text-center">居中对齐</p>
-<p class="text-right">右对齐</p>
-<p class="text-justify">两端对齐</p>
-<p class="text-nowrap">No wrap text.</p>
----
 
-<h2 id="两种列表方式"><a href="#两种列表方式" class="headerlink" title="两种列表方式"></a>两种列表方式</h2><ul class="list-inline">
-  <li>横向内联1</li>
-  <li>横向内联2</li>
-  <li>横向内联3</li>
+<div class="alert alert-danger alert-dismissible fade in" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+  <h4>Oh snap! You got an error!</h4>
+  <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
+  <p>
+    <button type="button" class="btn btn-danger">Take this action</button>
+    <button type="button" class="btn btn-default">Or do this</button>
+  </p>
+</div>
+
+
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2017/12/16/lang-bootstrap-2017-12-16-bootstrap-4-kj/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2017/12/16/lang-bootstrap-2017-12-16-bootstrap-4-kj/" class="post-title-link" itemprop="url">Bootstrap-控件</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2017-12-16 00:00:00" itemprop="dateCreated datePublished" datetime="2017-12-16T00:00:00+08:00">2017-12-16</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/lang/" itemprop="url" rel="index"><span itemprop="name">lang</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2017/12/16/lang-bootstrap-2017-12-16-bootstrap-4-kj/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2017/12/16/lang-bootstrap-2017-12-16-bootstrap-4-kj/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>964</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="按钮改变大小和颜色"><a href="#按钮改变大小和颜色" class="headerlink" title="按钮改变大小和颜色"></a>按钮改变大小和颜色</h3><!-- Standard button -->
+<p><button type="button" class="btn btn-default btn-lg">（默认样式）Default btn-lg</button></p>
+<!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+<p><button type="button" class="btn btn-primary">（首选项）Primary</button></p>
+<!-- Indicates a successful or positive action -->
+<p><button type="button" class="btn btn-success btn-sm">（成功）Success  btn-sm</button></p>
+<!-- Contextual button for informational alert messages -->
+<p><button type="button" class="btn btn-info btn-xs">（一般信息）Info btn-xs</button></p>
+<!-- Indicates caution should be taken with this action -->
+<p><button type="button" class="btn btn-warning">（警告）Warning</button></p>
+<!-- Indicates a dangerous or potentially negative action -->
+<p><button type="button" class="btn btn-danger">（危险）Danger</button></p>
+<!-- Deemphasize a button by making it look like a link while maintaining button behavior -->
+<p><button type="button" class="btn btn-link">（链接）Link</button></p>
+<h3 id="文本和背景改变颜色"><a href="#文本和背景改变颜色" class="headerlink" title="文本和背景改变颜色"></a>文本和背景改变颜色</h3><p class="text-muted bg-warning">.mcorper nulla non metus..</p>
+<p class="text-primary bg-danger">..mcorper nulla non metus.</p>
+<p class="text-success">.mcorper nulla non metus..</p>
+<p class="text-info bg-primary">.mcorper nulla non metus..</p>
+<p class="text-warning bg-success">.mcorper nulla non metus..</p>
+<p class="text-danger bg-info">..mcorper nulla non metus.</p>
+### 输入框和下拉框
+<input type="text" class="form-control" placeholder="Text input">
+<input class="form-control input-lg" type="text" placeholder=".input-lg">
+<input class="form-control" type="text" placeholder="Default input">
+<input class="form-control input-sm" type="text" placeholder=".input-sm">
+<textarea class="form-control" rows="3"></textarea>
+<select class="form-control input-lg">...</select>
+<select class="form-control input-sm">...</select>
+<select class="form-control">
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select>
+
+
+<div class="checkbox">
+  <label>
+    <input type="checkbox" value>选项
+  </label>
+</div>
+<div class="checkbox disabled">
+  <label>
+    <input type="checkbox" value disabled>选项无效
+  </label>
+</div>
+
+<div class="radio">
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>单选1 name="optionsRadios"
+  </label>
+</div>
+<div class="radio">
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+    单选2 name="optionsRadios"
+  </label>
+</div>
+<div class="radio disabled">
+  <label>
+    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3" disabled>单选3-无效 name="optionsRadios"
+  </label>
+</div>
+
+<h3 id="单选和复选按钮"><a href="#单选和复选按钮" class="headerlink" title="单选和复选按钮"></a>单选和复选按钮</h3><label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox1" value="option1"> 1
+</label>
+<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox2" value="option2"> 2
+</label>
+<label class="checkbox-inline">
+  <input type="checkbox" id="inlineCheckbox3" value="option3"> 3
+</label>
+
+<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 1
+</label>
+<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 2
+</label>
+
+
+<h3 id="class-”form-group-has-success”"><a href="#class-”form-group-has-success”" class="headerlink" title="class=”form-group has-success”"></a>class=”form-group has-success”</h3><div class="form-group has-success">
+  <label class="control-label" for="inputSuccess1">Input with success</label>
+  <input type="text" class="form-control" id="inputSuccess1">
+  <span id="helpBlock2" class="help-block">说明信息</span>
+</div>
+<div class="form-group has-warning">
+  <label class="control-label" for="inputWarning1">Input with warning</label>
+  <input type="text" class="form-control" id="inputWarning1">
+</div>
+<div class="form-group has-error">
+  <label class="control-label" for="inputError1">Input with error</label>
+  <input type="text" class="form-control" id="inputError1">
+</div>
+<div class="has-success">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" id="checkboxSuccess" value="option1">
+      Checkbox with success
+    </label>
+  </div>
+</div>
+<div class="has-warning">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" id="checkboxWarning" value="option1">
+      Checkbox with warning
+    </label>
+  </div>
+</div>
+<div class="has-error">
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" id="checkboxError" value="option1">
+      Checkbox with error
+    </label>
+  </div>
+</div>
+
+
+<h3 id="控件"><a href="#控件" class="headerlink" title="控件"></a>控件</h3><form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">Example block-level help text here.</p>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+<form class="form-inline">
+  <div class="form-group">
+    <label for="exampleInputName2">Name</label>
+    <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail2">Email</label>
+    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+  </div>
+  <button type="submit" class="btn btn-default">Send invitation</button>
+</form>
+
+
+<form class="form-inline">
+  <div class="form-group">
+    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+    <div class="input-group">
+      <div class="input-group-addon">$</div>
+      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
+      <div class="input-group-addon">.00</div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Transfer cash</button>
+</form>
+
+
+
+
+<p><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button><br><span class="caret"></span></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2017/12/16/lang-bootstrap-2017-12-16-bootstrap-2-zj/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2017/12/16/lang-bootstrap-2017-12-16-bootstrap-2-zj/" class="post-title-link" itemprop="url">Bootstrap-组件</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2017-12-16 00:00:00" itemprop="dateCreated datePublished" datetime="2017-12-16T00:00:00+08:00">2017-12-16</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/lang/" itemprop="url" rel="index"><span itemprop="name">lang</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2017/12/16/lang-bootstrap-2017-12-16-bootstrap-2-zj/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2017/12/16/lang-bootstrap-2017-12-16-bootstrap-2-zj/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>556</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Home</a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="#">Messages</a></li>
 </ul>
-<table>
-<tr>
-<td>
-1. w2
-1. w1
-1. w3
-</td>
-<td>
-<ul>
-  <li>a</li>
-  <li>a</li>
-  <li>a</li>
-</ul>
-</td>
-<td>
-* Red
-* Green
-* Blue
-</td>
-<td>
-<ol>
-  <li>1</li>
-  <li>1</li>
-  <li>1</li>
-</ol>
-</td>
-</tr>
-</table>
----
+### 组件
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default">Left</button>
+  <button type="button" class="btn btn-default">Middle</button>
+  <button type="button" class="btn btn-default">Right</button>
+</div>
 
-<h2 id="描述语"><a href="#描述语" class="headerlink" title="描述语"></a>描述语</h2><dl>
-  <dt>带有描述的短语列表。</dt>  <dd>全部内容全部部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容</dd>
-</dl>
-<dl class="dl-horizontal">
-  <dt>水平排列的描述</dt>  <dd>全部内容全部部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容全部内容</dd>
-</dl>
+<div class="btn-toolbar" role="toolbar" aria-label="...">
+  <div class="btn-group" role="group" aria-label="...">...</div>
+  <div class="btn-group" role="group" aria-label="...">...</div>
+  <div class="btn-group" role="group" aria-label="...">...</div>
+</div>
 
-<h2 id="代码应用"><a href="#代码应用" class="headerlink" title="代码应用"></a>代码应用</h2><p>For example, <code>&lt;section&gt;</code> should be wrapped as inline.</p>
-<p>To switch directories, type <kbd>cd</kbd> followed by the name of the directory.<br><br>To edit settings, press <kbd><kbd>ctrl</kbd> + <kbd>,</kbd></kbd></p>
-<p><var>y</var> = <var>m</var><var>x</var> + <var>b</var></p>
-<pre>&lt;p&gt;Sample text here...&lt;/p&gt;</pre>
+<button type="button" class="btn btn-default" aria-label="Left Align">
+  <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+</button>
+
+<button type="button" class="btn btn-default btn-lg">
+  <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
+</button>
+
+
+<div class="alert alert-danger" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  Enter a valid email address
+</div>
+
+
+<div class="dropup">
+  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropup
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+
+
+
+<div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default">1</button>
+  <button type="button" class="btn btn-default">2</button>
+
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a href="#">Dropdown link</a></li>
+      <li><a href="#">Dropdown link</a></li>
+    </ul>
+  </div>
+</div>
+
+
+<!-- Single button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Action <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+<!-- Split button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-danger">Action</button>
+  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
+
+<p><span class="label label-default">Default</span><br><span class="label label-primary">Primary</span><br><span class="label label-success">Success</span><br><span class="label label-info">Info</span><br><span class="label label-warning">Warning</span><br><span class="label label-danger">Danger</span></p>
+<p><a href="#">Inbox <span class="badge">42</span></a></p>
+<button class="btn btn-primary" type="button">
+  Messages <span class="badge">4</span>
+</button>
+
         
       
     </div>
@@ -1290,11 +1186,291 @@
   </article>
 
     
+        <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block home">
+    <link itemprop="mainEntityOfPage" href="https://dirsky.github.io/2017/11/15/utils-dubbo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Frank">
+      <meta itemprop="description" content="优秀是一种习惯">
+      <meta itemprop="image" content="/uploads/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="徐先生的技术栈">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+            
+            <a href="/2017/11/15/utils-dubbo/" class="post-title-link" itemprop="url">dubbo</a>
+          
+        </h1>
+
+        <div class="post-meta">
+
+		  
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2017-11-15 00:00:00" itemprop="dateCreated datePublished" datetime="2017-11-15T00:00:00+08:00">2017-11-15</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-09 10:00:27" itemprop="dateModified" datetime="2021-08-09T10:00:27+08:00">2021-08-09</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/utils/" itemprop="url" rel="index"><span itemprop="name">utils</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2017/11/15/utils-dubbo/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/2017/11/15/utils-dubbo/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>5.9k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>5 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本文是作者根据官方文档以及自己平时的使用情况，对 Dubbo 所做的一个总结。如果不懂 Dubbo 的使用的话，可以参考我的这篇文章<a href="https://mp.weixin.qq.com/s?__biz=MzU4NDQ4MzU5OA==&mid=2247484706&idx=1&sn=d413fc17023482f67ca17cb6756b9ff8&chksm=fd985343caefda555969568fdf4734536e0a1745f9de337d434a7dbd04e893bd2d75f3641aab&token=1902169190&lang=zh_CN#rd" target="_blank" rel="noopener">《超详细，新手都能看懂 ！使用SpringBoot+Dubbo 搭建一个简单的分布式服务》</a></p>
+<p>Dubbo 官网：<a href="http://dubbo.apache.org/zh-cn/index.html" target="_blank" rel="noopener">http://dubbo.apache.org/zh-cn/index.html</a></p>
+<p>Dubbo 中文文档： <a href="http://dubbo.apache.org/zh-cn/index.html" target="_blank" rel="noopener">http://dubbo.apache.org/zh-cn/index.html</a></p>
+<h2 id="一-重要的概念"><a href="#一-重要的概念" class="headerlink" title="一 重要的概念"></a>一 重要的概念</h2><h3 id="1-1-什么是-Dubbo"><a href="#1-1-什么是-Dubbo" class="headerlink" title="1.1 什么是 Dubbo?"></a>1.1 什么是 Dubbo?</h3><p>Apache Dubbo (incubating) |ˈdʌbəʊ| 是一款高性能、轻量级的开源Java RPC 框架，它提供了三大核心能力：面向接口的远程方法调用，智能容错和负载均衡，以及服务自动注册和发现。简单来说 Dubbo 是一个分布式服务框架，致力于提供高性能和透明化的RPC远程服务调用方案，以及SOA服务治理方案。</p>
+<p>Dubbo 目前已经有接近 23k 的 Star ，Dubbo的Github 地址：<a href="https://github.com/apache/incubator-dubbo" target="_blank" rel="noopener">https://github.com/apache/incubator-dubbo</a> 。 另外，在开源中国举行的2018年度最受欢迎中国开源软件这个活动的评选中，Dubbo 更是凭借其超高人气仅次于 vue.js 和 ECharts 获得第三名的好成绩。</p>
+<p>Dubbo 是由阿里开源，后来加入了 Apache 。正式由于 Dubbo 的出现，才使得越来越多的公司开始使用以及接受分布式架构。</p>
+<p><strong>我们上面说了  Dubbo 实际上是 RPC 框架，那么什么是 RPC呢？</strong></p>
+<h3 id="1-2-什么是-RPC-RPC原理是什么"><a href="#1-2-什么是-RPC-RPC原理是什么" class="headerlink" title="1.2 什么是 RPC?RPC原理是什么?"></a>1.2 什么是 RPC?RPC原理是什么?</h3><p><strong>什么是 RPC？</strong></p>
+<p>RPC（Remote Procedure Call）—远程过程调用，它是一种通过网络从远程计算机程序上请求服务，而不需要了解底层网络技术的协议。比如两个不同的服务 A、B 部署在两台不同的机器上，那么服务 A 如果想要调用服务 B 中的某个方法该怎么办呢？使用 HTTP请求 当然可以，但是可能会比较慢而且一些优化做的并不好。 RPC 的出现就是为了解决这个问题。</p>
+<p><strong>RPC原理是什么？</strong></p>
+<p>我这里这是简单的提一下。详细内容可以查看下面这篇文章：</p>
+<p><a href="http://www.importnew.com/22003.html" target="_blank" rel="noopener">http://www.importnew.com/22003.html</a></p>
+<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-6/37345851.jpg" alt="RPC原理图"></p>
+<ol>
+<li>服务消费方（client）调用以本地调用方式调用服务；</li>
+<li>client stub接收到调用后负责将方法、参数等组装成能够进行网络传输的消息体；</li>
+<li>client stub找到服务地址，并将消息发送到服务端；</li>
+<li>server stub收到消息后进行解码；</li>
+<li>server stub根据解码结果调用本地的服务；</li>
+<li>本地服务执行并将结果返回给server stub；</li>
+<li>server stub将返回结果打包成消息并发送至消费方；</li>
+<li>client stub接收到消息，并进行解码；</li>
+<li>服务消费方得到最终结果。</li>
+</ol>
+<p>下面再贴一个网上的时序图：</p>
+<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-6/32527396.jpg" alt="RPC原理时序图"></p>
+<p><strong>说了这么多，我们为什么要用 Dubbo 呢？</strong></p>
+<h3 id="1-3-为什么要用-Dubbo"><a href="#1-3-为什么要用-Dubbo" class="headerlink" title="1.3 为什么要用 Dubbo?"></a>1.3 为什么要用 Dubbo?</h3><p>Dubbo 的诞生和 SOA 分布式架构的流行有着莫大的关系。SOA 面向服务的架构（Service Oriented Architecture），也就是把工程按照业务逻辑拆分成服务层、表现层两个工程。服务层中包含业务逻辑，只需要对外提供服务即可。表现层只需要处理和页面的交互，业务逻辑都是调用服务层的服务来实现。SOA架构中有两个主要角色：服务提供者（Provider）和服务使用者（Consumer）。</p>
+<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-26/43050183.jpg" alt="为什么要用 Dubbo"></p>
+<p><strong>如果你要开发分布式程序，你也可以直接基于 HTTP 接口进行通信，但是为什么要用 Dubbo呢？</strong></p>
+<p>我觉得主要可以从 Dubbo 提供的下面四点特性来说为什么要用 Dubbo：</p>
+<ol>
+<li><strong>负载均衡</strong>——同一个服务部署在不同的机器时该调用那一台机器上的服务。</li>
+<li><strong>服务调用链路生成</strong>——随着系统的发展，服务越来越多，服务间依赖关系变得错踪复杂，甚至分不清哪个应用要在哪个应用之前启动，架构师都不能完整的描述应用的架构关系。Dubbo 可以为我们解决服务之间互相是如何调用的。</li>
+<li><strong>服务访问压力以及时长统计、资源调度和治理</strong>——基于访问压力实时管理集群容量，提高集群利用率。</li>
+<li><strong>服务降级</strong>——某个服务挂掉之后调用备用服务。</li>
+</ol>
+<p>另外，Dubbo 除了能够应用在分布式系统中，也可以应用在现在比较火的微服务系统中。不过，由于 Spring Cloud 在微服务中应用更加广泛，所以，我觉得一般我们提 Dubbo 的话，大部分是分布式系统的情况。</p>
+<p><strong>我们刚刚提到了分布式这个概念，下面再给大家介绍一下什么是分布式？为什么要分布式？</strong></p>
+<h3 id="1-4-什么是分布式"><a href="#1-4-什么是分布式" class="headerlink" title="1.4 什么是分布式?"></a>1.4 什么是分布式?</h3><p>分布式或者说 SOA 分布式重要的就是面向服务，说简单的分布式就是我们把整个系统拆分成不同的服务然后将这些服务放在不同的服务器上减轻单体服务的压力提高并发量和性能。比如电商系统可以简单地拆分成订单系统、商品系统、登录系统等等，拆分之后的每个服务可以部署在不同的机器上，如果某一个服务的访问量比较大的话也可以将这个服务同时部署在多台机器上。</p>
+<h3 id="1-5-为什么要分布式"><a href="#1-5-为什么要分布式" class="headerlink" title="1.5 为什么要分布式?"></a>1.5 为什么要分布式?</h3><p>从开发角度来讲单体应用的代码都集中在一起，而分布式系统的代码根据业务被拆分。所以，每个团队可以负责一个服务的开发，这样提升了开发效率。另外，代码根据业务拆分之后更加便于维护和扩展。</p>
+<p>另外，我觉得将系统拆分成分布式之后不光便于系统扩展和维护，更能提高整个系统的性能。你想一想嘛？把整个系统拆分成不同的服务/系统，然后每个服务/系统 单独部署在一台服务器上，是不是很大程度上提高了系统性能呢？</p>
+<h2 id="二-Dubbo-的架构"><a href="#二-Dubbo-的架构" class="headerlink" title="二 Dubbo 的架构"></a>二 Dubbo 的架构</h2><h3 id="2-1-Dubbo-的架构图解"><a href="#2-1-Dubbo-的架构图解" class="headerlink" title="2.1 Dubbo 的架构图解"></a>2.1 Dubbo 的架构图解</h3><p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-26/46816446.jpg" alt="Dubbo 架构"></p>
+<p><strong>上述节点简单说明：</strong></p>
+<ul>
+<li><strong>Provider：</strong>    暴露服务的服务提供方</li>
+<li><strong>Consumer：</strong>    调用远程服务的服务消费方</li>
+<li><strong>Registry：</strong>    服务注册与发现的注册中心</li>
+<li><strong>Monitor：</strong>     统计服务的调用次数和调用时间的监控中心</li>
+<li><strong>Container：</strong>   服务运行容器</li>
+</ul>
+<p><strong>调用关系说明：</strong></p>
+<ol>
+<li>服务容器负责启动，加载，运行服务提供者。</li>
+<li>服务提供者在启动时，向注册中心注册自己提供的服务。</li>
+<li>服务消费者在启动时，向注册中心订阅自己所需的服务。</li>
+<li>注册中心返回服务提供者地址列表给消费者，如果有变更，注册中心将基于长连接推送变更数据给消费者。</li>
+<li>服务消费者，从提供者地址列表中，基于软负载均衡算法，选一台提供者进行调用，如果调用失败，再选另一台调用。</li>
+<li>服务消费者和提供者，在内存中累计调用次数和调用时间，定时每分钟发送一次统计数据到监控中心。</li>
+</ol>
+<p><strong>重要知识点总结：</strong></p>
+<ul>
+<li><strong>注册中心负责服务地址的注册与查找，相当于目录服务，服务提供者和消费者只在启动时与注册中心交互，注册中心不转发请求，压力较小</strong></li>
+<li><strong>监控中心负责统计各服务调用次数，调用时间等，统计先在内存汇总后每分钟一次发送到监控中心服务器，并以报表展示</strong></li>
+<li><strong>注册中心，服务提供者，服务消费者三者之间均为长连接，监控中心除外</strong></li>
+<li><strong>注册中心通过长连接感知服务提供者的存在，服务提供者宕机，注册中心将立即推送事件通知消费者</strong></li>
+<li><strong>注册中心和监控中心全部宕机，不影响已运行的提供者和消费者，消费者在本地缓存了提供者列表</strong></li>
+<li><strong>注册中心和监控中心都是可选的，服务消费者可以直连服务提供者</strong></li>
+<li><strong>服务提供者无状态，任意一台宕掉后，不影响使用</strong></li>
+<li><strong>服务提供者全部宕掉后，服务消费者应用将无法使用，并无限次重连等待服务提供者恢复</strong></li>
+</ul>
+<h3 id="2-2-Dubbo-工作原理"><a href="#2-2-Dubbo-工作原理" class="headerlink" title="2.2 Dubbo 工作原理"></a>2.2 Dubbo 工作原理</h3><p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-9-26/64702923.jpg" alt="Dubbo 工作原理"></p>
+<p>图中从下至上分为十层，各层均为单向依赖，右边的黑色箭头代表层之间的依赖关系，每一层都可以剥离上层被复用，其中，Service 和 Config 层为 API，其它各层均为 SPI。</p>
+<p><strong>各层说明</strong>：</p>
+<ul>
+<li>第一层：<strong>service层</strong>，接口层，给服务提供者和消费者来实现的</li>
+<li>第二层：<strong>config层</strong>，配置层，主要是对dubbo进行各种配置的</li>
+<li>第三层：<strong>proxy层</strong>，服务接口透明代理，生成服务的客户端 Stub 和服务器端 Skeleton</li>
+<li>第四层：<strong>registry层</strong>，服务注册层，负责服务的注册与发现</li>
+<li>第五层：<strong>cluster层</strong>，集群层，封装多个服务提供者的路由以及负载均衡，将多个实例组合成一个服务</li>
+<li>第六层：<strong>monitor层</strong>，监控层，对rpc接口的调用次数和调用时间进行监控</li>
+<li>第七层：<strong>protocol层</strong>，远程调用层，封装rpc调用</li>
+<li>第八层：<strong>exchange层</strong>，信息交换层，封装请求响应模式，同步转异步</li>
+<li>第九层：<strong>transport层</strong>，网络传输层，抽象mina和netty为统一接口</li>
+<li>第十层：<strong>serialize层</strong>，数据序列化层，网络传输需要</li>
+</ul>
+<h2 id="三-Dubbo-的负载均衡策略"><a href="#三-Dubbo-的负载均衡策略" class="headerlink" title="三 Dubbo 的负载均衡策略"></a>三 Dubbo 的负载均衡策略</h2><h3 id="3-1-先来解释一下什么是负载均衡"><a href="#3-1-先来解释一下什么是负载均衡" class="headerlink" title="3.1 先来解释一下什么是负载均衡"></a>3.1 先来解释一下什么是负载均衡</h3><p><strong>先来个官方的解释。</strong></p>
+<blockquote>
+<p>维基百科对负载均衡的定义：负载均衡改善了跨多个计算资源（例如计算机，计算机集群，网络链接，中央处理单元或磁盘驱动的的工作负载分布。负载平衡旨在优化资源使用，最大化吞吐量，最小化响应时间，并避免任何单个资源的过载。使用具有负载平衡而不是单个组件的多个组件可以通过冗余提高可靠性和可用性。负载平衡通常涉及专用软件或硬件。</p>
+</blockquote>
+<p><strong>上面讲的大家可能不太好理解，再用通俗的话给大家说一下。</strong></p>
+<p>比如我们的系统中的某个服务的访问量特别大，我们将这个服务部署在了多台服务器上，当客户端发起请求的时候，多台服务器都可以处理这个请求。那么，如何正确选择处理该请求的服务器就很关键。假如，你就要一台服务器来处理该服务的请求，那该服务部署在多台服务器的意义就不复存在了。负载均衡就是为了避免单个服务器响应同一请求，容易造成服务器宕机、崩溃等问题，我们从负载均衡的这四个字就能明显感受到它的意义。</p>
+<h3 id="3-2-再来看看-Dubbo-提供的负载均衡策略"><a href="#3-2-再来看看-Dubbo-提供的负载均衡策略" class="headerlink" title="3.2 再来看看 Dubbo 提供的负载均衡策略"></a>3.2 再来看看 Dubbo 提供的负载均衡策略</h3><p>在集群负载均衡时，Dubbo 提供了多种均衡策略，默认为 <code>random</code> 随机调用。可以自行扩展负载均衡策略，参见：<a href="https://dubbo.gitbooks.io/dubbo-dev-book/content/impls/load-balance.html" target="_blank" rel="noopener">负载均衡扩展</a>。</p>
+<p>备注:下面的图片来自于：尚硅谷2018Dubbo 视频。</p>
+<h4 id="3-2-1-Random-LoadBalance-默认，基于权重的随机负载均衡机制"><a href="#3-2-1-Random-LoadBalance-默认，基于权重的随机负载均衡机制" class="headerlink" title="3.2.1  Random LoadBalance(默认，基于权重的随机负载均衡机制)"></a>3.2.1  Random LoadBalance(默认，基于权重的随机负载均衡机制)</h4><ul>
+<li><strong>随机，按权重设置随机概率。</strong></li>
+<li>在一个截面上碰撞的概率高，但调用量越大分布越均匀，而且按概率使用权重后也比较均匀，有利于动态调整提供者权重。</li>
+</ul>
+<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-7/77722327.jpg" alt="基于权重的随机负载均衡机制"></p>
+<h4 id="3-2-2-RoundRobin-LoadBalance-不推荐，基于权重的轮询负载均衡机制"><a href="#3-2-2-RoundRobin-LoadBalance-不推荐，基于权重的轮询负载均衡机制" class="headerlink" title="3.2.2  RoundRobin LoadBalance(不推荐，基于权重的轮询负载均衡机制)"></a>3.2.2  RoundRobin LoadBalance(不推荐，基于权重的轮询负载均衡机制)</h4><ul>
+<li>轮循，按公约后的权重设置轮循比率。</li>
+<li>存在慢的提供者累积请求的问题，比如：第二台机器很慢，但没挂，当请求调到第二台时就卡在那，久而久之，所有请求都卡在调到第二台上。</li>
+</ul>
+<p><img src="http://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-7/97933247.jpg" alt="基于权重的轮询负载均衡机制"></p>
+<h4 id="3-2-3-LeastActive-LoadBalance"><a href="#3-2-3-LeastActive-LoadBalance" class="headerlink" title="3.2.3 LeastActive LoadBalance"></a>3.2.3 LeastActive LoadBalance</h4><ul>
+<li>最少活跃调用数，相同活跃数的随机，活跃数指调用前后计数差。</li>
+<li>使慢的提供者收到更少请求，因为越慢的提供者的调用前后计数差会越大。</li>
+</ul>
+<h4 id="3-2-4-ConsistentHash-LoadBalance"><a href="#3-2-4-ConsistentHash-LoadBalance" class="headerlink" title="3.2.4  ConsistentHash LoadBalance"></a>3.2.4  ConsistentHash LoadBalance</h4><ul>
+<li><strong>一致性 Hash，相同参数的请求总是发到同一提供者。(如果你需要的不是随机负载均衡，是要一类请求都到一个节点，那就走这个一致性hash策略。)</strong></li>
+<li>当某一台提供者挂时，原本发往该提供者的请求，基于虚拟节点，平摊到其它提供者，不会引起剧烈变动。</li>
+<li>算法参见：<a href="http://en.wikipedia.org/wiki/Consistent_hashing" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Consistent_hashing</a></li>
+<li>缺省只对第一个参数 Hash，如果要修改，请配置 <code>&lt;dubbo:parameter key=&quot;hash.arguments&quot; value=&quot;0,1&quot; /&gt;</code></li>
+<li>缺省用 160 份虚拟节点，如果要修改，请配置 <code>&lt;dubbo:parameter key=&quot;hash.nodes&quot; value=&quot;320&quot; /&gt;</code></li>
+</ul>
+<h3 id="3-3-配置方式"><a href="#3-3-配置方式" class="headerlink" title="3.3 配置方式"></a>3.3 配置方式</h3><p><strong>xml 配置方式</strong></p>
+<p>服务端服务级别</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;dubbo:service <span class="class"><span class="keyword">interface</span></span>=<span class="string">"..."</span> loadbalance=<span class="string">"roundrobin"</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>客户端服务级别</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;dubbo:reference <span class="class"><span class="keyword">interface</span></span>=<span class="string">"..."</span> loadbalance=<span class="string">"roundrobin"</span> /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>服务端方法级别</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;dubbo:service <span class="class"><span class="keyword">interface</span></span>=<span class="string">"..."</span>&gt;</span><br><span class="line">    &lt;dubbo:method name=<span class="string">"..."</span> loadbalance=<span class="string">"roundrobin"</span>/&gt;</span><br><span class="line">&lt;/dubbo:service&gt;</span><br></pre></td></tr></table></figure>
+
+<p>客户端方法级别</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;dubbo:reference <span class="class"><span class="keyword">interface</span></span>=<span class="string">"..."</span>&gt;</span><br><span class="line">    &lt;dubbo:method name=<span class="string">"..."</span> loadbalance=<span class="string">"roundrobin"</span>/&gt;</span><br><span class="line">&lt;/dubbo:reference&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注解配置方式：</strong></p>
+<p>消费方基于基于注解的服务级别配置方式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Reference</span>(loadbalance = <span class="string">"roundrobin"</span>)</span><br><span class="line">HelloService helloService;</span><br></pre></td></tr></table></figure>
+
+<h2 id="四-zookeeper宕机与dubbo直连的情况"><a href="#四-zookeeper宕机与dubbo直连的情况" class="headerlink" title="四 zookeeper宕机与dubbo直连的情况"></a>四 zookeeper宕机与dubbo直连的情况</h2><p>zookeeper宕机与dubbo直连的情况在面试中可能会被经常问到，所以要引起重视。</p>
+<p>在实际生产中，假如zookeeper注册中心宕掉，一段时间内服务消费方还是能够调用提供方的服务的，实际上它使用的本地缓存进行通讯，这只是dubbo健壮性的一种提现。</p>
+<p><strong>dubbo的健壮性表现：</strong></p>
+<ol>
+<li>监控中心宕掉不影响使用，只是丢失部分采样数据</li>
+<li>数据库宕掉后，注册中心仍能通过缓存提供服务列表查询，但不能注册新服务</li>
+<li>注册中心对等集群，任意一台宕掉后，将自动切换到另一台</li>
+<li>注册中心全部宕掉后，服务提供者和服务消费者仍能通过本地缓存通讯</li>
+<li>服务提供者无状态，任意一台宕掉后，不影响使用</li>
+<li>服务提供者全部宕掉后，服务消费者应用将无法使用，并无限次重连等待服务提供者恢复</li>
+</ol>
+<p>我们前面提到过：注册中心负责服务地址的注册与查找，相当于目录服务，服务提供者和消费者只在启动时与注册中心交互，注册中心不转发请求，压力较小。所以，我们可以完全可以绕过注册中心——采用 <strong>dubbo 直连</strong> ，即在服务消费方配置服务提供方的位置信息。</p>
+<p><strong>xml配置方式：</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dubbo:reference</span> <span class="attr">id</span>=<span class="string">"userService"</span> <span class="attr">interface</span>=<span class="string">"com.zang.gmall.service.UserService"</span> <span class="attr">url</span>=<span class="string">"dubbo://localhost:20880"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注解方式：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Reference</span>(url = <span class="string">"127.0.0.1:20880"</span>)   </span><br><span class="line">HelloService helloService;</span><br></pre></td></tr></table></figure>
+
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/29/">29</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1342,7 +1518,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-count">143</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1383,9 +1559,7 @@
         
           
         
-          
-        
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1456,11 +1630,7 @@
         
           
         
-          
-        
-          
-        
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1527,7 +1697,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2008 – <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2008 – <span itemprop="copyrightYear">2022</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

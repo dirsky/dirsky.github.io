@@ -384,11 +384,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="1-数据库部分"><a href="#1-数据库部分" class="headerlink" title="1. 数据库部分"></a>1. 数据库部分</h2><h3 id="1-1-docker-pull-mysql-5-7"><a href="#1-1-docker-pull-mysql-5-7" class="headerlink" title="1.1 docker pull mysql:5.7"></a>1.1 docker pull mysql:5.7</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3306  -v /data/docker/mysql/datadir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Gz,.9918xu --name mysql mysql:5.7</span><br><span class="line"><span class="meta">#</span> 不需要提前创建/data/docker/mysql目录</span><br></pre></td></tr></table></figure>
+        <h2 id="1-数据库部分"><a href="#1-数据库部分" class="headerlink" title="1. 数据库部分"></a>1. 数据库部分</h2><h3 id="1-1-docker-pull-mysql-5-7"><a href="#1-1-docker-pull-mysql-5-7" class="headerlink" title="1.1 docker pull mysql:5.7"></a>1.1 docker pull mysql:5.7</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3306  -v /data/docker/mysql/datadir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Gz,.9918xu --name mysql mysql:5.7</span><br><span class="line"><span class="meta">#</span><span class="bash"> 不需要提前创建/data/docker/mysql目录</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 设置支持utf-8解决方案（已测试有效）</span><br><span class="line">sudo docker exec -it mysql bash</span><br><span class="line">echo "character-set-server=utf8" &gt;&gt; /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">exit</span><br><span class="line">sudo docker restart mysql</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 设置支持utf-8解决方案（已测试有效）</span></span><br><span class="line">sudo docker exec -it mysql bash</span><br><span class="line">echo "character-set-server=utf8" &gt;&gt; /etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">exit</span><br><span class="line">sudo docker restart mysql</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mysql bash</span><br><span class="line">mysql -uroot -p</span><br><span class="line"><span class="meta">#</span> 给root设置密码</span><br><span class="line">ALTER  USER  'root'  IDENTIFIED  WITH  mysql_native_password  BY  '123456';</span><br><span class="line"><span class="meta">#</span> 添加远程登录用户</span><br><span class="line">CREATE USER 'admin'@'%' IDENTIFIED WITH mysql_native_password BY '123456';</span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%';</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it mysql bash</span><br><span class="line">mysql -uroot -p</span><br><span class="line"><span class="meta">#</span><span class="bash"> 给root设置密码</span></span><br><span class="line">ALTER  USER  'root'  IDENTIFIED  WITH  mysql_native_password  BY  '123456';</span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加远程登录用户</span></span><br><span class="line">CREATE USER 'admin'@'%' IDENTIFIED WITH mysql_native_password BY '123456';</span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO 'admin'@'%';</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a --no-trunc # ps列出container -a列出全部, --no-trunc不截断</span><br><span class="line">docker stop mysql</span><br><span class="line">docker restart mysql</span><br><span class="line">docker rm mysql</span><br></pre></td></tr></table></figure>
 
@@ -569,7 +569,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">149</span>
+          <span class="site-state-item-count">143</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -610,9 +610,7 @@
         
           
         
-          
-        
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -683,11 +681,7 @@
         
           
         
-          
-        
-          
-        
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -754,7 +748,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2008 – <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2008 – <span itemprop="copyrightYear">2022</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
